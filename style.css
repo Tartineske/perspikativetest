@@ -1,0 +1,277 @@
+/* ============================= 1. IMPORTS ET PARAMÈTRES GLOBAUX ============================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+
+@font-face {
+  font-family: 'Maneola';
+  src: url('fonts/Maneola-Regular.woff2') format('woff2'),
+       url('fonts/Maneola-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Forcer le site en mode clair (desktop + mobile) --- */
+
+/* Indique au navigateur que le site est conçu pour un thème clair */
+:root {
+  color-scheme: light;
+}
+
+/* Applique le fond et la couleur de texte clairs par défaut */
+html,
+body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Empêche le mode sombre automatique de modifier les couleurs */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+/* Correction spéciale pour Safari iOS (qui ignore parfois color-scheme) */
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+
+
+
+/* ============================= 2. STYLES GÉNÉRAUX ============================= */
+
+body {
+  font-family: 'Rubik', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #4AA9A1, #2CA877, #62A78A);
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+/* --- Logo styling --- */
+.header-content {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 10px;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* --- Adaptation mobile du header --- */
+@media (max-width: 768px) {
+  .header-content {
+    margin: 10px auto 0;
+    padding: 0 10px;
+  }
+
+  .logo img {
+    height: clamp(80px, 28vw, 140px);
+    max-width: 70vw;
+    margin: 0;
+  }
+
+  main {
+    padding-bottom: 120px;
+  }
+}
+
+
+
+/* ============================= 5. CONTENU PRINCIPAL (MAIN) ============================= */
+
+main {
+  flex: 1;
+  padding: 10px 30px 15px 30px;
+  max-width: 1100px;
+  margin: 20px auto 30px auto;
+  background: rgba(255 255 255 / 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 0 40px #2CA877bb;
+  border: 1px solid rgba(255 255 255 / 0.25);
+  color: white;
+  user-select: text;
+}
+
+.tab-content {
+  display: none;
+  color: white;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 25px 35px;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+/* ============================= 6. ACCUEIL ============================= */
+
+body.home {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  animation: gradientShift 10s ease-in-out infinite alternate;
+  overflow-x: hidden;
+}
+
+/* Animation douce du dégradé de fond */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Conteneur principal */
+#home-wrapper {
+  position: relative;
+  margin-top: 20px;
+}
+
+#home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Titre central */
+.titre-accueil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Maneola', 'Rubik';
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: clamp(260px, 68vw, 880px);
+  min-height: clamp(100px, 18vh, 240px);
+  padding: clamp(10px, 3vw, 30px);
+  line-height: 1.15;
+  text-wrap: balance;
+  font-weight: 550;
+  z-index: 2;
+  user-select: none;
+  letter-spacing: 0.1rem;
+}
+
+/* ===== Bandes horizontales d’images ===== */
+.ligne {
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  left: 0;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Chaque image dans le défilement */
+.ligne img {
+  border-radius: 1rem;
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+  flex: 0 0 auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.ligne img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.ligne1 { top: clamp(50px, 10vh, 100px); }
+.ligne2 { top: clamp(150px, 45vh, 300px); }
+
+/* Défilement fluide gauche-droite */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.ligne1 .masonry {
+  display: flex;
+  gap: 20px;
+  animation: scroll-left 30s linear infinite;
+}
+
+.ligne2 .masonry {
+  display: flex;
+  gap: 20px;
+  animation: scroll-right 35s linear infinite;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .ligne img {
+    border-radius: 1rem;
+    height: auto;
+    max-height: 140px;
+    width: auto;
+    object-fit: cover;
+    flex: 0 0 auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .ligne1 { top: clamp(40px, 8vh, 90px); }
+  .ligne2 { top: clamp(90px, 35vh, 200px); }
+
+  .titre-accueil {
+    top: 52%;
+    transform: translate(-50%, -48%);
+    font-size: clamp(1.9rem, 8vw, 3.8rem);
+    white-space: normal;
+    word-break: break-word;
+    width: clamp(220px, 82vw, 640px);
+    min-height: clamp(90px, 22vh, 180px);
+    padding: clamp(12px, 5vw, 28px);
+  }
+}
+
+@media (max-width: 768px) {
+  #home-wrapper {
+    margin-top: 10px;
+  }
+}
