@@ -1647,118 +1647,82 @@ p {
 
 /* ============================= 11. FAQ ============================= */
 
-.faq-section {
-  padding: 40px 20px;
-  max-width: 800px;
-  margin: 0 auto;
+.faq-header {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
-.faq-title {
-  text-align: left;
-  font-size: 2.4rem;
-  font-weight: 700;
-  margin-top: 0px;
-  margin-bottom: 30px;
+.faq-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
 }
 
-/* Carte */
-.faq-item {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
-  margin-bottom: 16px;
-  overflow: hidden;
-  transition: background 0.35s ease, border-color 0.35s ease;
+.faq-header p {
+  font-size: 1.2rem;
+  opacity: 0.75;
 }
 
-/* Input caché */
-.faq-toggle {
-  display: none;
+
+
+.faq-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
-/* Question */
-.faq-question {
+/* Capsule boutons */
+.faq-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 18px 20px;
-  cursor: pointer;
+  gap: 10px;
+  padding: 0px 0px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.faq-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Icon circle */
+.faq-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.faq-icon img {
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+}
+
+/* Texte catégorie */
+.faq-card span {
   font-size: 1.1rem;
-  position: relative;
+  font-weight: 500;
 }
 
-/* Flèche */
-.faq-question .arrow {
-  transition: transform 0.35s ease;
-}
+@media (max-width: 700px) {
+  .faq-categories {
+    grid-template-columns: 1fr;
+  }
 
-/* Bloc réponse (animable, même à la fermeture) */
-.faq-answer {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  padding: 0 20px;
-  transform: translateY(-6px);
-  transition:
-    max-height 0.45s ease,
-    opacity 0.35s ease,
-    transform 0.35s ease;
-}
-
-.faq-answer-inner {
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  padding-bottom: 18px;
-}
-
-/* Ouverture */
-.faq-toggle:checked + .faq-question + .faq-answer {
-  max-height: 300px;
-  opacity: 1;
-  transform: translateY(0);
-  padding-bottom: 18px;
-}
-
-.faq-toggle:checked + .faq-question + .faq-answer .faq-answer-inner {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Flèche rotation quand ouvert */
-.faq-toggle:checked + .faq-question .arrow {
-  transform: rotate(180deg);
-}
-
-/* Effet glassmorphism qui s’illumine */
-.faq-toggle:checked ~ .faq-answer,
-.faq-toggle:checked + .faq-question {
-  /* la carte change un peu d’ambiance */
-}
-
-.faq-toggle:checked ~ .faq-answer,
-.faq-toggle:checked + .faq-question {
-  /* juste esthétique, à ajuster si tu veux */
-}
-
-.faq-toggle:checked ~ .faq-answer {
-  /* juste un repère visuel */
-}
-
-.faq-item .faq-toggle:checked ~ .faq-answer {
-  /* Possible d’ajouter un highlight */
-}
-
-.faq-item .faq-toggle:checked ~ .faq-answer {
-  /* rien d’obligatoire, tu peux ignorer */
-}
-
-/* Responsive */
-@media (max-width: 500px) {
-  .faq-question {
-    font-size: 1rem;
-    padding: 16px 18px;
+  .faq-card {
+    padding: 0px 0px;
   }
 }
 
