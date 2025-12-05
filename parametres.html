@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paramètres</title>
+
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" type="image/png" href="favicon-light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="favicon-dark.png" media="(prefers-color-scheme: light)">
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="settings">
+
+  <nav class="mobile-nav">
+    <a href="index.html" class="nav-icon" title="Accueil">
+      <img src="logos/accueil.svg" alt="Accueil">
+    </a>
+    <a href="portfolio.html" class="nav-icon" title="Portfolio">
+      <img src="logos/portfolio.svg" alt="Portfolio">
+    </a>
+    <a href="rechercher.html" class="nav-icon" title="Rechercher">
+      <img src="logos/rechercher.svg" alt="Rechercher">
+    </a>
+    <a href="a-propos.html" class="nav-icon" title="À propos">
+      <img src="logos/a-propos.svg" alt="À propos">
+    </a>
+    <a href="contact.html" class="nav-icon" title="Contact">
+      <img src="logos/contact.svg" alt="Contact">
+    </a>
+  </nav>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <img src="logo.svg" alt="Perspikative logo">
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-tabs">
+          <li><a href="index.html" class="tab">ACCUEIL</a></li>
+          <li><a href="portfolio.html" class="tab">PORTFOLIO</a></li>
+          <li><a href="a-propos.html" class="tab">À PROPOS</a></li>
+          <li><a href="contact.html" class="tab">CONTACT</a></li>
+        </ul>
+
+        <input type="checkbox" id="menuToggle" />
+        <label for="menuToggle" class="burger-icon" title="Menu">
+          <img id="menuIcon" src="logos/menu.svg" alt="Menu">
+        </label>
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="faq/faq.html">FAQ</a></li>
+          <li><a href="art-challenge.html">ART CHALLENGE</a></li>
+          <li><a href="parametres.html">PARAMÈTRES</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="blur-overlay"></div>
+
+  <main>
+    <section class="settings-section">
+      <div class="setting">
+        <div class="toggle">
+          <input type="checkbox" id="darkmode">
+          <span class="slider"></span>
+        </div>
+        <label for="darkmode">Mode sombre</label>
+      </div>
+      <div class="setting">
+        <div class="toggle">
+          <input type="checkbox" id="contrast">
+          <span class="slider"></span>
+        </div>
+        <label for="contrast">Police contrastée</label>
+      </div>
+      <div class="setting">
+        <div class="toggle">
+          <input type="checkbox" id="animations" checked>
+          <span class="slider"></span>
+        </div>
+        <label for="animations">Animations</label>
+      </div>
+    </section>
+  </main>
+
+  <a href="rechercher.html" class="search-float-btn" title="Rechercher">
+    <img src="logos/rechercher.svg" alt="Rechercher">
+  </a>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('change', (e) => {
+      document.body.classList.toggle('menu-open', e.target.checked);
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

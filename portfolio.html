@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio</title>
+
+  <meta name="description" content="Découvrez le portfolio de Perspikative : créations, illustrations et projets uniques.">
+
+  <meta name="keywords" content="portfolio, art, Perspikative, art traditionnel, art digital, créations, illustrations, projets">
+
+  <meta property="og:title" content="Portfolio" />
+  <meta property="og:description" content="✏️ i make art. welcome to my world" />
+  <meta property="og:image" content="https://tartineske.github.io/perspikative/preview.jpg" />
+  <meta property="og:url" content="https://tartineske.github.io/perspikative/portfolio" />
+  <meta property="og:type" content="website" />
+
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" type="image/png" href="favicon-light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="favicon-dark.png" media="(prefers-color-scheme: light)">
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="portfolio-page">
+
+  <nav class="mobile-nav">
+    <a href="index.html" class="nav-icon" title="Accueil">
+      <img src="logos/accueil.svg" alt="Accueil">
+    </a>
+    <a href="portfolio.html" class="nav-icon active" title="Portfolio">
+      <img src="logos/portfolio.svg" alt="Portfolio">
+    </a>
+    <a href="rechercher.html" class="nav-icon" title="Rechercher">
+      <img src="logos/rechercher.svg" alt="Rechercher">
+    </a>
+    <a href="a-propos.html" class="nav-icon" title="À propos">
+      <img src="logos/a-propos.svg" alt="À propos">
+    </a>
+    <a href="contact.html" class="nav-icon" title="Contact">
+      <img src="logos/contact.svg" alt="Contact">
+    </a>
+  </nav>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <img src="logo.svg" alt="Perspikative logo">
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-tabs">
+          <li><a href="index.html" class="tab">ACCUEIL</a></li>
+          <li><a href="portfolio.html" class="tab active">PORTFOLIO</a></li>
+          <li><a href="a-propos.html" class="tab">À PROPOS</a></li>
+          <li><a href="contact.html" class="tab">CONTACT</a></li>
+        </ul>
+
+        <input type="checkbox" id="menuToggle" />
+        <label for="menuToggle" class="burger-icon" title="Menu">
+          <img id="menuIcon" src="logos/menu.svg" alt="Menu">
+        </label>
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="faq/faq.html">FAQ</a></li>
+          <li><a href="art-challenge.html">ART CHALLENGE</a></li>
+          <li><a href="parametres.html">PARAMÈTRES</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="blur-overlay"></div>
+
+  <main id="portfolio">
+    <h2>PORTFOLIO</h2>
+
+  <div class="portfolio-buttons">
+    <a href="portfolio/creations.html" class="portfolio-card">
+      <img src="portfolio/creations.webp" alt="Créations">
+      <span>CRÉATIONS</span>
+    </a>
+
+    <a href="portfolio/illustrations.html" class="portfolio-card">
+      <img src="portfolio/illustrations.webp" alt="Illustrations">
+      <span>ILLUSTRATIONS</span>
+    </a>
+
+    <a href="portfolio/projets.html" class="portfolio-card">
+      <img src="portfolio/projets.webp" alt="Projets">
+      <span>PROJETS</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
+        <img src="logos/linktree.svg" alt="Linktree">
+      </a>
+     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
+        <img src="logos/whatsapp-channel.svg" alt="Chaîne WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
+        <img src="logos/instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://padlet.com/tartineske/perspikativeFR" target="_blank" aria-label="Padlet">
+        <img src="logos/padlet.svg" alt="Padlet">
+      </a>
+      <a href="https://www.pinterest.com/perspikative" target="_blank" aria-label="Pinterest">
+        <img src="logos/pinterest.svg" alt="Pinterest">
+      </a>
+    </div>
+
+    <p>&copy; 2026 Perspikative. Tous droits réservés.</p>
+    <p><a href="mentions-legales.html" class="footer-link">Mentions légales</a></p>
+    <p><a href="politique-de-confidentialite.html" class="footer-link">Politique de confidentialité</a></p>
+  </footer>
+
+  <a href="rechercher.html" class="search-float-btn" title="Rechercher">
+    <img src="logos/rechercher.svg" alt="Rechercher">
+  </a>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('change', (e) => {
+      document.body.classList.toggle('menu-open', e.target.checked);
+    });
+  </script>
+
+  <script src="script.js"></script>
+
+<!-- ======================= LIGHTBOX PERSPIKATIVE ======================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+
+  <div id="prspk-lightbox" class="prspk-hidden" aria-hidden="true">
+    <div class="prspk-overlay" id="prspk-overlay"></div>
+
+    <div class="prspk-modal" role="dialog" aria-modal="true" aria-labelledby="prspk-title">
+      <button class="prspk-close" id="prspk-close" aria-label="Fermer">✕</button>
+
+      <div class="prspk-body">
+        <div class="prspk-left">
+          <img id="prspk-main-img" src="" alt="">
+        </div>
+
+        <div class="prspk-right">
+          <h2 id="prspk-title" class="prspk-rubik"></h2>
+          <div id="prspk-desc" class="prspk-desc"></div>
+
+          <hr class="prspk-divider" />
+
+          <div class="prspk-thumbs" id="prspk-thumbs" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    :root{
+      --overlay-bg: rgba(0,0,0,0.55);
+      --modal-max-width: 1100px;
+      --gap: 20px;
+    }
+    .prspk-hidden { display: none; }
+    .prspk-overlay{
+      position: fixed; inset: 0;
+      backdrop-filter: blur(8px);
+      background: var(--overlay-bg);
+      z-index: 9996; opacity: 0;
+      transition: opacity .18s ease;
+    }
+    .prspk-modal{
+      position: fixed; left: 50%; top: 50%;
+      transform: translate(-50%, -50%) scale(.98);
+      z-index: 9997;
+      width: min(92vw, var(--modal-max-width));
+      max-height: 90vh;
+      background: rgba(255,255,255,0.02);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      border-radius: 10px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity .18s ease, transform .22s cubic-bezier(.2,.9,.2,1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+    .prspk-close{
+      position: absolute; top: 14px; left: 14px;
+      z-index: 10000; border: none;
+      background: rgba(255,255,255,0.06);
+      color: white; width: 40px; height: 40px;
+      border-radius: 8px; font-size: 18px;
+      cursor: pointer; display: grid; place-items: center;
+    }
+    .prspk-close:hover { transform: scale(1.05); }
+    .prspk-body{
+      display: flex; gap: var(--gap); width: 100%;
+      color: #f4f4f4; box-sizing: border-box;
+    }
+    .prspk-left{
+      flex: 1 1 55%;
+      display: flex; align-items: center; justify-content: center;
+      max-height: calc(90vh - 80px);
+    }
+    .prspk-left img{
+      max-width: 100%; max-height: calc(90vh - 140px);
+      object-fit: contain; border-radius: 6px;
+    }
+    .prspk-right{
+      flex: 1 1 45%; display: flex; flex-direction: column;
+      gap: 12px; padding-right: 8px; overflow: auto;
+    }
+    .prspk-rubik{
+      font-family: 'Rubik', system-ui, sans-serif;
+      font-weight: 700;
+      margin: 0;
+      font-size: clamp(22px, 4vw, 36px);
+      line-height: 1.05;
+    }
+    .prspk-desc{
+      font-family: system-ui, sans-serif;
+      font-size: clamp(13px, 1.6vw, 15px);
+      color: #e9e9e9; white-space: pre-wrap;
+    }
+    .prspk-divider{
+      border: none; height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      margin: 6px 0;
+    }
+    .prspk-thumbs{
+      display:flex; gap:8px; align-items:center; flex-wrap: wrap;
+    }
+    .prspk-thumbs img{
+      width: 64px; height: 48px; object-fit: cover;
+      border-radius: 6px; opacity: .95;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .prspk-open .prspk-overlay { opacity: 1; }
+    .prspk-open .prspk-modal {
+      opacity: 1; transform: translate(-50%, -50%) scale(1);
+    }
+    @media (max-width: 880px){
+      .prspk-body{ flex-direction: column-reverse; gap: 14px; }
+      .prspk-left{ width: 100%; max-height: 50vh; }
+      .prspk-right{ width: 100%; max-height: 40vh; padding-right: 0; }
+      .prspk-thumbs img{ width: 72px; height: 56px; }
+      .prspk-modal{ padding: 12px; border-radius: 8px; }
+      .prspk-close{ top: 10px; left: 10px; }
+    }
+  </style>
+
+  <script>
+    (function(){
+      const lightboxRoot = document.getElementById('prspk-lightbox');
+      const overlay = document.getElementById('prspk-overlay');
+      const modal = lightboxRoot.querySelector('.prspk-modal');
+      const closeBtn = document.getElementById('prspk-close');
+      const mainImg = document.getElementById('prspk-main-img');
+      const titleEl = document.getElementById('prspk-title');
+      const descEl = document.getElementById('prspk-desc');
+      const thumbsEl = document.getElementById('prspk-thumbs');
+
+      function openFromNode(node) {
+        const src = node.getAttribute('src') || node.dataset.src;
+        const title = node.dataset.title || '';
+        const desc = node.dataset.desc || '';
+        const images = (node.dataset.images || '').split(',').filter(Boolean);
+
+        mainImg.src = src || images[0] || '';
+        mainImg.alt = node.alt || title || 'Artwork';
+        titleEl.textContent = title;
+        descEl.textContent = desc;
+
+        thumbsEl.innerHTML = '';
+        images.forEach(url => {
+          const img = document.createElement('img');
+          img.src = url.trim();
+          img.alt = 'Miniature';
+          thumbsEl.appendChild(img);
+        });
+
+        document.documentElement.classList.add('prspk-open');
+        lightboxRoot.classList.remove('prspk-hidden');
+        lightboxRoot.setAttribute('aria-hidden','false');
+        requestAnimationFrame(() => closeBtn.focus());
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        document.documentElement.classList.remove('prspk-open');
+        lightboxRoot.setAttribute('aria-hidden','true');
+        setTimeout(() => {
+          lightboxRoot.classList.add('prspk-hidden');
+          mainImg.src = '';
+        }, 220);
+        document.body.style.overflow = '';
+      }
+
+      closeBtn.addEventListener('click', closeLightbox);
+      overlay.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      document.querySelectorAll('.prspk-thumb').forEach(node => {
+        node.style.cursor = 'zoom-in';
+        node.addEventListener('click', () => openFromNode(node));
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
