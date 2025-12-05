@@ -3,13 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Perspikative</title>
-
-  <meta property="og:title" content="Perspikative" />
-  <meta property="og:description" content="✏️ i make art. welcome to my world" />
-  <meta property="og:image" content="https://tartineske.github.io/perspikative/preview.jpg" />
-  <meta property="og:url" content="https://tartineske.github.io/perspikative/" />
-  <meta property="og:type" content="website" />
+  <title>ART Challenge</title>
 
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
@@ -21,10 +15,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
 </head>
 
-<body class="home">
+<body class="art-challenge">
 
   <nav class="mobile-nav">
-    <a href="index.html" class="nav-icon active" title="Accueil">
+    <a href="index.html" class="nav-icon" title="Accueil">
       <img src="logos/accueil.svg" alt="Accueil">
     </a>
     <a href="portfolio.html" class="nav-icon" title="Portfolio">
@@ -49,7 +43,7 @@
 
       <div class="nav-right">
         <ul class="nav-tabs">
-          <li><a href="index.html" class="tab active">ACCUEIL</a></li>
+          <li><a href="index.html" class="tab">ACCUEIL</a></li>
           <li><a href="portfolio.html" class="tab">PORTFOLIO</a></li>
           <li><a href="a-propos.html" class="tab">À PROPOS</a></li>
           <li><a href="contact.html" class="tab">CONTACT</a></li>
@@ -72,36 +66,73 @@
 
   <div class="blur-overlay"></div>
 
-  <section id="home-wrapper">
-    <div id="home">
-      <h1 class="titre-accueil">BIENVENUE !</h1>
+  <main class="art-challenge">
+    <section class="logo-section">
+      <img src="logos/art-challenge.svg" alt="Art Challenge Logo" class="logo-animated">
+      <h1>MAKE ART. WELCOME TO YOUR WORLD.</h1>
+    </section>
+
+    <section class="intro">
+      <p>Le ART Challenge est un concours organisé par Perspikative</p>
+      <p>À chaque nouvelle édition, un nouveau thème est imposé.</p>
+      <p>Que tu sois dessinateur, graphiste, peintre ou amateur créatif, ce concours est ouvert à tous !</p>
+    </section>
+
+    <section class="art-challenge">
+      <div class="theme-bubble">
+        <div class="left">
+          <h2>Thème du moment :</h2>
+          <span>Fantaisie Urbaine</span>
+          <p>Formats acceptés : JPG, JPEG, PNG, GIF</p>
+          <p>Contraintes : Max 4000px, Couleurs libres</p>
+        </div>
+
+        <div class="right">
+          <p class="deadline">Date limite : 10 février 2026 à minuit</p>
+          <div class="countdown">
+            <div class="count-item">
+              <span class="label">Jours</span>
+              <div class="count-bubble" id="days">0</div>
+            </div>
+            <div class="count-item">
+              <span class="label">Heures</span>
+              <div class="count-bubble" id="hours">0</div>
+            </div>
+            <div class="count-item">
+              <span class="label">Minutes</span>
+              <div class="count-bubble" id="minutes">0</div>
+            </div>
+            <div class="count-item">
+              <span class="label">Secondes</span>
+              <div class="count-bubble" id="seconds">0</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="cta-section">
-    <div class="cta-container">
-      <h2>PLONGE DANS L'UNIVERS DE PERSPIKATIVE</h2>
-      <p class="cta-subtext">
-        Explore, suis et découvre un univers de création visuelle et d’idées en mouvement.
-      </p>
+<script>
+function updateCountdown() {
+  const deadline = new Date("February 10, 2026 00:00:00").getTime();
+  const now = new Date().getTime();
+  const distance = deadline - now;
 
-      <div class="cta-buttons">
-        <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" 
-           target="_blank" class="cta-btn whatsapp">
-          Suis moi sur WhatsApp !
-        </a>
+  const days = Math.max(Math.floor(distance / (1000*60*60*24)), 0);
+  const hours = Math.max(Math.floor((distance % (1000*60*60*24)) / (1000*60*60)), 0);
+  const minutes = Math.max(Math.floor((distance % (1000*60*60)) / (1000*60)), 0);
+  const seconds = Math.max(Math.floor((distance % (1000*60)) / 1000), 0);
 
-        <a href="portfolio.html" class="cta-btn portfolio">
-          Visite le Portfolio
-        </a>
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}
 
-        <a href="a-propos.html" class="cta-btn about">
-          Découvre les coulisses...
-        </a>
-      </div>
-    </div>
-  </section>
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+  </main>
 
   <footer>
     <div class="social-icons">
