@@ -1684,11 +1684,14 @@ p {
   text-decoration: none;
   color: inherit;
   transition: transform 0.15s ease, background 0.2s ease;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.1);
 }
 
 .faq-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-1.5px);
   background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 /* Icon circle */
@@ -1725,6 +1728,101 @@ p {
     padding: 0px 0px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+FAQ 2222222222222222222222222222222222222222222222222
+
+/* ====== FAQ Page Styles ====== */
+.faq-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* espace entre les items */
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* ====== FAQ Item (Question Bubble) ====== */
+.faq-item {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  position: relative;
+  margin-bottom: 0.5rem; /* espace sous la bulle avant la réponse */
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Question Text */
+.faq-question {
+  font-weight: 700; /* toutes en gras */
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+/* ====== Answer (sous la bulle) ====== */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-left: 1.5rem;
+  border-left: 3px solid #5ecfff;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 400; /* réponses normales */
+  transition: all 0.4s ease;
+  padding-left: 1rem;
+  margin-bottom: 1rem; /* espace sous la réponse */
+}
+
+/* Classe active pour afficher la réponse */
+.faq-item.active + .faq-answer {
+  max-height: 500px; /* suffisant pour la réponse */
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+/* ====== Responsive ====== */
+@media screen and (max-width: 600px) {
+  .faq-page {
+    padding: 1rem;
+  }
+
+  .faq-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+  }
+
+  .faq-answer {
+    font-size: 0.9rem;
+    padding-left: 0.75rem;
+    margin-left: 1rem;
+    border-left-width: 2px;
+  }
+}
+
 
 
 
