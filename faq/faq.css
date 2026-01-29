@@ -9,9 +9,9 @@
 .faq-container h1 {
   text-align: center;
   margin-bottom: 40px;
-  font-size: 3rem;
-  font-weight: 500;
-  font-family: 'Maneola', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Rubik', sans-serif;
 }
 
 .faq-list {
@@ -28,6 +28,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   overflow: hidden;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .faq-item:hover {
@@ -49,6 +50,7 @@
   font-weight: 600;
   color: white;
   text-align: left;
+  transition: background 0.2s;
 }
 
 .faq-question:hover {
@@ -64,11 +66,12 @@
   width: 26px;
   height: 26px;
   color: #58b3a2;
+  transition: transform 0.2s, color 0.2s;
 }
 
 .faq-question[aria-expanded="true"] .faq-icon {
   transform: rotate(45deg);
-  color: #2CA877;
+  color: #3db786;
 }
 
 .faq-answer {
