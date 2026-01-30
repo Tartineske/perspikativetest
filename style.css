@@ -1248,10 +1248,6 @@ main.creations h2 {
   }
 }
 
-
-
-/* ============================= 16. PAGE RECHERCHER ============================= */
-
 /* Conteneur principal qui centre tout */
 .search-page-container {
   display: flex;
@@ -1567,40 +1563,137 @@ main.creations h2 {
 
 /* ============================= 11. CONTACT ============================= */
 
-#contact h2 {
-  font-weight: 700;
-  font-size: 2.4rem;
-  margin-bottom: 25px;
+/* Reset / base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Rubik', system-ui, sans-serif;
 }
 
-#contact ul {
-  list-style: none;
-  padding-left: 0;
+/* Container principale */
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 24px;
+  max-width: 500px;
+  width: 100%;
 }
 
-#contact ul li {
-  margin-bottom: 12px;
+/* Image ronde */
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-#contact a {
-  color: #56DB85;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* Titre */
+.profile-title {
+  font-size: 2rem;
+  color: #fff;
+  margin-top: -20px;
+  text-align: center;
 }
 
-#contact a:hover {
-  color: #ffffff;
+/* Logos horizontaux */
+.social-logos {
+  display: flex;
+  gap: 16px;
 }
 
-/* Surcharge pour la page contact */
-#contact .system-font {
-  color: white;
-  font-weight: 600;
+.social-logos img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  opacity: 0.8;
+}
+
+.social-logos img:hover {
+  opacity: 1;
+}
+
+/* Mail */
+.contact-mail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.contact-mail img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Boutons glassmorphism */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-button:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.social-button img {
+  width: 35px;
+  height: 35px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .contact-container {
+    padding: 32px 16px;
+  }
+
+  .social-logos {
+    gap: 12px;
+  }
+
+  .social-button {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 20px 5px;
+  }
+
+  .social-logos {
+    gap: 12px;
+  }
+
+  .social-button {
+    padding: 12px 16px;
+  }
 }
 
 
 
-/* ============================= 11. FAQ ============================= */
+/* ============================= 12. FAQ ============================= */
 
 .faq-header {
   text-align: center;
@@ -1691,7 +1784,7 @@ main.creations h2 {
 
 
 
-/* ============================= 12. ART CHALLENGE ============================= */
+/* ============================= 13. ART CHALLENGE ============================= */
 
 .art-challenge .logo-section h1 {
   font-family: "Maneola", sans-serif;
@@ -1901,7 +1994,7 @@ main.creations h2 {
 
 
 
-/* ============================= 13. PARAMETRES ============================= */
+/* ============================= 14. PARAMETRES ============================= */
 
 .settings-section {
   display: flex;
@@ -2007,7 +2100,7 @@ main.settings-section {
 
 
 
-/* ============================= 14. MENTIONS LEGALES ============================= */
+/* ============================= 15. MENTIONS LEGALES ============================= */
 
 .mentions-content h1 {
   font-weight: 700;
@@ -2213,7 +2306,7 @@ main.settings-section {
 
 
 
-/* ============================= 15. FOOTER ============================= */
+/* ============================= 16. FOOTER ============================= */
 
 footer {
   background: rgba(255 255 255 / 0.12);
