@@ -1563,8 +1563,9 @@ main.creations h2 {
 
 /* ============================= 11. CONTACT ============================= */
 
-/* Reset / base */
-* {
+/* Reset / base — page Contact uniquement */
+.contact-container,
+.contact-container * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
