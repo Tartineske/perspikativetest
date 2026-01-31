@@ -1576,9 +1576,9 @@ main.creations h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  padding: 48px 24px;
-  max-width: 500px;
+  gap: 18px;
+  padding: 46px 0px;
+  max-width: 600px;
   width: 100%;
 }
 
@@ -1594,23 +1594,24 @@ main.creations h2 {
 
 /* Titre */
 .profile-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #fff;
-  margin-top: -20px;
+  margin-top: -10px;
   text-align: center;
 }
 
 /* Logos horizontaux */
 .social-logos {
   display: flex;
-  gap: 16px;
+  gap: 18px;
+  margin-top: -16px;
 }
 
 .social-logos img {
-  width: 32px;
-  height: 32px;
+  width: 31px;
+  height: 31px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: opacity 0.3s ease;
   opacity: 0.8;
 }
 
@@ -1628,24 +1629,24 @@ main.creations h2 {
 }
 
 .contact-mail img {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Boutons glassmorphism */
 .social-buttons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .social-button {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  border-radius: 20px;
+  gap: 10px;
+  padding: 4px 4px;
+  border-radius: 50px;
   background: rgba(255,255,255,0.18);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255,255,255,0.35);
@@ -1658,8 +1659,53 @@ main.creations h2 {
 }
 
 .social-button img {
-  width: 35px;
-  height: 35px;
+  width: 39px;
+  height: 39px;
+  background-color: #4AA9A1;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-mail a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact-mail a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-mail img {
+  width: 22px;
+  height: 22px;
+  transform: translateY(1.5px);
+}
+
+.social-button span {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.25s ease;
+}
+
+.social-button:hover span {
+  color: #33746e;
 }
 
 /* Responsive */
@@ -1673,7 +1719,7 @@ main.creations h2 {
   }
 
   .social-button {
-    padding: 12px 16px;
+    padding: 4px 4px;
   }
 }
 
@@ -1687,7 +1733,7 @@ main.creations h2 {
   }
 
   .social-button {
-    padding: 12px 16px;
+    padding: 4px 4px;
   }
 }
 
