@@ -71,7 +71,7 @@
   p {
     font-size: 1.2rem;
     font-weight: 400;
-    margin-bottom: 12rem;
+    margin-bottom: 0rem;
     opacity: 0.85;
   }
 
@@ -120,6 +120,14 @@
   .socials a:hover {
     opacity: 1;
   }
+  
+  .error-mascotte {
+    width: 460px;
+    max-width: 70%;
+    margin: 24px auto 32px;
+    display: block;
+    opacity: 1;
+  }
 
   @media (max-width: 600px) {
     h1 {
@@ -127,6 +135,11 @@
     }
     p {
       font-size: 1.1rem;
+    }
+    .error-mascotte {
+      width: 500px;
+      max-width: 70%;
+      margin: 0px auto 0px;
     }
   }
 </style>
@@ -136,7 +149,13 @@
 <h1>OUPSI</h1>
 <p>Something goes wrong!</p>
 
-<a class="btn-glass" href="/perspikative/">RETOURNER À L'ACCUEIL</a>
+<img 
+  src="portfolio/easter-eggs/mascotte.svg" 
+  alt="Mascotte Perspikative perdue dans l'espace-temps"
+  class="error-mascotte"
+/>
+
+<a class="btn-glass" href="/">RETOURNER À L'ACCUEIL</a>
 
 <div class="socials">
   <a href="https://instagram.com/perspikative" target="_blank">IG</a>
