@@ -1468,19 +1468,23 @@ main.creations h2 {
   gap: 35px;
 }
 
+/* Card */
 .blog-card {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  overflow: hidden;
+  overflow: visible; /* IMPORTANT : on enlève le masque global */
   box-shadow:
     inset 0 0 10px rgba(255,255,255,0.15),
     0 8px 25px rgba(0,0,0,0.05);
   transform: translateY(30px);
   opacity: 0;
   animation: blogFadeUp 0.8s ease forwards;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 /* Stagger animation */
@@ -1488,17 +1492,22 @@ main.creations h2 {
 .blog-card:nth-child(2) { animation-delay: 0.5s; }
 .blog-card:nth-child(3) { animation-delay: 1s; }
 
+/* Image wrapper = MASQUE */
 .blog-image {
   position: relative;
   height: 150px;
   overflow: hidden;
+  border-radius: 22px;
+  transition: border-radius 0.35s ease;
 }
 
+/* Image */
 .blog-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 22px;
+  transition: transform 0.35s ease, border-radius 0.35s ease;
 }
 
 /* Tag */
@@ -1517,6 +1526,7 @@ main.creations h2 {
   letter-spacing: 0.05em;
 }
 
+/* Content */
 .blog-content {
   padding: 0 16px 20px 16px;
   border-radius: 0 0 22px 22px;
@@ -1536,26 +1546,13 @@ main.creations h2 {
   opacity: 0.85;
 }
 
-
-@keyframes blogFadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Link */
 .blog-link {
   text-decoration: none;
   color: inherit;
 }
 
-.blog-card {
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-/* Hover carte */
+/* Hover effects */
 .blog-link:hover .blog-card {
   transform: translateY(-6px) scale(1.02);
   box-shadow:
@@ -1563,15 +1560,25 @@ main.creations h2 {
     0 10px 30px rgba(0,0,0,0.2);
 }
 
-.blog-image img {
-  transition: transform 0.3s ease;
+/* Image hover */
+.blog-link:hover .blog-image {
+  border-radius: 0 !important;
 }
 
 .blog-link:hover .blog-image img {
+  border-radius: 0 !important;
   transform: scale(1.03);
 }
 
+/* Animation */
+@keyframes blogFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+/* Responsive */
 @media (max-width: 900px) {
   .blog-grid {
     grid-template-columns: 1fr;
