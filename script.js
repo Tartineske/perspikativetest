@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.querySelector('.mobile-menu');
   const menuIcon = document.getElementById('menuIcon');
+  const burgerIcon = document.querySelector('.burger-icon');
 
   if (!menuToggle) {
     return; // Pas de menu sur cette page
@@ -42,6 +43,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Checkbox change
   menuToggle.addEventListener('change', syncMenuState);
 
+  // Afficher le bouton menu uniquement tout en haut sur mobile
+  let burgerTicking = false;
+  const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
+
+  const updateBurgerVisibility = () => {
+    if (!burgerIcon) return;
+
+    const atTop = (window.pageYOffset || document.documentElement.scrollTop) <= 0;
+    const shouldShow = !isMobileViewport() || atTop;
+    burgerIcon.classList.toggle('is-hidden', !shouldShow);
+  };
+
+  const handleBurgerScroll = () => {
+    if (burgerTicking) return;
+    burgerTicking = true;
+
+    requestAnimationFrame(() => {
+      updateBurgerVisibility();
+      burgerTicking = false;
+    });
+  };
+
+  window.addEventListener('scroll', handleBurgerScroll, { passive: true });
+  window.addEventListener('resize', updateBurgerVisibility);
+
   // Fermer si lien cliqué
   if (mobileMenu) {
     mobileMenu.querySelectorAll('a').forEach(link => {
@@ -71,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // État initial
   syncMenuState();
+  updateBurgerVisibility();
 });
 
 
