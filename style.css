@@ -213,52 +213,6 @@ header h1 {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-/* --- Mobile : mini panneau de perspective sous le header --- */
-.mobile-vanish-panel {
-  position: fixed;
-  top: var(--mobile-vanish-top, 0px);
-  left: 0;
-  width: 100%;
-  height: 110px;
-  pointer-events: none;
-  z-index: 940;
-  opacity: var(--mobile-vanish-opacity, 0);
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.14) 0%,
-    rgba(255, 255, 255, 0.08) 35%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  transform-origin: top center;
-  transform:
-    perspective(1050px)
-    rotateX(var(--mobile-vanish-tilt, 0deg))
-    scaleX(var(--mobile-vanish-scale-x, 1))
-    scaleY(var(--mobile-vanish-scale-y, 1))
-    translateY(var(--mobile-vanish-shift-y, 0px));
-  clip-path: polygon(
-    calc(0% + var(--mobile-vanish-inset, 0%)) 0%,
-    calc(100% - var(--mobile-vanish-inset, 0%)) 0%,
-    100% 100%,
-    0% 100%
-  );
-  backdrop-filter: blur(1.2px);
-  -webkit-backdrop-filter: blur(1.2px);
-  transition: transform 140ms linear, opacity 140ms linear, clip-path 140ms linear;
-}
-
-@media (max-width: 768px) {
-  .mobile-vanish-panel {
-    height: 120px;
-  }
-}
-
-@media (min-width: 769px) {
-  .mobile-vanish-panel {
-    display: none !important;
-  }
-}
-
 /* --- Onglets de navigation --- */
 .nav-tabs {
   display: flex;
