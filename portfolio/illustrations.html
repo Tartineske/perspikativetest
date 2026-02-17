@@ -9,6 +9,10 @@ permalink: /portfolio/illustrations
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Illustrations</title>
+  
+<meta name="description" content="Explore les illustrations de Perspikative, des œuvres qui respirent la créativité, mêlant architecture, perspective et fantastique." />
+  <meta name="keywords" content="illustrations, portfolio, œuvres artistiques, architecture, perspective, fantastique, grands dessins, Perspikative">
+  <meta name="robots" content="index, follow">
 
   <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#344f4a" media="(prefers-color-scheme: dark)">
@@ -98,19 +102,60 @@ permalink: /portfolio/illustrations
 
   <div class="blur-overlay"></div>
 
-  <main>
-    <section id="creations">
-      <h2>ILLUSTRATIONS</h2>
-      <p>Les illustrations arrivent bientôt !</p>
+  <main class="creations">
+    <h2>ILLUSTRATIONS</h2>
 
-      <div class="masonry active"></div>
+    <section class="layout layout-3colonnes">
+      <div class="col">
+        <img
+          class="prspk-thumb"
+          src="illustrations/2.webp"
+          alt="Illustration 2"
+          data-title="BIENTÔT..."
+          data-desc="Une nouvelle illustration arrive prochainement !"
+        />
+      </div>
 
-      <div class="illu-coming">
-        <img src="/pics/cat/cat-book.svg" alt="Mascotte Perspikative illustration">
+      <div class="col">
+        <img
+          id="perspika-city"
+          class="prspk-thumb"
+          src="illustrations/1.webp"
+          alt="Illustration 1"
+          data-title="THE 2 YEAR BUILDING"
+          data-desc="🎨 <strong>Teintes :</strong> Rouge, vert, brun, jaune, bleu, rose, orange, mauve, violet et beige<br>
+                     ⌛️ <strong>Temps de travail :</strong> Bien longtemps<br>
+                     ❇️ <strong>Particularités :</strong> Perspective isométrique, première création exclusive de la chaîne<br>
+                     💭 <strong>Imagination :</strong> 80% réfléchie • 15% improvisée • 5% d'Internet<br>"
+        />
+      </div>
+    </section>
+
+    <section class="layout layout-2colonnes">
+      <div class="col">
+        <img
+          class="prspk-thumb"
+          src="illustrations/2.webp"
+          alt="Illustration 2"
+          data-title="BIENTÔT..."
+          data-desc="Une nouvelle illustration arrive prochainement !"
+        />
+      </div>
+
+      <div class="col">
+        <img
+          class="prspk-thumb"
+          src="illustrations/1.webp"
+          alt="Illustration 1"
+          data-title="THE 2 YEAR BUILDING"
+          data-desc="🎨 <strong>Teintes :</strong> Rouge, vert, brun, jaune, bleu, rose, orange, mauve, violet et beige<br>
+                     ⌛️ <strong>Temps de travail :</strong> Bien longtemps<br>
+                     ❇️ <strong>Particularités :</strong> Perspective isométrique, première création exclusive de la chaîne<br>
+                     💭 <strong>Imagination :</strong> 80% réfléchie • 15% improvisée • 5% d'Internet<br>"
+        />
       </div>
     </section>
   </main>
-
 
   <footer>
     <div class="social-icons">
@@ -140,6 +185,67 @@ permalink: /portfolio/illustrations
   <a href="/rechercher" class="search-float-btn" title="Rechercher">
     <img src="/icons/rechercher.svg" alt="Rechercher">
   </a>
+
+<!-- LIGHTBOX STRUCTURE -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">
+      <img src="/icons/fermer.svg" alt="Fermer">
+    </button>
+    <div class="lightbox-window">
+      <div class="lightbox-left">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-right">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-desc"></p>
+        <div class="lightbox-extra-images" id="lightbox-extra"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    // ----- LIGHTBOX -----
+const thumbs = document.querySelectorAll('.prspk-thumb');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxTitle = document.getElementById('lightbox-title');
+const lightboxDesc = document.getElementById('lightbox-desc');
+const lightboxExtra = document.getElementById('lightbox-extra');
+const closeBtn = document.getElementById('lightbox-close');
+
+thumbs.forEach(img => {
+  img.addEventListener('click', () => {
+    // Image principale
+    lightboxImg.src = img.src;
+
+    // Titre
+    lightboxTitle.textContent = img.dataset.title || '';
+
+    // Description avec HTML interprété (<br>, <strong>, etc.)
+    lightboxDesc.innerHTML = img.dataset.desc || '';
+
+    // Afficher la lightbox et bloquer le scroll
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// Fermer avec le bouton
+closeBtn.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+// Fermer en cliquant sur le fond
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+  </script>
+
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
