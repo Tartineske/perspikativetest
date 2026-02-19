@@ -1379,7 +1379,7 @@ main.creations h2 {
   display: flex;
   flex-direction: column;
   gap: 13px;
-  padding-bottom: 70px;
+  padding-bottom: 0px;
 }
 
 /* --- Cartes de résultat --- */
