@@ -1382,6 +1382,72 @@ main.creations h2 {
   padding-bottom: 70px;
 }
 
+.search-history {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.history-title {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.82rem;
+  letter-spacing: 0.4px;
+  margin: 0 0 10px 6px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding: 9px 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.history-item:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateX(4px);
+}
+
+.history-icon {
+  width: 17px;
+  height: 17px;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.clear-history-btn {
+  margin: 11px auto 0;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.clear-history-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
 /* --- Cartes de résultat --- */
 
 .result-item {
@@ -1470,6 +1536,11 @@ main.creations h2 {
     width: 22px;
     height: 22px;
     margin-right: 10px;
+  }
+
+  .history-item {
+    font-size: 0.92rem;
+    padding: 9px 11px;
   }
 
   .result-thumb {
