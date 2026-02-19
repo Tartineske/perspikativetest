@@ -467,7 +467,7 @@ permalink: /rechercher
       });
 
       if (results.length === 0) {
-        resultsContainer.innerHTML = `<div style="color:white; text-align:center; opacity:0.7;">Aucun r�sultat pour "${rawValue}"</div>`;
+        resultsContainer.innerHTML = `<div style="color:white; text-align:center; opacity:0.8;">Aucun résultat pour "${rawValue}"</div>`;
       } else {
         results.forEach(item => {
           const imageSrc = item.img ? item.img : 'icons/rechercher.svg';
