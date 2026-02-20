@@ -592,7 +592,7 @@ main {
   flex: 1;
   padding: 10px 30px 15px 30px;
   max-width: 1100px;
-  margin: 20px auto 30px auto;
+  margin: 20px 0 30px 0;
   background: rgba(255 255 255 / 0.12);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -971,8 +971,8 @@ main.creations h2 {
 
 @media (max-width: 480px) {
   main {
-    padding-left: 50px !important;
-    padding-right: 50px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .creations {
@@ -987,8 +987,8 @@ main.creations h2 {
 
 @media (max-width: 480px) {
   main.creations {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
