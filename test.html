@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon Portfolio</title>
+
   <style>
     * {
       margin: 0;
@@ -29,36 +30,43 @@
       font-size: 2.5rem;
     }
 
+    /* Grille fluide : min 2 colonnes, max 3 */
     .grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
-      margin: 0 -8px;
+    }
+
+    @media (min-width: 1100px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     .grid-item {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 16px;
-      padding: 8px;
-      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
     .grid-item img {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 4px;
     }
 
     .grid-item h3 {
       padding: 12px;
-      margin: 0;
       font-size: 1rem;
       text-align: center;
-      background: #f8f8f8;
+      background: #fafafa;
       border-top: 1px solid #eee;
     }
 
@@ -68,77 +76,43 @@
       font-size: 1.2rem;
       color: #666;
     }
-
-    /* Responsive : 2 colonnes sur mobile, 3 sur desktop */
-    @media (min-width: 768px) {
-      .grid-item {
-        width: calc(50% - 16px);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .grid-item {
-        width: calc(33.333% - 16px);
-      }
-    }
   </style>
 </head>
+
 <body>
+
   <div class="container">
     <h1>Mon Portfolio</h1>
 
     <div class="loader">Chargement des projets...</div>
 
-    <div class="grid" id="portfolio-grid">
-      <!-- Les images seront générées dynamiquement par JS -->
-    </div>
+    <div class="grid" id="portfolio-grid"></div>
   </div>
 
-  <!-- Librairies CDN -->
-  <script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
-  <script src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"></script>
-
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', () => {
       const grid = document.getElementById('portfolio-grid');
       const loader = document.querySelector('.loader');
 
-      // Générer les 42 items
-      for (let i = 1; i <= 42; i++) {
+      for (let i = 42; i >= 1; i--) {
         const item = document.createElement('div');
         item.className = 'grid-item';
 
         const img = document.createElement('img');
         img.src = `creations/${i}.webp`;
         img.alt = `Projet ${i}`;
-        img.loading = 'lazy'; // Chargement différé pour les performances
+        img.loading = 'lazy';
 
         const title = document.createElement('h3');
         title.textContent = `Projet ${i}`;
 
-        item.appendChild(img);
-        item.appendChild(title);
+        item.append(img, title);
         grid.appendChild(item);
       }
 
-      // Initialisation Masonry
-      const msnry = new Masonry(grid, {
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        gutter: 16
-      });
-
-      // Attente du chargement des images
-      imagesLoaded(grid).on('progress', function() {
-        msnry.layout();
-      });
-
-      // Masquer le loader une fois chargé
-      imagesLoaded(grid).on('always', function() {
-        loader.style.display = 'none';
-        msnry.layout();
-      });
+      loader.style.display = 'none';
     });
   </script>
+
 </body>
 </html>
