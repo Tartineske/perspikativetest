@@ -1,118 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie Pinterest Vue + Masonry</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<link rel="stylesheet" href="/style.css">
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
-    }
+<!-- Vue 3 -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<!-- Masonry + imagesLoaded -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+<style>
+  /* Espaces pour header et footer */
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+    padding: 0;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-      font-size: 2.5rem;
-    }
+  header {
+    height: 80px; /* ajustable */
+    background: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    /* Grille fluide : min 2 colonnes, max 3 */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
+  footer {
+    height: 60px; /* ajustable */
+    background: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    @media (min-width: 1100px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 
+  .grid-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    width: 100%;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 8px;
+  }
+
+  /* Zoom moins prononcé */
+  .grid-item:hover img {
+    transform: scale(1.02);
+  }
+
+  /* Largeur responsive des colonnes */
+  @media (min-width: 0px) {
     .grid-item {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform .25s ease, box-shadow .25s ease;
+      width: calc(50% - 8px); /* 2 colonnes minimum */
     }
+  }
 
-    .grid-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  @media (min-width: 900px) {
+    .grid-item {
+      width: calc(33.333% - 8px); /* 3 colonnes max */
     }
-
-    .grid-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .grid-item h3 {
-      padding: 12px;
-      font-size: 1rem;
-      text-align: center;
-      background: #fafafa;
-      border-top: 1px solid #eee;
-    }
-
-    .loader {
-      text-align: center;
-      padding: 40px;
-      font-size: 1.2rem;
-      color: #666;
-    }
-  </style>
+  }
+</style>
 </head>
-
 <body>
 
-  <div class="container">
-    <h1>Mon Portfolio</h1>
+<header>
+  <h1>Mon Header</h1>
+</header>
 
-    <div class="loader">Chargement des projets...</div>
-
-    <div class="grid" id="portfolio-grid"></div>
+<div id="app" class="container">
+  <div class="grid" ref="grid">
+    <div class="grid-item" v-for="(img, index) in images" :key="index">
+      <img :src="img" loading="lazy">
+    </div>
   </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('portfolio-grid');
-      const loader = document.querySelector('.loader');
+<footer>
+  <p>Mon Footer</p>
+</footer>
 
-      for (let i = 42; i >= 1; i--) {
-        const item = document.createElement('div');
-        item.className = 'grid-item';
+<script>
+const { createApp, onMounted, ref } = Vue;
 
-        const img = document.createElement('img');
-        img.src = `creations/${i}.webp`;
-        img.alt = `Projet ${i}`;
-        img.loading = 'lazy';
+createApp({
+  setup() {
+    const images = ref([]);
+    const grid = ref(null);
 
-        const title = document.createElement('h3');
-        title.textContent = `Projet ${i}`;
+    // Générer les images 42 → 1
+    for (let i = 42; i >= 1; i--) {
+      images.value.push(`creations/${i}.webp`);
+    }
 
-        item.append(img, title);
-        grid.appendChild(item);
-      }
+    onMounted(() => {
+      const msnry = new Masonry(grid.value, {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-item',
+        percentPosition: true,
+        gutter: 8
+      });
 
-      loader.style.display = 'none';
+      imagesLoaded(grid.value, () => {
+        msnry.layout();
+      });
+
+      // Re-layout après que chaque image se charge
+      const imgs = grid.value.querySelectorAll('img');
+      imgs.forEach(img => {
+        img.addEventListener('load', () => {
+          msnry.layout();
+        });
+      });
     });
-  </script>
 
+    return { images, grid };
+  }
+}).mount('#app');
+</script>
 </body>
 </html>
