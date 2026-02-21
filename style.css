@@ -1,4 +1,4 @@
-﻿/* ============================= 1. IMPORTS ET PARAMÃˆTRES GLOBAUX ============================= */
+/* ============================= 1. IMPORTS ET PARAMÈTRES GLOBAUX ============================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
@@ -11,12 +11,12 @@
   font-display: swap;
 }
 
-/* Le site supporte les deux thÃ¨mes */
+/* Le site supporte les deux thèmes */
 :root {
   color-scheme: light dark;
 }
 
-/* --- ThÃ¨me clair (par dÃ©faut) --- */
+/* --- Thème clair (par défaut) --- */
 @media (prefers-color-scheme: light) {
   :root {
     --bg: linear-gradient(135deg, #4AA9A1, #2CA877, #62A78A);
@@ -26,7 +26,7 @@
   }
 }
 
-/* --- ThÃ¨me sombre --- */
+/* --- Thème sombre --- */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0e0f13;
@@ -40,13 +40,13 @@
 body {
   background: var(--bg);
   color: var(--text);
-  cursor: pointer;
+  cursor: url('icons/fermer.png') 16 16, auto;
   scrollbar-gutter: stable;
 }
 
 .system-font {
   font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  font-weight: 300; /* clÃ© du changement */
+  font-weight: 300; /* clé du changement */
   text-transform: none;
   letter-spacing: 0.015em;
   line-height: 1.7;
@@ -55,7 +55,7 @@ body {
 }
 
 
-/* Police contrastÃ©e - Contours noirs et texte plus gras */
+/* Police contrastée - Contours noirs et texte plus gras */
 html.contrast-font .system-font,
 html.contrast-font p,
 html.contrast-font body,
@@ -100,7 +100,7 @@ html.contrast-font .setting label {
     0 0 2px rgba(0, 0, 0, 0.9);
 }
 
-/* Police contrastÃ©e en mode sombre - contours blancs pour contraste */
+/* Police contrastée en mode sombre - contours blancs pour contraste */
 html.dark-mode.contrast-font .system-font,
 html.dark-mode.contrast-font p,
 html.dark-mode.contrast-font body,
@@ -131,7 +131,7 @@ html.dark-mode.contrast-font h6 {
 
 
 
-/* ============================= 2. STYLES GÃ‰NÃ‰RAUX ============================= */
+/* ============================= 2. STYLES GÉNÉRAUX ============================= */
 
 body {
   font-family: 'Rubik', Arial, sans-serif;
@@ -143,7 +143,7 @@ body {
   cursor: url('/icons/fermer.svg'), auto;
 }
 
-/* --- DÃ©sactive les halos bleus au toucher sur les Ã©crans tactiles --- */
+/* --- Désactive les halos bleus au toucher sur les écrans tactiles --- */
 @media (pointer: coarse) {
   a,
   button,
@@ -174,9 +174,9 @@ body {
   }
 }
 
-/* --- RÃ©duis les animations - ParamÃ¨tres --- */
+/* --- Réduis les animations - Paramètres --- */
 
-/* Mode accessibilitÃ© : animations dÃ©sactivÃ©es */
+/* Mode accessibilité : animations désactivées */
 .reduce-motion * {
   animation: none !important;
   transition: none !important;
@@ -279,7 +279,7 @@ header h1 {
   text-decoration: none;
 }
 
-/* --- MODIF : appliquer lâ€™effet actif Ã  tous les onglets --- */
+/* --- MODIF : appliquer l’effet actif à tous les onglets --- */
 .nav-tabs .tab.active,
 .nav-tabs .tab:focus,
 .nav-tabs .tab:active {
@@ -317,7 +317,7 @@ header h1 {
   display: block;
 }
 
-/* --- IcÃ´ne burger --- */
+/* --- Icône burger --- */
 .burger-icon {
   display: flex;
   align-items: center;
@@ -339,7 +339,7 @@ header h1 {
   }
 
   header {
-    text-align: left; /* Alignement Ã  gauche */
+    text-align: left; /* Alignement à gauche */
     padding: 4px 12px;
     background: rgba(91, 179, 163, 0.70);
     backdrop-filter: blur(18px);
@@ -360,7 +360,7 @@ header h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* logo Ã  gauche, titre centrÃ©, hamburger Ã  droite */
+    justify-content: space-between; /* logo à gauche, titre centré, hamburger à droite */
     padding: 0 12px; /* un peu de marge horizontale */
     gap: 15px;
   }
@@ -374,9 +374,9 @@ header h1 {
 
 /* ============================= 4. BARRE DE NAVIGATION MOBILE ============================= */
 
-/* IcÃ´ne burger cliquable avec checkbox pour Ã©tat ouvert/fermÃ© */
+/* Icône burger cliquable avec checkbox pour état ouvert/fermé */
 #menuToggle {
-  display: none; /* cachÃ©, sert juste Ã  capturer le clic */
+  display: none; /* caché, sert juste à capturer le clic */
 }
 
 .burger-icon {
@@ -481,7 +481,7 @@ body.menu-open .blur-overlay {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* --- Afficher le menu quand le checkbox est cochÃ© --- */
+/* --- Afficher le menu quand le checkbox est coché --- */
 #menuToggle:checked ~ .mobile-menu {
   display: flex;
   opacity: 1;
@@ -542,7 +542,7 @@ body.menu-open .blur-overlay {
       inset 0 0 10px rgba(198, 253, 224, 0.3);
   }
 
-  /* --- Pseudo-Ã©lÃ©ment pour lâ€™effet de flou sous la barre --- */
+  /* --- Pseudo-élément pour l’effet de flou sous la barre --- */
   .mobile-nav::before {
     content: "";
     position: absolute;
@@ -592,7 +592,7 @@ main {
   flex: 1;
   padding: 10px 30px 15px 30px;
   max-width: 1100px;
-  margin: 20px 0px 30px 0px;
+  margin: 20px auto 30px auto;
   background: rgba(255 255 255 / 0.12);
   border-radius: 20px;
   backdrop-filter: blur(15px);
@@ -644,7 +644,7 @@ body.home {
   display: flex;
   justify-content: center; /* centre horizontalement */
   align-items: center;     /* centre verticalement */
-  position: relative;      /* nÃ©cessaire si on garde animations absolues */
+  position: relative;      /* nécessaire si on garde animations absolues */
   height: 600px;
 }
 
@@ -657,7 +657,7 @@ body.home {
   width: 550px;
 }
 
-/* DÃ©calages dâ€™apparition */
+/* Décalages d’apparition */
 .title-img:nth-child(1) { animation-delay: 0.2s; }
 .title-img:nth-child(2) { animation-delay: 0.4s; }
 .title-img:nth-child(3) { animation-delay: 0.6s; }
@@ -759,7 +759,7 @@ body.home {
     inset 0 0 10px rgba(255 255 255 / 0.2);
 }
 
-/* SpÃ©cifique Ã  chaque bouton */
+/* Spécifique à chaque bouton */
 .cta-btn.whatsapp { background: rgba(255, 255, 255, 0.1); }
 .cta-btn.blog { background: rgba(255, 255, 255, 0.1); }
 .cta-btn.art-challenge { background: rgba(255, 255, 255, 0.1); }
@@ -769,7 +769,7 @@ body.home {
   .cta-container {
     padding: 40px 20px;
     width: 100%;
-    max-width: 420px; /* garde un format harmonieux sur petits Ã©crans */
+    max-width: 420px; /* garde un format harmonieux sur petits écrans */
     margin: 0 auto;   /* recentrage en cas de flex bug */
   }
 
@@ -790,7 +790,7 @@ body.home {
   .cta-section {
     left: 50%;
     transform: translateX(-50%);
-    padding: 15px 10px; /* un peu moins de padding latÃ©ral pour Ã©viter le dÃ©bord */
+    padding: 15px 10px; /* un peu moins de padding latéral pour éviter le débord */
   }
 
 
@@ -892,14 +892,14 @@ body.home {
 @media (max-width: 900px) {
   .portfolio-buttons {
     padding: 0 10px;    /* marges plus petites pour laisser plus de place */
-    gap: 15px;          /* espace rÃ©duit entre les cartes */
+    gap: 15px;          /* espace réduit entre les cartes */
   }
 
   .portfolio-card {
     width: 100%;        /* carte prend toute la largeur disponible */
     aspect-ratio: 12 / 10;
     max-width: none;    /* supprime les restrictions */
-    height: 180px;      /* hauteur adaptÃ©e */
+    height: 180px;      /* hauteur adaptée */
     margin: 0 auto;
     border-radius: 20px;
   }
@@ -920,14 +920,14 @@ body.home {
 @media (max-width: 700px) {
   .portfolio-buttons {
     padding: 0px;    /* marges plus petites pour laisser plus de place */
-    gap: 15px;          /* espace rÃ©duit entre les cartes */
+    gap: 15px;          /* espace réduit entre les cartes */
   }
 
   .portfolio-card {
     width: 100%;        /* carte prend toute la largeur disponible */
     aspect-ratio: 12 / 10;
     max-width: none;    /* supprime les restrictions */
-    height: 160px;      /* hauteur adaptÃ©e */
+    height: 160px;      /* hauteur adaptée */
     margin: 0 auto;
   }
 
@@ -957,16 +957,67 @@ main.creations h2 {
   text-align: center;
 }
 
-@media (min-width: 1025px) {
-  main.creations {
-    max-width: 1380px;
-    width: min(96vw, 1380px);
-    padding-left: 18px;
-    padding-right: 18px;
-    margin-top: 14px;
+
+
+/* --------- Layout responsive --------- */
+
+.layout-3colonnes {
+  display: flex !important;
+}
+.layout-2colonnes {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .layout-3colonnes {
+    display: none !important;
+  }
+  .layout-2colonnes {
+    display: flex !important;
   }
 }
 
+@media (max-width: 300px) {
+  .layout-2colonnes {
+    flex-direction: column;
+  }
+  .layout-2colonnes .col {
+    width: 100%;
+  }
+}
+
+
+
+/* ===================== VERSION MOBILE LÉGÈRE ===================== */
+@media (max-width: 300px) { /* plus réaliste pour mobile */
+  /* Layout principal */
+  .layout-3colonnes {
+    display: none !important;
+    margin: none !important;
+  }
+  .layout-2colonnes {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important; /* espace réduit entre les colonnes */
+    margin: none !important;
+  }
+
+  /* Colonnes */
+  .layout-2colonnes .col {
+    width: 100% !important;
+    gap: 0.5rem !important;
+    margin: none !important;
+  }
+
+  /* Images */
+  .layout img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 6px !important;
+    object-fit: cover !important;
+    margin: none !important;
+  }
+}
 
 
 @media (max-width: 480px) {
@@ -980,13 +1031,19 @@ main.creations h2 {
     padding-right: 0rem !important;
   }
 
-  .layout img {
+  .layout-2colonnes {
+    gap: 0.5rem !important;
+  }
+
+  .layout-2colonnes img {
     border-radius: 6px !important;
   }
 }
 
 @media (max-width: 480px) {
-  main.creations {
+  main.creations,
+  main.creations .layout-2colonnes,
+  main.creations .layout-3colonnes {
     padding-left: 8px !important;
     padding-right: 8px !important;
   }
@@ -1012,7 +1069,7 @@ main.creations h2 {
 
 /* Images */
 .layout img {
-  width: 100%; /* s'adapte Ã  la colonne */
+  width: 100%; /* s'adapte à la colonne */
   height: auto;
   border-radius: 12px;
   object-fit: cover;
@@ -1137,7 +1194,7 @@ main.creations h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* pour Ãªtre sÃ»r quâ€™elle passe au-dessus */
+  z-index: 1000; /* pour être sûr qu’elle passe au-dessus */
 }
 
 .lightbox-close img {
@@ -1151,7 +1208,7 @@ main.creations h2 {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    padding: 10px 15px; /* padding plus adaptÃ© pour mobile */
+    padding: 10px 15px; /* padding plus adapté pour mobile */
     gap: 8px; /* espace entre image et texte */
     max-height: 100dvh;
     overflow-y: auto;
@@ -1315,7 +1372,7 @@ main.creations h2 {
   font-weight: 400;
 }
 
-/* Zone des rÃ©sultats */
+/* Zone des résultats */
 #searchResults {
   width: 100%;
   margin-top: 30px;
@@ -1325,7 +1382,7 @@ main.creations h2 {
   padding-bottom: 0px;
 }
 
-/* --- Cartes de rÃ©sultat --- */
+/* --- Cartes de résultat --- */
 
 .result-item {
   display: flex;
@@ -1346,7 +1403,7 @@ main.creations h2 {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Image miniature du rÃ©sultat */
+/* Image miniature du résultat */
 .result-thumb {
   width: 55px;
   height: 55px;
@@ -1358,7 +1415,7 @@ main.creations h2 {
   flex-shrink: 0;
 }
 
-/* Texte du rÃ©sultat */
+/* Texte du résultat */
 .result-info {
   display: flex;
   flex-direction: column;
@@ -1381,7 +1438,7 @@ main.creations h2 {
   line-height: 1.2;
 }
 
-/* Badge (CatÃ©gorie) */
+/* Badge (Catégorie) */
 .badge-cat {
   display: inline-block;
   font-size: 0.7rem;
@@ -1443,7 +1500,7 @@ main.creations h2 {
   -webkit-backdrop-filter: blur(18px);
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  overflow: visible; /* IMPORTANT : on enlÃ¨ve le masque global */
+  overflow: visible; /* IMPORTANT : on enlève le masque global */
   box-shadow:
     inset 0 0 10px rgba(255,255,255,0.15),
     0 8px 25px rgba(0,0,0,0.05);
@@ -1572,7 +1629,7 @@ main.creations h2 {
 
 /* ============================= 11. CONTACT ============================= */
 
-/* Reset / base â€” page Contact uniquement */
+/* Reset / base — page Contact uniquement */
 .contact-container,
 .contact-container * {
   box-sizing: border-box;
@@ -1818,7 +1875,7 @@ a {
   opacity: 1;
 }
 
-/* Texte catÃ©gorie */
+/* Texte catégorie */
 .faq-card span {
   font-size: 1.1rem;
   font-weight: 500;
@@ -1869,7 +1926,7 @@ a {
   width: 300px;
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeInUp 1.5s forwards; /* forwards pour rester Ã  la fin */
+  animation: fadeInUp 1.5s forwards; /* forwards pour rester à la fin */
 }
 
 @keyframes fadeInUp {
@@ -1902,7 +1959,7 @@ a {
 
 
 
-/* ------ ThÃ¨me du moment ------ */
+/* ------ Thème du moment ------ */
 .section-separator {
   width: 70%;
   height: 3px;
@@ -1966,7 +2023,7 @@ a {
 .count-bubble {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: none;                 /* pas de flou Ã  lâ€™intÃ©rieur */
+  backdrop-filter: none;                 /* pas de flou à l’intérieur */
   -webkit-backdrop-filter: none;
   border-radius: 15px;
   padding: 0.3rem 0.8rem;
@@ -2128,7 +2185,7 @@ a {
   transform: translateX(24px);
 }
 
-/* Label Ã  droite, police des paragraphes */
+/* Label à droite, police des paragraphes */
 .setting label {
   font-family: "Rubik", Arial, sans-serif;
   font-weight: 300;
@@ -2189,8 +2246,8 @@ main.settings-section {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
-/* Paragraphe principal â€” reproduit #about p.system-font
-   (s'applique Ã  tous les <p> dans .mentions-content, et aussi aux p.system-font pour rÃ©tro-compatibilitÃ©) */
+/* Paragraphe principal — reproduit #about p.system-font
+   (s'applique à tous les <p> dans .mentions-content, et aussi aux p.system-font pour rétro-compatibilité) */
 .mentions-content p,
 .mentions-content p.system-font {
   font-family: "Rubik", sans-serif;
@@ -2302,9 +2359,9 @@ main.settings-section {
 }
 
 .mentions-content .back-home img {
-  width: 30px;   /* taille de ton icÃ´ne */
+  width: 30px;   /* taille de ton icône */
   height: 30px;
-  display: block;  /* Ã©vite les micro-espaces sous lâ€™image */
+  display: block;  /* évite les micro-espaces sous l’image */
 }
 
 @media (max-width: 900px) {
@@ -2325,9 +2382,9 @@ main.settings-section {
   }
 
     .mentions-content .back-home img {
-    width: 28px;   /* taille de ton icÃ´ne */
+    width: 28px;   /* taille de ton icône */
     height: 28px;
-    display: block;  /* Ã©vite les micro-espaces sous lâ€™image */
+    display: block;  /* évite les micro-espaces sous l’image */
   }
 }
 
@@ -2339,7 +2396,7 @@ main.settings-section {
 }
 
 
-/* ----- Lien hÃ©bergeur (style Perspikative) ----- */
+/* ----- Lien hébergeur (style Perspikative) ----- */
 .host-link {
   position: relative;
   color: #9EF0C2;
@@ -2399,7 +2456,7 @@ footer p {
 
 footer a.footer-link {
   position: relative;
-  font-family: "Rubik", Arial, sans-serif; /* MÃªme police que les paragraphes */
+  font-family: "Rubik", Arial, sans-serif; /* Même police que les paragraphes */
   font-weight: 510;
   color: #a9e8bf; /* Couleur douce pour contraster */
   text-decoration: none;
@@ -2470,7 +2527,7 @@ footer a.footer-link:hover::after {
 
 
 
-/* --- Mode sombre forcÃ© (toggle utilisateur) --- */
+/* --- Mode sombre forcé (toggle utilisateur) --- */
 html[data-theme="dark"] {
   --bg: #0e0f13;
   --text: #f2f2f2;
@@ -2488,7 +2545,7 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 
-/* EmpÃªche prefers-color-scheme dâ€™Ã©craser le choix utilisateur */
+/* Empêche prefers-color-scheme d’écraser le choix utilisateur */
 @media (prefers-color-scheme: dark) {
   html[data-theme="dark"] {
     --bg: #0e0f13;
@@ -2716,7 +2773,7 @@ html[data-theme="dark"] {
   margin-bottom: 1.6rem;
 }
 
-/* wrapper avec flÃ¨ches */
+/* wrapper avec flèches */
 .art-gallery-wrapper {
   position: relative;
   display: flex;
@@ -2757,7 +2814,7 @@ html[data-theme="dark"] {
   filter: brightness(0.4);
 }
 
-/* flÃ¨ches */
+/* flèches */
 .gallery-arrow {
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(8px);
@@ -2861,10 +2918,10 @@ html[data-theme="dark"] {
 .nav-tabs .tab {
   display: flex;
   align-items: center;
-  gap: 7px; /* reste le mÃªme */
+  gap: 7px; /* reste le même */
 }
 
-/* conteneur fixe pour l'icÃ´ne */
+/* conteneur fixe pour l'icône */
 .nav-tabs .tab-icon {
   display: inline-block;
   width: 25px;   /* largeur fixe du conteneur */
@@ -2938,4 +2995,3 @@ html[data-theme="dark"] {
       margin-bottom: 20px;
   }
 }
-
