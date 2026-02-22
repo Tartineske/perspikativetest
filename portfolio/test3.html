@@ -5,93 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mes créations — Portfolio</title>
   <meta name="description" content="Portfolio de créations artistiques" />
-
+  
+  <link rel="stylesheet" href="/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: hsl(180 20% 98%);
-      --fg: hsl(200 25% 10%);
-      --card: hsl(180 15% 95%);
-      --muted: hsl(200 10% 45%);
-      --border: hsl(190 20% 88%);
-      --gradient-hero: linear-gradient(135deg, hsl(210 65% 55%), hsl(185 50% 45%), hsl(160 50% 45%));
-      --gradient-subtle: linear-gradient(135deg, hsl(210 65% 55% / 0.08), hsl(160 50% 45% / 0.08));
-      --font-heading: 'Space Grotesk', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-      --radius: 0.6rem;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--fg);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Header ── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid hsl(190 20% 88% / 0.5);
-      background: var(--gradient-subtle);
-    }
-
-    .site-header .inner {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-      height: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--fg);
-    }
-
-    .logo-icon {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 0.5rem;
-      background: var(--gradient-hero);
-    }
-
-    .logo-text {
-      font-family: var(--font-heading);
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-
-    nav a {
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.2s;
-    }
-
-    nav a:hover { color: var(--fg); }
-
     /* ── Page header ── */
     .page-header {
       max-width: 80rem;
@@ -134,6 +54,7 @@
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 10px;
     }
 
     /* ── Fallback Firefox ── */
@@ -147,6 +68,7 @@
       .masonry-item {
         break-inside: avoid;
         margin-bottom: 1rem;
+        border-radius: 10px;
       }
 
       @media (max-width: 768px) {
@@ -254,20 +176,72 @@
   </style>
 </head>
 
-<body>
+<body class="creations">
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="inner">
-      <a href="/" class="logo">
-        <div class="logo-icon"></div>
-        <span class="logo-text">Galerie</span>
-      </a>
-      <nav>
-        <a href="/portfolio/creations">Dessins</a>
-      </nav>
+  <nav class="mobile-nav">
+    <a href="/" class="nav-icon" title="Accueil">
+      <img src="/icons/accueil.svg" alt="Accueil">
+    </a>
+    <a href="/portfolio" class="nav-icon" title="Portfolio">
+      <img src="/icons/portfolio.svg" alt="Portfolio">
+    </a>
+    <a href="/rechercher" class="nav-icon" title="Rechercher">
+      <img src="/icons/rechercher.svg" alt="Rechercher">
+    </a>
+    <a href="/actus" class="nav-icon" title="Actus">
+      <img src="/icons/actus.svg" alt="Actus">
+    </a>
+    <a href="/contact" class="nav-icon" title="Contact">
+      <img src="/icons/contact.svg" alt="Contact">
+    </a>
+  </nav>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <a href="/"><img src="/logo.svg" alt="Perspikative logo"></a>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-tabs">
+          <li>
+            <a href="/" class="tab">
+              <img src="/icons/accueil.svg" alt="" class="tab-icon"> ACCUEIL
+            </a>
+          </li>
+          <li>
+            <a href="/portfolio" class="tab">
+              <img src="/icons/portfolio.svg" alt="" class="tab-icon"> PORTFOLIO
+            </a>
+          </li>
+          <li>
+            <a href="/actus" class="tab">
+              <img src="/icons/actus.svg" alt="" class="tab-icon"> ACTUS
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="tab">
+              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            </a>
+          </li>
+        </ul>
+
+        <input type="checkbox" id="menuToggle" />
+        <label for="menuToggle" class="burger-icon" title="Menu">
+          <img id="menuIcon" src="/icons/menu.svg" alt="Menu">
+        </label>
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/art-challenge">ART CHALLENGE</a></li>
+          <li><a href="/parametres">PARAMÈTRES</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
+
+  <div class="blur-overlay"></div>
 
   <!-- Page title -->
   <div class="page-header">
@@ -284,15 +258,34 @@
   </div>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="inner">
-      <div class="brand">
-        <div class="brand-icon"></div>
-        <span class="brand-text">Galerie</span>
-      </div>
-      <p class="copy">&copy; 2026 Perspikative — Tous droits réservés</p>
+  <footer>
+    <div class="social-icons">
+      <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
+        <img src="/icons/linktree.svg" alt="Linktree">
+      </a>
+     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="ChaÃ®ne WhatsApp">
+        <img src="/icons/whatsapp-channel.svg" alt="ChaÃ®ne WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
+        <img src="/icons/instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://youtube.com/@perspikative" target="_blank" aria-label="YouTube">
+        <img src="/icons/youtube.svg" alt="YouTube">
+      </a>
+      <a href="https://www.pinterest.com/perspikative" target="_blank" aria-label="Pinterest">
+        <img src="/icons/pinterest.svg" alt="Pinterest">
+      </a>
     </div>
+
+    <p>&copy; 2026 Perspikativeâ„¢. Tous droits rÃ©servÃ©s.</p>
+    <p><a href="/mentions-legales" class="footer-link">Mentions lÃ©gales</a></p>
+    <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialitÃ©</a></p>
+    <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
   </footer>
+
+  <a href="/rechercher" class="search-float-btn" title="Rechercher">
+    <img src="/icons/rechercher.svg" alt="Rechercher">
+  </a>
 
   <script>
     const TOTAL_IMAGES = 42;
@@ -330,6 +323,14 @@
       if (e.key === 'Escape') closeLightbox();
     });
   </script>
+  
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('change', (e) => {
+      document.body.classList.toggle('menu-open', e.target.checked);
+    });
+  </script>
 
+  <script src="/script.js"></script>
 </body>
 </html>
