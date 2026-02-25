@@ -1,4 +1,4 @@
----
+﻿---
 permalink: /portfolio/creations
 ---
 
@@ -6,179 +6,57 @@ permalink: /portfolio/creations
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Créations - Portfolio</title>
-  <meta name="description" content="Portfolio de créations artistiques" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Créations</title>
+
+  <meta name="description" content="Explore les créations de Perspikative, des oeuvres qui respirent la créativité, mêlant architecture, perspective et fantastique." />
+  <meta name="keywords" content="créations, portfolio, œuvres artistiques, architecture, perspective, fantastique, dessins, Perspikative">
+  <meta name="robots" content="index, follow">
+
+  <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#344f4a" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+
+  <link rel="preload" as="image" href="creations/41.webp">
+  <link rel="preload" as="image" href="creations/40.webp">
+  <link rel="preload" as="image" href="creations/39.webp">
+  <link rel="preload" as="image" href="creations/38.webp">
+  <link rel="preload" as="image" href="creations/37.webp">
+  <link rel="preload" as="image" href="creations/36.webp">
+
   <link rel="stylesheet" href="/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Page header ── */
-    .page-header {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 2.5rem 1rem 1.5rem;
+    .layout.layout-macy {
+      display: block !important;
+      margin: 1rem 0;
     }
 
-    .page-header h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      font-weight: 700;
-      background: var(--gradient-hero);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* ── Masonry Layout ── */
-    .masonry {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 0 1rem 3rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: masonry;
-      gap: 1rem;
-    }
-
-    .masonry-item {
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--card);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .masonry-item:hover { transform: scale(1.02); }
-
-    .masonry-item img {
+    .layout.layout-macy img {
       width: 100%;
       height: auto;
-      display: block;
-      border-radius: 10px;
-    }
-
-    /* ── Fallback Firefox ── */
-    @supports not (grid-template-rows: masonry) {
-      .masonry {
-        column-count: 3;
-        column-gap: 1rem;
-        display: block;
-      }
-
-      .masonry-item {
-        break-inside: avoid;
-        margin-bottom: 1rem;
-        border-radius: 10px;
-      }
-
-      @media (max-width: 768px) {
-        .masonry {
-          column-count: 2;
-        }
-      }
-    }
-
-    /* ── Lightbox ── */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .lightbox.active { display: flex; }
-
-    .lightbox-backdrop {
-      position: absolute;
-      inset: 0;
-      background: hsl(200 25% 10% / 0.8);
-      backdrop-filter: blur(8px);
-    }
-
-    .lightbox img {
-      position: relative;
-      z-index: 1;
-      max-width: 100%;
-      max-height: 85vh;
-      border-radius: 0.75rem;
-      box-shadow: 0 25px 50px -12px hsl(0 0% 0% / 0.4);
-      object-fit: contain;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      margin-top: auto;
-      border-top: 1px solid hsl(190 20% 88% / 0.5);
-    }
-
-    .site-footer .inner {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 2.5rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .brand-icon {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 0.375rem;
-      background: var(--gradient-hero);
-    }
-
-    .brand-text {
-      font-family: var(--font-heading);
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
-
-    .copy {
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .masonry {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .page-header h1 {
-        font-size: 1.75rem;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .site-header .inner,
-      .page-header,
-      .masonry,
-      .site-footer .inner {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-
-      .page-header h1 {
-        font-size: 3rem;
-      }
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      object-fit: cover;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/macy@2/dist/macy.min.js" defer></script>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MH68ZWLYM8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MH68ZWLYM8');
+</script>
 
 <body class="creations">
 
@@ -247,28 +125,679 @@ permalink: /portfolio/creations
 
   <div class="blur-overlay"></div>
 
-  <!-- Page title -->
-  <div class="page-header">
-    <h1>CRÉATIONS</h1>
-  </div>
+  <main class="creations">
+    <h2>CRÉATIONS</h2>
 
-  <!-- Masonry grid -->
-  <section class="masonry" id="gallery"></section>
+    <section class="layout layout-macy" id="creations-grid">
+        <img
+          id="the-cozy-house-of-the-field-mouse"
+          class="prspk-thumb"
+          src="creations/40.webp"
+          alt="CrÃ©ation 40"
+          data-title="THE COZY HOUSE OF THE FIELD MOUSE"
+          data-date="03/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Noir et blanc<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 4h<br>
+                     â‡ï¸ <strong>Particularités :</strong> Première création entièrement réalisée au stylo<br>
+                     ðŸ’­ <strong>Imagination :</strong> 90% improvisée â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Je l'ai entendu. Il était au dessus de moi. Je le sais ; il se levait pour prendre un livre et raviver le feu. Il semblait qu'il ait tout fait lui-même : les murs,
+                     l'imposante cheminée, les meubles, son parquet. Tout. Et ce fada de lecture et collectionneur d'assiettes en porcelaine nous en cache certainement bien d'autres l'
+                     haut, dans le plafondâ€¦ ðŸ“°"
+        />
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-backdrop"></div>
-    <img id="lightbox-img" src="" alt="" />
-  </div>
+        <img
+          id="the-ia-home"
+          class="prspk-thumb"
+          src="creations/37.webp"
+          alt="CrÃ©ation 37"
+          data-title="THE IA HOME"
+          data-date="24/08/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Beige, gris, bleu, rouge, jaune, vert, rose, mauve et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 4h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Perspective isomÃ©trique, contraste marquÃ© et nouvelles techniques expÃ©rimentÃ©es<br>
+                     ðŸ’­ <strong>Imagination :</strong> 50% rÃ©flÃ©chie â€¢ 40% improvisÃ©e â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     On l'utilise souvent ou rarement, en lui demandant tout et n'importe quoi. Et elle nous rÃ©pond. Elle a les rÃ©ponses Ã  tout. C'est ainsi que je vois l'intelligence
+                     artificielle. Sa maison. The IA home. Ce n'est pas qu'une maison d'ailleurs. C'est une usine rÃ©volutionnaire, qui malgrÃ© elle exploite nos donnÃ©esâ€¦ quitte Ã  tout Ã 
+                     faire ðŸš¨"
+        />
 
-  <!-- Footer -->
+        <img
+          id="meeting-in-the-valley"
+          class="prspk-thumb"
+          src="creations/34.webp"
+          alt="CrÃ©ation 34"
+          data-title="MEETING IN THE VALLEY"
+          data-date="03/05/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, rouge, orange, bleu, vert, violet, rose et brun<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Police d'Ã©criture dominante, effets de perspective<br>
+                     ðŸ’­ <strong>Imagination :</strong> 55% rÃ©flÃ©chie â€¢ 45% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     ImaginÃ© et dessinÃ© en deux soirs, cette crÃ©ation pourtant complexe nous embarque dans un rÃªve matÃ©riel. InspirÃ© d'une vieille histoire que j'ai Ã©crite, ce paysage
+                     m'est immÃ©diatement apparu quand j'ai relu un passage. Entrez donc, dans cet imaginaire dÃ©bordant et envoÃ»tant. Cette ville, dans une vaste plaine blanche, est un
+                     grain colorÃ© dans ce monde encore immaculÃ©. Mais il semble que deux personnes vont apprendre Ã  se connaÃ®tre, et ce meeting in the valley renversera leurs viesâ€¦ ðŸª¬"
+        />
+
+        <img
+          id="once-upon-a-dream"
+          class="prspk-thumb"
+          src="creations/31.webp"
+          alt="CrÃ©ation 31"
+          data-title="ONCE UPON A DREAM"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, rouge, beige, jaune, marron, vert, mauve, rose, orange et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 4h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Perspective plate, mais profondeur de part les ombrages<br>
+                     ðŸ’­ <strong>Imagination :</strong> 30% rÃ©flÃ©chie â€¢ 70% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Dans une vallÃ©e nichÃ©e au plus profond de votre esprit. Oui, des villes entiÃ¨res dans vos tÃªtes. Once upon a dream, c'est la reprÃ©sentation d'un de ces quartiers de
+                     nos tÃªtes, dans lesquels on peut y accÃ©derâ€¦ par le rÃªve. Un beau voyage intÃ©rieur mais quelque peu effrayant â­"
+        />
+
+        <img
+          id="winter-lights"
+          class="prspk-thumb"
+          src="creations/28.webp"
+          alt="CrÃ©ation 28"
+          data-title="WINTER LIGHTS"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, rose, vert, orange, rouge, mauve, jaune et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, nouveau style graphique expÃ©rimentÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 70% improvisÃ©e â€¢ 15% rÃ©flÃ©chie â€¢ 15% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Imaginez un village pittoresque, perdu dans l'immensitÃ© d'un hiver glacÃ©. Les toits des maisons, couverts de neige fraÃ®che, scintillent sous la lueur des Ã©toiles,
+                     tandis que les ruelles Ã©troites, bordÃ©es de murs colorÃ©s, se faufilent entre les bÃ¢tisses comme des sentiers secrets. Laissez-vous porter dans un univers enfantin
+                     empli de magie âœ¨ðŸŒ¨ï¸"
+        />
+
+        <img
+          id="airplane"
+          class="prspk-thumb"
+          src="creations/25.webp"
+          alt="CrÃ©ation 25"
+          data-title="AIRPLANE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rose, bleu, gris, vert, violet et brun<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h30<br>
+                     ðŸ’­ <strong>Imagination :</strong> 55% improvisÃ©e â€¢ 30% improvisÃ©e â€¢ 15% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Cette crÃ©ation issue de notre partenariat, malgrÃ© un contenu pas trÃ¨s appliquÃ©, met un en valeur un bel avion dans les airs. Des nuages rosÃ©s cachen une belle vallÃ©e
+                     ensoleillÃ©e, avec toujours, cet avion ðŸ›«âœ¨"
+        />
+
+        <img
+          id="la-cite-des-bulles"
+          class="prspk-thumb"
+          src="creations/22.webp"
+          alt="CrÃ©ation 22"
+          data-title="LA CITÃ‰ DES BULLES"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, jaune, vert, beige, rose, brun et gris<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 5h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, couleurs complÃ©mentaires<br>
+                     ðŸ’­ <strong>Imagination :</strong> 50% rÃ©flÃ©chie â€¢ 40% improvisÃ©e â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     La CitÃ© des Bulles! Vous l'attendiez celle-lÃ ! Cette ville a tout son charme! Avec ses buildings retro futuristes et ses boules de verre au sommet, on retrouve une
+                     ambiance sous-marine, bien que la citÃ© soit terrestre. Ici, les commerces et les affiches publicitaires sont partout. Il y a mÃªme le TGV Bubulle qui passe devant le
+                     centre commercial (mall en anglais)! Bref, une ville solarpunk qui a tout le mÃ©rite de ses habitants les Bubuliens et les Bubuliennesâ€¦ ðŸ«§ðŸ¢"
+        />
+
+        <img
+          id="japon"
+          class="prspk-thumb"
+          src="creations/19.webp"
+          alt="CrÃ©ation 19"
+          data-title="æ—¥æœ¬å›½"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rouge, vert, bleu, orange, brun, jaune, gris, rose et magenta<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 7h15<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une feuille blanche entiÃ¨re, fait Ã  l'aquarelle, riches pigments de couleur, riche saturation, perspective isomÃ©trique<br>
+                     ðŸ’­ <strong>Imagination :</strong>70% improvisÃ©e â€¢ 30% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Laissez-vous embarquer dans l'univers traditionnel japonais et dÃ©couvrez sa fine architecture, qui a presque 1500 ans de richesse et d'histoire. Observez la forme, les
+                     couleurs, les plantesâ€¦ Bienvenue au Japon ðŸ˜ðŸŽ´"
+        />
+
+        <img
+          id="le-cafe-enchante"
+          class="prspk-thumb"
+          src="creations/16.webp"
+          alt="CrÃ©ation 16"
+          data-title="LE CAFÃ‰ ENCHANTÃ‰"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Beige, brun, bleu, rouge, gris, vert, rose et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h45<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riches pigments de couleur, riche saturation, perspective personnalisÃ©e<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% improvisÃ©e â€¢ 30% rÃ©flÃ©chie â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Ce petit cafÃ© dans le coin, tout le monde la connaÃ®t. Il a Ã©tÃ© bÃ¢ti depuis des lustres dans cette vallÃ©e fantastique et enchantÃ©e. Tout le monde sait qu'ici, on y fait
+                     les meilleurs cafÃ©s du territoire. Alors venez avec moi, Take a coffee! ðŸ¤“â˜•ðŸ˜‹"
+        />
+
+        <img
+          id="little-cottage"
+          class="prspk-thumb"
+          src="creations/13.webp"
+          alt="CrÃ©ation 13"
+          data-title="LITTLE COTTAGE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Noir<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 0h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Dessin en noir et blanc, nouvelle technique d'encadrement de fenÃªtres"
+        />
+
+        <img
+          id="welcome-in-the-house"
+          class="prspk-thumb"
+          src="creations/10.webp"
+          alt="CrÃ©ation 10"
+          data-title="WELCOME IN THE HOUSE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Beige, jaune, orange, brun, rouge, vert et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Petit format, perspective bien adaptÃ©e Ã  la situation de prÃ©sentation du paysage, texte dÃ©calÃ©, donnant une impression de
+                     dÃ©coupage, couleurs assez pales et marquÃ©es<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Ahhh! Un intÃ©rieur Ã  l'amÃ©ricaine bien chaleureux!"
+        />
+
+        <img
+          id="circuit-de-karting"
+          class="prspk-thumb"
+          src="creations/7.webp"
+          alt="CrÃ©ation 7"
+          data-title="CIRCUIT DE KARTING"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rouge, vert, gris, jaune et bleu<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 0h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Format petit, 2 perspectives diffÃ©rentes, donnant un aspect de profondeur vu du haut"
+        />
+
+        <img
+          id="new-york"
+          class="prspk-thumb"
+          src="creations/4.webp"
+          alt="CrÃ©ation 4"
+          loading="lazy"
+          data-title="NEW-YORK"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Noir, jaune, brun, bleu et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 0h35<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Tons assez neutres, pigmentation colorÃ©es et exagÃ©rÃ©e sur le ciel. Pluie de traits, style graffitis"
+        />
+        <img
+          id="kayous-diner"
+          class="prspk-thumb"
+          src="creations/42.webp"
+          alt="CrÃ©ation 42"
+          data-heart
+          data-title="KAYOU'S DINER"
+          data-date="01/02/26"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Orange, bleu, jaune et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h45<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Couleurs flashies<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% rÃ©flÃ©chie â€¢ 40% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Ce petit restaurant dans Kayoupolis, dÃ©tenu par Mme Roche, Ã©tait trÃ¨s apprÃ©ciÃ© dans le quartier. Kayou's Diner, c'Ã©tait un projet ambitieux dans une ville oÃ¹ cailloux et cacahuÃ¨tes vivaient sous tension. Mais Mme Roche voulait rapprocher ces 2 races, car elle estimait que les diffÃ©rences ne devaient pas les sÃ©parer. Et mÃªme si les cacahuÃ¨tes leurs cassaient les cou*... cacahuÃ¨tes hum, elle a rÃ©ussi."
+        />
+
+        <img
+          id="a-wanderer-in-ginger-wood"
+          class="prspk-thumb"
+          src="creations/39.webp"
+          alt="CrÃ©ation 39"
+          data-title="A WANDERER IN GINGER WOOD"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Orange, vert, rouge, bleu, rose, jaune et mauve<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Nouveau style graphique expÃ©rimentÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% rÃ©flÃ©chie â€¢ 40% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Â«Because there are things that we can't sayÂ». Parce que parfois, juste marcher Ã§a fait du bien. Parce que l'automne nous accueille, parce que cette fille, qui marche,
+                     elle avait juste besoin de Ã§a. Juste de s'Ã©chapper quelques instants. Elle reviendra. Ginger Wood fera Ã©cho Ã  nouveau ðŸ"
+        />
+
+        <img
+          id="creative-thoughts"
+          class="prspk-thumb"
+          src="creations/36.webp"
+          alt="CrÃ©ation 36"
+          data-title="CREATIVE THOUGHTS"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rouge, bleu, jaune, orange, vert, mauve, rose et brun<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 0h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Collage, change d'un dessin classique habituellement postÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% rÃ©flÃ©chie â€¢ 30% improvisÃ©e â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     En voilÃ , de l'originalitÃ© et du renouveau! Cette crÃ©ation change d'un dessin habituel. En fait, c'est juste un collage de nombreux croquis et de d'autres souvenirs
+                     matÃ©riels que j'ai collÃ© ici. Rien d'extraordinaire. Pourtant; c'est tellement sympa qu'il se pourrait que j'en refasseâ€¦ âœ‚ï¸"
+        />
+
+        <img
+          id="the-moon-meadows-stable"
+          class="prspk-thumb"
+          src="creations/33.webp"
+          alt="CrÃ©ation 33"
+          data-title="THE MOON MEADOWS STABLE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, orange, vert, bleu, gris, brun, rouge et gris<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 5h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Deux pages de mon sketchbook, perspective isomÃ©trique et semi rÃ©aliste<br>
+                     ðŸ’­ <strong>Imagination :</strong> 55% rÃ©flÃ©chie â€¢ 30% improvisÃ©e â€¢ 15% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Cette fois, cap sur les grands espaces (et les plateaux de tournage!). Silence, moteurâ€¦ action! Une camÃ©ra, une scÃ¨ne, et un cheval prÃªt Ã  galoper sous les
+                     projecteurs : le cinÃ©ma et lâ€™Ã©quitation se rencontrent dans une crÃ©ation exclusive de collabâ€¦ Entendez-vous le claquement du clipboarding et le bruit des sabots? ðŸŽ¬
+                     ðŸŽ"
+        />
+
+        <img
+          id="birkskov"
+          class="prspk-thumb"
+          src="creations/30.webp"
+          alt="CrÃ©ation 30"
+          data-title="BIRKSKOV"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, mauve, blanc et bleu<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> AtmosphÃ¨re apaisante, nouvel essai graphique<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% improvisÃ©e â€¢ 30% rÃ©flÃ©chie â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Birkskov. Signifie Â«forÃªt de bouleauxÂ» en danois (sans compter la prononciation danoise, cette crÃ©ation se prononce Â«Beurk-skovÂ»). Une forÃªt enchantÃ©e oÃ¹ se cache une
+                     petite chaumiÃ¨re, un refuge serein au milieu d'une scÃ¨ne hivernale. Cette crÃ©ation reprÃ©sente la beautÃ© est le mystÃ¨re de l'hiver, et sa simplicitÃ© ðŸŒ¿âœ¨"
+        />
+
+        <img
+          id="le-palais-des-reves"
+          class="prspk-thumb"
+          src="creations/27.webp"
+          alt="CrÃ©ation 27"
+          data-title="LE PALAIS DES RÃŠVES"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, rose, vert, violet, mauve, rouge, brun, orange et beige<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 4h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, gouache<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% improvisÃ©e â€¢ 30% rÃ©flÃ©chie â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Dans un dÃ©sert de sable infini, un majestueux palais colorÃ© se dresse. Des centaines de rÃªves sont crÃ©Ã©s chaque nuit, et s'Ã©lÃ¨vent dans le ciel. Les rÃªves mÃ»rissent au
+                     fur et Ã  mesure, et grandissent. C'est la seule illustration qu'on a de ce palais. D'aprÃ¨s la lÃ©gende, il y en aurai bien d'autres partout dans le mondeâ€¦ ðŸŒ´ðŸ”®"
+        />
+
+        <img
+          id="l-auberge"
+          class="prspk-thumb"
+          src="creations/24.webp"
+          alt="CrÃ©ation 24"
+          data-title="L'AUBERGE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, rose, bleu, vert, violet et mauve<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 3h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, nouveau style expÃ©rimentÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 55% improvisÃ©e â€¢ 40% rÃ©flÃ©chie â€¢ 5% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     L'auberge, un nom simple, nous intrigue sur son contenu. Avec ses tons trÃ¨s saturÃ©s et complÃ©mentaires, il nous emmÃ¨ne dans un monde trÃ¨s abstrait, entre imaginaire et
+                     rÃ©el, dans une auberge sous un ciel rÃªveurâ€¦ ðŸŒ¼âœ¨"
+        />
+
+        <img
+          id="la-haut"
+          class="prspk-thumb"
+          src="creations/21.webp"
+          alt="CrÃ©ation 21"
+          data-title="LÃ€-HAUT"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, mauve, rose, vert, beige, brun, jaune, gris, orange, violet et rouge<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 7h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, aquarelle<br>
+                     ðŸ’­ <strong>Imagination :</strong> 80% d'Internet â€¢ 10% rÃ©flÃ©chie â€¢ 10% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Cette maison mythique du film DisneyÂ® Â«LÃ -HautÂ» (Â«UPÂ» dans la version originale amÃ©ricaine) de Carl et sa compagne dÃ©cÃ©dÃ©e, s'envole pour rejoindre Â«Les Chutes du
+                     ParadisÂ» ðŸ ðŸŒ´"
+        />
+
+        <img
+          id="vegetal-desert"
+          class="prspk-thumb"
+          src="creations/18.webp"
+          alt="CrÃ©ation 18"
+          data-title="VEGETAL DESERT"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Beige, marron, vert, bleu, jaune et argentÃ©<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 7h15<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une feuille blanche entiÃ¨re, fait Ã  l'aquarelle, riches pigments de couleur, riche saturation, perspective isomÃ©trique<br>
+                     ðŸ’­ <strong>Imagination :</strong> 70% improvisÃ©e â€¢ 30% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Au cÅ“ur de l'Afrique chaude, lourde et dÃ©sertique, un coin de paradis s'y cache. DÃ©couvrez Â«Vegetal DESERTÂ», une vieille ruine du dÃ©sert rÃ©novÃ©e en un grand dÃ´me de
+                     verre accueillant de nombreuses espÃ¨ces de palmiers, cactus, cocotier, et bien d'autresâ€¦ ðŸ¥¥ Bref, l'oasis moderne nichÃ© au milieu du Sahara ðŸ˜"
+        />
+
+        <img
+          id="the-dragon-kingdom"
+          class="prspk-thumb"
+          src="creations/15.webp"
+          alt="CrÃ©ation 15"
+          data-title="THE DRAGON KINGDOM"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Beige, brun, bleu, orange, rouge, jaune, gris, vert et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 5h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riches pigments de couleur, perspective isomÃ©trique<br>
+                     ðŸ’­ <strong>Imagination :</strong> 75% improvisÃ©e â€¢ 15% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Ce petit village sur une colline perdue a Ã©tÃ© fondÃ© par de pauvres paysans venant se rÃ©fugier. Mais un jour, ils rÃ©ussissent Ã  trouver un bÃ©bÃ© dragon, qu'ils ont
+                     finalement rÃ©ussis Ã  Ã©lever. Il grandit dans la bienveillance, et en retour, le dragon protÃ¨ge depuis ce petit village, basÃ© sur la bonheur et la sÃ©curitÃ© de tous
+                     ðŸ˜ŒðŸ‰ðŸ°"
+        />
+
+        <img
+          id="un-mistigry-dormeur"
+          class="prspk-thumb"
+          src="creations/12.webp"
+          alt="CrÃ©ation 12"
+          data-title="UN MISTIGRY DORMEUR"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rose, rouge, brun, beige, orange, jaune, vert, bleu et mauve<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h15<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Pas de liner, ambiance chaleureuse<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Miaou!! Qu'est-ce qu'on est bien ici ! ðŸ˜¸"
+        />
+
+        <img
+          id="alfaborg-la-cite-des-fees"
+          class="prspk-thumb"
+          src="creations/9.webp"
+          alt="CrÃ©ation 9"
+          data-title="ÃLFABORG, LA CITÃ‰ DES FÃ‰ES"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rose, rouge, brun, beige, orange, jaune, vert, bleu et mauve<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 6h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Grand format (taille maximale du carnet), grandes variations de pigments de couleurs, beaucoup d'ombres, dÃ©tails appliquÃ©s dans
+                     l'ensemble<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Ãlfaborg est une petite citÃ© dans un arbre, oÃ¹ des FÃ©es vivent entre elles. Ãlfaborg vient de l'islandais, qui signifie Â«Ville des FÃ©esÂ». Le dessin reprÃ©sente une
+                     scÃ¨ne oÃ¹ deux fÃ©es Ã©trangÃ¨res (en bas Ã  gauche) arrivent dans ce royaume impressionnant. Le ciel est quelque peu imaginaire, avec des cercles quelconques. MÃªme la
+                     forme de l'arbre fait allusion Ã  une forme de magie. Sur le panneau d'indication (en bas, tout Ã  droite), on peut lire le mot Â«TjÃ¶rnÂ», qui se traduit en islandais par
+                     Â«Ã‰tangÂ». On peut donc aussi en conclure que l'histoire se passe vraisemblablement en Islande."
+        />
+
+        <img
+          id="cartoon-world"
+          class="prspk-thumb"
+          src="creations/6.webp"
+          alt="CrÃ©ation 6"
+          data-title="CARTOON WORLD"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Vert, brun, rouge, rose, violet, bleu, orange et jaune<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h20<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Grande taille et grande variation des pigments de couleurs et plusieurs couches<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Une grande cabane pour se reposer, rire, s'amuser et rÃªver ðŸ˜ŒðŸŒ³"
+        />
+
+        <img
+          id="maison-retro-futuriste"
+          class="prspk-thumb"
+          src="creations/3.webp"
+          alt="CrÃ©ation 3"
+          loading="lazy"
+          data-title="MAISON RETRO FUTURISTE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Vert, bleu, brun, mauve et rose<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h20<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Forme originale et traits fins et dÃ©taillÃ©s"
+        />
+
+        <img
+          id="minecraft"
+          class="prspk-thumb"
+          src="creations/1.webp"
+          alt="CrÃ©ation 1"
+          loading="lazy"
+          data-title="MINECRAFT"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Vert, gris, brun et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Impression d'enfoncement et rÃ©alisme au jeu"
+        />
+        <img
+          id="the-lil-stork"
+          class="prspk-thumb"
+          src="creations/41.webp"
+          alt="CrÃ©ation 41"
+          data-heart
+          data-title="THE LIL STORK"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, bleu, rouge et orange<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Composition attrayante, photoshoot de qualitÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 50% rÃ©flÃ©chie â€¢ 40% improvisÃ©e â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     ParaÃ®t-il, que les oiseaux migrent pour l'hiver. Ils cÃ´toient mille lieux, s'arrÃªtent, repartent. Une cigogne Ã©garÃ©e alors s'arrÃªtait, au bord d'un Ã©tang, dans une
+                     forÃªt oubliÃ©e, tandis qu'une maison la regardait ðŸª¶"
+        />
+
+        <img
+          id="the-old-old-lighthouse"
+          class="prspk-thumb"
+          src="creations/38.webp"
+          alt="CrÃ©ation 38"
+          data-title="THE OLD, OLD LIGHTHOUSE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, mauve, jaune, rouge, violet, rose et orange<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 3h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Police d'Ã©criture dominante, effets de perspective<br>
+                     ðŸ’­ <strong>Imagination :</strong> 80% rÃ©flÃ©chie â€¢ 20% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     La lÃ©gende raconte qu'un phare s'est dÃ©crochÃ© de la falaise, et qu'il a rejoint le cielâ€¦ Une nuit cependant, en plein milieu de l'Atlantique lors d'un violent orage,
+                     une lumiÃ¨re divine traversa le ciel noir. Des marins l'ont vus. Cette lumiÃ¨re. Cette lumiÃ¨re familiÃ¨re, qui tournait, qui tournait. Au dessus de l'orage, bien
+                     au-dessus, un phare mystÃ©rieux disparu, qu'on croyait lÃ©gende, pourtant flottait dans la nuit Ã©toilÃ©e ðŸŒŒ"
+        />
+
+        <img
+          id="the-blue-bakery"
+          class="prspk-thumb"
+          src="creations/35.webp"
+          alt="CrÃ©ation 35"
+          data-title="THE BLUE BAKERY"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rouge, bleu, vert, brun, orange, mauve et rose<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Perspective isomÃ©trique, style d'infographie testÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 70% rÃ©flÃ©chie â€¢ 25% improvisÃ©e â€¢ 5% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Jâ€™Ã©tais Ã  lâ€™intÃ©rieur dans ce rÃªve. C'Ã©tait la nuit, j'Ã©tais au premier Ã©tage, et les propriÃ©taires de la boulangerie dormaient. The Blue Bakery mâ€™a accueilli une
+                     nuit, et je lâ€™ai dessinÃ©e pour mâ€™en souvenir ðŸ¥–"
+        />
+
+        <img
+          id="pop-box-flowers"
+          class="prspk-thumb"
+          src="creations/32.webp"
+          alt="CrÃ©ation 32"
+          data-title="POP-BOX FLOWERS"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Vert, orange, rouge, bleu, jaune, brun, mauve, rose et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> PremiÃ¨re page de mon sketchbook, perspective improvisÃ©e mais rÃ©aliste<br>
+                     ðŸ’­ <strong>Imagination :</strong> 60% rÃ©flÃ©chie â€¢ 35% improvisÃ©e â€¢ 5% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Welcome to my sketchbook â„–2! Oui, POP-BOX flowers est sur une demi page. Mais quel honneur immense de lancer le premier dessin d'un nouveau carnet! Sentez les bonnes
+                     odeurs de ce bouquet, dÃ©licatement posÃ© dans une boÃ®te de pop-corn, et laissez vous porterâ€¦ ðŸ¿"
+        />
+
+        <img
+          id="heading-for-the-door"
+          class="prspk-thumb"
+          src="creations/29.webp"
+          alt="CrÃ©ation 29"
+          data-title="HEADING FOR THE DOOR"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, jaune, orange, vert, rouge et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Riche saturation, nouvel essai graphique expÃ©rimentÃ©<br>
+                     ðŸ’­ <strong>Imagination :</strong> 70% rÃ©flÃ©chie â€¢ 25% improvisÃ©e â€¢ 5% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Une porte nous appelle. Une porte vers 2025. EntourÃ©e de poutres en bois et des feux d'artifices qui en sortent, elle nous attend pour cÃ©lÃ©brer le passage d'une aire
+                     nouvelle. Â«Heading for the doorÂ» signifie approximativement Â«En avant vers la porteÂ» en anglais. C'est le titre d'une chanson dont je me suis inspirÃ©. Et Â«2025 awaits
+                     uÂ» signifie Â«2025 t'attendÂ». En bref, une petite crÃ©ation pour nous rappeler que de belles choses nous attendent! PrÃªts pour une nouvelle annÃ©e? ðŸŽ‰"
+        />
+
+        <img
+          id="the-bird-house"
+          class="prspk-thumb"
+          src="creations/26.webp"
+          alt="CrÃ©ation 26"
+          data-title="THE BIRD HOUSE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, rose, verts, violet, mauve, rouge, brun, orange et beige<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 3h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, nouvelle technique expÃ©rimentÃ©e<br>
+                     ðŸ’­ <strong>Imagination :</strong> 65% rÃ©flÃ©chie â€¢ 35% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Cette crÃ©ation est dÃ©cidÃ©ment Ã©blouissante. J'Ã©tais si impatient de vous la prÃ©senter! J'ai imaginÃ© ce projet grÃ¢ce Ã  une correspondante allemande. C'est l'histoire
+                     d'une grand-mÃ¨re qui adore les oiseaux, et qui les accueillent dans une serre gÃ©ante. On les voit repartir en vol dans des tons automnaux, avec cet air familier et ce
+                     brouillard magiqueâ€¦ cette Å“uvre nous transporte dans un monde Ã©blouissant! ðŸðŸŒŒ"
+        />
+
+        <img
+          id="my-music-art"
+          class="prspk-thumb"
+          src="creations/23.webp"
+          alt="CrÃ©ation 23"
+          data-title="MY MUSIC ART"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Jaune, rose, bleu, vert, violet et mauve<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 6h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riche saturation, nouvelle expÃ©rimentation<br>
+                     ðŸ’­ <strong>Imagination :</strong> 50% rÃ©flÃ©chie â€¢ 40% improvisÃ©e â€¢ 10% d'Internet<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     My Music Art est une crÃ©ation merveilleuse. Elle recense plus d'une cinquantaine d'artistes que j'Ã©coute et que j'aime le plus. La note centrale propage une lumiÃ¨re
+                     douce et dynamique sur l'ensemble des noms d'artistes prÃ©sent sur le sol. Comme un nÃ©on gÃ©ant qui Ã©claire mes goÃ»ts musicaux, avec des vagues de sons. Bref, une belle
+                     rÃ©ussite ðŸŽ™ï¸ðŸŽ¶"
+        />
+
+        <img
+          id="architecture"
+          class="prspk-thumb"
+          src="creations/20.webp"
+          alt="CrÃ©ation 20"
+          data-title="ARCHITECTURE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Beige, brun, bleu, rouge, gris, vert, jaune, rose et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h30<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riches pigments de couleur, riche saturation, perspective plate<br>
+                     ðŸ’­ <strong>Imagination :</strong> 50% d'Internet â€¢ 40% rÃ©flÃ©chie â€¢ 10% improvisÃ©e<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Cette ruelle, avec des bÃ¢timents inspirÃ© d'une architecture allemande, autrichienne, danoise et polonaise, donne envie de s'y balader. Elle reprend un mÃ©lange
+                     d'architecture classique de l'Europe Centrale ðŸ "
+        />
+
+        <img
+          id="red-fashion"
+          class="prspk-thumb"
+          src="creations/17.webp"
+          alt="CrÃ©ation 17"
+          data-title="RED FASHION"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rouge, bordeau, gris et argentÃ©<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 2h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Une page entiÃ¨re de mon carnet, riches pigments de couleur, riche saturation, travail de la perspective des cylindres, essai
+                     d'une texture Â«moisieÂ» sur la bombe<br>
+                     ðŸ’­ <strong>Imagination :</strong> 80 improvisÃ©e â€¢ 20% rÃ©flÃ©chie<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Ces petits bonshommes noirs en avaient marre de leur couleur. Alors ils ont dÃ©cidÃ© d'en changer, cette fois en rouge. Sur leur chemin, dans une rue bordÃ©e de
+                     magnifique murs de graffitis, ils trouvÃ¨rent une vielle bombe de peinture laissÃ©e Ã  l'abandon. Alors, ils prirent une Ã©chelle de leur taille, et commencÃ¨rent ainsi Ã 
+                     se colorer. Certain sautent mÃªme sur le bouton poussoir pour faire sortir les restes de peinture. D'oÃ¹ le nom de cette rÃ©alisation : â€œRed Fashionâ€ž signifiant â€œle rouge
+                     est Ã  la modeâ€ž ðŸ–Œï¸ðŸŸ¥ðŸª„"
+        />
+
+        <img
+          id="espace-cotier-avec-un-ciel-paranormal"
+          class="prspk-thumb"
+          src="creations/14.webp"
+          alt="CrÃ©ation 14"
+          data-title="ESPACE CÃ”TIER AVEC UN CIEL PARANORMAL"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rose, bleu, brun, beige, rouge, orange, jaune, gris, vert et violet<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 3h15<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> MÃªle deux univers totalement diffÃ©rents, plusieurs couches et nuances de couleurs, technique abstraite et gÃ©omÃ©trique<br>
+                     ðŸ’­ <strong>Imagination :</strong> 80 improvisÃ©e â€¢ 20% rÃ©flÃ©chie<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Dans ce petit village, chaque annÃ©e Ã  une heure prÃ©cise, on peut apercevoir un changement de couleur du ciel et observer d'autres planÃ¨tes venues jusqu'Ã  nous pour
+                     cette occasion ðŸ¤©ðŸŒŒðŸŒ "
+        />
+
+        <img
+          id="route-66-usa"
+          class="prspk-thumb"
+          src="creations/11.webp"
+          alt="CrÃ©ation 11"
+          data-title="ROUTE 66, USA"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Bleu, rouge, gris et noir<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Petite taille, bleu pÃ©tant"
+        />
+
+        <img
+          id="hollande-pays-bas"
+          class="prspk-thumb"
+          src="creations/8.webp"
+          alt="CrÃ©ation 8"
+          data-title="HOLLANDE, PAYS-BAS"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rouge, brun, dorÃ©, vert, violet, bleu, orange et jaune<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h20<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Grandes variations dans les couleurs et plusieurs couches<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Imaginez vous en Hollande, avec un doux lever de soleilâ€¦ â˜€ï¸ðŸŒ¾"
+        />
+
+        <img
+          id="candy-house"
+          class="prspk-thumb"
+          src="creations/5.webp"
+          alt="CrÃ©ation 5"
+          data-title="CANDY HOUSE"
+          data-date="30/11/25"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Rose, orange, brun, rouge, mauve, bleu, violet et vert<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 1h<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Grande variation de couleurs et pluie de traits, style graffitis<br>
+                     ðŸ’¬ <strong>Commentaires :</strong><br>
+                     Vous avez toujours rÃªvÃ© d'une maison en bonbons? Je crois que l'heure est venue! ðŸ˜†ðŸ­"
+        />
+
+        <img
+          id="abstrakt-city"
+          class="prspk-thumb"
+          src="creations/2.webp"
+          alt="CrÃ©ation 2"
+          loading="lazy"
+          data-title="ABSTRAKT CITY"
+          data-desc="ðŸŽ¨ <strong>Teintes :</strong> Orange, jaune, mauve, rose, violet et bleu<br>
+                     âŒ›ï¸ <strong>Temps de travail :</strong> 0h40<br>
+                     â‡ï¸ <strong>ParticularitÃ©s :</strong> Forme originale et grande variation des pigments de couleurs"
+        />
+    </section>
+
+
+
+
+
+
+
+
+    
+  </main>
+
   <footer>
     <div class="social-icons">
       <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
         <img src="/icons/linktree.svg" alt="Linktree">
       </a>
-     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
-        <img src="/icons/whatsapp-channel.svg" alt="Chaîne WhatsApp">
+     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="ChaÃ®ne WhatsApp">
+        <img src="/icons/whatsapp-channel.svg" alt="ChaÃ®ne WhatsApp">
       </a>
       <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
         <img src="/icons/instagram.svg" alt="Instagram">
@@ -281,9 +810,9 @@ permalink: /portfolio/creations
       </a>
     </div>
 
-    <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
-    <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
-    <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p>&copy; 2026 Perspikativeâ„¢. Tous droits rÃ©servÃ©s.</p>
+    <p><a href="/mentions-legales" class="footer-link">Mentions lÃ©gales</a></p>
+    <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialitÃ©</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
   </footer>
 
@@ -291,43 +820,116 @@ permalink: /portfolio/creations
     <img src="/icons/rechercher.svg" alt="Rechercher">
   </a>
 
-  <script>
-    const TOTAL_IMAGES = 42;
-    const BASE_PATH = '/portfolio/creations/';
+  <!-- LIGHTBOX STRUCTURE -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">
+      <img src="/icons/fermer.svg" alt="Fermer">
+    </button>
+    <div class="lightbox-window">
+      <div class="lightbox-left">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-right">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-date" class="lightbox-date"></p>
+        <p id="lightbox-desc"></p>
+        <div class="lightbox-extra-images" id="lightbox-extra"></div>
+      </div>
+    </div>
+  </div>
 
-    const gallery = document.getElementById('gallery');
+    <script>
+    // ----- MASONRY GRID (Macy.js) -----
+    window.addEventListener('load', () => {
+      const creationsGrid = document.getElementById('creations-grid');
+      if (creationsGrid) {
+        const images = Array.from(creationsGrid.querySelectorAll('img'));
+        images
+          .sort((a, b) => {
+            const aMatch = a.getAttribute('src')?.match(/creations\/(\d+)\.webp/i);
+            const bMatch = b.getAttribute('src')?.match(/creations\/(\d+)\.webp/i);
+            const aNum = aMatch ? Number(aMatch[1]) : -1;
+            const bNum = bMatch ? Number(bMatch[1]) : -1;
+            return bNum - aNum;
+          })
+          .forEach((img) => creationsGrid.appendChild(img));
+      }
 
-    for (let i = TOTAL_IMAGES; i >= 1; i--) {
-      const div = document.createElement('div');
-      div.className = 'masonry-item';
-      div.onclick = () => openLightbox(BASE_PATH + i + '.webp', 'Création ' + i);
+      if (typeof Macy === 'function') {
+        Macy({
+          container: '#creations-grid',
+          columns: 3,
+          margin: 10,
+          trueOrder: false,
+          waitForImages: true,
+          breakAt: {
+            1100: 2
+          }
+        });
+      }
+    });
 
-      const img = document.createElement('img');
-      img.src = BASE_PATH + i + '.webp';
-      img.alt = 'Création ' + i;
-      img.loading = 'lazy';
-      img.draggable = false;
+    // ----- LIGHTBOX -----
+    const thumbs = document.querySelectorAll('.prspk-thumb');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDate = document.getElementById('lightbox-date');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const closeBtn = document.getElementById('lightbox-close');
+    const lightboxHeart = document.createElement('button');
+    let activeCreationId = '';
 
-      div.appendChild(img);
-      gallery.appendChild(div);
-    }
+    lightboxHeart.className = 'like-bubble lightbox-like';
+    lightboxHeart.innerHTML = `<img class="like-icon" alt=""><span class="like-count"></span>`;
 
-    function openLightbox(src, alt) {
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      img.alt = alt;
-      document.getElementById('lightbox').classList.add('active');
-    }
+    thumbs.forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxTitle.textContent = img.dataset.title || '';
+        lightboxDate.textContent = img.dataset.date || '';
+        lightboxDesc.innerHTML = img.dataset.desc || '';
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-    }
+        activeCreationId = img.id || '';
+        lightbox.dataset.id = activeCreationId;
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
+        if (!lightboxHeart.isConnected) {
+          lightbox.querySelector('.lightbox-right').appendChild(lightboxHeart);
+        }
+
+        if (typeof updateLikeUI === 'function' && activeCreationId) {
+          updateLikeUI(activeCreationId);
+        }
+
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightboxHeart.addEventListener('click', () => {
+      if (activeCreationId && typeof LikesStore !== 'undefined' && typeof LikesStore.toggle === 'function') {
+        LikesStore.toggle(activeCreationId);
+      }
+      if (activeCreationId && typeof updateLikeUI === 'function') {
+        updateLikeUI(activeCreationId);
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   </script>
-  
+
+
+
   <script>
     const menuToggle = document.getElementById('menuToggle');
     menuToggle.addEventListener('change', (e) => {
@@ -338,3 +940,4 @@ permalink: /portfolio/creations
   <script src="/script.js"></script>
 </body>
 </html>
+
