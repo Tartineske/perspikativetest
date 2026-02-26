@@ -2325,6 +2325,7 @@ main.settings-section {
     line-height: 1.5;
     max-width: 600px;
     margin: 0;
+    margin-bottom: 20px;
   }
 
   .mentions-date {
@@ -2995,4 +2996,5 @@ html[data-theme="dark"] {
       margin-bottom: 20px;
   }
 }
+
 
