@@ -1432,7 +1432,7 @@ main.creations h2 {
 
 .result-info p {
   margin: 4px 0 0 0;
-  color: #ddd;
+  color: #ffffff;
   font-size: 0.85rem;
   opacity: 0.8;
   line-height: 1.2;
@@ -2995,3 +2995,4 @@ html[data-theme="dark"] {
       margin-bottom: 20px;
   }
 }
+
