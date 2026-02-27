@@ -2325,7 +2325,7 @@ main.settings-section {
     line-height: 1.5;
     max-width: 600px;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 
   .mentions-date {
@@ -2395,6 +2395,25 @@ main.settings-section {
     padding-right: 1.5rem !important;
   }
 }
+
+.mentions-icon {
+  display: none;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .mentions-icon {
+    display: block;
+    width: 44px;
+    margin: 0 auto 12px;
+    opacity: 0.85;
+  }
+}
+
 
 
 /* ----- Lien hébergeur (style Perspikative) ----- */
@@ -2996,5 +3015,6 @@ html[data-theme="dark"] {
       margin-bottom: 20px;
   }
 }
+
 
 
