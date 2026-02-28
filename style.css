@@ -99,15 +99,6 @@ body {
   }
 }
 
-/* --- Réduis les animations - Paramètres --- */
-
-/* Mode accessibilité : animations désactivées */
-.reduce-motion * {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
-}
-
 
 
 /* ============================= 3. HEADER ET NAVIGATION ============================= */
@@ -2940,6 +2931,7 @@ html[data-theme="dark"] {
       margin-bottom: 20px;
   }
 }
+
 
 
 
