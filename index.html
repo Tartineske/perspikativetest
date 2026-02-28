@@ -44,6 +44,16 @@ permalink: /
 
 <body class="home">
 
+  <!-- ===== SITE LOADER ===== -->
+  <div id="site-loader">
+    <div class="loader-content">
+      <img src="/logo.svg" alt="Perspikative" class="loader-logo">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-footer">by Tartineske</div>
+  </div>
+  <!-- ======================== -->
+
   <nav class="mobile-nav">
     <a href="/" class="nav-icon active" title="Accueil">
       <img src="/icons/accueil-active.svg" alt="Accueil">
@@ -187,12 +197,23 @@ permalink: /
     <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
     <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
+    <p><a href="/utilisation-marque" class="footer-link">Utilisation de la marque</a></p>
   </footer>
 
   <a href="/rechercher" class="search-float-btn" title="Rechercher">
     <img src="/icons/rechercher.svg" alt="Rechercher">
   </a>
 
+  <!-- Loader JS -->
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("site-loader");
+      setTimeout(() => {
+        loader.classList.add("hide");
+      }, 700);
+    });
+  </script>
+  
   <script>
     const menuToggle = document.getElementById('menuToggle');
     menuToggle.addEventListener('change', (e) => {
@@ -203,4 +224,5 @@ permalink: /
   <script src="/script.js"></script>
 
 </body>
+
 </html>
