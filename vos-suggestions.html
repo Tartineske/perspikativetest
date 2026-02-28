@@ -1,5 +1,5 @@
 ---
-permalink: /vos-suggestions
+permalink: /
 ---
 
 <!DOCTYPE html>
@@ -109,9 +109,9 @@ permalink: /vos-suggestions
 
   <div class="blur-overlay"></div>
 
-  <main class="suggestions-wrapper">
-    <section class="suggestions-hero glass">
-      <h1>Vos suggestions</h1>
+  <main>
+    <section class="suggestions-hero">
+      <h1>VOS SUGGESTIONS</h1>
       <p>
         Une idée, une intuition, un concept un peu fou ?  
         Cet espace est un laboratoire créatif ouvert. Ici, chaque proposition peut devenir une étincelle.
@@ -119,7 +119,7 @@ permalink: /vos-suggestions
     </section>
 
     <!-- COMMENT SLIDER -->
-    <section class="suggestions-comments glass">
+    <section class="suggestions-comments">
       <h2>Ils ont semé une idée...</h2>
 
       <div class="comments-slider">
@@ -183,22 +183,21 @@ permalink: /vos-suggestions
   </script>
   
   <script>
-const comments = document.querySelectorAll(".comment");
-let index = 0;
+    const comments = document.querySelectorAll(".comment");
+    let index = 0;
 
-setInterval(() => {
-  comments[index].classList.remove("active");
-  comments[index].classList.add("exit");
+    setInterval(() => {
+      comments[index].classList.remove("active");
+      comments[index].classList.add("exit");
 
-  index = (index + 1) % comments.length;
+      index = (index + 1) % comments.length;
 
-  comments[index].classList.remove("exit");
-  comments[index].classList.add("active");
-}, 3000);
-</script>
+      comments[index].classList.remove("exit");
+      comments[index].classList.add("active");
+    }, 3000);
+  </script>
 
   <script src="/script.js"></script>
 
 </body>
-
 </html>
