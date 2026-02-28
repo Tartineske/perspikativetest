@@ -243,149 +243,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 5. GESTION DES PARAMÈTRES D'ANIMATIONS =============================
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Fonction pour appliquer/désactiver les animations
-  function toggleAnimations(enabled) {
-    if (enabled) {
-      document.documentElement.classList.remove('no-animations');
-    } else {
-      document.documentElement.classList.add('no-animations');
-    }
-    // Sauvegarder dans localStorage
-    localStorage.setItem('animationsEnabled', enabled ? 'true' : 'false');
-  }
-
-  // Fonction pour charger l'état sauvegardé
-  function loadAnimationPreference() {
-    const saved = localStorage.getItem('animationsEnabled');
-    // Par défaut, les animations sont activées (si rien n'est sauvegardé)
-    const enabled = saved === null ? true : saved === 'true';
-    toggleAnimations(enabled);
-    return enabled;
-  }
-
-  // Appliquer l'état au chargement de la page
-  const animationsEnabled = loadAnimationPreference();
-
-  // Gérer la checkbox sur la page des paramètres
-  const animationsCheckbox = document.getElementById('animations');
-  if (animationsCheckbox) {
-    // Restaurer l'état de la checkbox
-    animationsCheckbox.checked = animationsEnabled;
-    
-    // Écouter les changements
-    animationsCheckbox.addEventListener('change', (e) => {
-      toggleAnimations(e.target.checked);
-    });
-  }
-});
-
-
-
-// ============================= 6. GESTION DE LA POLICE CONTRASTÉE =============================
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Fonction pour activer/désactiver la police contrastée
-  function toggleContrastFont(enabled) {
-    if (enabled) {
-      document.documentElement.classList.add('contrast-font');
-    } else {
-      document.documentElement.classList.remove('contrast-font');
-    }
-    // Sauvegarder dans localStorage
-    localStorage.setItem('contrastFontEnabled', enabled ? 'true' : 'false');
-  }
-
-  // Fonction pour charger l'état sauvegardé
-  function loadContrastFontPreference() {
-    const saved = localStorage.getItem('contrastFontEnabled');
-    // Par défaut, la police contrastée est désactivée
-    const enabled = saved === 'true';
-    toggleContrastFont(enabled);
-    return enabled;
-  }
-
-  // Appliquer l'état au chargement de la page
-  const contrastFontEnabled = loadContrastFontPreference();
-
-  // Gérer la checkbox sur la page des paramètres
-  const contrastCheckbox = document.getElementById('contrast');
-  if (contrastCheckbox) {
-    // Restaurer l'état de la checkbox
-    contrastCheckbox.checked = contrastFontEnabled;
-    
-    // Écouter les changements
-    contrastCheckbox.addEventListener('change', (e) => {
-      toggleContrastFont(e.target.checked);
-    });
-  }
-});
-
-
-
-// ============================= 7. GESTION DES CLICS SUR LES TOGGLES DES PARAMÈTRES =============================
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.setting .toggle').forEach(toggle => {
-    const checkbox = toggle.querySelector('input[type="checkbox"]');
-    const label = toggle.parentNode.querySelector('label');
-    toggle.addEventListener('click', (e) => {
-      if (e.target === checkbox) return;
-      checkbox.checked = !checkbox.checked;
-      checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-      if (label) label.focus();
-    });
-  });
-});
-
-
-
-// ============================= 8. GESTION DE L'ANIMATION (PARAMETRES) =============================
-
-document.addEventListener("DOMContentLoaded", () => {
-  const animationToggle = document.getElementById("animations");
-
-  // Si rien n'est enregistré, on prend l’état du système
-  if (localStorage.getItem("reduceMotion") === null) {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      document.body.classList.add("reduce-motion");
-      animationToggle.checked = false;
-      localStorage.setItem("reduceMotion", "true");
-    }
-  } else {
-    // Sinon on applique le choix utilisateur
-    const saved = localStorage.getItem("reduceMotion") === "true";
-    if (saved) {
-      document.body.classList.add("reduce-motion");
-      animationToggle.checked = false;
-    }
-  }
-
-  // Clic sur le toggle
-  animationToggle.addEventListener("change", () => {
-    if (animationToggle.checked) {
-      document.body.classList.remove("reduce-motion");
-      localStorage.setItem("reduceMotion", "false");
-    } else {
-      document.body.classList.add("reduce-motion");
-      localStorage.setItem("reduceMotion", "true");
-    }
-  });
-});
-
-
-
-// ============================= 10. ANTI CLIQUE GAUCHE =============================
+// ============================= 5. ANTI CLIQUE GAUCHE =============================
 
 // Bloque clic droit partout
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 
 
-// ============================= 11. OUVRIR LES HASHS DE LA RECHERCHE POUR LES LIGHTBOXS =============================
+// ============================= 6. OUVRIR LES HASHS DE LA RECHERCHE POUR LES LIGHTBOXS =============================
 
 // Ouvrir automatiquement la lightbox si un hash est présent
 window.addEventListener('DOMContentLoaded', () => {
@@ -433,7 +298,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// ============================= 12. GESTION DU MODE SOMBRE =============================
+// ============================= 7. GESTION DU MODE SOMBRE =============================
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
@@ -461,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ============================= 13. FAQ DÉROULANTE =============================
+// ============================= 8. FAQ DÉROULANTE =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const faqQuestions = document.querySelectorAll('.faq-question');
@@ -493,6 +358,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+
+// ============================= 9. LOADER PERSPIKATIVE =============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("site-loader");
+
+  if (!loader) return;
+
+  const hasSeenLoader = sessionStorage.getItem("perspikative-loader");
+
+  if (hasSeenLoader) {
+    loader.style.display = "none";
+  } else {
+    sessionStorage.setItem("perspikative-loader", "true");
+  }
+});
+
 
 
 // ============================= FIN DU SCRIPT =============================
