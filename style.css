@@ -442,7 +442,7 @@ body.menu-open .blur-overlay {
     bottom: 16px;
     left: 50%;
     transform: translate(-50%, 0);
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     background: rgba(214, 214, 214, 0.05);
     backdrop-filter: blur(20px) saturate(120%);
     -webkit-backdrop-filter: blur(20px) saturate(120%);
@@ -2943,5 +2943,6 @@ html[data-theme="dark"] {
     width: 130px;
   }
 }
+
 
 
