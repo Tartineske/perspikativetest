@@ -55,81 +55,6 @@ body {
 }
 
 
-/* Police contrastée - Contours noirs et texte plus gras */
-html.contrast-font .system-font,
-html.contrast-font p,
-html.contrast-font body,
-html.contrast-font * {
-  font-weight: 600;
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.8),
-    1px -1px 0 rgba(0, 0, 0, 0.8),
-    -1px 1px 0 rgba(0, 0, 0, 0.8),
-    1px 1px 0 rgba(0, 0, 0, 0.8),
-    0 0 2px rgba(0, 0, 0, 0.9),
-    0 0 4px rgba(0, 0, 0, 0.6);
-  letter-spacing: 0.02em;
-}
-
-html.contrast-font h1,
-html.contrast-font h2,
-html.contrast-font h3,
-html.contrast-font h4,
-html.contrast-font h5,
-html.contrast-font h6 {
-  font-weight: 700;
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.9),
-    1px -1px 0 rgba(0, 0, 0, 0.9),
-    -1px 1px 0 rgba(0, 0, 0, 0.9),
-    1px 1px 0 rgba(0, 0, 0, 0.9),
-    0 0 3px rgb(0, 0, 0),
-    0 0 6px rgba(0, 0, 0, 0.7);
-  letter-spacing: 0.01em;
-}
-
-html.contrast-font .nav-tabs .tab,
-html.contrast-font .mobile-menu ul li a,
-html.contrast-font .setting label {
-  font-weight: 700;
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.8),
-    1px -1px 0 rgba(0, 0, 0, 0.8),
-    -1px 1px 0 rgba(0, 0, 0, 0.8),
-    1px 1px 0 rgba(0, 0, 0, 0.8),
-    0 0 2px rgba(0, 0, 0, 0.9);
-}
-
-/* Police contrastée en mode sombre - contours blancs pour contraste */
-html.dark-mode.contrast-font .system-font,
-html.dark-mode.contrast-font p,
-html.dark-mode.contrast-font body,
-html.dark-mode.contrast-font * {
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.9),
-    1px -1px 0 rgba(0, 0, 0, 0.9),
-    -1px 1px 0 rgba(0, 0, 0, 0.9),
-    1px 1px 0 rgba(0, 0, 0, 0.9),
-    0 0 3px rgba(0, 0, 0, 1),
-    0 0 6px rgba(0, 0, 0, 0.8);
-}
-
-html.dark-mode.contrast-font h1,
-html.dark-mode.contrast-font h2,
-html.dark-mode.contrast-font h3,
-html.dark-mode.contrast-font h4,
-html.dark-mode.contrast-font h5,
-html.dark-mode.contrast-font h6 {
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 1),
-    1px -1px 0 rgba(0, 0, 0, 1),
-    -1px 1px 0 rgba(0, 0, 0, 1),
-    1px 1px 0 rgba(0, 0, 0, 1),
-    0 0 4px rgba(0, 0, 0, 1),
-    0 0 8px rgba(0, 0, 0, 0.9);
-}
-
-
 
 /* ============================= 2. STYLES GÉNÉRAUX ============================= */
 
@@ -3015,6 +2940,7 @@ html[data-theme="dark"] {
       margin-bottom: 20px;
   }
 }
+
 
 
 
