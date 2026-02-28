@@ -1,5 +1,5 @@
 ---
-permalink: /form
+permalink: /
 ---
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ permalink: /form
 
   <meta name="description" content="Perspikative est un portfolio artistique dédié à l'art visuel. Explore les créations, illustrations et projets créatifs et plonge dans un univers graphique unique.">
   <meta name="keywords" content="Perspikative, art, art visuel, portfolio, créations, illustrations, projets, univers créatif, dessins">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
 
   <meta property="og:title" content="Perspikative" />
   <meta property="og:description" content="✏️ i make art. welcome to my world" />
@@ -109,20 +109,23 @@ permalink: /form
 
   <div class="blur-overlay"></div>
 
-  <form class="suggestions-form" action="send.php" method="POST">
-
-    <textarea 
-      name="message"
-      placeholder="Écris ton message ici..."
-      required
-    ></textarea>
-
-    <button type="submit">
-      Envoyer ✨
-    </button>
-
+  <!-- modify this form HTML and place wherever you want your form -->
+  <form
+    action="https://formspree.io/f/xlgwvyav"
+    method="POST"
+  >
+    <label>
+      Your email:
+      <input type="email" name="email">
+    </label>
+    <label>
+      Your message:
+      <textarea name="message"></textarea>
+    </label>
+    <!-- your other form fields go here -->
+    <button type="submit">Send</button>
   </form>
-
+  
   <footer>
     <div class="social-icons">
       <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
@@ -162,5 +165,4 @@ permalink: /form
   <script src="/script.js"></script>
 
 </body>
-
 </html>
