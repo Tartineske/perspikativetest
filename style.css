@@ -4,8 +4,8 @@
 
 @font-face {
   font-family: 'Maneola';
-  src: url('fonts/Maneola-Regular.woff2') format('woff2'),
-       url('fonts/Maneola-Regular.woff') format('woff');
+  src: url('../fonts/Maneola-Regular.woff2') format('woff2'),
+       url('../fonts/Maneola-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -55,81 +55,6 @@ body {
 }
 
 
-/* Police contrastée - Contours noirs et texte plus gras */
-html.contrast-font .system-font,
-html.contrast-font p,
-html.contrast-font body,
-html.contrast-font * {
-  font-weight: 600;
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.8),
-    1px -1px 0 rgba(0, 0, 0, 0.8),
-    -1px 1px 0 rgba(0, 0, 0, 0.8),
-    1px 1px 0 rgba(0, 0, 0, 0.8),
-    0 0 2px rgba(0, 0, 0, 0.9),
-    0 0 4px rgba(0, 0, 0, 0.6);
-  letter-spacing: 0.02em;
-}
-
-html.contrast-font h1,
-html.contrast-font h2,
-html.contrast-font h3,
-html.contrast-font h4,
-html.contrast-font h5,
-html.contrast-font h6 {
-  font-weight: 700;
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.9),
-    1px -1px 0 rgba(0, 0, 0, 0.9),
-    -1px 1px 0 rgba(0, 0, 0, 0.9),
-    1px 1px 0 rgba(0, 0, 0, 0.9),
-    0 0 3px rgb(0, 0, 0),
-    0 0 6px rgba(0, 0, 0, 0.7);
-  letter-spacing: 0.01em;
-}
-
-html.contrast-font .nav-tabs .tab,
-html.contrast-font .mobile-menu ul li a,
-html.contrast-font .setting label {
-  font-weight: 700;
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.8),
-    1px -1px 0 rgba(0, 0, 0, 0.8),
-    -1px 1px 0 rgba(0, 0, 0, 0.8),
-    1px 1px 0 rgba(0, 0, 0, 0.8),
-    0 0 2px rgba(0, 0, 0, 0.9);
-}
-
-/* Police contrastée en mode sombre - contours blancs pour contraste */
-html.dark-mode.contrast-font .system-font,
-html.dark-mode.contrast-font p,
-html.dark-mode.contrast-font body,
-html.dark-mode.contrast-font * {
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 0.9),
-    1px -1px 0 rgba(0, 0, 0, 0.9),
-    -1px 1px 0 rgba(0, 0, 0, 0.9),
-    1px 1px 0 rgba(0, 0, 0, 0.9),
-    0 0 3px rgba(0, 0, 0, 1),
-    0 0 6px rgba(0, 0, 0, 0.8);
-}
-
-html.dark-mode.contrast-font h1,
-html.dark-mode.contrast-font h2,
-html.dark-mode.contrast-font h3,
-html.dark-mode.contrast-font h4,
-html.dark-mode.contrast-font h5,
-html.dark-mode.contrast-font h6 {
-  text-shadow: 
-    -1px -1px 0 rgba(0, 0, 0, 1),
-    1px -1px 0 rgba(0, 0, 0, 1),
-    -1px 1px 0 rgba(0, 0, 0, 1),
-    1px 1px 0 rgba(0, 0, 0, 1),
-    0 0 4px rgba(0, 0, 0, 1),
-    0 0 8px rgba(0, 0, 0, 0.9);
-}
-
-
 
 /* ============================= 2. STYLES GÉNÉRAUX ============================= */
 
@@ -140,7 +65,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s ease, color 0.3s ease;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
 }
 
 /* --- Désactive les halos bleus au toucher sur les écrans tactiles --- */
@@ -172,15 +97,6 @@ body {
   textarea:focus-visible {
     outline: none;
   }
-}
-
-/* --- Réduis les animations - Paramètres --- */
-
-/* Mode accessibilité : animations désactivées */
-.reduce-motion * {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
 }
 
 
@@ -226,7 +142,7 @@ header h1 {
   align-items: center;
   font-size: 1.05rem;
   flex-wrap: wrap;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
 }
 
 /* --- Cacher les onglets de navigation sur mobile --- */
@@ -242,7 +158,7 @@ header h1 {
     position: sticky;
     top: 0;
     z-index: 9999;
-    cursor: url('/icons/fermer.svg'), auto;
+    cursor: url('../images/fermer.svg'), auto;
     box-shadow:
       inset 0 0 10px rgba(255 255 255 / 0.2),
       0 8px 30px rgba(0, 0, 0, 0.1);
@@ -268,7 +184,7 @@ header h1 {
   font-weight: 700;
   transition: background-color 0.3s ease, color 0.3s ease;
   text-decoration: none;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
   box-shadow:
     0 6px 24px rgba(0, 0, 0, 0.13),
     inset 0 0 10px rgba(255 255 255 / 0.2);
@@ -285,7 +201,7 @@ header h1 {
 .nav-tabs .tab:active {
   color: #ffffff;
   text-shadow: #0000004b;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
   box-shadow:
     0 4px 20px rgba(0,0,0,0.08),
     inset 0 0 15px rgba(255 255 255 / 0.3);
@@ -383,7 +299,7 @@ header h1 {
   display: flex;
   align-items: center;
   padding: 10px 0;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
   position: relative;
   z-index: 10001; /* au-dessus du menu */
 }
@@ -526,7 +442,7 @@ body.menu-open .blur-overlay {
     bottom: 16px;
     left: 50%;
     transform: translate(-50%, 0);
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     background: rgba(214, 214, 214, 0.05);
     backdrop-filter: blur(20px) saturate(120%);
     -webkit-backdrop-filter: blur(20px) saturate(120%);
@@ -600,7 +516,7 @@ main {
   border: 1px solid rgba(255 255 255 / 0.25);
   color: white;
   user-select: text;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
   box-shadow:
     inset 0 0 10px rgba(255 255 255 / 0.15),
     0 4px 20px rgba(0, 0, 0, 0.05);
@@ -1361,7 +1277,7 @@ main.creations h2 {
   border: none;
   background: transparent;
   outline: none;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #fff;
   width: 100%;
   font-family: 'Rubik', sans-serif;
@@ -1432,7 +1348,7 @@ main.creations h2 {
 
 .result-info p {
   margin: 4px 0 0 0;
-  color: #ddd;
+  color: #ffffff;
   font-size: 0.85rem;
   opacity: 0.8;
   line-height: 1.2;
@@ -1463,7 +1379,7 @@ main.creations h2 {
   }
   
   .search-input {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .search-logo {
@@ -2114,7 +2030,6 @@ a {
   font-size: 0.9rem;
   opacity: 0.8;
   text-align: center;
-  margin-top: 250px;
   color: white;
 }
 
@@ -2133,92 +2048,12 @@ a {
   gap: 20px;
 }
 
-/* Toggle moderne glass morphism */
-.toggle {
-  position: relative;
-  width: 50px;
-  height: 26px;
-  flex-shrink: 0;
-  box-shadow:
-    inset 0 4px 12px rgba(255,255,255,0.2),
-    0 10px 22px rgba(64, 64, 64, 0.1);
-  border-radius: 99px;
-}
-
-.toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  border-radius: 34px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 0.4s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: 0.4s;
-}
-
-.toggle input:checked + .slider {
-  background-color: rgba(74, 169, 161, 0.8);
-}
-
-.toggle input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-/* Label à droite, police des paragraphes */
-.setting label {
-  font-family: "Rubik", Arial, sans-serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #fff;
-  user-select: none;
-}
-
 main.settings-section {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 50px;
     padding-bottom: 0px;
   }
-
-
-
-/* --- Responsive --- */
-@media (max-width: 700px) {
-  .toggle {
-    width: 45px;
-    height: 24px;
-  }
-
-  .slider::before {
-    height: 18px;
-    width: 18px;
-  }
-
-  .toggle input:checked + .slider::before {
-    transform: translateX(21px);
-  }
-}
 
 
 
@@ -2325,7 +2160,7 @@ main.settings-section {
     line-height: 1.5;
     max-width: 600px;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 
   .mentions-date {
@@ -2396,6 +2231,25 @@ main.settings-section {
   }
 }
 
+.mentions-icon {
+  display: none;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .mentions-icon {
+    display: block;
+    width: 44px;
+    margin: 0 auto 12px;
+    opacity: 0.85;
+  }
+}
+
+
 
 /* ----- Lien hébergeur (style Perspikative) ----- */
 .host-link {
@@ -2442,7 +2296,7 @@ footer {
   border: 1px solid rgba(255 255 255 / 0.25);
   font-family: "Rubik", Arial, sans-serif;
   font-weight: 500;
-  cursor: url('/icons/fermer.svg'), auto;
+  cursor: url('../images/fermer.svg'), auto;
   box-shadow:
     inset 0 0 10px rgba(255 255 255 / 0.2),
     0 8px 30px rgba(0, 0, 0, 0.1);
@@ -2999,6 +2853,103 @@ html[data-theme="dark"] {
 
 
 
+
+/* =============================== PERSPIKATIVE — SITE LOADER =============================== */
+
+#site-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 22, 0.78);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#site-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.loader-logo {
+  width: 115px;
+}
+
+.loader-bar {
+  width: 160px;
+  height: 4px;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0.15)
+  );
+  background-size: 200% 100%;
+  animation: loaderBar 1.4s linear infinite;
+}
+
+.loader-footer {
+  position: absolute;
+  font-family: "Rubik", sans-serif;
+  bottom: 26px;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  opacity: 0.6;
+  color: #ffffff;
+}
+
+/* Animations */
+
+@keyframes loaderPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes loaderBar {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .loader-logo {
+    width: 90px;
+  }
+
+  .loader-bar {
+    width: 130px;
+  }
+}
+
+
+
+
+
+
+
 /* === VOS SUGGESTIONS PAGE === */
 
 .suggestions-hero {
@@ -3062,26 +3013,3 @@ html[data-theme="dark"] {
   font-size: .85rem;
 }
 
-
-
-
-
-.footer-logo {
-  margin-top: -6.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0px;
-}
-
-.footer-logo img {
-  width: 100rem;
-  opacity: 0.8;
-  filter: blur(0.15px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  transform: scale(1.08);
-}
-
-.footer-logo img:hover {
-  opacity: 1;
-}
