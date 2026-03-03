@@ -1,0 +1,331 @@
+---
+permalink: /
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Perspikative - Portfolio artistique</title>
+
+  <meta name="description" content="Perspikative est un portfolio artistique dédié à l'art visuel. Explore les créations, illustrations et projets créatifs et plonge dans un univers graphique unique.">
+  <meta name="keywords" content="Perspikative, art, art visuel, portfolio, créations, illustrations, projets, univers créatif, dessins">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Perspikative" />
+  <meta property="og:description" content="✏️ i make art. welcome to my world" />
+  <meta property="og:image" content="https://perspikative.com/preview.jpg" />
+  <meta property="og:url" content="https://perspikative.com/" />
+  <meta property="og:type" content="website" />
+
+  <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#344f4a" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  window.loadGoogleAnalytics = function loadGoogleAnalytics() {
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-MH68ZWLYM8';
+    document.head.appendChild(gaScript);
+
+    gtag('js', new Date());
+    gtag('config', 'G-MH68ZWLYM8');
+  };
+
+  if (localStorage.getItem('cookie_consent_choice') === 'accepted') {
+    window.loadGoogleAnalytics();
+  }
+</script>
+
+<body class="home">
+
+  <nav class="mobile-nav">
+    <a href="/" class="nav-icon active" title="Accueil">
+      <img src="/icons/accueil-active.svg" alt="Accueil">
+    </a>
+    <a href="/portfolio" class="nav-icon" title="Portfolio">
+      <img src="/icons/portfolio.svg" alt="Portfolio">
+    </a>
+    <a href="/rechercher" class="nav-icon" title="Rechercher">
+      <img src="/icons/rechercher.svg" alt="Rechercher">
+    </a>
+    <a href="/actus" class="nav-icon" title="Actus">
+      <img src="/icons/actus.svg" alt="Actus">
+    </a>
+    <a href="/contact" class="nav-icon" title="Contact">
+      <img src="/icons/contact.svg" alt="Contact">
+    </a>
+  </nav>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <a href="/"><img src="/logo.svg" alt="Perspikative logo"></a>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-tabs">
+          <li>
+            <a href="/" class="tab active">
+              <img src="/icons/accueil-active.svg" alt="" class="tab-icon"> ACCUEIL
+            </a>
+          </li>
+          <li>
+            <a href="/portfolio" class="tab">
+              <img src="/icons/portfolio.svg" alt="" class="tab-icon"> PORTFOLIO
+            </a>
+          </li>
+          <li>
+            <a href="/actus" class="tab">
+              <img src="/icons/actus.svg" alt="" class="tab-icon"> ACTUS
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="tab">
+              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            </a>
+          </li>
+        </ul>
+
+        <input type="checkbox" id="menuToggle" />
+        <label for="menuToggle" class="burger-icon" title="Menu">
+          <img id="menuIcon" src="icons/menu.svg" alt="Menu">
+        </label>
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/art-challenge">ART CHALLENGE</a></li>
+          <li><a href="/parametres">PARAMÈTRES</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="blur-overlay"></div>
+
+  <section class="home-title">
+    <img src="/icons/home-title1.svg" class="title-img img-1" alt="Perspikative title 1">
+    <img src="/icons/home-title2.svg" class="title-img img-2" alt="Perspikative title 2">
+    <img src="/icons/home-title3.svg" class="title-img img-3" alt="Perspikative title 3">
+  </section>
+  
+  <section class="portfolio-cta">
+    <div class="portfolio-cta-container">
+  
+      <!-- La carte entière devient un lien -->
+      <a href="/portfolio" class="portfolio-card-cta">
+        <img src="/portfolio/collage-portfolio.webp"
+             alt="Collage de dessins"
+             class="portfolio-collage">
+
+        <div class="portfolio-btn">
+          VISITER LE PORTFOLIO
+        </div>
+      </a>
+
+      <!-- Images flottantes autour -->
+      <img src="/portfolio/projets/1.webp"
+        alt="Illustration flottante 1"
+        class="floating-img floating-left">
+      <img src="/portfolio/projets/2.webp"
+        alt="Illustration flottante 2"
+        class="floating-img floating-right">
+        
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2>PLONGE DANS L'UNIVERS DE PERSPIKATIVE</h2>
+      <p class="cta-subtext">
+        Explore, suis et découvre un univers de création visuelle et d'idées en mouvement.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" 
+           target="_blank" class="cta-btn whatsapp">
+          FOLLOW MOI SUR WHATSAPP
+        </a>
+
+        <a href="/actus" class="cta-btn blog">
+          SUIS LES ACTUS
+        </a>
+
+        <a href="/art-challenge" class="cta-btn art-challenge">
+          PARTICIPE AU ART CHALLENGE
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
+        <img src="/icons/linktree.svg" alt="Linktree">
+      </a>
+     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
+        <img src="/icons/whatsapp-channel.svg" alt="Chaîne WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
+        <img src="/icons/instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://youtube.com/@perspikative" target="_blank" aria-label="YouTube">
+        <img src="/icons/youtube.svg" alt="YouTube">
+      </a>
+      <a href="https://www.pinterest.com/perspikative" target="_blank" aria-label="Pinterest">
+        <img src="/icons/pinterest.svg" alt="Pinterest">
+      </a>
+    </div>
+
+    <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
+    <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
+    <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p><button type="button" id="manage-cookies-btn" class="footer-link footer-link-button">Gérer les cookies</button></p>
+    <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
+  </footer>
+
+  <a href="/rechercher" class="search-float-btn" title="Rechercher">
+    <img src="/icons/rechercher.svg" alt="Rechercher">
+  </a>
+
+  <div id="cookie-consent-banner" class="cookie-consent-banner" hidden>
+    <p>
+      Ce site utilise des cookies de mesure d'audience (Google Analytics).
+      Tu peux accepter ou refuser.
+      <a href="/politique-de-confidentialite">En savoir plus</a>.
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" id="cookie-accept-btn">Accepter</button>
+      <button type="button" id="cookie-decline-btn">Refuser</button>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('change', (e) => {
+      document.body.classList.toggle('menu-open', e.target.checked);
+    });
+
+    const consentBanner = document.getElementById('cookie-consent-banner');
+    const acceptBtn = document.getElementById('cookie-accept-btn');
+    const declineBtn = document.getElementById('cookie-decline-btn');
+    const manageCookiesBtn = document.getElementById('manage-cookies-btn');
+    const consentChoice = localStorage.getItem('cookie_consent_choice');
+
+    if (!consentChoice) {
+      consentBanner.hidden = false;
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent_choice', 'accepted');
+      consentBanner.hidden = true;
+      window.loadGoogleAnalytics();
+    });
+
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent_choice', 'declined');
+      consentBanner.hidden = true;
+    });
+
+    manageCookiesBtn.addEventListener('click', () => {
+      consentBanner.hidden = false;
+    });
+  </script>
+
+  <script src="/script.js"></script>
+
+</body>
+</html>
+<style>
+  .logo-footer {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background: transparent;
+  }
+
+  .footer-link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .cookie-consent-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 9999;
+    background: #ffffff;
+    color: #1e2a28;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    font-size: 0.95rem;
+  }
+
+  .cookie-consent-banner p {
+    margin: 0 0 10px;
+  }
+
+  .cookie-consent-banner a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .cookie-consent-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .cookie-consent-actions button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  #cookie-accept-btn {
+    background: #58b3a2;
+    color: #ffffff;
+  }
+
+  #cookie-decline-btn {
+    background: #e5e7eb;
+    color: #1e2a28;
+  }
+
+  @media (min-width: 768px) {
+    .cookie-consent-banner {
+      max-width: 540px;
+      right: auto;
+    }
+  }
+</style>
+
