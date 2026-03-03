@@ -1,0 +1,66 @@
+=========================
+
+
+Perspikative - .gitignore
+
+
+=========================
+
+
+---- Fichiers système ----
+
+
+.DS_Store
+Thumbs.db
+
+
+---- Configurations éditeurs ----
+
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+
+---- Fichiers temporaires ----
+
+
+*.log
+*.tmp
+*.bak
+
+
+---- Variables d’environnement (sécurité) ----
+
+
+.env
+.env.local
+
+
+---- Dépendances (au cas où tu utilises Node plus tard) ----
+
+
+node_modules/
+
+
+---- Dossiers de build éventuels ----
+
+
+dist/
+build/
+
+
+---- Fichiers générés par outils divers ----
+
+
+coverage/
+.cache/
+
+
+---- OS divers ----
+
+
+ehthumbs.db
+
+
