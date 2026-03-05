@@ -3013,3 +3013,60 @@ html[data-theme="dark"] {
   font-size: .85rem;
 }
 
+
+
+
+/* ============================= 8. CREATIONS ============================= */
+
+main.creations h2 {…}
+
+/* --------- MASONRY RESPONSIVE UNIQUE --------- */
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur desktop */
+  gap: 1.2rem;
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+
+.masonry img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: block;
+}
+
+.masonry img:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+/* Tablet : 2 colonnes */
+@media (max-width: 1024px) {
+  .masonry {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Mobile : 2 colonnes également */
+@media (max-width: 768px) {
+  .masonry {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Très petit mobile : 1 colonne */
+@media (max-width: 480px) {
+  .masonry {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
