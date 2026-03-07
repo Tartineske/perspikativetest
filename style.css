@@ -725,7 +725,7 @@ body.home {
 @media (max-width: 1000px) {
   .short {
     width: calc(100% - 40px); /* crée des marges latérales */
-    margin: 0 auto 40px auto;
+    height: 25rem;
   }
 }
 
@@ -3075,6 +3075,7 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
+
 
 
 
