@@ -714,12 +714,11 @@ body.home {
   margin: 40px auto 60px auto; /* centre + margin-bottom */
   width: 100%;
   max-width: 360px;
-
-  aspect-ratio: 9 / 16; /* garde le format vertical */
-  
-  border-radius: 16px;
+  aspect-ratio: 9 / 16;
+  border-radius: 20px;
   overflow: hidden;
   border: none;
+  align-items: center;
 }
 
 
@@ -3068,6 +3067,7 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
+
 
 
 
