@@ -711,7 +711,7 @@ body.home {
 
 .short {
   display: block;
-  margin: 0 auto 40px auto; /* centre + margin-bottom */
+  margin: 40px auto 60px auto; /* centre + margin-bottom */
   width: 100%;
   max-width: 360px;
 
@@ -3068,5 +3068,6 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
+
 
 
