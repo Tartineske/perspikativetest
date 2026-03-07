@@ -721,7 +721,13 @@ body.home {
   align-items: center;
 }
 
-
+/* Mobile */
+@media (max-width: 600px) {
+  .short {
+    width: calc(100% - 40px); /* crée des marges latérales */
+    margin: 0 auto 40px auto;
+  }
+}
 
 /* ============================= 7. PORTFOLIO ============================= */
 
@@ -3067,6 +3073,7 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
+
 
 
 
