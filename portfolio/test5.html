@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Galerie de Dessins - Masonry</title>
+    
+    <!-- Chargement de React et ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Chargement de Babel pour le JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        /* --- CSS DE LA GALERIE --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Conteneur principal de la galerie */
+        .masonry-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espace entre les colonnes */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Les colonnes verticales */
+        .masonry-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espace vertical entre les images dans une colonne */
+            flex: 1; /* Chaque colonne prend une part égale */
+        }
+
+        /* Carte individuelle (Image + Titre) */
+        .art-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            break-inside: avoid;
+        }
+
+        .art-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        }
+
+        .art-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: #eee; /* Couleur de fond pendant le chargement */
+        }
+
+        .art-info {
+            padding: 15px;
+        }
+
+        .art-info h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #222;
+        }
+
+        .art-info p {
+            margin: 5px 0 0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .masonry-gallery {
+                gap: 15px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .masonry-gallery {
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- CONFIGURATION DE TES IMAGES ---
+        // Modifie cette liste pour ajouter/supprimer tes dessins.
+        // Assure-toi que les fichiers existent bien dans le dossier /creations/
+        const rawImages = [
+            { id: 1, title: "Dessin #41", artist: "Moi", url: "creations/41.webp" },
+            { id: 2, title: "Dessin #42", artist: "Moi", url: "creations/42.webp" },
+            { id: 3, title: "Dessin #43", artist: "Moi", url: "creations/43.webp" },
+            { id: 4, title: "Dessin #44", artist: "Moi", url: "creations/44.webp" },
+            { id: 5, title: "Dessin #45", artist: "Moi", url: "creations/45.webp" },
+            { id: 6, title: "Dessin #46", artist: "Moi", url: "creations/46.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/47.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/48.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/49.webp" },
+            // Ajoute d'autres lignes ici si tu as plus d'images...
+        ];
+
+        const MasonryGallery = () => {
+            const [columns, setColumns] = useState([[], [], []]);
+
+            const distributeImages = () => {
+                const isMobile = window.innerWidth <= 768;
+                const numColumns = isMobile ? 2 : 3;
+                const newColumns = Array.from({ length: numColumns }, () => []);
+
+                // Distribution cyclique pour répartir les images
+                rawImages.forEach((image, index) => {
+                    const targetColumnIndex = index % numColumns;
+                    newColumns[targetColumnIndex].push(image);
+                });
+
+                setColumns(newColumns);
+            };
+
+            useEffect(() => {
+                distributeImages();
+                window.addEventListener('resize', distributeImages);
+                return () => window.removeEventListener('resize', distributeImages);
+            }, []);
+
+            return (
+                <div>
+                    <h1>Ma Galerie de Dessins</h1>
+                    <div className="masonry-gallery">
+                        {columns.map((col, index) => (
+                            <div key={index} className="masonry-column">
+                                {col.map((img) => (
+                                    <div key={img.id} className="art-card">
+                                        <img src={img.url} alt={img.title} loading="lazy" />
+                                        <div className="art-info">
+                                            <h3>{img.title}</h3>
+                                            <p>{img.artist}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<MasonryGallery />);
+    </script>
+</body>
+</html>
