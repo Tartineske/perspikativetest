@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créations</title>
+    
+    <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#344f4a" media="(prefers-color-scheme: dark)">
+
+    <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- Chargement de React et ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Chargement de Babel pour le JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        /* --- CSS DE LA GALERIE --- */
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Conteneur principal de la galerie */
+        .masonry-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espace entre les colonnes */
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Les colonnes verticales */
+        .masonry-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espace vertical entre les images dans une colonne */
+            flex: 1; /* Chaque colonne prend une part égale */
+        }
+
+        /* Carte individuelle (Image + Titre) */
+        .masonry-art-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            break-inside: avoid;
+        }
+
+        .masonry-art-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        }
+
+        .masonry-art-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: #eee; /* Couleur de fond pendant le chargement */
+        }
+
+        .art-info {
+            padding: 15px;
+        }
+
+        .art-info h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #222;
+        }
+
+        .art-info p {
+            margin: 5px 0 0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .masonry-gallery {
+                gap: 15px;
+                margin: 30px 20px 50px 20px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .masonry-gallery {
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body class="creations">
+
+  <nav class="mobile-nav">
+    <a href="/" class="nav-icon" title="Accueil">
+      <img src="/icons/accueil.svg" alt="Accueil">
+    </a>
+    <a href="/portfolio" class="nav-icon" title="Portfolio">
+      <img src="/icons/portfolio.svg" alt="Portfolio">
+    </a>
+    <a href="/rechercher" class="nav-icon" title="Rechercher">
+      <img src="/icons/rechercher.svg" alt="Rechercher">
+    </a>
+    <a href="/actus" class="nav-icon" title="Actus">
+      <img src="/icons/actus.svg" alt="Actus">
+    </a>
+    <a href="/contact" class="nav-icon" title="Contact">
+      <img src="/icons/contact.svg" alt="Contact">
+    </a>
+  </nav>
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <a href="/"><img src="/logo.svg" alt="Perspikative logo"></a>
+    </div>
+
+    <div class="nav-right">
+      <ul class="nav-tabs">
+        <li>
+          <a href="/" class="tab">
+            <img src="/icons/accueil.svg" alt="" class="tab-icon"> ACCUEIL
+          </a>
+        </li>
+        <li>
+          <a href="/portfolio" class="tab">
+            <img src="/icons/portfolio.svg" alt="" class="tab-icon"> PORTFOLIO
+          </a>
+        </li>
+        <li>
+          <a href="/actus" class="tab">
+            <img src="/icons/actus.svg" alt="" class="tab-icon"> ACTUS
+          </a>
+        </li>
+        <li>
+          <a href="/contact" class="tab">
+            <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+          </a>
+        </li>
+      </ul>
+
+      <input type="checkbox" id="menuToggle" />
+      <label for="menuToggle" class="burger-icon" title="Menu">
+        <img id="menuIcon" src="/icons/menu.svg" alt="Menu">
+      </label>
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/art-challenge">ART CHALLENGE</a></li>
+        <li><a href="/parametres">PARAMÈTRES</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="blur-overlay"></div>
+
+<div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- CONFIGURATION DE TES IMAGES ---
+        // Modifie cette liste pour ajouter/supprimer tes dessins.
+        // Assure-toi que les fichiers existent bien dans le dossier /creations/
+        const rawImages = [
+            { id: 1, title: "Dessin #41", artist: "Moi", url: "creations/42.webp" },
+            { id: 2, title: "Dessin #42", artist: "Moi", url: "creations/41.webp" },
+            { id: 3, title: "Dessin #43", artist: "Moi", url: "creations/40.webp" },
+            { id: 4, title: "Dessin #44", artist: "Moi", url: "creations/39.webp" },
+            { id: 5, title: "Dessin #45", artist: "Moi", url: "creations/38.webp" },
+            { id: 6, title: "Dessin #46", artist: "Moi", url: "creations/37.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/36.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/35.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/34.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/33.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/32.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/31.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/30.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/29.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/28.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/27.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/26.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/25.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/24.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/23.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/22.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/21.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/20.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/19.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/18.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/17.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/16.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/15.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/14.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/13.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/12.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/11.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/10.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/9.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/8.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/7.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/6.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/5.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/4.webp" },
+            { id: 7, title: "Dessin #47", artist: "Moi", url: "creations/3.webp" },
+            { id: 8, title: "Dessin #48", artist: "Moi", url: "creations/2.webp" },
+            { id: 9, title: "Dessin #49", artist: "Moi", url: "creations/1.webp" },
+        ];
+
+        const MasonryGallery = () => {
+            const [columns, setColumns] = useState([[], [], []]);
+
+            const distributeImages = () => {
+                const isMobile = window.innerWidth <= 768;
+                const numColumns = isMobile ? 2 : 3;
+                const newColumns = Array.from({ length: numColumns }, () => []);
+
+                // Distribution cyclique pour répartir les images
+                rawImages.forEach((image, index) => {
+                    const targetColumnIndex = index % numColumns;
+                    newColumns[targetColumnIndex].push(image);
+                });
+
+                setColumns(newColumns);
+            };
+
+            useEffect(() => {
+                distributeImages();
+                window.addEventListener('resize', distributeImages);
+                return () => window.removeEventListener('resize', distributeImages);
+            }, []);
+
+            return (
+                <div>
+                    <div className="masonry-gallery">
+                        {columns.map((col, index) => (
+                            <div key={index} className="masonry-column">
+                                {col.map((img) => (
+                                    <div key={img.id} className="masonry-art-card">
+                                        <img src={img.url} alt={img.title} loading="lazy" />
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<MasonryGallery />);
+    </script>
+    
+<footer>
+  <div class="social-icons">
+    <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
+      <img src="/icons/linktree.svg" alt="Linktree">
+    </a>
+    <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
+      <img src="/icons/whatsapp-channel.svg" alt="Chaîne WhatsApp">
+    </a>
+    <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
+      <img src="/icons/instagram.svg" alt="Instagram">
+    </a>
+    <a href="https://youtube.com/@perspikative" target="_blank" aria-label="YouTube">
+      <img src="/icons/youtube.svg" alt="YouTube">
+    </a>
+    <a href="https://www.pinterest.com/perspikative" target="_blank" aria-label="Pinterest">
+      <img src="/icons/pinterest.svg" alt="Pinterest">
+    </a>
+  </div>
+
+  <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
+  <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
+  <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+  <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
+</footer>
+
+<a href="/rechercher" class="search-float-btn" title="Rechercher">
+  <img src="/icons/rechercher.svg" alt="Rechercher">
+</a>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('change', (e) => {
+      document.body.classList.toggle('menu-open', e.target.checked);
+    });
+  </script>
+
+  <script src="/script.js"></script>
+</body>
+</html>
