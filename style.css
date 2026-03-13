@@ -2336,12 +2336,8 @@ footer a.footer-link {
 footer a.footer-link::after {
   content: "";
   position: absolute;
-  left: 6px;
-  bottom: 0;
   width: 0%;
-  height: 2px;
-  background-color: #ffffff;
-  transition: width 0.3s ease;
+  transition: width 0.2s ease;
   border-radius: 1px;
 }
 
@@ -3074,6 +3070,7 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
+
 
 
 
