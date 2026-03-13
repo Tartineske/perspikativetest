@@ -2333,20 +2333,8 @@ footer a.footer-link {
   transition: color 0.3s ease;
 }
 
-footer a.footer-link::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  transition: width 0.2s ease;
-  border-radius: 1px;
-}
-
 footer a.footer-link:hover {
   color: #fff;
-}
-
-footer a.footer-link:hover::after {
-  width: calc(100% - 12px);
 }
 
 .social-icons {
@@ -3070,6 +3058,7 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
+
 
 
 
