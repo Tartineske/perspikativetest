@@ -218,9 +218,10 @@
 
 /* Responsive */
 @media (max-width: 700px){
-
   .article-share{
+    display: flex;
     justify-content: center;
+    margin-right: 0px;
   }
 
   .share-button{
