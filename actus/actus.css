@@ -24,7 +24,7 @@
 .article-cover {
   aspect-ratio: 5 / 3;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 .article-cover img {
@@ -35,7 +35,7 @@
 }
 
 .article-date {
-  font-size: 0.8rem;
+  font-size: 1rem;
   opacity: 0.8;
   letter-spacing: 0.08rem;
   text-transform: uppercase;
@@ -49,16 +49,16 @@
   line-height: 1;
 }
 
-.article-body p {
-  margin-bottom: 26px;
-  opacity: 0.92;
-}
-
 .article-lead {
-  font-size: 21px;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 40px;
   letter-spacing: -1px;
+}
+
+.article-body p:not(.article-lead) {
+  opacity: 0.9;
+  font-size: 1.1rem;
 }
 
 .article-related {
