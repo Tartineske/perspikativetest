@@ -169,6 +169,35 @@ permalink: /actus/2026/perspikative-birthday
         Retrouvez tout l'univers de Perspikative en un seul endroit : créations, illustrations, projets, actus, concours, et bien plus encore.
       </p>
     </section>
+    
+    <section class="article-share">
+      <button class="share-button" id="shareArticle">
+        <img src="/icons/share.svg" alt="" class="share-icon">
+        <span>Partager cet article</span>
+      </button>
+    </section>
+
+<script>
+const shareButton = document.getElementById("shareArticle");
+
+shareButton.addEventListener("click", async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Perspikative Birthday",
+        text: "Découvre cet article sur Perspikative ✨",
+        url: "https://perspikative.com/actus/2026/perspikative-birthday"
+      });
+    } catch (err) {
+      console.log("Partage annulé");
+    }
+  } else {
+    // fallback si le navigateur ne supporte pas le partage
+    navigator.clipboard.writeText("https://perspikative.com/actus/2026/perspikative-birthday");
+    alert("Lien copié !");
+  }
+});
+</script>
 
     <section class="article-related">
       <h2>LIRE DES ARTICLES SIMILAIRES</h2>
