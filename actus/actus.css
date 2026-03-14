@@ -10,7 +10,6 @@
 .article-hero {
   max-width: 900px;
   text-align: center;
-  margin-bottom: -20px;
 }
 
 .article-title {
@@ -99,6 +98,7 @@
     padding-left: 0px; !important
     padding-right: 0px; !important
     gap: 20px;
+    padding-top: 50px;
   }
 
   .article-title {
@@ -115,11 +115,17 @@
   .article-body {
     padding: 0 20px;
   }
+
+  .article-related {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+  }
 }
 
 @media (max-width: 800px) {
   main.article-page {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 }
