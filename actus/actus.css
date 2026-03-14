@@ -10,7 +10,6 @@
 /* Hero — titre + image + date */
 .article-hero {
   max-width: 900px;
-  width: 100%;
   text-align: center;
 }
 
@@ -25,7 +24,7 @@
 .article-cover {
   aspect-ratio: 5 / 3;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 20px;
 }
 
 .article-cover img {
@@ -36,9 +35,9 @@
 }
 
 .article-date {
-  font-size: 1rem;
+  font-size: 0.8rem;
   opacity: 0.8;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.08rem;
   text-transform: uppercase;
 }
 
@@ -47,7 +46,6 @@
   max-width: 760px;
   width: 100%;
   font-family: "Rubik", system-ui, sans-serif;
-  font-size: 18px;
   line-height: 1;
 }
 
@@ -58,9 +56,9 @@
 
 .article-lead {
   font-size: 21px;
-  line-height: 1.7;
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 40px;
+  letter-spacing: -1px;
 }
 
 .article-related {
@@ -71,9 +69,12 @@
 
 .article-related h2 {
   font-family: "Maneola", serif;
-  font-size: 2rem;
-  margin-bottom: 50px;
-  line-height: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.8rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .related-grid {
@@ -85,9 +86,16 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .article-page {
+    padding-left: 0px;
+    padding-right: 0px;
+    gap: 20px;
+  }
+
   .article-title {
     font-size: 2.5rem;
     line-height: 2.2rem;
+    margin-top: 0.6rem;
   }
 
   .article-hero {
