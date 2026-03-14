@@ -2269,29 +2269,12 @@ main.settings-section {
   position: relative;
   color: #9EF0C2;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   font-weight: 500;
-}
-
-.host-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 0%;
-  height: 2px;
-  background-color: #4EC28A;
-  transition: width 0.3s ease, background-color 0.3s ease;
-  border-radius: 1px;
 }
 
 .host-link:hover {
   color: #ffffff;
-}
-
-.host-link:hover::after {
-  width: 100%;
-  background-color: #ffffff;
 }
 
 
