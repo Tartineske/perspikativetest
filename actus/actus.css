@@ -76,7 +76,7 @@
 }
 
 .article-related h2 {
-  font-family: "Maneola", serif;
+  font-family: "Maneola", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 1.8rem;
@@ -213,7 +213,6 @@
 /* Click */
 .share-button:active{
   transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 
 /* Responsive */
