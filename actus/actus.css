@@ -11,6 +11,7 @@
 .article-hero {
   max-width: 900px;
   text-align: center;
+  margin-bottom: -100px;
 }
 
 .article-title {
@@ -100,6 +101,7 @@
 
   .article-hero {
     padding: 0 20px;
+    margin-bottom: -20px;
   }
 
   .article-body {
