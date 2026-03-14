@@ -1530,7 +1530,14 @@ main.creations h2 {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
   .blog-grid {
     grid-template-columns: 1fr;
   }
@@ -1540,7 +1547,7 @@ main.creations h2 {
   }
 
   .blog-image {
-    height: 160px;
+    aspect-ratio: 5 / 3;
   }
 }
 
