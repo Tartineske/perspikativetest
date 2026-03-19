@@ -1,0 +1,19 @@
+{
+  "name": "Perspikative",
+  "short_name": "Perspik",
+  "icons": [
+    {
+      "src": "/pics/meta/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/pics/meta/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#0f0f0f",
+  "background_color": "#0f0f0f"
+}
