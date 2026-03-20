@@ -1159,8 +1159,8 @@ main.creations h2 {
   }
 
   .lightbox-close {
-    top: 20px;
-    right: 25px;
+    top: 15px;
+    right: 20px;
     background: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 50%;
