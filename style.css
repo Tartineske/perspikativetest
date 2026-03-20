@@ -444,8 +444,8 @@ body.menu-open .blur-overlay {
     transform: translate(-50%, 0);
     width: calc(100% - 40px);
     background: rgba(214, 214, 214, 0.05);
-    backdrop-filter: blur(20px) saturate(120%);
-    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    backdrop-filter: blur(16px) saturate(124%);
+    -webkit-backdrop-filter: blur(16px) saturate(124%);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 35px;
     padding: 9px 0;
@@ -458,17 +458,6 @@ body.menu-open .blur-overlay {
       inset 0 0 10px rgba(198, 253, 224, 0.3);
   }
 
-  /* --- Pseudo-élément pour l’effet de flou sous la barre --- */
-  .mobile-nav::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateY(10px);
-    background: inherit;
-    filter: blur(30px);
-    opacity: 0.7;
-    z-index: -1;
-  }
 
   .mobile-nav .nav-icon {
     display: flex;
