@@ -1068,7 +1068,6 @@ main.creations h2 {
 
 .lightbox-right {
   flex: 1;
-  display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -1088,7 +1087,6 @@ main.creations h2 {
   font-weight: 100;
   font-size: 0.95rem;
   line-height: 1.5;
-  margin-top: 3px;
 }
 
 .lightbox-right p strong {
@@ -1102,7 +1100,7 @@ main.creations h2 {
   color: #fff;
   opacity: 0.8;
   margin: 0;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .lightbox-close {
@@ -1169,6 +1167,17 @@ main.creations h2 {
     width: 35px;
     height: 35px;
     font-size: 2.2rem;
+  }
+
+  .lightbox-date {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #fff;
+    opacity: 0.8;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
   }
 }
 
