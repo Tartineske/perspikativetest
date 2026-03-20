@@ -262,6 +262,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Réutilise exactement la même logique que pour le clic
     lightboxImg.src = targetImg.src;
     lightboxTitle.textContent = targetImg.dataset.title || '';
+    lightboxDate.textContent = targetImg.dataset.date || '';
     lightboxDesc.innerHTML = targetImg.dataset.desc || '';
 
     lightbox.classList.add('active');
