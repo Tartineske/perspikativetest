@@ -196,13 +196,19 @@ permalink: /
     text-align:center;
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
-    border-radius:20px;
+    border-radius:25px;
     margin:40px auto;
     max-width:400px;
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.15),
+      inset 0 0 10px rgba(198, 253, 224, 0.3);
   ">
-    <h2 style="color:#fff; font-family:'Rubik',sans-serif; font-size:1.8rem; margin-bottom:15px;">
-      Installer Perspikative
+    <h2 style="color:#fff; font-family:'Rubik',sans-serif; font-size:1.8rem; margin-bottom:-12px;">
+      INSTALLE PERSPIKATIVE !
     </h2>
+    <p style="color:#ffffffdc; font-family:'Rubik',sans-serif; font-size:1rem; margin-bottom:25px;">
+      Ajoute Perspikative à ton écran d'accueil pour un accès rapide et une expérience immersive
+    </p>
     <button id="install-btn" style="
       padding:15px 25px;
       font-size:1rem;
@@ -210,9 +216,12 @@ permalink: /
       border:none;
       border-radius:15px;
       background: rgba(255,255,255,0.25);
-      color:#000;
+      color:#ffffff;
       cursor:pointer;
       transition: background 0.25s;
+      box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 0 8px rgba(198, 253, 224, 0.3);
     ">
       Installer Perspikative
     </button>
@@ -278,20 +287,31 @@ permalink: /
   <script>
   let deferredPrompt;
   const installBtn = document.getElementById("install-btn");
+  const installSection = document.getElementById("install-section");
 
+  // Quand la PWA peut être installée
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
     installBtn.style.display = "inline-block";
   });
 
+  // Quand l'utilisateur clique sur le bouton
   installBtn.addEventListener("click", async () => {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     console.log(`Installation: ${outcome}`);
+
+    // On cache le bouton et la section si l'utilisateur accepte ou refuse
     deferredPrompt = null;
-    installBtn.style.display = "none";
+    installSection.style.display = "none";
+  });
+
+  // Optionnel : si la PWA est déjà installée, on cache direct la section
+  window.addEventListener('appinstalled', () => {
+    installSection.style.display = "none";
+    console.log('Perspikative a été installée ✅');
   });
 </script>
 
