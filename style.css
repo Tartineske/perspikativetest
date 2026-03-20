@@ -444,9 +444,9 @@ body.menu-open .blur-overlay {
     transform: translate(-50%, 0);
     width: calc(100% - 40px);
     background: rgba(214, 214, 214, 0.05);
-    backdrop-filter: blur(16px) saturate(124%);
-    -webkit-backdrop-filter: blur(16px) saturate(124%);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 35px;
     padding: 9px 0;
     z-index: 1000;
@@ -458,6 +458,26 @@ body.menu-open .blur-overlay {
       inset 0 0 10px rgba(198, 253, 224, 0.3);
   }
 
+  .mobile-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    mask-image: radial-gradient(
+      ellipse at center,
+      transparent 20%,
+      black 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      transparent 20%,
+      black 100%
+    );
+    pointer-events: none;
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
 
   .mobile-nav .nav-icon {
     display: flex;
