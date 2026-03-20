@@ -193,7 +193,7 @@ permalink: /portfolio/illustrations
     <img src="/icons/rechercher.svg" alt="Rechercher">
   </a>
 
-<!-- LIGHTBOX STRUCTURE -->
+  <!-- LIGHTBOX STRUCTURE -->
   <div class="lightbox-overlay" id="lightbox">
     <button class="lightbox-close" id="lightbox-close">
       <img src="/icons/fermer.svg" alt="Fermer">
@@ -204,6 +204,7 @@ permalink: /portfolio/illustrations
       </div>
       <div class="lightbox-right">
         <h3 id="lightbox-title"></h3>
+        <p id="lightbox-date" class="lightbox-date"></p>
         <p id="lightbox-desc"></p>
         <div class="lightbox-extra-images" id="lightbox-extra"></div>
       </div>
@@ -217,9 +218,14 @@ const thumbs = document.querySelectorAll('.prspk-thumb');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxTitle = document.getElementById('lightbox-title');
+const lightboxDate = document.getElementById('lightbox-date');
 const lightboxDesc = document.getElementById('lightbox-desc');
 const lightboxExtra = document.getElementById('lightbox-extra');
 const closeBtn = document.getElementById('lightbox-close');
+const lightboxHeart = document.createElement('button'); // cœur dans la lightbox
+lightboxHeart.className = 'like-bubble lightbox-like';
+lightboxHeart.innerHTML = `<img class="like-icon" alt=""><span class="like-count"></span>`;
+
 
 thumbs.forEach(img => {
   img.addEventListener('click', () => {
@@ -228,6 +234,9 @@ thumbs.forEach(img => {
 
     // Titre
     lightboxTitle.textContent = img.dataset.title || '';
+
+    // Date
+    lightboxDate.textContent = img.dataset.date || '';
 
     // Description avec HTML interprété (<br>, <strong>, etc.)
     lightboxDesc.innerHTML = img.dataset.desc || '';
@@ -251,7 +260,22 @@ lightbox.addEventListener('click', (e) => {
     document.body.style.overflow = '';
   }
 });
+
+const id = img.id; // id de la création cliquée
+lightbox.dataset.id = id;
+
+if (!lightboxHeart.isConnected) {
+  lightbox.querySelector('.lightbox-right').appendChild(lightboxHeart);
+  lightboxHeart.addEventListener('click', () => {
+    LikesStore.toggle(id);
+    updateLikeUI(id);
+  });
+}
+
+updateLikeUI(id); // met à jour icône + compteur
+
   </script>
+
 
 
   <script>
