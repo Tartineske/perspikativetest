@@ -288,6 +288,7 @@ document.addEventListener('click', (e) => {
     // On simule exactement l'ouverture normale de la lightbox
     lightboxImg.src = sourceImg.src;
     lightboxTitle.textContent = sourceImg.dataset.title || '';
+    lightboxDate.textContent = targetImg.dataset.date || '';
     lightboxDesc.innerHTML = sourceImg.dataset.desc || '';
 
     lightbox.classList.add('active');
@@ -359,8 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-
 // ============================= 9. LOADER PERSPIKATIVE =============================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -376,7 +375,5 @@ document.addEventListener("DOMContentLoaded", () => {
     sessionStorage.setItem("perspikative-loader", "true");
   }
 });
-
-
 
 // ============================= FIN DU SCRIPT =============================
