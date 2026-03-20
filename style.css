@@ -1167,6 +1167,8 @@ main.creations h2 {
     width: 35px;
     height: 35px;
     font-size: 2.2rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .lightbox-date {
