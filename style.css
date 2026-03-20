@@ -1203,8 +1203,8 @@ main.creations h2 {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 60px;
-  height: 60px;
+  width: 66px;
+  height: 66px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
@@ -1216,19 +1216,19 @@ main.creations h2 {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   z-index: 9999;
   box-shadow:
-    0 4px 20px rgba(0 0 0 / 0.14),
+    0 4px 16px rgba(0 0 0 / 0.1),
     inset 0 0 10px rgba(255 255 255 / 0.2);
 }
 
 .search-float-btn img {
-  width: 31px;
-  height: 31px;
+  width: 32px;
+  height: 32px;
 }
 
 .search-float-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
   box-shadow:
-    0 6px 26px rgba(0 0 0 / 0.16),
+    0 6px 20px rgba(0 0 0 / 0.2),
     inset 0 0 10px rgba(255 255 255 / 0.2);
 }
 
