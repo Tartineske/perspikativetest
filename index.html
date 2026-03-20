@@ -186,6 +186,37 @@ permalink: /
       </div>
     </div>
   </section>
+  
+  <section id="install-section" style="
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+    text-align:center;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    margin:40px auto;
+    max-width:400px;
+  ">
+    <h2 style="color:#fff; font-family:'Rubik',sans-serif; font-size:1.8rem; margin-bottom:15px;">
+      Installer Perspikative
+    </h2>
+    <button id="install-btn" style="
+      padding:15px 25px;
+      font-size:1rem;
+      font-weight:bold;
+      border:none;
+      border-radius:15px;
+      background: rgba(255,255,255,0.25);
+      color:#000;
+      cursor:pointer;
+      transition: background 0.25s;
+    ">
+      Installer Perspikative
+    </button>
+  </section>
 
   <iframe 
     width="315" 
@@ -243,6 +274,26 @@ permalink: /
       document.body.classList.toggle('menu-open', e.target.checked);
     });
   </script>
+  
+  <script>
+  let deferredPrompt;
+  const installBtn = document.getElementById("install-btn");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "inline-block";
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Installation: ${outcome}`);
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  });
+</script>
 
   <script src="/script.js"></script>
 
