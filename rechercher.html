@@ -464,9 +464,10 @@ permalink: /rechercher
       if (query.length < 2) return;
 
       const results = siteContent.filter(item => {
-        return item.title.toLowerCase().includes(query) ||
-               item.tags.toLowerCase().includes(query) ||
-               item.category.toLowerCase().includes(query);
+        const q = query.toLowerCase();
+        return item.title.toLowerCase().startsWith(q) ||
+               item.tags.toLowerCase().split(' ').some(tag => tag.startsWith(q)) ||
+               item.category.toLowerCase().startsWith(q);
       });
 
       if (results.length === 0) {
