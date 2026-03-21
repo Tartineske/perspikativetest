@@ -1420,7 +1420,7 @@ main.creations h2 {
   transform: translateY(50px); /* descend légèrement en disparaissant */
 }
 
-@media (max-width: 200px) {
+@media (max-width: 768px) {
   .search-float-btn {
     display: none;
   }
