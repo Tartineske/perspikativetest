@@ -1363,15 +1363,15 @@ main.creations h2 {
 
 .search-float-btn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 66px;
-  height: 66px;
+  bottom: 25px;
+  right: 35px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1382,23 +1382,50 @@ main.creations h2 {
     inset 0 0 10px rgba(255 255 255 / 0.2);
 }
 
+.search-float-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 65px;       /* taille du bouton */
+  height: 65px;
+  border-radius: 50%; /* cercle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 9999; /* toujours au-dessus */
+  box-shadow:
+    0 4px 16px rgba(0 0 0 / 0.1),
+    inset 0 0 10px rgba(255 255 255 / 0.2);
+}
+
 .search-float-btn img {
   width: 32px;
   height: 32px;
+  object-fit: contain;
 }
 
 .search-float-btn:hover {
-  transform: scale(1.06);
+  transform: scale(1.05);
   box-shadow:
     0 6px 20px rgba(0 0 0 / 0.2),
     inset 0 0 10px rgba(255 255 255 / 0.2);
 }
 
-@media (max-width: 899px) {
+/* Masquage avec opacity et translation pour un effet glissant */
+.search-float-btn.hide {
+  opacity: 0;
+  pointer-events: none; /* pour que le bouton ne gêne pas le scroll */
+  transform: translateY(50px); /* descend légèrement en disparaissant */
+}
+
+@media (max-width: 200px) {
   .search-float-btn {
     display: none;
   }
 }
+
 
 /* Conteneur principal qui centre tout */
 .search-page-container {
@@ -3219,11 +3246,5 @@ main.creations h2 {…}
     gap: 0.8rem;
   }
 }
-
-
-
-
-
-
 
 

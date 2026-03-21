@@ -377,4 +377,48 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// ============================= 4. BOUTON FLOTTANT DE RECHERCHE - MASQUAGE AU SCROLL =============================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchBtn = document.querySelector('.search-float-btn');
+  
+  // Vérifier si le bouton existe
+  if (!searchBtn) return;
+  
+  let lastScrollTop = 0;
+  let ticking = false;
+  const scrollThreshold = 5; // Tolérance très petite pour détecter le bas exact
+  
+  // Fonction pour gérer le masquage/affichage du bouton
+  const handleScroll = () => {
+    if (ticking) return;
+    
+    ticking = true;
+    requestAnimationFrame(() => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+      
+      // Masquer le bouton uniquement quand on arrive tout en bas
+      if (distanceFromBottom <= scrollThreshold) {
+        searchBtn.classList.add('hide');
+      } 
+      // Afficher le bouton quand on remonte et qu'on n'est plus tout en bas
+      else {
+        searchBtn.classList.remove('hide');
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      ticking = false;
+    });
+  };
+  
+  // Écouter l'événement de scroll avec throttling
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  // Vérifier l'état initial
+  handleScroll();
+});
+
 // ============================= FIN DU SCRIPT =============================
