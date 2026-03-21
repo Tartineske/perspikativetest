@@ -1407,6 +1407,7 @@ main.creations h2 {
   align-items: center;
   min-height: 70vh;
   padding-top: 20px;
+  padding-bottom: 30px;
 }
 
 /* Enveloppe de la zone de recherche (limite la largeur) */
