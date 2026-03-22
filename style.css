@@ -1236,12 +1236,12 @@ main.creations h2 {
 
 .lightbox-right h3 {
   font-family: 'Maneola', 'Rubik';
-  margin-top: 10px;
+  margin-top: 8px;
   margin-bottom: 0%;
   font-size: 3.5rem;
   font-weight: 550;
   letter-spacing: 0.05rem;
-  line-height: 1;
+  line-height: 0.88;
 }
 
 .lightbox-right p {
