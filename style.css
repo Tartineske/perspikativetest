@@ -3267,17 +3267,21 @@ main.creations h2 {…}
 
 
 
-body {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-}
+/* Cible uniquement les navigateurs Chrome/Android et Firefox Android */
+@media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 3dpcm) {
+  
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: env(safe-area-inset-bottom);
-  backdrop-filter: blur(10px);
+  body::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: env(safe-area-inset-bottom);
+    backdrop-filter: blur(10px);
+  }
 }
