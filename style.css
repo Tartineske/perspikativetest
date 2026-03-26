@@ -3267,12 +3267,17 @@ main.creations h2 {…}
 
 
 
-/* Cible uniquement les navigateurs Chrome/Android et Firefox Android */
+
+/* Ciblage spécifique Android */
 @media (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 3dpcm) {
   
   body {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
+    /* On retire les marges blanches par défaut pour laisser le site aller au bord */
+    padding-bottom: 0; 
+    margin-bottom: 0;
+    
+    /* Important : assure que le fond va bien jusqu'au bout */
+    min-height: 100vh;
   }
 
   body::after {
@@ -3281,7 +3286,27 @@ main.creations h2 {…}
     bottom: 0;
     left: 0;
     width: 100%;
-    height: env(safe-area-inset-bottom);
-    backdrop-filter: blur(10px);
+    
+    /* Hauteur dynamique : utilise la zone de sécurité Android si dispo, sinon une hauteur fixe */
+    height: env(safe-area-inset-bottom, 48px);
+    
+    /* L'astuce UX : Un dégradé transparent vers blanc (ou la couleur de votre fond) 
+       combiné au flou. Cela crée l'effet de "fonte" progressif. */
+    background: linear-gradient(
+      to top, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.6) 40%, 
+      rgba(255, 255, 255, 0) 100%
+    );
+    
+    /* Le flou progressif derrière la barre */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Pour compatibilité certains navigateurs Android */
+    
+    /* S'assure que l'élément est au-dessus du contenu mais sous les touches système si possible */
+    z-index: 999;
+    
+    /* Empêche le clic à travers si nécessaire, sinon mettre 'none' */
+    pointer-events: none; 
   }
 }
