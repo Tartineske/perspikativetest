@@ -1,14 +1,12 @@
 {
   "name": "Perspikative",
-  "short_name": " ",
+  "short_name": "Perspikative",
   "start_url": "/",
   "scope": "/",
-  "display": "standalone",
+  "display": "minimal-ui",
   "orientation": "portrait",
-
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-
   "icons": [
     {
       "src": "/pics/meta/apple-favicon.png",
@@ -23,11 +21,4 @@
       "purpose": "any"
     }
   ]
-}
-
-{
-  "display": "standalone",
-  "background_color": "transparent",
-  "theme_color": "transparent",
-  "theme_color": "#00000000"
 }
