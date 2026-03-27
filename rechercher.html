@@ -217,6 +217,7 @@ permalink: /rechercher
 <script>
     // --- UTILS (Tolérance fautes et accents) ---
     function normalizeText(str) {
+      if (!str) return "";
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
     }
 
@@ -376,26 +377,21 @@ permalink: /rechercher
     function renderSearchHistory() {
       const history = loadSearchHistory();
       historyList.innerHTML = '';
-
       history.forEach(term => {
         const itemBtn = document.createElement('button');
         itemBtn.type = 'button';
         itemBtn.className = 'history-item';
         itemBtn.dataset.term = term;
-
         const icon = document.createElement('img');
         icon.src = '/icons/rechercher.svg';
         icon.alt = '';
         icon.className = 'history-item-icon';
-
         const label = document.createElement('span');
         label.textContent = term;
-
         itemBtn.appendChild(icon);
         itemBtn.appendChild(label);
         historyList.appendChild(itemBtn);
       });
-
       const shouldShow = searchInput.value.trim() === '' && history.length > 0;
       historyContainer.hidden = !shouldShow;
     }
@@ -404,7 +400,7 @@ permalink: /rechercher
       resultsContainer.innerHTML = '';
       const cleanQuery = normalizeText(query);
 
-      // Check Easter Eggs avec tolérance simple (normalisation)
+      // Check Easter Eggs
       for (let key in easterEggs) {
         if (normalizeText(key) === cleanQuery) {
           const egg = easterEggs[key];
@@ -419,33 +415,51 @@ permalink: /rechercher
 
       if (query.length < 2) return;
 
-      const results = siteContent.filter(item => {
+      // Calcul des scores de pertinence
+      let scoredResults = siteContent.map(item => {
+        let score = 0;
         const cleanTitle = normalizeText(item.title);
         const cleanCat = normalizeText(item.category);
-        const tagsArray = item.tags.split(' ');
+        const tags = item.tags.split(' ').map(t => normalizeText(t));
 
-        // 1. Recherche exacte ou début de mot (sans accents)
-        const matchExact = cleanTitle.includes(cleanQuery) || 
-                           cleanCat.startsWith(cleanQuery) || 
-                           tagsArray.some(tag => normalizeText(tag).startsWith(cleanQuery));
-
-        if (matchExact) return true;
-
-        // 2. Tolérance aux fautes (Levenshtein) - Seulement si la requête est assez longue (>3 caractères)
-        if (cleanQuery.length > 3) {
-           const wordsInTitle = cleanTitle.split(' ');
-           const matchFuzzy = wordsInTitle.some(word => levenshtein(word, cleanQuery) <= 2) || 
-                              tagsArray.some(tag => levenshtein(normalizeText(tag), cleanQuery) <= 1);
-           return matchFuzzy;
+        // RÈGLE 1: Le titre contient exactement la requête (Gros bonus)
+        if (cleanTitle.includes(cleanQuery)) {
+          score += 100;
+          if (cleanTitle.startsWith(cleanQuery)) score += 50; // Encore mieux si ça commence par ça
         }
-        
-        return false;
+
+        // RÈGLE 2: La catégorie correspond (Bonus moyen)
+        if (cleanCat.startsWith(cleanQuery)) score += 40;
+
+        // RÈGLE 3: Les tags contiennent la requête
+        tags.forEach(tag => {
+          if (tag === cleanQuery) score += 30; // Match exact sur un tag
+          else if (tag.startsWith(cleanQuery)) score += 10; // Début de tag
+        });
+
+        // RÈGLE 4: Flou / Fautes de frappe (Levenshtein)
+        if (cleanQuery.length > 3 && score === 0) {
+          const words = cleanTitle.split(' ');
+          words.forEach(w => {
+            if (levenshtein(w, cleanQuery) <= 1) score += 20;
+          });
+          tags.forEach(t => {
+            if (levenshtein(t, cleanQuery) <= 1) score += 5;
+          });
+        }
+
+        return { ...item, score };
       });
 
-      if (results.length === 0) {
+      // On ne garde que ceux qui ont un score > 0 et on trie par score décroissant
+      const filteredResults = scoredResults
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score);
+
+      if (filteredResults.length === 0) {
         resultsContainer.innerHTML = `<div style="color:white; text-align:center; opacity:0.8;">Aucun résultat pour "${rawValue}"</div>`;
       } else {
-        results.forEach(item => {
+        filteredResults.forEach(item => {
           const imageSrc = item.img ? item.img : 'icons/rechercher.svg';
           const html = `
             <a href="${item.url}" class="result-item">
@@ -461,43 +475,35 @@ permalink: /rechercher
       }
     }
 
+    // --- ÉVÉNEMENTS (Inchangés mais rattachés) ---
     searchInput.addEventListener('input', function(e) {
       const rawValue = e.target.value.trim();
       const query = rawValue.toLowerCase();
-
       if (rawValue === '') {
         resultsContainer.innerHTML = '';
         renderSearchHistory();
         return;
       }
-
       historyContainer.hidden = true;
       runSearch(query, e.target.value);
     });
 
     searchInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        addToSearchHistory(searchInput.value);
-      }
+      if (e.key === 'Enter') addToSearchHistory(searchInput.value);
     });
 
     searchInput.addEventListener('blur', function() {
       addToSearchHistory(searchInput.value);
-      if (searchInput.value.trim() === '') {
-        renderSearchHistory();
-      }
+      if (searchInput.value.trim() === '') renderSearchHistory();
     });
 
     resultsContainer.addEventListener('click', function(e) {
-      if (e.target.closest('.result-item')) {
-        addToSearchHistory(searchInput.value);
-      }
+      if (e.target.closest('.result-item')) addToSearchHistory(searchInput.value);
     });
 
     historyList.addEventListener('click', function(e) {
       const item = e.target.closest('.history-item');
       if (!item) return;
-
       const term = item.dataset.term || '';
       searchInput.value = term;
       historyContainer.hidden = true;
@@ -513,7 +519,6 @@ permalink: /rechercher
 
     renderSearchHistory();
 
-    // --- 3. MENU MOBILE ---
     const menuToggle = document.getElementById('menuToggle');
     if(menuToggle) {
         menuToggle.addEventListener('change', (e) => {
