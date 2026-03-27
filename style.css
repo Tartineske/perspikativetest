@@ -3323,3 +3323,17 @@ main.creations h2 {…}
     }
 }
 
+
+
+
+
+body {
+  /* Permet au contenu de prendre toute la hauteur, même sous les touches */
+  min-height: 100vh;
+  
+  /* Ajoute une marge automatique en bas pour ne pas que ton texte 
+     soit illisible SOUS les boutons, tout en gardant le fond transparent */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+

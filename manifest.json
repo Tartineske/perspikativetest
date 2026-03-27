@@ -1,14 +1,10 @@
 {
   "name": "Perspikative",
-  "short_name": " ",
+  "short_name": "Perspikative",
   "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "orientation": "portrait",
-
+  "display": "standalone", 
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-
   "icons": [
     {
       "src": "/pics/meta/logo-1000.png",
@@ -19,18 +15,6 @@
       "src": "/pics/meta/logo-1500.png",
       "sizes": "512x512",
       "type": "image/png"
-    },
-    {
-      "src": "/pics/meta/logo-2000.png",
-      "sizes": "2000x2000",
-      "type": "image/png"
     }
   ]
-}
-
-{
-  "display": "standalone",
-  "background_color": "transparent",
-  "theme_color": "transparent",
-  "theme_color": "#00000000"
 }
