@@ -350,6 +350,7 @@ permalink: /rechercher
 
     const SEARCH_HISTORY_KEY = 'perspikative_search_history';
     const SEARCH_HISTORY_LIMIT = 5;
+    let noResultTimer = null; // Pour gérer le délai du bouton
 
     function loadSearchHistory() {
       try {
@@ -367,7 +368,6 @@ permalink: /rechercher
     function addToSearchHistory(value) {
       const term = value.toLowerCase().trim();
       if (term.length < 2) return;
-
       const current = loadSearchHistory();
       const next = [term, ...current.filter(item => item !== term)].slice(0, SEARCH_HISTORY_LIMIT);
       saveSearchHistory(next);
@@ -397,10 +397,12 @@ permalink: /rechercher
     }
 
     function runSearch(query, rawValue) {
+      // On nettoie le timer si on relance une recherche
+      if (noResultTimer) clearTimeout(noResultTimer);
       resultsContainer.innerHTML = '';
       const cleanQuery = normalizeText(query);
 
-      // Check Easter Eggs
+      // Easter Eggs
       for (let key in easterEggs) {
         if (normalizeText(key) === cleanQuery) {
           const egg = easterEggs[key];
@@ -415,49 +417,53 @@ permalink: /rechercher
 
       if (query.length < 2) return;
 
-      // Calcul des scores de pertinence
       let scoredResults = siteContent.map(item => {
         let score = 0;
         const cleanTitle = normalizeText(item.title);
         const cleanCat = normalizeText(item.category);
         const tags = item.tags.split(' ').map(t => normalizeText(t));
 
-        // RÈGLE 1: Le titre contient exactement la requête (Gros bonus)
         if (cleanTitle.includes(cleanQuery)) {
           score += 100;
-          if (cleanTitle.startsWith(cleanQuery)) score += 50; // Encore mieux si ça commence par ça
+          if (cleanTitle.startsWith(cleanQuery)) score += 50;
         }
-
-        // RÈGLE 2: La catégorie correspond (Bonus moyen)
         if (cleanCat.startsWith(cleanQuery)) score += 40;
-
-        // RÈGLE 3: Les tags contiennent la requête
         tags.forEach(tag => {
-          if (tag === cleanQuery) score += 30; // Match exact sur un tag
-          else if (tag.startsWith(cleanQuery)) score += 10; // Début de tag
+          if (tag === cleanQuery) score += 30;
+          else if (tag.startsWith(cleanQuery)) score += 10;
         });
 
-        // RÈGLE 4: Flou / Fautes de frappe (Levenshtein)
         if (cleanQuery.length > 3 && score === 0) {
           const words = cleanTitle.split(' ');
-          words.forEach(w => {
-            if (levenshtein(w, cleanQuery) <= 1) score += 20;
-          });
-          tags.forEach(t => {
-            if (levenshtein(t, cleanQuery) <= 1) score += 5;
-          });
+          words.forEach(w => { if (levenshtein(w, cleanQuery) <= 1) score += 20; });
+          tags.forEach(t => { if (levenshtein(t, cleanQuery) <= 1) score += 5; });
         }
-
         return { ...item, score };
       });
 
-      // On ne garde que ceux qui ont un score > 0 et on trie par score décroissant
       const filteredResults = scoredResults
         .filter(item => item.score > 0)
         .sort((a, b) => b.score - a.score);
 
       if (filteredResults.length === 0) {
-        resultsContainer.innerHTML = `<div style="color:white; text-align:center; opacity:0.8;">Aucun résultat pour "${rawValue}"</div>`;
+        resultsContainer.innerHTML = `
+          <div class="no-results-container">
+            <div class="no-results-text">Aucun résultat pour "${rawValue}"</div>
+          </div>
+        `;
+        
+        // Timer de 1.5s pour faire apparaître le bouton
+        noResultTimer = setTimeout(() => {
+          const container = resultsContainer.querySelector('.no-results-container');
+          if (container) {
+            const btn = document.createElement('a');
+            btn.href = '/rechercher';
+            btn.className = 'btn-search-again fade-in-btn';
+            btn.textContent = 'Rechercher autre chose';
+            container.appendChild(btn);
+          }
+        }, 1500);
+
       } else {
         filteredResults.forEach(item => {
           const imageSrc = item.img ? item.img : 'icons/rechercher.svg';
@@ -475,11 +481,11 @@ permalink: /rechercher
       }
     }
 
-    // --- ÉVÉNEMENTS (Inchangés mais rattachés) ---
     searchInput.addEventListener('input', function(e) {
       const rawValue = e.target.value.trim();
       const query = rawValue.toLowerCase();
       if (rawValue === '') {
+        if (noResultTimer) clearTimeout(noResultTimer);
         resultsContainer.innerHTML = '';
         renderSearchHistory();
         return;
