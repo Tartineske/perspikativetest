@@ -24,9 +24,10 @@
 .article-cover {
   aspect-ratio: 5 / 3;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 20px;
   opacity: 0;
   animation: fadeUp 1s ease forwards;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 
 @keyframes fadeUp {
@@ -127,6 +128,13 @@
   .article-related {
     width: 100%;
     max-width: 1200px;
+  }
+
+  .article-cover {
+    border-radius: 16px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
   }
 }
 
