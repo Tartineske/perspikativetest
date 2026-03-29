@@ -421,25 +421,4 @@ document.addEventListener('DOMContentLoaded', () => {
   handleScroll();
 });
 
-
-
-const mobileNav = document.querySelector('.mobile-nav');
-
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    // On calcule la différence de hauteur quand le clavier sort
-    const offset = window.innerHeight - window.visualViewport.height;
-    
-    if (offset > 0) {
-      // Le clavier est ouvert : on plaque la barre juste au dessus
-      mobileNav.style.bottom = `${offset}px`;
-      mobileNav.style.transform = `translate(-50%, -5px)`; // Moins de marge quand le clavier est là
-    } else {
-      // Le clavier est fermé : on remet les réglages initiaux
-      mobileNav.style.bottom = `0px`;
-      mobileNav.style.transform = `translate(-50%, -16px)`;
-    }
-  });
-}
-
 // ============================= FIN DU SCRIPT =============================
