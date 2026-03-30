@@ -263,6 +263,14 @@ permalink: /rechercher
       "for sure": { img: "/pics/easter-eggs/for-sure.webp" },
       "...": { text: "... K?" },
       "recherche": { text: "Tu cherches la recherche dans la recherche ?" },
+      "/brainrot": {
+        text: "Erreur système... 🤯",
+        action: () => {
+          setInterval(() => {
+             document.body.style.transform = `skew(${Math.random()*10}deg, ${Math.random()*10}deg)`;
+    }, 200);
+  }
+}
       "/rainbow": { 
         text: "C'est la fête des couleurs !", 
         action: () => {
