@@ -93,7 +93,6 @@ permalink: /rechercher
   </style>
 </head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MH68ZWLYM8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -181,9 +180,19 @@ permalink: /rechercher
 
       <div id="searchResults"></div>
 
-      <div id="searchHistory" class="search-history" hidden>
-        <div id="searchHistoryList" class="search-history-list"></div>
-        <button type="button" id="clearSearchHistory" class="search-history-clear">Effacer l'historique</button>
+      <div id="defaultViews">
+        
+        <div id="searchHistory" class="search-history" hidden>
+          <div class="section-title">Recherches récentes</div>
+          <div id="searchHistoryList" class="search-history-list"></div>
+          <button type="button" id="clearSearchHistory" class="search-history-clear">Effacer l'historique</button>
+        </div>
+
+        <div id="popularContent" class="popular-content">
+          <div class="section-title">Contenu populaire</div>
+          <div id="popularList" class="popular-list"></div>
+        </div>
+
       </div>
 
     </div>
@@ -347,7 +356,6 @@ permalink: /rechercher
       { title: "Utilisation de la marque", category: "Légal", url: "/utilisation-marque", tags: "brand guidelines", img: "/icons/brand-guidelines.svg" },
       { title: "404 ERROR", category: "404", url: "/404", tags: "erreur oupsi", img: "/icons/404.svg" },
 
-
       { title: "FAQ - Général", category: "FAQ", url: "/faq/general", tags: "FAQ général", img: "/icons/general.svg" },
       { title: "FAQ - Portfolio", category: "FAQ", url: "/faq/portfolio", tags: "FAQ portfolio", img: "/icons/portfolio.svg" },
       { title: "FAQ - Contact", category: "FAQ", url: "/faq/contact", tags: "FAQ contact", img: "/icons/contact.svg" },
@@ -357,10 +365,8 @@ permalink: /rechercher
       { title: "FAQ - ART Challenge", category: "FAQ", url: "/faq/art-challenge", tags: "FAQ art challenge", img: "/icons/art-challenge.svg" },
       { title: "FAQ - Recherche", category: "FAQ", url: "/faq/recherche", tags: "FAQ recherche", img: "/icons/rechercher.svg" },
 
-
       { title: "Perspikative Birthday", category: "Actus", url: "/actus/2026/perspikative-birthday", tags: "perspikative birthday actus anniversaire perspikative 2 ans years deux article", img: "/icons/article.svg" },
       { title: "Nouveautés de la recherche", category: "Actus", url: "/actus/2026/nouveautes-recherche", tags: "nouveautés recherche actus articles actualité", img: "/icons/article.svg" },
-
 
       { title: "YouTube", category: "Social", url: "https://youtube.com/@perspikative", tags: "YouTube vidéos shorts videos réseau social", img: "/icons/youtube.svg" },
       { title: "Instagram", category: "Social", url: "https://instagram.com/perspikative", tags: "Instagram reels réseau social", img: "/icons/instagram.svg" },
@@ -412,9 +418,7 @@ permalink: /rechercher
       { title: "Abstrakt City", category: "Œuvre", url: "/portfolio/creations#abstrakt-city", tags: "abstrakt city ville", img: "/icons/creations.svg" },
       { title: "Minecraft", category: "Œuvre", url: "/portfolio/creations#minecraft", tags: "minecraft bloc isométrique jeu vidéo", img: "/icons/creations.svg" },
 
-
       { title: "the 2 Year Building", category: "Illustration", url: "/portfolio/illustrations#the-2-year-building", tags: "the 2 year building tour architecture anniversaire isométrique isométrie rose deux ans", img: "/icons/illustrations.svg" },
-
       
       { title: "ART Tower", category: "Projet", url: "/portfolio/projets#art-tower", tags: "art tower tour architecture collab métier art", img: "/icons/projets.svg" },
       { title: "Perspika City", category: "Projet", url: "/portfolio/projets#perspika-city", tags: "perspika city ville volante collab", img: "/icons/projets.svg" },
@@ -423,13 +427,35 @@ permalink: /rechercher
     // --- 2. MOTEUR ---
     const searchInput = document.getElementById('searchInput');
     const resultsContainer = document.getElementById('searchResults');
+    const defaultViews = document.getElementById('defaultViews');
     const historyContainer = document.getElementById('searchHistory');
     const historyList = document.getElementById('searchHistoryList');
     const clearHistoryBtn = document.getElementById('clearSearchHistory');
+    const popularList = document.getElementById('popularList');
 
     const SEARCH_HISTORY_KEY = 'perspikative_search_history';
     const SEARCH_HISTORY_LIMIT = 5;
     let noResultTimer = null;
+
+    // --- CONTENU POPULAIRE À METTRE EN AVANT ---
+    const popularSearches = [
+      { title: "となりのトトロ", icon: "/icons/creations.svg", url: "/portfolio/creations#my-neighbor-totoro" },
+      { title: "KAYOU's DINER", icon: "/icons/creations.svg", url: "/portfolio/creations#kayous-diner" },
+      { title: "Art Challenge", icon: "/icons/art-challenge.svg", url: "/art-challenge" },
+      { title: "Perspika City", icon: "/icons/projets.svg", url: "/portfolio/projets#perspika-city" }
+    ];
+
+    function renderPopularContent() {
+      if (!popularList) return;
+      popularList.innerHTML = '';
+      popularSearches.forEach(item => {
+        const a = document.createElement('a');
+        a.href = item.url;
+        a.className = 'popular-item';
+        a.innerHTML = `<img src="${item.icon}" alt=""><span>${item.title}</span>`;
+        popularList.appendChild(a);
+      });
+    }
 
     function loadSearchHistory() {
       try {
@@ -468,10 +494,11 @@ permalink: /rechercher
         itemBtn.appendChild(label);
         historyList.appendChild(itemBtn);
       });
-      historyContainer.hidden = !(searchInput.value.trim() === '' && history.length > 0);
+      // On cache le bloc historique s'il est vide
+      historyContainer.hidden = history.length === 0;
     }
 
-// --- MOTEUR DE RECHERCHE ---
+    // --- MOTEUR DE RECHERCHE ---
     function runSearch(query, rawValue) {
       if (noResultTimer) clearTimeout(noResultTimer);
       resultsContainer.innerHTML = '';
@@ -484,24 +511,21 @@ permalink: /rechercher
         if (normalizeText(key) === cleanQuery) {
           const egg = easterEggs[key];
           
-          // 1. On lance l'action SI elle existe (couleurs, rotation, etc.)
           if (typeof egg.action === 'function') {
             egg.action();
           }
 
-          // 2. On affiche le résultat visuel
           let html = `<div class="easter-egg">`;
           if (egg.img) html += `<img src="${egg.img}" alt="Easter egg">`;
           if (egg.text) html += `<p>${egg.text}</p>`;
           html += `</div>`;
           resultsContainer.innerHTML = html;
           
-          return; // On s'arrête ici car on a trouvé l'œuf !
+          return;
         }
       }
 
       if (searchTerms.length === 0) return;
-      // ... la suite de ta recherche normale
 
       let scoredResults = siteContent.map(item => {
         let score = 0;
@@ -532,7 +556,6 @@ permalink: /rechercher
           if (hasMatch) matchedTermsCount++;
         });
 
-        // Bonus si tous les termes de recherche matchent (peu importe l'ordre)
         if (matchedTermsCount === searchTerms.length && searchTerms.length > 1) {
           score += 100;
         }
@@ -576,10 +599,11 @@ permalink: /rechercher
       if (rawValue === '') {
         if (noResultTimer) clearTimeout(noResultTimer);
         resultsContainer.innerHTML = '';
+        defaultViews.hidden = false; // Affiche Populaire + Historique
         renderSearchHistory();
         return;
       }
-      historyContainer.hidden = true;
+      defaultViews.hidden = true; // Cache Populaire + Historique pendant la recherche
       runSearch(rawValue.toLowerCase(), e.target.value);
     });
 
@@ -589,7 +613,10 @@ permalink: /rechercher
 
     searchInput.addEventListener('blur', function() {
       addToSearchHistory(searchInput.value);
-      if (searchInput.value.trim() === '') renderSearchHistory();
+      if (searchInput.value.trim() === '') {
+        defaultViews.hidden = false;
+        renderSearchHistory();
+      }
     });
 
     resultsContainer.addEventListener('click', function(e) {
@@ -601,7 +628,7 @@ permalink: /rechercher
       if (!item) return;
       const term = item.dataset.term || '';
       searchInput.value = term;
-      historyContainer.hidden = true;
+      defaultViews.hidden = true; // On cache les vues par défaut
       runSearch(term.toLowerCase(), term);
       addToSearchHistory(term);
       searchInput.focus();
@@ -612,6 +639,8 @@ permalink: /rechercher
       renderSearchHistory();
     });
 
+    // Initialisation
+    renderPopularContent();
     renderSearchHistory();
 
     const menuToggle = document.getElementById('menuToggle');
@@ -626,16 +655,3 @@ permalink: /rechercher
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
