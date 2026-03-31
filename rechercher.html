@@ -262,7 +262,7 @@ permalink: /rechercher
       "capybara": { img: "/pics/easter-eggs/capybara.webp" },
       "for sure": { img: "/pics/easter-eggs/for-sure.webp" },
       "...": { text: "... K?" },
-      "recherche": { text: "Tu cherches la recherche dans la recherche ?" },
+      "cherche": { text: "Tu cherches la recherche dans la recherche ?" },
       "/rainbow": { 
         text: "C'est la fête des couleurs !", 
         action: () => {
@@ -273,62 +273,55 @@ permalink: /rechercher
         }
       },
       "/draw": {
-            text: "C'est ton tour de dessiner ! (Souris ou Doigt)",
+            text: "À toi de dessiner !",
             action: () => {
                   if (document.getElementById('doodle-svg')) return;
-                  
                   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                  svg.setAttribute("id", "doodle-svg");
-                  svg.style = "position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:10000; pointer-events:all; touch-action:none; cursor:crosshair;";
+                  svg.id = "doodle-svg";
+                  svg.style = "position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10000;pointer-events:all;touch-action:none;cursor:crosshair;";
                   document.body.appendChild(svg);
-
-                  let isDrawing = false;
-                  let currentPath = null;
-
+                  let isDrawing = false, points = [], currentPath = null;
                   const getCoords = (e) => {
-                        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                        return `${clientX},${clientY}`;
+                        const t = e.touches ? e.touches[0] : e;
+                        return { x: t.clientX, y: t.clientY };
                   };
-
                   const startDrawing = (e) => {
                         isDrawing = true;
+                        points = [getCoords(e)];
                         currentPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
                         currentPath.setAttribute("fill", "none");
                         currentPath.setAttribute("stroke", "#FFFFFF");
-                        currentPath.setAttribute("stroke-width", "4");
+                        currentPath.setAttribute("stroke-width", "6");
                         currentPath.setAttribute("stroke-linecap", "round");
                         currentPath.setAttribute("stroke-linejoin", "round");
-                        
-                        const coords = getCoords(e);
-                        currentPath.setAttribute("d", `M ${coords} L ${coords}`);
                         svg.appendChild(currentPath);
                   };
-
                   const draw = (e) => {
-                        if (!isDrawing || !currentPath) return;
+                        if (!isDrawing) return;
                         if (e.cancelable) e.preventDefault();
-                        const coords = getCoords(e);
-                        const d = currentPath.getAttribute("d");
-                        currentPath.setAttribute("d", `${d} L ${coords}`);
+                        points.push(getCoords(e));
+                        if (points.length > 2) {
+                              let d = `M ${points[0].x} ${points[0].y}`;
+                              for (let i = 1; i < points.length - 2; i++) {
+                                    const xc = (points[i].x + points[i + 1].x) / 2;
+                                    const yc = (points[i].y + points[i + 1].y) / 2;
+                                    d += ` Q ${points[i].x} ${points[i].y} ${xc} ${yc}`;
+                              }
+                              const n = points.length;
+                              d += ` Q ${points[n-2].x} ${points[n-2].y} ${points[n-1].x} ${points[n-1].y}`;
+                              currentPath.setAttribute("d", d);
+                        }
                   };
-
-                  const stopDrawing = () => {
-                        isDrawing = false;
-                        currentPath = null;
-                  };
-
                   svg.addEventListener('mousedown', startDrawing);
                   window.addEventListener('mousemove', draw);
-                  window.addEventListener('mouseup', stopDrawing);
-
+                  window.addEventListener('mouseup', () => { isDrawing = false; points = []; });
                   svg.addEventListener('touchstart', startDrawing, { passive: false });
                   svg.addEventListener('touchmove', draw, { passive: false });
-                  svg.addEventListener('touchend', stopDrawing);
+                  svg.addEventListener('touchend', () => { isDrawing = false; points = []; });
             }
       },
       "/reset": { 
-        text: "Retour à la normale.", 
+        text: "Retour à la normale...", 
         action: () => {
             document.body.style.filter = "";
             document.body.style.animation = "";
