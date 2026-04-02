@@ -1,4 +1,6 @@
 # Perspikative
+✏️ i make art. welcome to my world
+
 Official website of Perspikative
 https://perspikative.com
 
