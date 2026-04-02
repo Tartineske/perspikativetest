@@ -171,29 +171,28 @@ header h1 {
 }
 
 .nav-tabs .tab {
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px) saturate(180%);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px) saturate(180%);
+  -webkit-backdrop-filter: blur(5px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
   font-weight: 700;
   transition: all 0.2s ease;
   text-decoration: none;
   box-shadow:
-    0 6px 14px rgba(0, 0, 0, 0.13),
+    0 6px 14px rgba(0, 0, 0, 0.05),
     inset 0 0 8px rgba(255 255 255 / 0.2);
 }
 
 .nav-tabs .tab:hover {
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
   outline: none;
-  box-shadow:
-    inset 0 0 10px rgba(255, 255, 255, 0.3),
-    0 6px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+    0 7px 17px rgba(0, 0, 0, 0.1);
 }
 
 /* --- MODIF : appliquer l’effet actif à tous les onglets --- */
@@ -201,10 +200,9 @@ header h1 {
 .nav-tabs .tab:focus,
 .nav-tabs .tab:active {
   color: #ffffff;
-  text-shadow: #0000004b;
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.08),
-    inset 0 0 15px rgba(255 255 255 / 0.3);
+  box-shadow: none;
+  transform: translateY(0px);
+  border-color: none;
 }
 
 .nav-right {
@@ -1441,7 +1439,6 @@ main.creations h2 {
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
 }
 
@@ -3361,6 +3358,7 @@ body {
 .popular-content {
   width: 100%;
   text-align: left;
+  margin-left: 1rem;
 }
 
 .popular-list {
@@ -3401,4 +3399,12 @@ body {
   width: 20px;
   height: 20px;
   opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .popular-content {
+    width: 100%;
+    text-align: left;
+    margin-left: 0.3rem;
+  }
 }

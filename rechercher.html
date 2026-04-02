@@ -27,6 +27,7 @@ permalink: /rechercher
       margin-top: 10px;
       width: 100%;
       padding: 0;
+      margin-left: 1rem;
     }
 
     .search-history-list {
@@ -65,7 +66,7 @@ permalink: /rechercher
 
     .search-history-clear {
       margin-top: 0.65rem;
-      margin-left: 0.5rem;
+      margin-left: 0.4rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -78,7 +79,7 @@ permalink: /rechercher
       cursor: pointer;
       padding: 0.34rem 0.62rem;
       border-radius: 999px;
-      transition: background-color 0.2s ease, border-color 0.2s ease;
+      transition: all 0.2s ease;
       box-shadow:
         inset 0 0 8px rgba(255, 255, 255, 0.25),
         0 6px 18px rgba(0, 0, 0, 0.06);
@@ -86,9 +87,18 @@ permalink: /rechercher
 
     .search-history-clear:hover,
     .search-history-clear:focus-visible {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: rgba(255, 255, 255, 0.42);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
       outline: none;
+      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
+        0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 600px) {
+      .search-history {
+        margin-left: 0.3rem;
+      }
     }
   </style>
 </head>
@@ -440,9 +450,9 @@ permalink: /rechercher
     // --- CONTENU POPULAIRE À METTRE EN AVANT ---
     const popularSearches = [
       { title: "となりのトトロ", icon: "/icons/creations-active.svg", url: "/portfolio/creations#my-neighbor-totoro" },
-      { title: "KAYOU's DINER", icon: "/icons/creations-active.svg", url: "/portfolio/creations#kayous-diner" },
+      { title: "Portfolio", icon: "/icons/portfolio-active.svg", url: "/portfolio" },
+      { title: "Actus", icon: "/icons/actus-active.svg", url: "/actus" },
       { title: "ART Challenge", icon: "/icons/art-challenge-active.svg", url: "/art-challenge" },
-      { title: "Perspika City", icon: "/icons/projets-active.svg", url: "/portfolio/projets#perspika-city" }
     ];
 
     function renderPopularContent() {
