@@ -283,6 +283,10 @@ header h1 {
   header h1 {
     font-size: 1.6rem;
   }
+
+  .nav-right {
+    margin-top: 0px;
+  }
 }
 
 
@@ -303,8 +307,8 @@ header h1 {
 }
 
 .burger-icon img {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
 }
 
@@ -428,6 +432,12 @@ body.menu-open .blur-overlay {
     transform: translateY(-8px);
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  }
+
+  .burger-icon img {
+    width: 31px;
+    height: 31px;
+    object-fit: contain;
   }
 }
 
