@@ -1586,7 +1586,7 @@ main.creations h2 {
 /* --- Adaptation Mobile pour la recherche --- */
 @media (max-width: 600px) {
   .search-page-container {
-    padding-top: 10px;
+    padding-top: 12px;
   }
   
   .search-bubble {
@@ -1594,7 +1594,7 @@ main.creations h2 {
   }
   
   .search-input {
-    font-size: 1rem;
+    font-size: 1.08rem;
   }
   
   .search-logo {
@@ -2535,15 +2535,17 @@ footer a.footer-link {
   position: relative;
   font-family: "Rubik", Arial, sans-serif; /* Même police que les paragraphes */
   font-weight: 510;
-  color: #a9e8bf; /* Couleur douce pour contraster */
+  color: #ffffff;
   text-decoration: none;
   padding: 2px 6px;
   border-radius: 10px;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.6;
 }
 
 footer a.footer-link:hover {
-  color: #fff;
+  color: #ffffff;
+  opacity: 1;
 }
 
 .social-icons {
@@ -2555,8 +2557,8 @@ footer a.footer-link:hover {
 }
 
 .social-icons a img {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   opacity: 0.8;
   transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
 }
