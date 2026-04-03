@@ -297,34 +297,6 @@ permalink: /
   });
 </script>
 
-<script id="zoomfx2">
-document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e) {
-    const href = this.getAttribute("href");
-
-    // ignore liens externes / ancres
-    if (!href || href.startsWith("#") || href.startsWith("http")) return;
-
-    e.preventDefault();
-
-    document.body.classList.add("page-leave");
-
-    setTimeout(() => {
-      window.location.href = href;
-    }, 500); // synchro avec animation
-  });
-});
-
-// animation d'entrée
-window.addEventListener("pageshow", () => {
-  document.body.classList.add("page-enter");
-
-  setTimeout(() => {
-    document.body.classList.remove("page-enter");
-  }, 50);
-});
-</script>
-
   <script src="/script.js"></script>
 
 </body>
