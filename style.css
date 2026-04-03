@@ -107,7 +107,7 @@ header {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: white;
-  padding: 20px 30px;
+  padding: 18px 30px;
   text-align: center;
   border-radius: 0 0 20px 20px;
   border: 1px solid rgba(255 255 255 / 0.15);
@@ -115,7 +115,7 @@ header {
   z-index: 1000;
   cursor: auto;
   box-shadow:
-    inset 0 0 10px rgba(255 255 255 / 0.2),
+    inset 5px -10px 16px 5px rgba(255 255 255 / 0.06),
     0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
