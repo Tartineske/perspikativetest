@@ -3433,7 +3433,7 @@ body::before {
   z-index: 9999;
   pointer-events: none;
 
-  opacity: 0.14; /* 👈 plus visible */
+  opacity: 0.18; /* 👈 plus visible */
   mix-blend-mode: soft-light;
 
   background-image: url("/pics/grain.jpg");
