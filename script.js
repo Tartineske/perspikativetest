@@ -421,4 +421,17 @@ document.addEventListener('DOMContentLoaded', () => {
   handleScroll();
 });
 
+// ============================= 11. ANIMATION D'APPARITION DU FOOTER =============================
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    // Si le footer est visible à au moins 10% dans l'écran
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.1 }); // Se déclenche quand 10% du footer apparaît
+
+observer.observe(document.querySelector('footer'));
+
 // ============================= FIN DU SCRIPT =============================
