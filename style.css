@@ -3424,19 +3424,3 @@ body {
 }
 
 
-
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-
-  opacity: 0.18; /* 👈 plus visible */
-  mix-blend-mode: soft-light;
-
-  background-image: url("/pics/grain.jpg");
-  background-size: cover;
-  animation: grainMove 1.2s steps(2) infinite;
-}
