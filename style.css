@@ -1052,7 +1052,7 @@ body.home {
 .portfolio-card {
   opacity: 0;
   /* Utilisation d'un timing plus long (0.8s) et d'un bézier fluide */
-  animation: softFadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: softFadeInUp 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 /* Décalage temporel (Stagger) */
