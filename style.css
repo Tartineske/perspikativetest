@@ -1442,7 +1442,7 @@ main.creations h2 {
   align-items: center;
   min-height: 70vh;
   padding-top: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 42px;
 }
 
 /* Enveloppe de la zone de recherche (limite la largeur) */
@@ -1506,7 +1506,7 @@ main.creations h2 {
 /* Zone des résultats */
 #searchResults {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 14px;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -2536,12 +2536,11 @@ footer a.footer-link {
   position: relative;
   font-family: "Rubik", Arial, sans-serif; /* Même police que les paragraphes */
   font-weight: 510;
-  color: #ffffff;
+  color: #c2f2ddc2;
   text-decoration: none;
   padding: 2px 6px;
   border-radius: 10px;
   transition: all 0.3s ease;
-  opacity: 0.6;
 }
 
 footer a.footer-link:hover {
