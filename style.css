@@ -2322,6 +2322,17 @@ main.settings-section {
 
 /* ============================= 15. MENTIONS LEGALES ============================= */
 
+.mentions-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.mentions-content {
+  width: 100%;
+  max-width: 900px;
+  padding: 24px 24px 24px 24px;
+}
+
 .mentions-content h1 {
   font-weight: 900;
   font-size: 2.6rem;
@@ -2365,6 +2376,13 @@ main.settings-section {
   opacity: 0.8;
 }
 
+ul {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
 /* --- Responsive --- */
 
 @media (max-width: 992px) {
@@ -2395,6 +2413,10 @@ main.settings-section {
     margin-top: 0;
     opacity: 0.8;
   }
+
+  ul {
+    font-size: 1.09rem;
+ }
 }
 
 @media (max-width: 600px) {
@@ -2404,14 +2426,15 @@ main.settings-section {
   }
 
   .mentions-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     margin-bottom: 8px;
     text-align: center;
   }
 
   .mentions-content h2 {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     margin-bottom: 8px;
+    line-height: 1.4rem;
   }
 
   .mentions-content h3 {
@@ -2419,18 +2442,26 @@ main.settings-section {
   }
   .mentions-content p,
   .mentions-content p.system-font {
-    font-size: 1.05rem;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    line-height: 1.36rem;
     max-width: 600px;
     margin: 0;
     margin-bottom: 5px;
   }
 
   .mentions-date {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 25px;
     margin-top: 0;
     opacity: 0.8;
+  }
+
+  ul {
+    font-size: 1.1rem;
+    line-height: 1.36rem;
+    max-width: 600px;
+    margin: 0;
+    margin-bottom: 5px;
   }
 }
 
