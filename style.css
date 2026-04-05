@@ -2323,14 +2323,15 @@ main.settings-section {
 /* ============================= 15. MENTIONS LEGALES ============================= */
 
 .mentions-content h1 {
-  font-weight: 700;
-  font-size: 2.4rem;
-  margin-bottom: 5px;
+  font-weight: 900;
+  font-size: 2.6rem;
+  margin-bottom: 0rem;
   text-align: center;
+  letter-spacing: -0.05rem;
 }
 
 .mentions-content h2 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-bottom: 14px;
 }
 
@@ -2350,17 +2351,15 @@ main.settings-section {
 .mentions-content p.system-font {
   font-family: "Rubik", sans-serif;
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.2;
+  font-size: 1.1rem;
   color: #fff;
-  max-width: 800px;
 }
 
 /* Date et retour */
 .mentions-date {
   text-align: center;
   color: #ccc;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-bottom: 2.5rem;
   margin-top: 0;
   opacity: 0.8;
@@ -2370,23 +2369,24 @@ main.settings-section {
 
 @media (max-width: 992px) {
   .mentions-content {
-    padding: 32px;
+    padding: 30px;
   }
 
   .mentions-content h1 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 8px;
     text-align: center;
+    line-height: 1.5rem;
   }
 
   .mentions-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 8px;
   }
 
   .mentions-content p,
   .mentions-content p.system-font {
-    font-size: 1rem;
+    font-size: 1.09rem;
   }
 
   .mentions-date {
@@ -2404,13 +2404,13 @@ main.settings-section {
   }
 
   .mentions-content h1 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 8px;
     text-align: center;
   }
 
   .mentions-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 8px;
   }
 
@@ -2419,7 +2419,7 @@ main.settings-section {
   }
   .mentions-content p,
   .mentions-content p.system-font {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     line-height: 1.5;
     max-width: 600px;
     margin: 0;
@@ -3468,3 +3468,30 @@ body {
   }
 }
 
+
+
+
+
+.line::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.line.check::before {
+  background-image: url("/icons/check.svg");
+}
+
+.line.cross::before {
+  background-image: url("/icons/cross.svg");
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
