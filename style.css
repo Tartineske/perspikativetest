@@ -2343,7 +2343,7 @@ main.settings-section {
 
 .mentions-content h2 {
   font-size: 1.6rem;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 /* Si tu utilises des <h3> dans les mentions, reprendre #about h3 */
@@ -2409,7 +2409,7 @@ ul {
 
   .mentions-date {
     font-size: 0.95rem;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     margin-top: 0;
     opacity: 0.8;
   }
@@ -2446,12 +2446,12 @@ ul {
     line-height: 1.36rem;
     max-width: 600px;
     margin: 0;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
 
   .mentions-date {
     font-size: 0.9rem;
-    margin-bottom: 25px;
+    margin-bottom: 5rem;
     margin-top: 0;
     opacity: 0.8;
   }
@@ -2556,6 +2556,40 @@ ul {
 
 .host-link:hover {
   color: #ffffff;
+}
+
+
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.line::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+
+  /* empêche toute déformation */
+  flex-shrink: 0;
+  flex: 0 0 26px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Icône check */
+.line.check::before {
+  background-image: url("/icons/check.svg");
+}
+
+/* Icône cross */
+.line.cross::before {
+  background-image: url("/icons/cross.svg");
 }
 
 
@@ -3502,27 +3536,3 @@ body {
 
 
 
-
-.line::before {
-  content: "";
-  width: 26px;
-  height: 26px;
-  display: inline-block;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.line.check::before {
-  background-image: url("/icons/check.svg");
-}
-
-.line.cross::before {
-  background-image: url("/icons/cross.svg");
-}
-
-.line {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 6px 0;
-}
