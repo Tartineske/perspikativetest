@@ -3573,3 +3573,10 @@ body {
 #custom-cursor.active {
     opacity: 1;
 }
+
+
+@media (max-width: 600px) {
+  #custom-cursor {
+    display: none;
+  }
+}
