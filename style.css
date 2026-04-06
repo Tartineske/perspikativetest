@@ -2394,7 +2394,7 @@ ul {
     font-size: 1.8rem;
     margin-bottom: 8px;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.7rem;
   }
 
   .mentions-content h2 {
@@ -2432,7 +2432,7 @@ ul {
   }
 
   .mentions-content h2 {
-    font-size: 1.6rem;
+    font-size: 1.46rem;
     margin-bottom: 8px;
     line-height: 1.4rem;
   }
@@ -2442,7 +2442,7 @@ ul {
   }
   .mentions-content p,
   .mentions-content p.system-font {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
     line-height: 1.36rem;
     max-width: 600px;
     margin: 0;
@@ -2548,7 +2548,7 @@ ul {
 /* ----- Lien hébergeur (style Perspikative) ----- */
 .host-link {
   position: relative;
-  color: #9EF0C2;
+  color: #b4fdd4;
   text-decoration: none;
   transition: color 0.2s ease;
   font-weight: 500;
@@ -2624,7 +2624,7 @@ footer a.footer-link {
   position: relative;
   font-family: "Rubik", Arial, sans-serif; /* Même police que les paragraphes */
   font-weight: 510;
-  color: #c2f2ddc2;
+  color: #b4fdd4;
   text-decoration: none;
   padding: 2px 6px;
   border-radius: 10px;
