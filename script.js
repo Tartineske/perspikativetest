@@ -434,4 +434,60 @@ const observer = new IntersectionObserver((entries) => {
 
 observer.observe(document.querySelector('footer'));
 
+document.addEventListener('mousemove', (e) => {
+  const mouseX = (e.clientX - window.innerWidth / 2);
+  const mouseY = (e.clientY - window.innerHeight / 2);
+
+  // On sélectionne toutes les images de décor
+  const images = document.querySelectorAll('.p-img');
+
+  images.forEach((img) => {
+    // On définit la force de l'effet selon la classe ou le z-index
+    // Plus le chiffre est petit, plus l'image fuit loin
+    let intensity = 0.02; 
+    
+    if (img.classList.contains('pos-1')) intensity = 0.05;
+    if (img.classList.contains('pos-3')) intensity = 0.01; // Fond lointain
+    if (img.classList.contains('cat-mascot')) intensity = 0.08; // Premier plan
+
+    // Calcul du mouvement inversé (-)
+    const x = mouseX * -intensity;
+    const y = mouseY * -intensity;
+
+    img.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('.p-img');
+  
+  // On stocke la rotation initiale de chaque image pour ne pas la perdre
+  const imgData = Array.from(images).map(img => {
+    const style = window.getComputedStyle(img);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    const angle = Math.round(Math.atan2(matrix.b, matrix.a) * (180/Math.PI));
+    
+    // On définit l'intensité selon le z-index
+    const z = parseInt(style.zIndex);
+    let intensity = 0.04;
+    if (z < 5) intensity = 0.01; // Fond
+    if (z > 10) intensity = 0.07; // Premier plan
+    
+    return { el: img, rot: angle, speed: intensity };
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    const mouseX = (e.clientX - window.innerWidth / 2);
+    const mouseY = (e.clientY - window.innerHeight / 2);
+
+    imgData.forEach(item => {
+      // Mouvement opposé (-)
+      const x = mouseX * -item.speed;
+      const y = mouseY * -item.speed;
+      
+      item.el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${item.rot}deg)`;
+    });
+  });
+});
+
 // ============================= FIN DU SCRIPT =============================
