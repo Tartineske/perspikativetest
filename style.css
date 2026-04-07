@@ -3640,7 +3640,9 @@ body {
 
   .home-title {
     height: auto;
-    width: 90%; /* Le titre prend plus de place sur mobile */
+    width: 90%;
+    z-index: 9999;
+    top: -10%;
   }
 
   .title-img {
