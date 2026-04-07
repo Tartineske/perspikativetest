@@ -434,6 +434,8 @@ const observer = new IntersectionObserver((entries) => {
 
 observer.observe(document.querySelector('footer'));
 
+
+
 document.addEventListener('mousemove', (e) => {
   const mouseX = (e.clientX - window.innerWidth / 2);
   const mouseY = (e.clientY - window.innerHeight / 2);
@@ -446,9 +448,9 @@ document.addEventListener('mousemove', (e) => {
     // Plus le chiffre est petit, plus l'image fuit loin
     let intensity = 0.02; 
     
-    if (img.classList.contains('pos-1')) intensity = 0.05;
-    if (img.classList.contains('pos-3')) intensity = 0.01; // Fond lointain
-    if (img.classList.contains('cat-mascot')) intensity = 0.08; // Premier plan
+    if (img.classList.contains('pos-1')) intensity = 0.04;
+    if (img.classList.contains('pos-3')) intensity = 0.006; // Fond lointain
+    if (img.classList.contains('cat-mascot')) intensity = 0.07; // Premier plan
 
     // Calcul du mouvement inversé (-)
     const x = mouseX * -intensity;
@@ -470,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // On définit l'intensité selon le z-index
     const z = parseInt(style.zIndex);
     let intensity = 0.04;
-    if (z < 5) intensity = 0.01; // Fond
+    if (z < 5) intensity = 0.006; // Fond
     if (z > 10) intensity = 0.07; // Premier plan
     
     return { el: img, rot: angle, speed: intensity };
