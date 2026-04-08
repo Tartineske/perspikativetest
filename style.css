@@ -3696,19 +3696,16 @@ body {
   
   .title-img { width: 100% !important; }
 
-  /* On cache les moins importantes pour la lisibilité */
-  .pos-2, .pos-3, .pos-5, .pos-8 { display: none; }
-
   .p-img {
-    width: 130px; 
-    /* Animation de flottement continu sur mobile */
     animation: entranceFade 1.2s ease-out forwards, floatingMobile 4s ease-in-out infinite alternate !important;
   }
 
-  .pos-1 { top: -2%; left: 10%; rotate: 0deg; }
-  .pos-2 { top: 5%; right: -10%; left: auto; rotate: -10deg; }
-  .pos-4 { bottom: 25%; left: -5%; rotate: 4deg; }
-  .pos-6 { top: 35%; right: -15%; rotate: -14deg; opacity: 0.5; }
-  .pos-8 { bottom: 5%; right: 5%; rotate: 8deg; }
+  .pos-1 { width: 140px; top: -6%; left: 10%; rotate: -5deg; }
+  .pos-2 { width: 120px; top: 5%; right: -10%; left: auto; rotate: -60deg; }
+  .pos-4 { width: 130px; bottom: 15%; left: 60%; rotate: -20deg; }
+  .pos-5 { width: 130px; top: 38%; left: -15%; rotate: -1deg; opacity: 0.4; }  
+  .pos-6 { width: 140px; top: 35%; right: -12%; rotate: 3deg; opacity: 0.5; }
+  .pos-7 { width: 130px; top: 10%; right: 10%; rotate: 12deg; }
+  .pos-8 { width: 130px; bottom: 5%; right: 54%; rotate: 20deg; }
 }
 
