@@ -3701,11 +3701,11 @@ body {
   }
 
   .pos-1 { width: 140px; top: -6%; left: 10%; rotate: -5deg; }
-  .pos-2 { width: 120px; top: 5%; right: -10%; left: auto; rotate: -60deg; }
-  .pos-4 { width: 130px; bottom: 15%; left: 60%; rotate: -20deg; }
-  .pos-5 { width: 130px; top: 38%; left: -15%; rotate: -1deg; opacity: 0.4; }  
+  .pos-2 { width: 120px; top: 3%; right: -9%; left: auto; rotate: -60deg; }
+  .pos-4 { width: 130px; bottom: 17%; left: 60%; rotate: -20deg; }
+  .pos-5 { width: 138px; top: 38%; left: -15%; rotate: -1deg; opacity: 0.4; }  
   .pos-6 { width: 140px; top: 35%; right: -12%; rotate: 3deg; opacity: 0.5; }
   .pos-7 { width: 130px; top: 10%; right: 10%; rotate: 12deg; }
-  .pos-8 { width: 130px; bottom: 5%; right: 54%; rotate: 20deg; }
+  .pos-8 { width: 130px; bottom: 8%; right: 57%; rotate: 20deg; }
 }
 
