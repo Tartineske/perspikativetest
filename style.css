@@ -3588,12 +3588,8 @@ body {
 
 
 
-#home {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
+
+
 
 /* Style commun des images décoratives */
 .p-img {
@@ -3604,13 +3600,10 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.24);
   opacity: 0;
   translate: 0 20px;
-  transition: transform 0.2s ease-out, opacity 0.8s ease-out;
+  transition: transform 0.2s ease-out, opacity 1s ease-out;
   animation: entranceFade 1.2s ease-out forwards;
   will-change: transform, opacity;
 }
-
-
-
 
 /* --- PLACEMENT MANUEL (Exemples) --- */
 .pos-1 { width: 200px; top: -5%;  left: 10%; z-index: -20;  transform: rotate(2deg); }
@@ -3624,14 +3617,6 @@ body {
 .pos-7  { width: 190px; top: 14%;  right: 14%; z-index: 6;  transform: rotate(-8deg); }
 .pos-8  { width: 260px; bottom: 15%;  right: -4%;  z-index: 20; transform: rotate(-6deg);   }
 
-/* Style de base pour éviter les répétitions */
-.p-img {
-  position: absolute;
-  height: auto;
-  pointer-events: none;
-  transition: opacity 1s ease; /* Le transform est géré par le JS */
-}
-
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
 
@@ -3639,7 +3624,6 @@ body {
 /* --- VERSION MOBILE --- */
 @media (max-width: 768px) {
   #home {
-    /* On s'assure que tout reste bien centré sur petit écran */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3678,24 +3662,17 @@ body {
 }
 
 @keyframes floatingMobile {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-2px) rotate(1deg); }
-  100% { transform: translateY(0) rotate(1deg); }
+  from { translate: 0 0; }
+  to { translate: 0 -6px; }
 }
-
-
-
-
-
-
-
-
-
-
 
 @keyframes entranceFade {
   to { opacity: 1; translate: 0 0; }
 }
+
+
+
+
 
 /* Décalages d'apparition pour les images */
 .pos-1 { width: 200px; top: -5%; left: 10%; z-index: -20; rotate: 2deg; animation-delay: 0.1s; }
@@ -3706,7 +3683,6 @@ body {
 .pos-6 { width: 230px; top: -8%; right: 1%; z-index: 12; rotate: 8deg; animation-delay: 0.6s; }
 .pos-7 { width: 190px; top: 14%; right: 14%; z-index: 6; rotate: -8deg; animation-delay: 0.7s; }
 .pos-8 { width: 260px; bottom: 15%; right: -4%; z-index: 20; rotate: -6deg; animation-delay: 0.8s; }
-.cat-mascot { width: 120px; bottom: 10%; right: 20%; z-index: 100; rotate: 0deg; animation-delay: 1s; }
 
 /* --- VERSION MOBILE --- */
 @media (max-width: 768px) {
@@ -3721,7 +3697,7 @@ body {
   .title-img { width: 100% !important; }
 
   /* On cache les moins importantes pour la lisibilité */
-  .pos-3, .pos-5, .pos-7 { display: none; }
+  .pos-2, .pos-3, .pos-5, .pos-8 { display: none; }
 
   .p-img {
     width: 130px; 
@@ -3729,14 +3705,10 @@ body {
     animation: entranceFade 1.2s ease-out forwards, floatingMobile 4s ease-in-out infinite alternate !important;
   }
 
-  .pos-1 { top: 2%; left: 5%; rotate: 15deg; }
+  .pos-1 { top: -2%; left: 10%; rotate: 0deg; }
   .pos-2 { top: 5%; right: -10%; left: auto; rotate: -10deg; }
   .pos-4 { bottom: 10%; left: -5%; rotate: -12deg; }
-  .pos-6 { top: 35%; right: -15%; rotate: 20deg; opacity: 0.5; }
+  .pos-6 { top: 35%; right: -15%; rotate: -14deg; opacity: 0.5; }
   .pos-8 { bottom: 5%; right: 5%; rotate: 8deg; }
 }
 
-@keyframes floatingMobile {
-  from { translate: 0 0; }
-  to { translate: 0 -10px; }
-}
