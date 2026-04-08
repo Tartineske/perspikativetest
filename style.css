@@ -320,14 +320,14 @@ header h1 {
   right: 15px;
   background: transparent;
   backdrop-filter: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
-  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  padding: 10px;
   flex-direction: column;
   gap: 12px;
   z-index: 10001;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2),
-              inset 0 0 10px rgba(255, 255, 255, 0.1);
+              inset 0 0 13px rgba(255, 255, 255, 0.2);
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(-10px);
@@ -340,8 +340,8 @@ header h1 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(10px) brightness(1);
-  -webkit-backdrop-filter: blur(10px) brightness(1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   background: transparent;
   opacity: 0;
   pointer-events: none;
@@ -351,7 +351,7 @@ header h1 {
 
 body.menu-open main,
 body.menu-open footer {
-  filter: blur(10px) brightness(1);
+  filter: blur(12px);
   transition: filter 0.2s ease;
 }
 
@@ -383,8 +383,8 @@ body.menu-open .blur-overlay {
   -webkit-backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow:
-    0 2px 18px rgba(0 0 0 / 0.12),
-    inset 0 0 10px rgba(255 255 255 / 0.2);
+    0 2px 16px rgba(0 0 0 / 0.15),
+    inset 0 0 12px rgba(255 255 255 / 0.3);
 }
 
 .mobile-menu ul li a::before {
@@ -559,7 +559,7 @@ body.home {
   align-items: center;     /* centre verticalement */
   position: relative;      /* nécessaire si on garde animations absolues */
   height: 600px;
-  z-index: 999;
+  z-index: 899;
 }
 
 .title-img {
@@ -3619,6 +3619,14 @@ body {
 
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
+@keyframes floatingMobile {
+  from { translate: 0 0; }
+  to { translate: 0 -6px; }
+}
+
+@keyframes entranceFade {
+  to { opacity: 1; translate: 0 0; }
+}
 
 
 /* --- VERSION MOBILE --- */
@@ -3632,7 +3640,7 @@ body {
   .home-title {
     height: auto;
     width: 90%;
-    z-index: 999;
+    z-index: 899;
     top: 155px;
   }
 
@@ -3661,14 +3669,6 @@ body {
   .pos-5 { width: 100px; top: 40%; right: -10%; transform: rotate(-15deg); opacity: 0.4; }
 }
 
-@keyframes floatingMobile {
-  from { translate: 0 0; }
-  to { translate: 0 -6px; }
-}
-
-@keyframes entranceFade {
-  to { opacity: 1; translate: 0 0; }
-}
 
 
 
@@ -3688,7 +3688,7 @@ body {
 @media (max-width: 768px) {
   .home-title {
     position: relative;
-    z-index: 999;
+    z-index: 899;
     top: -12%;
     width: 90%;
     margin: 0 auto;
