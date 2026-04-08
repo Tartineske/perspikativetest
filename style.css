@@ -559,6 +559,7 @@ body.home {
   align-items: center;     /* centre verticalement */
   position: relative;      /* nécessaire si on garde animations absolues */
   height: 600px;
+  z-index: 999;
 }
 
 .title-img {
@@ -3584,6 +3585,9 @@ body {
 
 
 
+
+
+
 #home {
   position: relative;
   width: 100%;
@@ -3596,11 +3600,17 @@ body {
   position: absolute;
   height: auto;
   pointer-events: none;
-  transition: transform 0.2s ease-out, opacity 0.8s ease;
-  will-change: transform;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.24);
+  opacity: 0;
+  translate: 0 20px;
+  transition: transform 0.2s ease-out, opacity 0.8s ease-out;
+  animation: entranceFade 1.2s ease-out forwards;
+  will-change: transform, opacity;
 }
+
+
+
 
 /* --- PLACEMENT MANUEL (Exemples) --- */
 .pos-1 { width: 200px; top: -5%;  left: 10%; z-index: -20;  transform: rotate(2deg); }
@@ -3638,7 +3648,7 @@ body {
   .home-title {
     height: auto;
     width: 90%;
-    z-index: 9999;
+    z-index: 999;
     top: 155px;
   }
 
@@ -3679,26 +3689,9 @@ body {
 
 
 
-#home {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
 
-/* Style commun avec animation d'entrée */
-.p-img {
-  position: absolute;
-  height: auto;
-  pointer-events: none;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.24);
-  /* Animation d'entrée : Fondu monté aérien */
-  opacity: 0;
-  translate: 0 30px;
-  animation: entranceFade 1.2s ease-out forwards;
-  will-change: transform, opacity;
-}
+
+
 
 @keyframes entranceFade {
   to { opacity: 1; translate: 0 0; }
@@ -3745,5 +3738,5 @@ body {
 
 @keyframes floatingMobile {
   from { translate: 0 0; }
-  to { translate: 0 -15px; }
+  to { translate: 0 -10px; }
 }
