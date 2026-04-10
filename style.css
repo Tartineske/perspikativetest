@@ -23,6 +23,7 @@
     --text: #111;
     --card: rgba(255, 255, 255, 0.7);
     --border: rgba(0, 0, 0, 0.1);
+    --header-bg: rgba(91, 179, 163, 0.70);
   }
 }
 
@@ -33,6 +34,7 @@
     --text: #111;
     --card: rgba(20, 22, 30, 0.7);
     --border: rgba(255, 255, 255, 0.12);
+    --header-bg: rgba(0, 0, 0, 0.66);
   }
 }
 
@@ -256,7 +258,7 @@ header h1 {
   header {
     text-align: left; /* Alignement à gauche */
     padding: 4px 12px;
-    background: rgba(91, 179, 163, 0.70);
+    background: var(--header-bg);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     color: white;
