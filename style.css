@@ -1411,21 +1411,27 @@ main.creations h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              opacity 0.3s ease, 
+              background 0.3s ease, 
+              box-shadow 0.3s ease;
   z-index: 9999;
   box-shadow:
     0 4px 18px rgba(0 0 0 / 0.12),
-    inset 0 0 10px rgba(255 255 255 / 0.18);
+    inset 0 0 10px rgba(255 255 255 / 0.18);     
+  transform: translateY(0) scale(1);
 }
 
 .search-float-btn img {
   width: 32px;
   height: 32px;
   object-fit: contain;
+  display: block; 
+  pointer-events: none;
 }
 
 .search-float-btn:hover {
-  transform: scale(1.06);
+  transform: translateY(0) scale(1.06);
   box-shadow:
     0 6px 20px rgba(0 0 0 / 0.18),
     inset 0 0 10px rgba(255 255 255 / 0.2);
@@ -1435,7 +1441,7 @@ main.creations h2 {
 .search-float-btn.hide {
   opacity: 0;
   pointer-events: none; /* pour que le bouton ne gêne pas le scroll */
-  transform: translateY(50px); /* descend légèrement en disparaissant */
+  transform: translateY(50px) scale(0.7); /* Descend et rétrécit un peu */
 }
 
 @media (max-width: 768px) {
