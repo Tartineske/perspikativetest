@@ -25,6 +25,7 @@
     --border: rgba(0, 0, 0, 0.1);
     --header-bg: rgba(91, 179, 163, 0.70);
     --nav-mobile-bg: rgba(255, 255, 255, 0);
+    --search-btn-bg: rgba(255, 255, 255, 0);
   }
 }
 
@@ -37,6 +38,7 @@
     --border: rgba(255, 255, 255, 0.12);
     --header-bg: rgba(0, 0, 0, 0.66);
     --nav-mobile-bg: rgba(0, 0, 0, 0.3);
+    --search-btn-bg: rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -1395,44 +1397,25 @@ main.creations h2 {
 /* ============================= 9. RECHERCHER ============================= */
 
 /* --- Boutons flottant Rechercher sur Desktop --- */
-
-.search-float-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 35px;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 9999;
-  box-shadow:
-    0 4px 16px rgba(0 0 0 / 0.1),
-    inset 0 0 10px rgba(255 255 255 / 0.2);
-}
-
 .search-float-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 65px;       /* taille du bouton */
+  width: 65px;
   height: 65px;
-  border-radius: 50%; /* cercle */
+  border-radius: 50%;
+  background: var(--search-btn-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 9999; /* toujours au-dessus */
+  transition: all 0.2s ease;
+  z-index: 9999;
   box-shadow:
-    0 4px 16px rgba(0 0 0 / 0.1),
-    inset 0 0 10px rgba(255 255 255 / 0.2);
+    0 4px 18px rgba(0 0 0 / 0.12),
+    inset 0 0 10px rgba(255 255 255 / 0.18);
 }
 
 .search-float-btn img {
@@ -1442,9 +1425,9 @@ main.creations h2 {
 }
 
 .search-float-btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
   box-shadow:
-    0 6px 20px rgba(0 0 0 / 0.2),
+    0 6px 20px rgba(0 0 0 / 0.18),
     inset 0 0 10px rgba(255 255 255 / 0.2);
 }
 
