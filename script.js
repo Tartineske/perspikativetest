@@ -105,57 +105,156 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================= 2. LIGHTBOX POUR LES CRÉATIONS =============================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Vérifier si la lightbox existe (uniquement sur la page creations)
-  const lightbox = document.getElementById('lightbox');
-  if (!lightbox) return; // Pas de lightbox sur cette page
+  const lightbox      = document.getElementById('lightbox');
+  if (!lightbox) return;
 
-  const thumbs = document.querySelectorAll('.prspk-thumb');
-  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxImg   = document.getElementById('lightbox-img');
   const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxDesc = document.getElementById('lightbox-desc');
-  const closeBtn = document.getElementById('lightbox-close');
+  const lightboxDate  = document.getElementById('lightbox-date');
+  const lightboxDesc  = document.getElementById('lightbox-desc');
+  const lightboxExtra = document.getElementById('lightbox-extra');
+  const closeBtn      = document.getElementById('lightbox-close');
+  const lbLikeBtn     = document.getElementById('lb-like-btn');
+  const lbLikeIcon    = document.getElementById('lb-like-icon');
+  const lbShareBtn    = document.getElementById('lb-share-btn');
 
-  // Vérifier que les éléments nécessaires existent
   if (!lightboxImg || !lightboxTitle || !lightboxDesc || !closeBtn) {
     console.warn('Lightbox : certains éléments sont manquants.');
     return;
   }
 
-  // Ouvrir la lightbox au clic sur une miniature
-  thumbs.forEach(img => {
-    img.addEventListener('click', () => {
-      // Image principale
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || '';
+  let currentId = null;
 
-      // Titre
-      lightboxTitle.textContent = img.dataset.title || '';
+  // ── LIKES STORE (localStorage) ──────────────────────────────────────────
+  const LikesStore = {
+    _key: 'prspk_likes',
+    _data: function() {
+      try { return JSON.parse(localStorage.getItem(this._key)) || {}; }
+      catch(e) { return {}; }
+    },
+    _save: function(data) {
+      localStorage.setItem(this._key, JSON.stringify(data));
+    },
+    hasLiked: function(id) {
+      return !!this._data()[id];
+    },
+    toggle: function(id) {
+      var data = this._data();
+      data[id] = !data[id];
+      this._save(data);
+      return data[id];
+    }
+  };
 
-      // Description avec HTML interprété (<br>, <strong>, etc.)
-      lightboxDesc.innerHTML = img.dataset.desc || '';
+  // ── UI like ──────────────────────────────────────────────────────────────
+  function updateLikeUI(id) {
+    if (!lbLikeBtn || !lbLikeIcon) return;
+    var liked = LikesStore.hasLiked(id);
+    lbLikeIcon.src = liked ? '/icons/like-active.svg' : '/icons/like.svg';
+    lbLikeBtn.classList.toggle('liked', liked);
+  }
 
-      // Afficher la lightbox et bloquer le scroll
+  // ── Animation like ───────────────────────────────────────────────────────
+  function animateLike(liked) {
+    if (!liked || !lbLikeBtn) return;
+    lbLikeBtn.classList.remove('like-pop');
+    void lbLikeBtn.offsetWidth;
+    lbLikeBtn.classList.add('like-pop');
+    spawnHearts(lbLikeBtn);
+  }
+
+  function spawnHearts(btn) {
+    for (var i = 0; i < 6; i++) {
+      var heart = document.createElement('span');
+      heart.className = 'like-particle';
+      heart.textContent = '\u2665';
+      var angle = Math.random() * 160 - 80;
+      var dist  = 30 + Math.random() * 30;
+      heart.style.setProperty('--angle', angle + 'deg');
+      heart.style.setProperty('--dist', dist + 'px');
+      heart.style.setProperty('--delay', (i * 40) + 'ms');
+      btn.appendChild(heart);
+      heart.addEventListener('animationend', function() { this.remove(); });
+    }
+  }
+
+  // ── Toast partage ────────────────────────────────────────────────────────
+  function showShareToast() {
+    var toast = document.getElementById('share-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'share-toast';
+      toast.className = 'share-toast';
+      toast.textContent = 'Lien copié ! 🔗';
+      document.body.appendChild(toast);
+    }
+    toast.classList.add('visible');
+    setTimeout(function() { toast.classList.remove('visible'); }, 2500);
+  }
+
+  // ── Ouverture de la lightbox ─────────────────────────────────────────────
+  var thumbs = document.querySelectorAll('.prspk-thumb');
+
+  thumbs.forEach(function(img) {
+    img.addEventListener('click', function() {
+      lightboxImg.src               = img.src;
+      lightboxImg.alt               = img.alt || '';
+      lightboxTitle.textContent     = img.dataset.title || '';
+      if (lightboxDate) lightboxDate.textContent = img.dataset.date || '';
+      lightboxDesc.innerHTML        = img.dataset.desc || '';
+
+      currentId = img.id || img.src;
+      lightbox.dataset.id = currentId;
+
+      if (lbLikeBtn) updateLikeUI(currentId);
+
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
   });
 
-  // Fermer avec le bouton
-  closeBtn.addEventListener('click', () => {
+  // ── Bouton like ──────────────────────────────────────────────────────────
+  if (lbLikeBtn) {
+    lbLikeBtn.addEventListener('click', function() {
+      if (!currentId) return;
+      var liked = LikesStore.toggle(currentId);
+      updateLikeUI(currentId);
+      animateLike(liked);
+    });
+  }
+
+  // ── Bouton partager ──────────────────────────────────────────────────────
+  if (lbShareBtn) {
+    lbShareBtn.addEventListener('click', function() {
+      if (!currentId) return;
+      var url   = window.location.origin + '/portfolio/creations/' + currentId;
+      var texte = 'Jette un oeil à cette création sur Perspikative ! ' + url;
+
+      if (navigator.share) {
+        navigator.share({ title: 'Perspikative', text: texte, url: url })
+          .catch(function() {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(texte).then(function() {
+          showShareToast();
+        });
+      }
+    });
+  }
+
+  // ── Fermeture ────────────────────────────────────────────────────────────
+  closeBtn.addEventListener('click', function() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
   });
 
-  // Fermer en cliquant sur le fond (overlay)
-  lightbox.addEventListener('click', (e) => {
+  lightbox.addEventListener('click', function(e) {
     if (e.target === lightbox) {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
     }
   });
 
-  // Fermer avec la touche Échap
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && lightbox.classList.contains('active')) {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
