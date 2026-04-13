@@ -226,23 +226,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Bouton partager ──────────────────────────────────────────────────────
-  if (lbShareBtn) {
-    lbShareBtn.addEventListener('click', function() {
-      if (!currentId) return;
-      var url   = window.location.origin + '/portfolio/creations/' + currentId;
-      var texte = 'Jette un oeil à cette création sur Perspikative ! ' + url;
+ // ── Bouton partager ──────────────────────────────────────────────────────
+ if (lbShareBtn) {
+   lbShareBtn.addEventListener('click', function() {
+     if (!currentId) return;
 
-      if (navigator.share) {
-        navigator.share({ title: 'Perspikative', text: texte, url: url })
-          .catch(function() {});
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(texte).then(function() {
-          showShareToast();
-        });
-      }
-    });
-  }
+     var url = window.location.origin + '/portfolio/creations/' + currentId;
+
+     if (navigator.share) {
+       navigator.share({
+         title: 'Perspikative',
+         text: '🎨 Découvre cette création sur Perspikative !',
+         url: url
+       }).catch(function() {});
+     } else if (navigator.clipboard) {
+       navigator.clipboard.writeText(
+         '🎨 Découvre cette création sur Perspikative ! ' + url
+       ).then(function() {
+         showShareToast();
+       });
+     }
+   });
+ }
 
   // ── Fermeture ────────────────────────────────────────────────────────────
   closeBtn.addEventListener('click', function() {
