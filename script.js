@@ -170,23 +170,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getIconPath(name) {
-    return window.location.origin + '/icons/' + name;
-  }
+  return '/icons/' + name;
+}
 
-  // ─────────────────────────────
-  // UPDATE LIKE UI
-  // ─────────────────────────────
-  function updateLikeUI(id) {
-    const btn  = getLikeBtn();
-    const icon = getLikeIcon();
+function updateLikeUI(id) {
+  const btn  = getLikeBtn();
+  const icon = getLikeIcon();
 
-    if (!btn || !icon) return;
+  if (!btn || !icon) return;
 
-    const liked = LikesStore.hasLiked(id);
+  const liked = LikesStore.hasLiked(id);
 
-    icon.src = liked
-      ? getIconPath('like-active.svg')
-      : getIconPath('like.svg');
+  icon.src = liked
+    ? getIconPath('like-active.svg')
+    : getIconPath('like.svg');
 
     btn.classList.toggle('liked', liked);
   }
