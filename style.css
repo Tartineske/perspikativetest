@@ -3703,140 +3703,155 @@ body {
 
 
 
-/* ===== LIGHTBOX ACTION BUTTONS ===== */
 
+
+
+/* ============================================================
+   LIKE + SHARE — Lightbox actions bar
+   À coller dans ton style.css (section lightbox)
+   ============================================================ */
+
+/* Barre d'actions (like + share) */
 .lightbox-actions {
   display: flex;
   gap: 10px;
-  margin-top: auto;
-  padding-top: 18px;
-  justify-content: flex-end; /* droite sur desktop */
+  margin-top: 20px;
+  padding-top: 16px;
 }
 
-@media (max-width: 768px) {
-  .lightbox-actions {
-    justify-content: flex-end; /* droite aussi sur mobile */
-  }
-}
-
-/* Base bouton */
-.lb-btn {
-  display: inline-flex;
+/* Bouton générique */
+.lb-action-btn {
+  display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 8px 14px;
-  border: none;
+  gap: 7px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50px;
-  cursor: pointer;
-  font-family: 'Rubik', sans-serif;
-  font-size: 0.96rem;
-  font-weight: 500;
-  letter-spacing: 0em;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: visible;
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2),
-              0 4px 12px rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.lb-btn:active {
-  transform: scale(0.94);
+.lb-action-btn:hover {
+  background: rgba(0, 0, 0, 0.14);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
-.lb-icon {
-  width: 20px;
-  height: 20px;
+.lb-action-btn:active {
+  transform: translateY(0);
+}
+
+/* ---- Bouton LIKE ---- */
+.lb-like-btn svg {
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
-/* ----- Bouton Like ----- */
-.lb-like-btn {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
+/* Les deux cœurs (vide / plein) */
+.lb-heart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
 }
 
-.lb-like-btn:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.15);
+.heart-svg {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.lb-like-btn.liked {
-  background: rgba(255, 60, 80, 0.2);
-  border-color: rgba(255, 60, 80, 0.5);
-  box-shadow: 0 0 14px rgba(255, 60, 80, 0.35);
-  color: #ff5a6e;
+/* Cœur vide : visible par défaut */
+.heart-empty  { opacity: 1; color: rgba(255, 255, 255, 0.75); }
+.heart-filled { opacity: 0; color: #ff6b8a; transform: scale(0.7); }
+
+/* Quand liké */
+.lb-heart-icon.is-liked .heart-empty  { opacity: 0; transform: scale(0.7); }
+.lb-heart-icon.is-liked .heart-filled { opacity: 1; transform: scale(1); }
+
+/* Bouton liké → teinte rose */
+.lb-like-btn.is-liked {
+  border-color: rgba(255, 107, 138, 0.45);
+  background: rgba(255, 107, 138, 0.12);
+  color: #ff8fab;
 }
 
+.lb-like-btn.is-liked:hover {
+  background: rgba(255, 107, 138, 0.20);
+  border-color: rgba(255, 107, 138, 0.65);
+}
+
+/* Compteur de likes */
 .lb-like-count {
-  font-size: 0.8rem;
-  min-width: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-width: 16px;
   text-align: center;
 }
 
-/* ----- Bouton Partager ----- */
-.lb-share-btn {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
+/* Animation pop au clic */
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.45); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+.lb-heart-icon.heart-pop .heart-filled {
+  animation: heartPop 0.38s ease forwards;
+}
+
+/* ---- Bouton SHARE ---- */
+.lb-share-btn .share-svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
 }
 
 .lb-share-btn:hover {
-  background: rgba(88, 179, 162, 0.2);
-  border-color: rgba(88, 179, 162, 0.5);
-  box-shadow: 0 0 12px rgba(88, 179, 162, 0.3);
+  border-color: rgba(88, 179, 162, 0.55);
+  background: rgba(88, 179, 162, 0.12);
+  color: #7de0cf;
 }
 
-.lb-share-btn.copied {
-  background: rgba(88, 179, 162, 0.3);
-  border-color: rgba(88, 179, 162, 0.7);
-  color: #58b3a2;
-}
-
-/* ===== ANIMATIONS LIKE ===== */
-
-/* Pop de l'icône au clic */
-.lb-like-icon.like-pop {
-  animation: likePop 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
-}
-
-@keyframes likePop {
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.55) rotate(-8deg); }
-  55%  { transform: scale(0.85) rotate(4deg); }
-  75%  { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-/* Particules burst */
-.like-burst {
-  position: absolute;
-  top: 50%;
+/* ---- Toast "Lien copié" ---- */
+.share-toast {
+  position: fixed;
+  bottom: 36px;
   left: 50%;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff5a6e;
+  transform: translateX(-50%) translateY(12px);
+  background: rgba(30, 30, 40, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.88rem;
+  padding: 10px 22px;
+  border-radius: 50px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%);
-  animation: burstOut 0.55s ease-out forwards;
-  animation-delay: calc(var(--angle) * 0.0005s);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 9999;
 }
 
-/* Variation de couleur par particule */
-.like-burst:nth-child(odd)  { background: #ff8fa3; }
-.like-burst:nth-child(3n)   { background: #ffb3c1; width: 5px; height: 5px; }
-.like-burst:nth-child(2n)   { background: #ff4d6d; }
-
-@keyframes burstOut {
-  0% {
-    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0px);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(28px);
-    opacity: 0;
-  }
+.share-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
