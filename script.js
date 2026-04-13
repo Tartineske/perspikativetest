@@ -102,9 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 2. LIGHTBOX POUR LES CRÉATIONS =============================
+// =============================
+// 2. LIGHTBOX POUR LES CRÉATIONS (VERSION FIX PROD)
+// =============================
 
 document.addEventListener('DOMContentLoaded', () => {
+
   const lightbox      = document.getElementById('lightbox');
   if (!lightbox) return;
 
@@ -112,75 +115,121 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxDate  = document.getElementById('lightbox-date');
   const lightboxDesc  = document.getElementById('lightbox-desc');
-  const lightboxExtra = document.getElementById('lightbox-extra');
   const closeBtn      = document.getElementById('lightbox-close');
-  const lbLikeBtn     = document.getElementById('lb-like-btn');
-  const lbLikeIcon    = document.getElementById('lb-like-icon');
-  const lbShareBtn    = document.getElementById('lb-share-btn');
 
   if (!lightboxImg || !lightboxTitle || !lightboxDesc || !closeBtn) {
-    console.warn('Lightbox : certains éléments sont manquants.');
+    console.warn('Lightbox : éléments principaux manquants.');
     return;
   }
 
   let currentId = null;
 
-  // ── LIKES STORE (localStorage) ──────────────────────────────────────────
+  // ─────────────────────────────
+  // LIKE STORAGE
+  // ─────────────────────────────
   const LikesStore = {
     _key: 'prspk_likes',
-    _data: function() {
-      try { return JSON.parse(localStorage.getItem(this._key)) || {}; }
-      catch(e) { return {}; }
+
+    _data() {
+      try {
+        return JSON.parse(localStorage.getItem(this._key)) || {};
+      } catch(e) {
+        return {};
+      }
     },
-    _save: function(data) {
+
+    _save(data) {
       localStorage.setItem(this._key, JSON.stringify(data));
     },
-    hasLiked: function(id) {
+
+    hasLiked(id) {
       return !!this._data()[id];
     },
-    toggle: function(id) {
-      var data = this._data();
+
+    toggle(id) {
+      const data = this._data();
       data[id] = !data[id];
       this._save(data);
       return data[id];
     }
   };
 
-  // ── UI like ──────────────────────────────────────────────────────────────
-  function updateLikeUI(id) {
-    if (!lbLikeBtn || !lbLikeIcon) return;
-    var liked = LikesStore.hasLiked(id);
-    lbLikeIcon.src = liked ? '/icons/like-active.svg' : '/icons/like.svg';
-    lbLikeBtn.classList.toggle('liked', liked);
+  // ─────────────────────────────
+  // HELPERS (SAFE DOM ACCESS)
+  // ─────────────────────────────
+  function getLikeBtn() {
+    return document.getElementById('lb-like-btn');
   }
 
-  // ── Animation like ───────────────────────────────────────────────────────
+  function getLikeIcon() {
+    return document.getElementById('lb-like-icon');
+  }
+
+  function getShareBtn() {
+    return document.getElementById('lb-share-btn');
+  }
+
+  function getIconPath(name) {
+    return window.location.origin + '/icons/' + name;
+  }
+
+  // ─────────────────────────────
+  // UPDATE LIKE UI
+  // ─────────────────────────────
+  function updateLikeUI(id) {
+    const btn  = getLikeBtn();
+    const icon = getLikeIcon();
+
+    if (!btn || !icon) return;
+
+    const liked = LikesStore.hasLiked(id);
+
+    icon.src = liked
+      ? getIconPath('like-active.svg')
+      : getIconPath('like.svg');
+
+    btn.classList.toggle('liked', liked);
+  }
+
+  // ─────────────────────────────
+  // LIKE ANIMATION
+  // ─────────────────────────────
   function animateLike(liked) {
-    if (!liked || !lbLikeBtn) return;
-    lbLikeBtn.classList.remove('like-pop');
-    void lbLikeBtn.offsetWidth;
-    lbLikeBtn.classList.add('like-pop');
-    spawnHearts(lbLikeBtn);
+    const btn = getLikeBtn();
+    if (!liked || !btn) return;
+
+    btn.classList.remove('like-pop');
+    void btn.offsetWidth;
+    btn.classList.add('like-pop');
+
+    spawnHearts(btn);
   }
 
   function spawnHearts(btn) {
-    for (var i = 0; i < 6; i++) {
-      var heart = document.createElement('span');
+    for (let i = 0; i < 6; i++) {
+      const heart = document.createElement('span');
       heart.className = 'like-particle';
-      heart.textContent = '\u2665';
-      var angle = Math.random() * 160 - 80;
-      var dist  = 30 + Math.random() * 30;
+      heart.textContent = '♥';
+
+      const angle = Math.random() * 160 - 80;
+      const dist  = 30 + Math.random() * 30;
+
       heart.style.setProperty('--angle', angle + 'deg');
       heart.style.setProperty('--dist', dist + 'px');
       heart.style.setProperty('--delay', (i * 40) + 'ms');
+
       btn.appendChild(heart);
-      heart.addEventListener('animationend', function() { this.remove(); });
+
+      heart.addEventListener('animationend', () => heart.remove());
     }
   }
 
-  // ── Toast partage ────────────────────────────────────────────────────────
+  // ─────────────────────────────
+  // SHARE TOAST
+  // ─────────────────────────────
   function showShareToast() {
-    var toast = document.getElementById('share-toast');
+    let toast = document.getElementById('share-toast');
+
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'share-toast';
@@ -188,78 +237,90 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.textContent = 'Lien copié ! 🔗';
       document.body.appendChild(toast);
     }
+
     toast.classList.add('visible');
-    setTimeout(function() { toast.classList.remove('visible'); }, 2500);
+    setTimeout(() => toast.classList.remove('visible'), 2500);
   }
 
-  // ── Ouverture de la lightbox ─────────────────────────────────────────────
-  var thumbs = document.querySelectorAll('.prspk-thumb');
+  // ─────────────────────────────
+  // OPEN LIGHTBOX
+  // ─────────────────────────────
+  document.querySelectorAll('.prspk-thumb').forEach(img => {
+    img.addEventListener('click', () => {
 
-  thumbs.forEach(function(img) {
-    img.addEventListener('click', function() {
-      lightboxImg.src               = img.src;
-      lightboxImg.alt               = img.alt || '';
-      lightboxTitle.textContent     = img.dataset.title || '';
+      lightboxImg.src           = img.src;
+      lightboxImg.alt           = img.alt || '';
+      lightboxTitle.textContent = img.dataset.title || '';
       if (lightboxDate) lightboxDate.textContent = img.dataset.date || '';
-      lightboxDesc.innerHTML        = img.dataset.desc || '';
+      lightboxDesc.innerHTML    = img.dataset.desc || '';
 
       currentId = img.id || img.src;
       lightbox.dataset.id = currentId;
 
-      if (lbLikeBtn) updateLikeUI(currentId);
-
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      // update UI après ouverture (important en prod)
+      setTimeout(() => updateLikeUI(currentId), 0);
     });
   });
 
-  // ── Bouton like ──────────────────────────────────────────────────────────
-  if (lbLikeBtn) {
-    lbLikeBtn.addEventListener('click', function() {
+  // ─────────────────────────────
+  // EVENT DELEGATION (FIX PROD)
+  // ─────────────────────────────
+  document.addEventListener('click', (e) => {
+
+    // LIKE
+    if (e.target.closest('#lb-like-btn')) {
       if (!currentId) return;
-      var liked = LikesStore.toggle(currentId);
+
+      const liked = LikesStore.toggle(currentId);
       updateLikeUI(currentId);
       animateLike(liked);
-    });
-  }
+    }
 
-  // ── Bouton partager ──────────────────────────────────────────────────────
-  if (lbShareBtn) {
-    lbShareBtn.addEventListener('click', function() {
+    // SHARE
+    if (e.target.closest('#lb-share-btn')) {
       if (!currentId) return;
-      var url   = window.location.origin + '/portfolio/creations/' + currentId;
-      var texte = 'Jette un oeil à cette création sur Perspikative ! ' + url;
+
+      const url = window.location.origin + '/portfolio/creations/' + currentId;
+      const text = 'Jette un oeil à cette création sur Perspikative ! ' + url;
 
       if (navigator.share) {
-        navigator.share({ title: 'Perspikative', text: texte, url: url })
-          .catch(function() {});
+        navigator.share({
+          title: 'Perspikative',
+          text,
+          url
+        }).catch(() => {});
       } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(texte).then(function() {
+        navigator.clipboard.writeText(text).then(() => {
           showShareToast();
         });
       }
-    });
-  }
+    }
 
-  // ── Fermeture ────────────────────────────────────────────────────────────
-  closeBtn.addEventListener('click', function() {
+  });
+
+  // ─────────────────────────────
+  // CLOSE
+  // ─────────────────────────────
+  function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
   });
 
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+      closeLightbox();
     }
   });
+
 });
 
 
