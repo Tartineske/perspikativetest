@@ -437,59 +437,376 @@ observer.observe(document.querySelector('footer'));
 
 
 document.addEventListener('mousemove', (e) => {
+
   const mouseX = (e.clientX - window.innerWidth / 2);
+
   const mouseY = (e.clientY - window.innerHeight / 2);
 
+
+
   // On sélectionne toutes les images de décor
+
   const images = document.querySelectorAll('.p-img');
+
+
 
   images.forEach((img) => {
+
     // On définit la force de l'effet selon la classe ou le z-index
+
     // Plus le chiffre est petit, plus l'image fuit loin
-    let intensity = 0.02; 
-    
+
+    let intensity = 0.02;
+
+   
+
     if (img.classList.contains('pos-1')) intensity = 0.04;
+
     if (img.classList.contains('pos-3')) intensity = 0.006; // Fond lointain
+
     if (img.classList.contains('cat-mascot')) intensity = 0.07; // Premier plan
 
+
+
     // Calcul du mouvement inversé (-)
+
     const x = mouseX * -intensity;
+
     const y = mouseY * -intensity;
 
+
+
     img.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
   });
+
 });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
+
   const images = document.querySelectorAll('.p-img');
-  
+
+ 
+
   // On stocke la rotation initiale de chaque image pour ne pas la perdre
+
   const imgData = Array.from(images).map(img => {
+
     const style = window.getComputedStyle(img);
+
     const matrix = new WebKitCSSMatrix(style.transform);
+
     const angle = Math.round(Math.atan2(matrix.b, matrix.a) * (180/Math.PI));
-    
+
+   
+
     // On définit l'intensité selon le z-index
+
     const z = parseInt(style.zIndex);
+
     let intensity = 0.04;
+
     if (z < 5) intensity = 0.006; // Fond
+
     if (z > 10) intensity = 0.07; // Premier plan
-    
+
+   
+
     return { el: img, rot: angle, speed: intensity };
+
   });
+
+
 
   window.addEventListener('mousemove', (e) => {
+
     const mouseX = (e.clientX - window.innerWidth / 2);
+
     const mouseY = (e.clientY - window.innerHeight / 2);
 
+
+
     imgData.forEach(item => {
+
       // Mouvement opposé (-)
+
       const x = mouseX * -item.speed;
+
       const y = mouseY * -item.speed;
-      
+
+     
+
       item.el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${item.rot}deg)`;
+
+    });
+
+  });
+
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const images = document.querySelectorAll('.p-img');
+
+ 
+
+  // Pré-calcul des intensités pour éviter de lire le DOM à chaque mouvement
+
+  const imgData = Array.from(images).map(img => {
+
+    let intensity = 0.03; // Défaut
+
+   
+
+    // Intensité basée sur ton setup
+
+    if (img.classList.contains('pos-1')) intensity = 0.05;
+
+    if (img.classList.contains('pos-3')) intensity = 0.006;
+
+    if (img.classList.contains('cat-mascot')) intensity = 0.08;
+
+    if (img.classList.contains('pos-8')) intensity = 0.06;
+
+
+
+    return { el: img, speed: intensity };
+
+  });
+
+
+
+  window.addEventListener('mousemove', (e) => {
+
+    // Uniquement sur Desktop (on check la largeur)
+
+    if (window.innerWidth > 768) {
+
+      const mouseX = (e.clientX - window.innerWidth / 2);
+
+      const mouseY = (e.clientY - window.innerHeight / 2);
+
+
+
+      imgData.forEach(item => {
+
+        const x = mouseX * -item.speed;
+
+        const y = mouseY * -item.speed;
+
+        // On utilise translate3d pour la performance GPU
+
+        item.el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+      });
+
+    }
+
+  });
+
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // =========================
+  // 🔹 STORE LIKES
+  // =========================
+  const LikesStore = {
+    getAll() {
+      return JSON.parse(localStorage.getItem('prspk_likes') || '{}');
+    },
+    getLiked() {
+      return JSON.parse(localStorage.getItem('prspk_liked_by_me') || '{}');
+    },
+    getCount(id) {
+      return this.getAll()[id] || 0;
+    },
+    isLiked(id) {
+      return !!this.getLiked()[id];
+    },
+    toggle(id) {
+      const counts = this.getAll();
+      const liked = this.getLiked();
+
+      if (liked[id]) {
+        counts[id] = Math.max(0, (counts[id] || 1) - 1);
+        delete liked[id];
+      } else {
+        counts[id] = (counts[id] || 0) + 1;
+        liked[id] = true;
+      }
+
+      localStorage.setItem('prspk_likes', JSON.stringify(counts));
+      localStorage.setItem('prspk_liked_by_me', JSON.stringify(liked));
+    }
+  };
+
+  // =========================
+  // 🔹 ELEMENTS
+  // =========================
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return; // sécurité
+
+  const thumbs = document.querySelectorAll('.prspk-thumb');
+  const lightboxImg   = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDate  = document.getElementById('lightbox-date');
+  const lightboxDesc  = document.getElementById('lightbox-desc');
+  const closeBtn      = document.getElementById('lightbox-close');
+  const lightboxRight = lightbox.querySelector('.lightbox-right');
+
+  let currentId = null;
+
+  // =========================
+  // 🔹 CREATE BUTTONS
+  // =========================
+  const actionsBar = document.createElement('div');
+  actionsBar.className = 'lightbox-actions';
+
+  // LIKE
+  const likeBtn = document.createElement('button');
+  likeBtn.className = 'lb-btn lb-like-btn';
+  likeBtn.innerHTML = `
+    <img class="lb-icon lb-like-icon" src="/icons/like.svg" alt="Liker">
+    <span class="lb-like-count"></span>
+  `;
+
+  // SHARE
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'lb-btn lb-share-btn';
+  shareBtn.innerHTML = `
+    <img class="lb-icon" src="/icons/share.svg" alt="Partager">
+    <span>Partager</span>
+  `;
+
+  actionsBar.appendChild(likeBtn);
+  actionsBar.appendChild(shareBtn);
+
+  // Injection propre
+  lightboxRight.appendChild(actionsBar);
+
+  // =========================
+  // 🔹 LIKE UI
+  // =========================
+  function updateLikeUI(id) {
+    const liked = LikesStore.isLiked(id);
+    const count = LikesStore.getCount(id);
+
+    const icon = likeBtn.querySelector('.lb-like-icon');
+    const countEl = likeBtn.querySelector('.lb-like-count');
+
+    icon.src = liked ? '/icons/like-active.svg' : '/icons/like.svg';
+    countEl.textContent = count > 0 ? count : '';
+
+    likeBtn.classList.toggle('liked', liked);
+  }
+
+  // =========================
+  // 🔹 LIKE ANIMATION
+  // =========================
+  function burstAnimation(btn) {
+    btn.querySelectorAll('.like-burst').forEach(el => el.remove());
+
+    for (let i = 0; i < 6; i++) {
+      const particle = document.createElement('span');
+      particle.className = 'like-burst';
+
+      const angle = (i / 6) * 360;
+      particle.style.setProperty('--angle', `${angle}deg`);
+
+      btn.appendChild(particle);
+      setTimeout(() => particle.remove(), 600);
+    }
+
+    const icon = btn.querySelector('.lb-like-icon');
+    icon.classList.remove('like-pop');
+    void icon.offsetWidth;
+    icon.classList.add('like-pop');
+  }
+
+  // =========================
+  // 🔹 OPEN LIGHTBOX
+  // =========================
+  thumbs.forEach(img => {
+    img.addEventListener('click', () => {
+      currentId = img.id || img.src;
+
+      lightboxImg.src = img.src;
+      lightboxTitle.textContent = img.dataset.title || '';
+      lightboxDate.textContent  = img.dataset.date || '';
+      lightboxDesc.innerHTML    = img.dataset.desc || '';
+
+      updateLikeUI(currentId);
+
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   });
+
+  // =========================
+  // 🔹 LIKE CLICK
+  // =========================
+  likeBtn.addEventListener('click', () => {
+    if (!currentId) return;
+
+    LikesStore.toggle(currentId);
+    updateLikeUI(currentId);
+
+    if (LikesStore.isLiked(currentId)) {
+      burstAnimation(likeBtn);
+    }
+  });
+
+  // =========================
+  // 🔹 SHARE CLICK
+  // =========================
+  shareBtn.addEventListener('click', () => {
+    if (!currentId) return;
+
+    const url  = `${window.location.origin}${window.location.pathname}#${currentId}`;
+    const text = `Jette un œil à cette création sur Perspikative ! ${url}`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: lightboxTitle.textContent,
+        text,
+        url
+      });
+    } else {
+      navigator.clipboard.writeText(text).then(() => {
+        shareBtn.classList.add('copied');
+        shareBtn.querySelector('span').textContent = 'Lien copié !';
+
+        setTimeout(() => {
+          shareBtn.classList.remove('copied');
+          shareBtn.querySelector('span').textContent = 'Partager';
+        }, 2000);
+      });
+    }
+  });
+
+  // =========================
+  // 🔹 CLOSE LIGHTBOX
+  // =========================
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
 });
 
 // ============================= FIN DU SCRIPT =============================
