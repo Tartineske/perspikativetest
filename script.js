@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  const LAYOUT_DELAY = 1600;
+  const LAYOUT_DELAY = 1000;
   const ANIM_DURATION = 400;
   const STAGGER = 55;
 
