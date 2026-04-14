@@ -637,23 +637,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const imgs = document.querySelectorAll('.layout-3colonnes img');
   if (!imgs.length) return;
 
-  // Délai avant d'activer l'animation : laisse le layout masonry se poser
-  const LAYOUT_DELAY = 1600; // ms
-  const ANIM_DURATION = 400; // ms par image
-  const STAGGER = 55;        // ms entre chaque image dans la même vague
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  const LAYOUT_DELAY = 1600;
+  const ANIM_DURATION = 400;
+  const STAGGER = 55;
 
   // 1) Rendre toutes les images invisibles immédiatement
   imgs.forEach(img => {
     img.style.opacity = '0';
     img.style.transform = 'translateY(10px)';
-    img.style.transition = 'none'; // pas de transition pendant le layout
+    img.style.transition = 'none';
     img.dataset.revealed = 'false';
   });
 
   // 2) Après le délai layout, activer le système de scroll
   setTimeout(() => {
-    let waveIndex = 0; // compteur de vague pour le stagger
-
     const reveal = (img, delay) => {
       img.style.transition = `opacity ${ANIM_DURATION}ms ease ${delay}ms,
                               transform ${ANIM_DURATION}ms ease ${delay}ms`;
@@ -662,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
       img.dataset.revealed = 'true';
     };
 
-    // 3) Révéler d'abord les images déjà dans le viewport au moment de l'activation
+    // 3) Révéler d'abord les images déjà dans le viewport
     let initialIndex = 0;
     imgs.forEach(img => {
       const rect = img.getBoundingClientRect();
@@ -673,17 +672,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 4) Observer les images hors viewport pour le scroll
+    // 4) Observer les images hors viewport — rootMargin à 0 sur mobile pour ne pas rater d'images
     const observer = new IntersectionObserver((entries) => {
-      // Regrouper les entrées qui apparaissent en même temps (même frame de scroll)
       const appearing = entries.filter(e => e.isIntersecting && e.target.dataset.revealed === 'false');
       appearing.forEach((entry, i) => {
         reveal(entry.target, i * STAGGER);
         observer.unobserve(entry.target);
       });
     }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -20px 0px'
+      threshold: 0.05,
+      rootMargin: isMobile ? '0px' : '0px 0px -20px 0px'
     });
 
     imgs.forEach(img => {
