@@ -631,4 +631,68 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ============================= 13. ANIMATION FONDU AU SCROLL - GRILLE MASONRY =============================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const imgs = document.querySelectorAll('.layout-3colonnes img');
+  if (!imgs.length) return;
+
+  // Délai avant d'activer l'animation : laisse le layout masonry se poser
+  const LAYOUT_DELAY = 1600; // ms
+  const ANIM_DURATION = 400; // ms par image
+  const STAGGER = 55;        // ms entre chaque image dans la même vague
+
+  // 1) Rendre toutes les images invisibles immédiatement
+  imgs.forEach(img => {
+    img.style.opacity = '0';
+    img.style.transform = 'translateY(10px)';
+    img.style.transition = 'none'; // pas de transition pendant le layout
+    img.dataset.revealed = 'false';
+  });
+
+  // 2) Après le délai layout, activer le système de scroll
+  setTimeout(() => {
+    let waveIndex = 0; // compteur de vague pour le stagger
+
+    const reveal = (img, delay) => {
+      img.style.transition = `opacity ${ANIM_DURATION}ms ease ${delay}ms,
+                              transform ${ANIM_DURATION}ms ease ${delay}ms`;
+      img.style.opacity = '1';
+      img.style.transform = 'translateY(0)';
+      img.dataset.revealed = 'true';
+    };
+
+    // 3) Révéler d'abord les images déjà dans le viewport au moment de l'activation
+    let initialIndex = 0;
+    imgs.forEach(img => {
+      const rect = img.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        reveal(img, initialIndex * STAGGER);
+        initialIndex++;
+      }
+    });
+
+    // 4) Observer les images hors viewport pour le scroll
+    const observer = new IntersectionObserver((entries) => {
+      // Regrouper les entrées qui apparaissent en même temps (même frame de scroll)
+      const appearing = entries.filter(e => e.isIntersecting && e.target.dataset.revealed === 'false');
+      appearing.forEach((entry, i) => {
+        reveal(entry.target, i * STAGGER);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -20px 0px'
+    });
+
+    imgs.forEach(img => {
+      if (img.dataset.revealed === 'false') {
+        observer.observe(img);
+      }
+    });
+
+  }, LAYOUT_DELAY);
+});
+
 // ============================= FIN DU SCRIPT =============================
