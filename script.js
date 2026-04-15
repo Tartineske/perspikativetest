@@ -264,39 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 3. ANIMATION DES IMAGES DE CRÉATIONS =============================
-
-document.addEventListener('DOMContentLoaded', () => {
-  const images = document.querySelectorAll('#creations .masonry img');
-  
-  if (images.length === 0) return; // Pas d'images sur cette page
-
-  images.forEach((img, index) => {
-    // Ajouter un délai progressif pour l'animation
-    img.style.animationDelay = `${index * 0.1}s`;
-    
-    // Gérer l'apparition quand l'image est chargée
-    const showImage = () => {
-      img.classList.add('loaded');
-      img.style.opacity = '1';
-    };
-
-    if (img.complete) {
-      // Image déjà chargée
-      showImage();
-    } else {
-      // Attendre le chargement
-      img.addEventListener('load', showImage);
-      img.addEventListener('error', () => {
-        console.warn(`Image non chargée : ${img.src}`);
-      });
-    }
-  });
-});
-
-
-
-// ============================= 4. BARRE DE NAVIGATION MOBILE - MASQUAGE AU SCROLL =============================
+// ============================= 3. BARRE DE NAVIGATION MOBILE - MASQUAGE AU SCROLL =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const mobileNav = document.querySelector('.mobile-nav');
@@ -342,14 +310,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 5. ANTI CLIQUE GAUCHE =============================
+// ============================= 4. ANTI CLIQUE GAUCHE =============================
 
 // Bloque clic droit partout
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 
 
-// ============================= 6. OUVRIR LES HASHS DE LA RECHERCHE POUR LES LIGHTBOXS =============================
+// ============================= 5. OUVRIR LES HASHS DE LA RECHERCHE POUR LES LIGHTBOXS =============================
 
 // Ouvrir automatiquement la lightbox si un hash est présent
 window.addEventListener('DOMContentLoaded', () => {
@@ -399,7 +367,9 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// ============================= 7. GESTION DU MODE SOMBRE =============================
+
+
+// ============================= 6. GESTION DU MODE SOMBRE =============================
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
@@ -427,7 +397,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ============================= 8. FAQ DÉROULANTE =============================
+
+
+// ============================= 7. FAQ DÉROULANTE =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const faqQuestions = document.querySelectorAll('.faq-question');
@@ -460,7 +432,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ============================= 9. LOADER PERSPIKATIVE =============================
+
+
+// ============================= 8. LOADER PERSPIKATIVE =============================
 
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("site-loader");
@@ -476,7 +450,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ============================= 10. BOUTON FLOTTANT DE RECHERCHE - MASQUAGE AU SCROLL =============================
+
+
+// ============================= 9. BOUTON FLOTTANT DE RECHERCHE - MASQUAGE AU SCROLL =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchBtn = document.querySelector('.search-float-btn');
@@ -520,7 +496,9 @@ document.addEventListener('DOMContentLoaded', () => {
   handleScroll();
 });
 
-// ============================= 11. ANIMATION D'APPARITION DU FOOTER =============================
+
+
+// ============================= 10. ANIMATION D'APPARITION DU FOOTER =============================
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -535,7 +513,7 @@ observer.observe(document.querySelector('footer'));
 
 
 
-// ============================= 12. PARALLAX SUR LES IMAGES DE L'ACCUEIL =============================
+// ============================= 11. PARALLAX SUR LES IMAGES DE L'ACCUEIL =============================
 document.addEventListener('mousemove', (e) => {
   const mouseX = (e.clientX - window.innerWidth / 2);
   const mouseY = (e.clientY - window.innerHeight / 2);
@@ -631,7 +609,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ============================= 13. ANIMATION FONDU AU SCROLL - GRILLE MASONRY =============================
+
+
+// ============================= 12. ANIMATION FONDU AU SCROLL - GRILLE MASONRY =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const imgs = document.querySelectorAll('.layout-3colonnes img');
@@ -691,6 +671,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   }, LAYOUT_DELAY);
+});
+
+
+
+// =============================
+// ANIMATION MOBILE UNIQUEMENT - GRILLE 2 COLONNES
+// =============================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ❌ Stop si desktop
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  const cols = document.querySelectorAll('.layout-2colonnes .col');
+  if (!cols.length) return;
+
+  const ANIM_DURATION = 450;
+  const STAGGER = 60;
+
+  // 1) Etat initial
+  cols.forEach(col => {
+    const imgs = col.querySelectorAll('img');
+
+    imgs.forEach(img => {
+      img.style.opacity = '0';
+      img.style.transform = 'translateY(14px)';
+      img.style.transition = 'none';
+      img.dataset.revealed = 'false';
+    });
+  });
+
+  // 2) Fonction reveal
+  const reveal = (img, delay = 0) => {
+    if (img.dataset.revealed === 'true') return;
+
+    img.style.transition = `
+      opacity ${ANIM_DURATION}ms ease ${delay}ms,
+      transform ${ANIM_DURATION}ms ease ${delay}ms
+    `;
+    img.style.opacity = '1';
+    img.style.transform = 'translateY(0)';
+    img.dataset.revealed = 'true';
+  };
+
+  // 3) Observer mobile (TRÈS permissif)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const img = entry.target;
+      const col = img.closest('.col');
+      const imgs = Array.from(col.querySelectorAll('img'));
+
+      // index dans la colonne → cascade naturelle
+      const index = imgs.indexOf(img);
+
+      reveal(img, index * STAGGER * 0.4);
+
+      observer.unobserve(img);
+    });
+  }, {
+    threshold: 0.01,
+    rootMargin: '0px 0px 150px 0px' // TRÈS important mobile
+  });
+
+  // 4) Observe toutes les images
+  cols.forEach(col => {
+    const imgs = col.querySelectorAll('img');
+    imgs.forEach(img => observer.observe(img));
+  });
+
 });
 
 // ============================= FIN DU SCRIPT =============================
