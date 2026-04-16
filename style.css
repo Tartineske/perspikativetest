@@ -48,6 +48,12 @@ body {
   color: var(--text);
   cursor: cursor, auto;
   scrollbar-gutter: stable;
+  font-family: 'Rubik', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 .system-font {
@@ -70,7 +76,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 /* --- Désactive les halos bleus au toucher sur les écrans tactiles --- */
@@ -334,10 +340,13 @@ header h1 {
   z-index: 10001;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2),
               inset 0 0 13px rgba(255, 255, 255, 0.2);
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(-10px);
   opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.25s; /* Ajout d'une transition pour visibility */
+  visibility: hidden;    /* Empêche le focus et cache l'élément proprement */
+  pointer-events: none;  /* Les clics passent à travers l'élément */
 }
 
 .blur-overlay {
@@ -412,8 +421,9 @@ body.menu-open .blur-overlay {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease; /* plus doux */
+  visibility: visible;
+  pointer-events: auto; /* Rend le menu cliquable à nouveau */
 }
-
 
 /* --- Mobile nav bar --- */
 .mobile-nav {
@@ -3821,4 +3831,72 @@ body {
 .share-toast.visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+
+
+
+
+
+
+/* ============================= SOUS-MENU MOBILE ============================= */
+
+/* Conteneur du lien parent pour gérer le débordement */
+.mobile-menu ul li.has-submenu {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style de base du sous-menu (Caché) */
+.submenu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Indentation visuelle douce avec une petite ligne repère */
+  padding-left: 4px;
+  margin-left: 0px;
+  margin-top: 0;
+  
+  /* Transition fluide (ease-out pour un effet naturel) */
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apparition au survol (desktop) OU au focus/clic (mobile) */
+.mobile-menu ul li.has-submenu:hover .submenu,
+.mobile-menu ul li.has-submenu:focus-within .submenu {
+  max-height: 150px; /* Doit être supérieur à la hauteur totale des sous-liens */
+  opacity: 1;
+  margin-top: 8px; /* Espace entre COMMUNAUTÉ et le premier sous-lien */
+}
+
+/* Surcouche stylistique pour les liens du sous-menu (intégration à la DA) */
+.mobile-menu ul .submenu li a {
+  font-size: 0.9rem; /* Légèrement plus petit pour la hiérarchie */
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  
+  /* On adoucit l'effet glassmorphism par rapport aux boutons principaux */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px) saturate(140%);
+  -webkit-backdrop-filter: blur(15px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustement de l'effet pseudo-element du CSS existant pour le submenu */
+.mobile-menu ul .submenu li a::before {
+  background-color: transparent;
+}
+
+/* Hover des sous-liens */
+.mobile-menu ul .submenu li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transform: translateX(3px); /* Petit effet de glissement vers la droite au survol */
 }
