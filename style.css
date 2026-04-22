@@ -48,12 +48,6 @@ body {
   color: var(--text);
   cursor: cursor, auto;
   scrollbar-gutter: stable;
-  font-family: 'Rubik', Arial, sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 .system-font {
@@ -76,7 +70,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.6s ease, color 0.6s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* --- Désactive les halos bleus au toucher sur les écrans tactiles --- */
@@ -340,13 +334,10 @@ header h1 {
   z-index: 10001;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2),
               inset 0 0 13px rgba(255, 255, 255, 0.2);
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(-10px);
   opacity: 0;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.25s; /* Ajout d'une transition pour visibility */
-  visibility: hidden;    /* Empêche le focus et cache l'élément proprement */
-  pointer-events: none;  /* Les clics passent à travers l'élément */
 }
 
 .blur-overlay {
@@ -421,9 +412,8 @@ body.menu-open .blur-overlay {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease; /* plus doux */
-  visibility: visible;
-  pointer-events: auto; /* Rend le menu cliquable à nouveau */
 }
+
 
 /* --- Mobile nav bar --- */
 .mobile-nav {
@@ -619,7 +609,6 @@ body.home {
 
 
 /* ------ Section CTA ------ */
-
 .cta-section {
   width: 100%;
   display: flex;
@@ -1414,10 +1403,10 @@ main.creations h2 {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  background: var(--search-btn-bg);
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1429,7 +1418,6 @@ main.creations h2 {
   box-shadow:
     0 4px 18px rgba(0 0 0 / 0.12),
     inset 0 0 10px rgba(255 255 255 / 0.18);     
-  transform: translateY(0) scale(1);
 }
 
 .search-float-btn img {
@@ -1441,10 +1429,12 @@ main.creations h2 {
 }
 
 .search-float-btn:hover {
-  transform: translateY(0) scale(1.06);
-  box-shadow:
-    0 6px 20px rgba(0 0 0 / 0.18),
-    inset 0 0 10px rgba(255 255 255 / 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1.8px);
+  outline: none;
+  box-shadow: inset 0 0 9px rgba(255, 255, 255, 0.22),
+    0 7px 17px rgba(0, 0, 0, 0.1);
 }
 
 /* Masquage avec opacity et translation pour un effet glissant */
@@ -3832,4 +3822,3 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
-
