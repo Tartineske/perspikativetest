@@ -1,6 +1,7 @@
 # Perspikative
 ✏️ i make art. welcome to my world
-
-Official website of Perspikative : https://perspikative.com
+📧 perspikative@gmail.com
+🎨 check my website for more adventures
+https://perspikative.com
 
 You can also visit linktr.ee/perspikative for my links
