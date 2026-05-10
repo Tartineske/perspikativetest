@@ -1,6 +1,4 @@
-const CACHE_NAME = 'perspikative-v2';
-
-// 1. Liste ici tes fichiers CRITIQUES (ceux nécessaires pour l'accueil)
+const CACHE_NAME = 'perspikative-v3'; // On change de version pour forcer la mise à jour
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -8,51 +6,63 @@ const PRECACHE_ASSETS = [
   '/pics/meta/logo-192.png',
   '/pics/meta/logo-512.png',
   '/portfolio.html',
+  '/contact.html',
   '/style.css',
   '/script.js',
+  '/faq.html',
+  '/actus.html',
+  '/rechercher.html',
+  '/mentions-legales.html',
+  '/politique-de-confidentialite.html',
+  '/position-ia.html',
+  '/brand-guidelines.html',
+  '/logo.svg',
+  '/art-challenge.html',
+  '/404.html',
+  '/portfolio/creations.html',
+  '/portfolio/projets.html',
+  '/portfolio/illustrations.html',
 ];
 
-// Installation : Mise en cache des fichiers critiques
+// Installation : On met tout en cache immédiatement
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(PRECACHE_ASSETS);
-    }).then(() => self.skipWaiting())
+    })
   );
+  self.skipWaiting();
 });
 
-// Activation : Nettoyage des anciens caches
+// Activation : On nettoie les vieux caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
-        })
-      );
+    caches.keys().then((keys) => {
+      return Promise.all(keys.map((key) => {
+        if (key !== CACHE_NAME) return caches.delete(key);
+      }));
     })
   );
 });
 
-// Stratégie : Réseau en priorité, sinon Cache (avec mise en cache automatique)
+// STRATÉGIE CORRIGÉE : Cache d'abord, puis réseau
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Si la réponse est valide, on en fait une copie dans le cache
-        if (response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
-        }
-        return response;
-      })
-      .catch(() => {
-        // Si le réseau échoue (hors ligne), on cherche dans le cache
-        return caches.match(event.request);
-      })
+    caches.match(event.request).then((cachedResponse) => {
+      // Si le fichier est dans le cache, on le sert immédiatement
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      // Sinon, on va le chercher sur internet et on le met en cache pour la prochaine fois
+      return fetch(event.request).then((networkResponse) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      }).catch(() => {
+        // Optionnel : tu pourrais renvoyer une page offline.html ici
+      });
+    })
   );
 });
