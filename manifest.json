@@ -8,22 +8,29 @@
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "lang": "fr-FR",
+  "categories": ["portfolio", "art", "Perspikative", "graphisme", "design", "créativité", "création", "illustration", "projet", "artiste", "œuvres"],
   "icons": [
     {
-      "src": "/pics/meta/logo-1000.png",
-      "sizes": "1000x1000",
+      "src": "/pics/meta/logo-192.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pics/meta/logo-1500.png",
-      "sizes": "1500x1500",
+      "src": "/pics/meta/logo-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pics/meta/logo-2000.png",
-      "sizes": "2000x2000",
+      "src": "/pics/meta/logo-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/pics/meta/logo-maskable-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
