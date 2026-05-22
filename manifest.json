@@ -8,7 +8,7 @@
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "lang": "fr-FR",
-  "categories": ["portfolio", "art", "Perspikative", "graphisme", "design", "créativité", "création", "illustration", "projet", "artiste", "œuvres"],
+  "categories": ["portfolio", "art", "design", "Perspikative"],
   "icons": [
     {
       "src": "/pics/meta/logo-192.png",
