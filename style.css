@@ -3776,7 +3776,9 @@ body {
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: rgba(30, 30, 40, 0.92);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   color: #fff;
   padding: 10px 22px;
   border-radius: 20px;

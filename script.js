@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lbLikeBtn     = document.getElementById('lb-like-btn');
   const lbLikeIcon    = document.getElementById('lb-like-icon');
   const lbShareBtn    = document.getElementById('lb-share-btn');
+  const lbCopyBtn     = document.getElementById('lb-copy-btn');
 
   if (!lightboxImg || !lightboxTitle || !lightboxDesc || !closeBtn) {
     console.warn('Lightbox : certains éléments sont manquants.');
@@ -193,13 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Résolution de la source : image desktop correspondante ───────────────
-  // Pour une image mobile (avec ou sans data-title), retrouve l'image
-  // de référence dans la layout-3colonnes via l'id ou le src.
   function resolveSource(img) {
-    // Cas 1 : l'image a ses propres data-title → elle est sa propre source
     if (img.dataset.title) return img;
 
-    // Cas 2 : elle a un id → on cherche l'équivalent dans la version desktop
     if (img.id) {
       var desktop = document.querySelector(
         '.layout-3colonnes .prspk-thumb#' + CSS.escape(img.id)
@@ -207,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (desktop) return desktop;
     }
 
-    // Cas 3 : pas d'id mais un src → on cherche par src dans la version desktop
     var srcPath = img.getAttribute('src');
     if (srcPath) {
       var match = document.querySelector(
@@ -271,16 +267,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Bouton partager (Version Corrigée) ───────────────────────────────────
+  // ── Bouton copier le lien ────────────────────────────────────────────────
+  if (lbCopyBtn) {
+    lbCopyBtn.addEventListener('click', function() {
+      if (!currentId) return;
+
+      var source = document.getElementById(currentId);
+      var copyUrl;
+
+      if (source && source.dataset.page) {
+        copyUrl = window.location.origin + source.dataset.page;
+      } else {
+        copyUrl = window.location.origin + '/portfolio/creations/' + currentId;
+      }
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(copyUrl).then(function() {
+          showShareToast();
+        });
+      }
+    });
+  }
+
+  // ── Bouton partager ──────────────────────────────────────────────────────
   if (lbShareBtn) {
     lbShareBtn.addEventListener('click', function() {
       if (!currentId) return;
 
-      // On récupère l'image source pour voir s'il y a une page dédiée
       const source = document.getElementById(currentId);
       let shareUrl = window.location.origin + '/portfolio/creations#' + currentId;
 
-      // Si l'image a un attribut data-page (ex: /portfolio/creations/kayous-diner)
       if (source && source.dataset.page) {
         shareUrl = window.location.origin + source.dataset.page;
       }
@@ -288,14 +304,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const textePartage = 'Jette un œil à cette création sur Perspikative !';
 
       if (navigator.share) {
-        // En séparant texte et url, WhatsApp ne doublera plus le lien
         navigator.share({ 
           title: 'Perspikative', 
           text: textePartage, 
           url: shareUrl 
         }).catch(function() {});
       } else if (navigator.clipboard) {
-        // Pour PC : on copie le texte + l'espace + l'URL
         navigator.clipboard.writeText(textePartage + ' ' + shareUrl).then(function() {
           showShareToast();
         });
