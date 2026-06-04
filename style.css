@@ -3678,7 +3678,7 @@ body {
 
 .lightbox-actions {
   display: flex;
-  gap: 10px;
+  gap: 7px;
   justify-content: flex-end;
   padding-top: 16px;
 }
@@ -3789,6 +3789,11 @@ body {
   transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
   z-index: 9999;
+}
+
+.share-toast.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
 }
 
 .share-toast.visible {
