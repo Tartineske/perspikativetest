@@ -118,7 +118,7 @@
     listEl.innerHTML = '';
 
     if (allComments.length === 0) {
-      listEl.innerHTML = '<p class="lb-comments-empty">Sois le premier à réagir&nbsp;✨</p>';
+      listEl.innerHTML = '<p class="lb-comments-empty">Sois le premier à réagir !</p>';
       if (moreBtn) moreBtn.style.display = 'none';
       updateCountLabel(0);
       return;
