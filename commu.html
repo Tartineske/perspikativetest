@@ -6,17 +6,22 @@ permalink: /commu
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Communauté</title>
+
+  <meta name="description" content="Perspikative, c'est bien plus qu'un portfolio. Découvre la Perspikateam, le Beta Program et bien plus encore !" />
+  <meta name="robots" content="index, follow">
+
   <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#344f4a" media="(prefers-color-scheme: dark)">
-  
+
   <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
 
-  <link rel="stylesheet" href="/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
   
@@ -162,23 +167,26 @@ permalink: /commu
     }
     .btn-ghost:hover { transform: translateY(-1px); background: rgba(255,255,255,0.11); }
     .btn-whatsapp {
-      background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; font-weight: 700;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      font-weight: 700;
       box-shadow: 0 6px 28px rgba(37,211,102,0.32), var(--glass-inset);
     }
     .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(37,211,102,0.48), var(--glass-inset); }
     .btn-linktree {
-      background: linear-gradient(135deg, #43E97B, #38f9d7); color: #081a10;
+      background: linear-gradient(135deg, #43E97B, #38f9d7);
+      color: #000000;
       font-weight: 700;
-      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.08), var(--glass-inset);
-      font-size: 1rem;
-      padding: 16px 40px;
+      letter-spacing: -0.03em;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), var(--glass-inset);
+      font-size: 1.16rem;
+      padding: 10px 24px;
     }
-    .btn-linktree:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2), var(--glass-inset); }
+    .btn-linktree:hover { transform: translateY(-1px); box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16), var(--glass-inset); }
 
     /* ─── GLASS CARD ─────────────────────────────────────── */
     .glass-card {
       background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
       border-radius: var(--radius-lg);
       backdrop-filter: blur(12px);
       box-shadow: var(--glass-inset-strong), 0 4px 16px rgba(0,0,0,0.06);
@@ -191,7 +199,7 @@ permalink: /commu
     }
 
     /* ─── SECTIONS ───────────────────────────────────────── */
-    section { position: relative; z-index: 1; padding: 90px 24px; }
+    section { position: relative; z-index: 1; padding: 80px 24px; }
     .container { max-width: 1080px; margin: 0 auto; }
 
     .section-eyebrow {
@@ -205,6 +213,7 @@ permalink: /commu
       color: var(--teal-pale);
       margin-bottom: 14px;
     }
+
     .section-eyebrow::before {
       content: '';
       display: block;
@@ -213,18 +222,23 @@ permalink: /commu
       height: 2.6px;
       background: white;
     }
+
     .section-title {
       font-weight: 900;
-      font-size: clamp(2.6rem, 5.8vw, 4.2rem);
+      font-size: clamp(2.6rem, 6vw, 4.3rem);
       letter-spacing: -0.04em;
-      line-height: 0.9;
-      margin-bottom: 18px;
+      line-height: 0.88;
+      margin: 40px 0px 18px 0px;
       color: rgb(255, 255, 255);
     }
+
     .section-title .grad {
       background: linear-gradient(135deg, var(--green-vivid) 0%, var(--teal) 55%, var(--blue-accent) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+
     .section-desc {
       color: var(--text-muted);
       font-size: 1.1rem;
@@ -243,20 +257,16 @@ permalink: /commu
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── PERSPIKATEAM ───────────────────────────────────── */
-    .team-section { padding-top: 50px; }
+    .team-section { padding-top: 60px; }
     .team-header { gap: 48px; align-items: end; margin-bottom: 40px; }
     .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 20px; }
     .team-card { padding: 20px 20px 30px 20px; position: relative; }
-    .team-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg);
-      background: linear-gradient(140deg, rgba(255,255,255,0.055) 0%, transparent 55%);
-      pointer-events: none;
-    }
+
     .team-card-icon {
       width: 50px;
       height: 50px;
       border: 2.4px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
+      border-radius: var(--radius);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -275,22 +285,21 @@ permalink: /commu
       display: flex;
       align-items: center;
       gap: 20px;
-      background: linear-gradient(135deg, rgba(46,204,113,0.07) 0%, rgba(28,197,160,0.05) 50%, rgba(77,184,255,0.05) 100%);
-      border: 1px solid rgba(46,204,113,0.18);
+      background: var(--glass-bg);
       box-shadow: var(--glass-inset), 0 4px 20px rgba(0,0,0,0.14);
       border-radius: var(--radius-lg);
     }
     .team-notice-icon { font-size: 1.8rem; flex-shrink: 0; }
     .team-notice-text { flex: 1; }
     .team-notice-text h4 { font-weight: 700; color: rgb(255, 255, 255); margin: 0px; font-size: 1.2rem; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .team-notice-text p { color: var(--text-muted); font-size: 1rem; font-weight: 300; letter-spacing: -0.005em; line-height: 1; }
+    .team-notice-text p { color: var(--text-muted); font-size: 1rem; font-weight: 300; margin: 0px; letter-spacing: 0em; line-height: 1; }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow: inset 0 0 6px 0 rgba(255,255,255,0.2);
       border-radius: 999px;
       padding: 6px 14px;
       font-size: 0.7rem;
@@ -310,8 +319,8 @@ permalink: /commu
     @keyframes blinkDot { 0%,100%{opacity:1} 50%{opacity:0} }
 
     /* ─── BETA PROGRAM ───────────────────────────────────── */
-    .beta-section { padding-bottom: 80px; }
-    .beta-main-card { padding: 60px 56px; position: relative; overflow: hidden; }
+    .beta-section { padding-bottom: 60px; }
+    .beta-main-card { padding: 46px 60px; position: relative; overflow: hidden; }
     .beta-main-card::after {
       content: 'β';
       position: absolute;
@@ -331,22 +340,27 @@ permalink: /commu
     .beta-perk {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 18px 20px;
+      gap: 12px;
+      padding: 16px 16px;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      box-shadow: inset 0 0 8px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 0 8px 0 rgba(255, 255, 255, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
     }
-    .beta-perk:hover { box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.3), 0 4px 16px rgba(0, 0, 0, 0.1); }
+    .beta-perk:hover { background: rgba(255, 255, 255, 0.08); box-shadow: inset 0 0 10px 0 rgba(255, 255, 255, 0.25), 0 4px 16px rgba(0, 0, 0, 0.1); }
     .beta-perk-icon {
-      width: 38px; height: 38px; border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       background: linear-gradient(135deg, rgba(46,204,113,0.2), rgba(28,197,160,0.14));
       border: 1px solid rgba(46,204,113,0.18);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
     .beta-perk-text h4 { font-weight: 700; margin: 0px; font-size: 1.2rem; letter-spacing: -0.01em; color: var(--text-main); }
     .beta-perk-text p { color: var(--text-muted); margin: 10px 0px; font-size: 1.05rem; font-weight: 300; line-height: 1; letter-spacing: -0.005em; }
@@ -356,7 +370,9 @@ permalink: /commu
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(46,204,113,0.10);
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       box-shadow: inset 0 0 8px 0 rgba(255,255,255,0.15), 0 4px 20px rgba(0,0,0,0.12);
       border-radius: 999px;
       padding: 5px 14px;
@@ -369,10 +385,10 @@ permalink: /commu
     }
     .beta-cta-col h3 {
       font-weight: 900;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-size: clamp(2rem, 3.4vw, 2.6rem);
       letter-spacing: -0.04em;
       line-height: 0.9;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       color: rgb(255, 255, 255);
     }
     .beta-cta-col h3 .grad {
@@ -381,22 +397,26 @@ permalink: /commu
     }
     .beta-cta-col > p {
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 300;
       letter-spacing: -0.01em;
-      line-height: 1.1;
+      line-height: 1.05;
       max-width: 300px;
       margin-bottom: 36px;
     }
     .beta-places {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.78rem; color: var(--text-muted); font-weight: 300;
-      margin-top: 18px; letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-top: 18px;
     }
     .beta-places strong { color: var(--green-soft); font-weight: 600; }
 
     /* ─── WHATSAPP ───────────────────────────────────────── */
-    .whatsapp-section { padding: 0 24px 90px; }
+    .whatsapp-section { padding-top: 60px; }
     .wa-card {
       padding: 52px 56px;
       position: relative;
@@ -404,18 +424,15 @@ permalink: /commu
       box-shadow: var(--glass-inset-strong), 0 8px 32px rgba(0,0,0,0.15);
     }
 
-    .wa-card::before {
-      content: ''; position: absolute;
-      width: 300px; height: 300px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%);
-      right: -60px; top: -80px; pointer-events: none;
-    }
-
     .wa-layout { display: grid; grid-template-columns: auto 1fr auto; gap: 36px; align-items: center; }
     .wa-icon-wrap {
-      width: 80px; height: 80px; border-radius: 22px;
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
       background: linear-gradient(135deg, #25D366, #128C7E);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 2.2rem;
       box-shadow: 0 10px 30px rgba(37,211,102,0.30), inset 0 1px 0 rgba(255,255,255,0.25);
       flex-shrink: 0;
@@ -446,8 +463,10 @@ permalink: /commu
 
     .wa-stats { display: flex; gap: 16px; }
     .wa-stat {
-      text-align: center; padding: 14px 20px;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+      text-align: center;
+      padding: 14px 20px;
+      background: var(--glass-bg);
+      border: 1px solid rgba(255,255,255,0.10);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
       border-radius: 14px;
     }
@@ -467,6 +486,7 @@ permalink: /commu
       .hero p { font-size: clamp(1.1rem, 2vw, 1.1rem); max-width: 320px; }
       .hero-actions { gap: 10px; }
       .nav-links { display: none; }
+      .section-title { font-size: clamp(2.6rem, 6vw, 4.3rem); margin: 22px 0px 16px 0px; }
       .team-header { grid-template-columns: 1fr; gap: 28px; }
       .team-cta-col { align-items: flex-start; }
       .team-cta-col p { text-align: left; }
@@ -555,7 +575,147 @@ permalink: /commu
 <section class="hero">
   <div class="hero-badge"><span class="dot"></span>Espace Communauté</div>
   <h1>SHAPE<br>WHAT'S NEXT.</h1>
-  <p>Perspikative, c'est pas juste un portfolio — c'est un projet vivant. Tu as trouvé la bonne page si tu fais la chasse au trésor.</p>
+  <p>Perspikative, c'est pas juste un portfolio — c'est un projet vivant. Découvre la team qui l'anime et les espaces pour vivre l'évolution de l'intérieur.</p>
+
+  <div class="hero-actions">
+    <a href="#perspikateam" class="btn btn-primary">
+      La Perspikateam 
+      <img src="icons/retour.svg" alt="" class="icon">
+    </a>
+    <a href="#beta" class="btn btn-ghost">Beta Program</a>
+    <a href="#whatsapp" class="btn btn-ghost">Canal WhatsApp</a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PERSPIKATEAM -->
+<section class="team-section" id="perspikateam">
+  <div class="container">
+    <div class="team-header reveal">
+      <div>
+        <div class="section-eyebrow">Siège social</div>
+        <h2 class="section-title">La <span class="grad">Perspikateam</span></h2>
+        <p class="section-desc">Un cercle restreint de personnes impliquées dans l'administration de Perspikative. Collaborateurs, créatifs, esprits curieux — ils aident au contenu posté sur Perspikative.</p>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="glass-card team-card reveal" style="transition-delay:0.05s">
+        <img src="icons/projets.svg" alt="Icône Projets" class="team-card-icon">
+        <h3>Créatifs & Artistes</h3>
+        <p>Ils font des retours sur les dessins de Perspikative. Ils donnent de nouvelles idées pour les créations suivantes et m'aident à m'améliorer.</p>
+      </div>
+      <div class="glass-card team-card reveal" style="transition-delay:0.1s">
+        <img src="icons/edit.svg" alt="Icône Développement" class="team-card-icon">
+        <h3>Rédacteurs & Builders</h3>
+        <p>Ils font des retours sur le contenu posté par Perspikative , testent les prototypes et font tourner la machine technique.</p>
+      </div>
+      <div class="glass-card team-card reveal" style="transition-delay:0.15s">
+        <img src="icons/explore.svg" alt="Icône Explorer" class="team-card-icon">
+        <h3>Stratèges & Curateurs</h3>
+        <p>Ils orientent les décisions de contenu, la direction éditoriale et la vision à long terme du projet.</p>
+      </div>
+    </div>
+
+    <div class="team-notice reveal" style="transition-delay:0.2s">
+      <img src="icons/confidentialite.svg" alt="Icône Cadenas" class="team-card-icon">
+      <div class="team-notice-text">
+        <h4>Recrutement fermé</h4>
+        <p>A l'heure actuelle, aucune nouvelle candidature n'est acceptée — tout passe par invitation directe.</p>
+      </div>
+      <div class="status-pill"><span class="blink"></span>En activité</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BETA PROGRAM -->
+<section class="beta-section" id="beta">
+  <div class="container">
+    <div style="margin-bottom:48px" class="reveal">
+      <div class="section-eyebrow">Programme officiel</div>
+      <h2 class="section-title">Perspikative<br><span class="grad">Beta Program</span></h2>
+      <p class="section-desc">Accès anticipé aux nouvelles fonctionnalités du site avant tout le monde. Tu testes, tu donnes ton avis, et tu contribues au futur de Perspikative.</p>
+    </div>
+
+    <div class="glass-card beta-main-card reveal">
+      <div class="beta-layout">
+        <!-- Perks -->
+        <div class="beta-perks">
+          <div class="beta-perk">
+            <img src="icons/rocket.svg" alt="Icône Fusée" class="team-card-icon">
+            <div class="beta-perk-text">
+              <h4>Accès anticipé</h4>
+              <p>Tu es parmi les premiers à voir les nouvelles pages, fonctionnalités, articles et bien plus avant leur mise en ligne.</p>
+            </div>
+          </div>
+          <div class="beta-perk">
+            <img src="icons/forum.svg" alt="Icône Feedback" class="team-card-icon">
+            <div class="beta-perk-text">
+              <h4>Feedback direct</h4>
+              <p>Tes retours sont lus soigneusement et pris en compte. Toutes tes contributions comptent et idées sont précieuses.</p>
+            </div>
+          </div>
+          <div class="beta-perk">
+            <img src="icons/crown.svg" alt="Icône Exclusivité" class="team-card-icon">
+            <div class="beta-perk-text">
+              <h4>Contenu exclusif</h4>
+              <p>Certaines expériences restent réservées aux membres Beta. Un accès que les autres n'auront pas.</p>
+            </div>
+          </div>
+          <div class="beta-perk">
+            <img src="icons/perspikateam.svg" alt="Icône Perspikateam" class="team-card-icon">
+            <div class="beta-perk-text">
+              <h4>Porte vers la Perspikateam</h4>
+              <p>Les membres du programme les plus actifs peuvent être invités à rejoindre la Perspikateam sur des projets futurs.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA col -->
+        <div class="beta-cta-col">
+          <div class="beta-cta-badge">✦ Inscriptions ouvertes</div>
+          <h3>Rejoins la<br><span class="grad">prochaine vague</span></h3>
+          <p>Places disponibles pour les testeurs de la prochaine session. 2 formulaires à compléter et t'es dedans !</p>
+          <a href="https://tr.ee/M2KOck8xu5" target="_blank" rel="noopener" class="btn btn-linktree">
+            S'inscrire via Linktree
+          </a>
+          <div class="beta-places">
+            <span>🟢</span>
+            <span>Places <strong>limitées</strong> · Vague en cours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WHATSAPP -->
+<section class="whatsapp-section" id="whatsapp">
+  <div class="container">
+    <div style="margin-bottom:34px" class="reveal">
+      <div class="section-eyebrow">Canal officiel</div>
+      <h2 class="section-title">La <span class="grad">communauté</span><br>en direct</h2>
+    </div>
+
+    <div class="glass-card wa-card reveal">
+      <div class="wa-layout">
+        <img src="icons/whatsapp.svg" alt="Icône WhatsApp" class="team-card-icon">
+        <div class="wa-text">
+          <h3>Chaîne <span class="wa-grad">WhatsApp</span><br>Perspikative</h3>
+          <p>Les coulisses en temps réel. Nouveaux posts, infos exclusives, FAQ, concours... et tout ce qui se passe dans l'univers Perspikative, directement dans ta poche. Une chaîne pour les plus connectés et ne rien manquer.</p>
+        </div>
+        </div>
+        <a href="https://whatsapp.com/channel/perspikative" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          Rejoindre le canal 📲
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
   <footer>
@@ -580,6 +740,7 @@ permalink: /commu
     <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
     <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
     <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p><a href="/help-center" class="footer-link">Centre d'aide</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
     <p><a href="/brand-guidelines" class="footer-link">Brand guidelines</a></p>
   </footer>
