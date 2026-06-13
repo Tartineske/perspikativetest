@@ -4119,7 +4119,7 @@ body {
 .lb-comment-body {
   flex: 1;
   background: rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
+  border-radius: 17px;
   padding: 8px 12px;
   position: relative;
   box-shadow:
@@ -4158,28 +4158,29 @@ body {
 }
 
 .lb-comment-delete {
-  position: absolute;
-  top: 7px;
-  right: 8px;
   background: none;
   border: none;
+  padding: 4px;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.18s ease;
-  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 80, 80, 0.75);
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
-.lb-comment-body:hover .lb-comment-delete {
-  opacity: 1;
+.lb-comment-delete img {
+  width: 16px;
+  height: 16px;
+  filter: invert(27%) sepia(90%) saturate(600%) hue-rotate(330deg) brightness(95%);
+  /* → rouge ~#d63031 */
+  transition: filter 0.2s, transform 0.15s;
 }
 
-.lb-comment-delete svg {
-  width: 13px;
-  height: 13px;
+.lb-comment-delete:hover img {
+  filter: invert(15%) sepia(100%) saturate(700%) hue-rotate(340deg) brightness(85%);
+  /* → rouge plus foncé au hover */
+  transform: scale(1.15);
 }
 
 /* ── Bouton Afficher plus ───────────────────────────────────────────────── */
