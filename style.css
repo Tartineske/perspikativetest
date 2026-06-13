@@ -4158,26 +4158,29 @@ body {
 }
 
 .lb-comment-delete {
+  position: absolute;
+  top: 7px;
+  right: 8px;
   background: none;
   border: none;
-  padding: 4px;
   cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.18s ease;
+  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  transition: background 0.2s;
+  color: rgb(255, 255, 255);
 }
-
+ 
+.lb-comment-body:hover .lb-comment-delete {
+  opacity: 1;
+  color: rgba(255, 80, 80, 0.75);
+}
+ 
 .lb-comment-delete img {
   width: 18px;
   height: 18px;
-  color: rgba(255, 37, 37, 0.697);
-  transition: filter 0.2s, transform 0.15s;
-}
-
-.lb-comment-delete:hover img {
-  transform: scale(1.15);
 }
 
 /* ── Bouton Afficher plus ───────────────────────────────────────────────── */
