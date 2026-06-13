@@ -29,12 +29,14 @@ import {
 // CONFIG FIREBASE (À REMPLACER)
 // =============================
 const firebaseConfig = {
-  apiKey: "XXX",
-  authDomain: "XXX",
-  projectId: "XXX",
-  storageBucket: "XXX",
-  messagingSenderId: "XXX",
-  appId: "XXX"
+  apiKey: "AIzaSyA0qLI25TEj7yVyObLjbDSipsFFm8lFZtY",
+  authDomain: "perspikative-26800.firebaseapp.com",
+  databaseURL: "https://perspikative-26800-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "perspikative-26800",
+  storageBucket: "perspikative-26800.firebasestorage.app",
+  messagingSenderId: "520735354440",
+  appId: "1:520735354440:web:3607aac59cf6f30c97727d",
+  measurementId: "G-V3XJ8020SC"
 };
 
 
