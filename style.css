@@ -4170,16 +4170,13 @@ body {
 }
 
 .lb-comment-delete img {
-  width: 16px;
-  height: 16px;
-  filter: invert(27%) sepia(90%) saturate(600%) hue-rotate(330deg) brightness(95%);
-  /* → rouge ~#d63031 */
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 37, 37, 0.697);
   transition: filter 0.2s, transform 0.15s;
 }
 
 .lb-comment-delete:hover img {
-  filter: invert(15%) sepia(100%) saturate(700%) hue-rotate(340deg) brightness(85%);
-  /* → rouge plus foncé au hover */
   transform: scale(1.15);
 }
 
