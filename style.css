@@ -4033,17 +4033,19 @@ body {
 .lb-comments-title {
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+  opacity: 0.7;
 }
 
 .lb-comments-count {
   font-family: 'Rubik', sans-serif;
   font-weight: 400;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  color: #ffffff;
+  opacity: 0.7;
 }
 
 /* ── Spinner de chargement ──────────────────────────────────────────────── */
@@ -4106,8 +4108,8 @@ body {
 }
 
 .lb-comment-pfp {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -4117,10 +4119,12 @@ body {
 .lb-comment-body {
   flex: 1;
   background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 8px 12px;
   position: relative;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .lb-comment-meta {
@@ -4133,7 +4137,7 @@ body {
 .lb-comment-pseudo {
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   color: #fff;
 }
 
@@ -4147,7 +4151,7 @@ body {
 .lb-comment-text {
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   line-height: 1.45;
   color: rgba(255,255,255,0.90);
   word-break: break-word;
@@ -4228,23 +4232,26 @@ body {
 .lb-comment-guest p {
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
-  font-size: 0.84rem;
-  color: rgba(255,255,255,0.50);
+  font-size: 0.9rem;
+  color: #ffffff;
+  opacity: 0.75;
   margin: 0;
 }
 
 .lb-comment-login-btn {
   font-family: 'Rubik', sans-serif;
-  font-size: 0.80rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
   background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.18);
   border-radius: 20px;
   padding: 6px 16px;
   text-decoration: none;
   transition: background 0.2s ease;
   white-space: nowrap;
+  box-shadow:
+    inset 0 0 10px rgba(255, 255, 255, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .lb-comment-login-btn:hover {
