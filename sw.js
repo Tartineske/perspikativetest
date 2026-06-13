@@ -1,4 +1,4 @@
-const CACHE_NAME = 'perspikative-v4'; // On change de version pour forcer la mise à jour
+const CACHE_NAME = 'perspikative-v3.1'; // On change de version pour forcer la mise à jour
 const PRECACHE_ASSETS = [
   '/',
   '/manifest.json',
@@ -18,6 +18,9 @@ const PRECACHE_ASSETS = [
   '/logo.svg',
   '/art-challenge',
   '/404',
+  '/firebase-init.js',
+  '/firebase.js',
+  '/script-comments.js',
   '/portfolio/creations',
   '/portfolio/projets',
   '/portfolio/illustrations',
