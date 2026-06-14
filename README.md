@@ -1,4 +1,4 @@
 # Perspikative
 ✏️ i make art. welcome to my world
 
-You can also visit linktr.ee/perspikative for my links
+Check [my website](https://perspikative.com) and you can also visit [my Linktree](https://tr.ee/perspikative) for my links
