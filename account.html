@@ -1,7 +1,5 @@
 ---
-permalink: /account
 ---
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -163,13 +161,7 @@ permalink: /account
       }, 3000);
     }
 
-    // ── Auth state ───────────────────────────────────────────────────────────
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        // Pas connecté → redirection vers /login
-        window.location.replace('/login');
-        return;
-      }
+
 
       window.__prspkUser = user;
 
