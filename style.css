@@ -1237,8 +1237,8 @@ main.creations h2 {
 .lightbox-window {
   background: rgba(255, 255, 255, 0.15); /* fond translucide */
   color: #fff;
-  backdrop-filter: blur(500px);
-  -webkit-backdrop-filter: blur(500px);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   max-width: 900px;
@@ -1320,7 +1320,7 @@ main.creations h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* pour être sûr qu’elle passe au-dessus */
+  z-index: 10002;
 }
 
 .lightbox-close img {
@@ -3978,12 +3978,6 @@ body {
     opacity 0.12s ease;
 }
 
-/* ─── Transition fluide au changement de dessin (style iOS) ────────────── */
-
-.lightbox-window {
-  will-change: opacity, transform;
-}
-
 #lightbox-img.lb-switching {
   opacity: 0.7;
 }
@@ -4117,7 +4111,7 @@ body {
 }
 
 .lb-comment-body {
-  flex: 1;
+  flex: none;
   background: rgba(255, 255, 255, 0.07);
   border-radius: 17px;
   padding: 8px 12px;
@@ -4152,7 +4146,7 @@ body {
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
   font-size: 0.95rem;
-  line-height: 1.45;
+  line-height: 1.3;
   color: rgba(255,255,255,0.90);
   word-break: break-word;
 }
@@ -4475,6 +4469,210 @@ body {
 .help-center:hover {
     transform: scale(1.03); /* Zoom très léger */
 }
+
+
+
+
+
+.lightbox-window {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.lb-comments {
+  width: 100%; /* ← prend toute la largeur sous les deux colonnes */
+  /* tes autres styles existants... */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ─── LIGHTBOX OVERLAY : fond fixe + scroll interne ───────────────────── */
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10, 10, 10, 0.64);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Scroll vertical, fond immobile */
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /* Aligne la fenêtre en haut (pas au centre) pour qu'elle déborde en bas */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;         /* ← était "center" */
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s;
+  z-index: 9999;
+}
+
+/* ─── LIGHTBOX WINDOW : layout colonne, pas de hauteur max ─────────────── */
+
+.lightbox-window {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  backdrop-filter: blur(500px);
+  -webkit-backdrop-filter: blur(500px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 900px;
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;          /* ← était "row" */
+  gap: 20px;
+  /* overflow: hidden retiré → permet à la fenêtre de grandir */
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+  box-shadow:
+    inset 0 0 12px rgba(210, 210, 210, 0.16),
+    0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Sur desktop : les deux colonnes côte à côte dans une ligne ────────── */
+
+@media (min-width: 701px) {
+  .lightbox-top-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .lightbox-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .lightbox-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .lightbox-actions {
+    margin-top: auto;
+  }
+}
+
+/* ─── Section commentaires : pleine largeur sous les deux colonnes ───────── */
+
+.lb-comments {
+  width: 100%;
+  margin-top: 0;                   /* le gap du flex parent gère l'espacement */
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ─── LIGHTBOX OVERLAY ───────────────────────────────────────────────────── */
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10, 10, 10, 0.64);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;        /* mobile : centré */
+  overflow: hidden;           /* mobile : l'overlay ne scrolle PAS */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s;
+  z-index: 9999;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Desktop : c'est l'overlay qui scrolle, pas la window */
+@media (min-width: 701px) {
+  .lightbox-overlay {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    align-items: flex-start;
+  }
+
+  .lightbox-window {
+    overflow: visible;
+    flex-direction: column;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+/* Mobile : c'est la window qui scrolle, pas l'overlay */
+@media (max-width: 700px) {
+  .lightbox-window {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 10px 15px;
+    gap: 8px;
+    max-height: 100dvh;
+    overflow-y: auto;           /* scroll uniquement ici sur mobile */
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .lightbox-top-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lightbox-left,
+  .lightbox-right {
+    flex: none;
+    width: 100%;
+  }
+}
+
+
+
+
+
 
 
 
@@ -4932,5 +5130,14 @@ body {
   .account-modal {
     border-radius: 24px;
     padding: 1.6rem 1.4rem 1.3rem;
+  }
+}
+
+
+/* ─── FIX : annule la marge résiduelle sur mobile ───────────────────────── */
+@media (max-width: 700px) {
+  .lightbox-window {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
