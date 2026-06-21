@@ -569,7 +569,7 @@ permalink: /login
 <!-- Firebase SDK (via CDN, compatible GitHub Pages) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider }
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   // ─── CONFIG ───
@@ -706,7 +706,8 @@ permalink: /login
 
     setLoading(btn, true);
     try {
-      await createUserWithEmailAndPassword(auth, email, pwd);
+      const credential = await createUserWithEmailAndPassword(auth, email, pwd);
+      await updateProfile(credential.user, { displayName: username });
       window.location.href = '/';
     } catch (err) {
       showError(registerError, firebaseErrMsg(err.code));
