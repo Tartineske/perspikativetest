@@ -5348,11 +5348,11 @@ body {
 /* Titre de section */
 .ac-section-label {
   font-family: 'Rubik', sans-serif;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #00c896;
+  color: #ffffff;
   margin: 0 0 10px;
 }
 
@@ -5374,14 +5374,6 @@ body {
   margin: 0;
 }
 
-.ac-sep {
-  width: 48px;
-  height: 2.5px;
-  background: linear-gradient(90deg, #00c896, #0af0d0);
-  border-radius: 99px;
-  margin: 18px 0 22px;
-}
-
 
 /* ── 4. COMPTEUR ────────────────────────────────────────────────────────── */
 
@@ -5391,11 +5383,13 @@ body {
 
 .ac-deadline-label {
   font-family: 'Rubik', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.5px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .ac-countdown {
