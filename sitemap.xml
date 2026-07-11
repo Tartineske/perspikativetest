@@ -4,7 +4,7 @@
   <!-- Page d'accueil -->
   <url>
     <loc>https://perspikative.com/</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- Actus -->
   <url>
     <loc>https://perspikative.com/actus</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -20,7 +20,7 @@
   <!-- Portfolio -->
   <url>
     <loc>https://perspikative.com/portfolio</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -28,7 +28,7 @@
   <!-- Portfolio / Créations -->
   <url>
     <loc>https://perspikative.com/portfolio/creations</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -36,7 +36,7 @@
   <!-- Portfolio / Illustrations -->
   <url>
     <loc>https://perspikative.com/portfolio/illustrations</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -44,7 +44,7 @@
   <!-- Portfolio / Projets -->
   <url>
     <loc>https://perspikative.com/portfolio/projets</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -52,7 +52,7 @@
   <!-- Communauté -->
   <url>
     <loc>https://perspikative.com/commu</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -60,7 +60,7 @@
   <!-- Contact -->
   <url>
     <loc>https://perspikative.com/contact</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -68,7 +68,7 @@
   <!-- ART Challenge -->
   <url>
     <loc>https://perspikative.com/art-challenge</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -76,7 +76,7 @@
   <!-- Rechercher -->
   <url>
     <loc>https://perspikative.com/rechercher</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -84,7 +84,7 @@
   <!-- FAQ -->
   <url>
     <loc>https://perspikative.com/faq</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -92,7 +92,7 @@
   <!-- FAQ / Actus -->
   <url>
     <loc>https://perspikative.com/faq/actus</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
