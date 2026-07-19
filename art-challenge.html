@@ -144,7 +144,7 @@ permalink: /art-challenge
     }
 
     .section-inner {
-      max-width: 1060px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -689,10 +689,17 @@ permalink: /art-challenge
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.25);
+      gap: 2px;
+      color: rgba(255,255,255,0.5);
       font-size: 1rem;
+      letter-spacing: 0.5px;
       font-weight: 700;
+    }
+    
+    .placeholder-card img {
+      width: 42px;
+      height: 42px;
+      opacity: 0.5;
     }
 
     @media (max-width: 720px) {
@@ -809,10 +816,9 @@ permalink: /art-challenge
       align-items: center;
       justify-content: space-between;
       gap: 30px;
-      max-width: 940px;
       align-items: center;
       box-shadow: var(--glass-inset), var(--shadow), 0 0 40px rgba(0, 200, 150, 0.03);
-      transition: all 0.3s ease;
+      transition: all 0.24s ease;
     }
 
     .join-card:hover {
@@ -1279,7 +1285,7 @@ permalink: /art-challenge
           <button class="edition-tab"        role="tab" aria-selected="false" data-panel="ed1">1ère édition</button>
         </div>
 
-        <!-- ── Édition 4 (placeholder) ── -->
+        <!-- ── Édition 4 ── -->
         <div class="edition-panel active" id="ed4" role="tabpanel">
           <div class="edition-meta">
             <h3>4ème édition  · En cours </h3>
@@ -1305,7 +1311,7 @@ permalink: /art-challenge
         <div class="edition-panel" id="ed3" role="tabpanel">
           <div class="edition-meta">
             <h3>3ème édition · Thème libre</h3>
-            <p>Thème : <strong style="color:var(--accent-1);">À compléter</strong> · Date : À compléter · Participants : --</p>
+            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Date : À compléter · Participants : --</p>
           </div>
           <div class="winners-grid">
             <div class="winner-card glass-card" onclick="acOpenLightbox('/pics/art-challenge/ed3-1.webp','1er Prix','Pseudo du gagnant','Titre de l\'œuvre')">
@@ -1339,7 +1345,7 @@ permalink: /art-challenge
         <div class="edition-panel" id="ed2" role="tabpanel">
           <div class="edition-meta">
             <h3>2ème édition · Thème libre</h3>
-            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Date : 2025</p>
+            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Hiver 2025</p>
           </div>
           <div class="winners-grid">
 
