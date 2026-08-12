@@ -55,7 +55,7 @@ permalink: /art-challenge
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    
     html { scroll-behavior: smooth; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -660,13 +660,14 @@ permalink: /art-challenge
       top: 12px;
       left: 12px;
       background: linear-gradient(135deg, var(--accent-1), var(--accent-4));
-      color: #061a14;
+      color: #ffffff;
       font-weight: 900;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 5px 12px;
-      border-radius: 99px;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 0 8px rgba(255, 255, 255, 0.25);
     }
 
     .winner-name {
@@ -764,14 +765,14 @@ permalink: /art-challenge
     .ac-lightbox-rank-badge {
       display: inline-block;
       background: linear-gradient(135deg, var(--accent-1), var(--accent-4));
-      color: #061a14;
+      color: #ffffff;
       font-weight: 900;
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 99px;
-      margin-bottom: 10px;
+      padding: 5px 12px;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 0 8px rgba(255, 255, 255, 0.25);
     }
 
     .ac-lightbox-name {
@@ -943,10 +944,10 @@ permalink: /art-challenge
       <span class="announcement-arrows" aria-hidden="true">&gt;&gt;&gt;</span>
     </div>
   </a>
-  
+
   <nav class="mobile-nav">
-    <a href="/" class="nav-icon" title="Accueil">
-      <img src="/icons/accueil.svg" alt="Accueil">
+    <a href="/" class="nav-icon active" title="Accueil">
+      <img src="/icons/accueil-active.svg" alt="Accueil">
     </a>
     <a href="/portfolio" class="nav-icon" title="Portfolio">
       <img src="/icons/portfolio.svg" alt="Portfolio">
@@ -957,8 +958,8 @@ permalink: /art-challenge
     <a href="/actus" class="nav-icon" title="Actus">
       <img src="/icons/actus.svg" alt="Actus">
     </a>
-    <a href="/contact" class="nav-icon" title="Contact">
-      <img src="/icons/contact.svg" alt="Contact">
+    <a href="/profile" class="nav-icon" title="Profil">
+      <img src="/icons/profile.svg" alt="Profil">
     </a>
   </nav>
 
@@ -969,7 +970,7 @@ permalink: /art-challenge
     <span class="nav-blur-layer nav-blur-layer--4"></span>
     <span class="nav-blur-layer nav-blur-layer--5"></span>
   </div>
-  
+
   <header>
     <div class="header-content">
       <div class="logo">
@@ -994,8 +995,8 @@ permalink: /art-challenge
             </a>
           </li>
           <li>
-            <a href="/contact" class="tab">
-              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            <a href="/profile" class="tab">
+              <img src="/icons/profile.svg" alt="" class="tab-icon"> PROFIL
             </a>
           </li>
         </ul>
@@ -1008,7 +1009,7 @@ permalink: /art-challenge
         <ul>
           <li><a href="/commu">COMMUNAUTÉ</a></li>
           <li><a href="/art-challenge">ART CHALLENGE</a></li>
-          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">CONTACT</a></li>
         </ul>
       </div>
     </div>
@@ -1333,7 +1334,7 @@ permalink: /art-challenge
         <div class="edition-panel" id="ed3" role="tabpanel">
           <div class="edition-meta">
             <h3>3ème édition · Thème libre</h3>
-            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Date : À compléter · Participants : --</p>
+            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Hiver 2026</p>
           </div>
           <div class="winners-grid">
             <div class="winner-card glass-card" onclick="acOpenLightbox('/pics/art-challenge/ed3-1.webp','1er Prix','Pseudo du gagnant','Titre de l\'œuvre')">
@@ -1366,8 +1367,8 @@ permalink: /art-challenge
         <!-- ── Édition 2 ── -->
         <div class="edition-panel" id="ed2" role="tabpanel">
           <div class="edition-meta">
-            <h3>2ème édition · Thème libre</h3>
-            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Hiver 2025</p>
+            <h3>2ème édition · Thème "Fantastique"</h3>
+            <p><strong style="color:var(--accent-1);">Thème "Fantastique"</strong> · Été 2025</p>
           </div>
           <div class="winners-grid">
 
@@ -1401,25 +1402,41 @@ permalink: /art-challenge
           </div>
         </div>
 
-        <!-- ── Édition 1 (placeholder) ── -->
+        <!-- ── Édition 1 ── -->
         <div class="edition-panel" id="ed1" role="tabpanel">
           <div class="edition-meta">
             <h3>1ère édition · Thème libre</h3>
-            <p>Cette édition est en cours. Les gagnants seront affichés ici après la clôture des votes.</p>
+            <p><strong style="color:var(--accent-1);">Thème libre</strong> · Hiver 2024</p>
           </div>
           <div class="winners-grid">
-            <div class="placeholder-card">
-              <img src="/icons/portfolio.svg" height="40" width="40" opacity="0.4" alt="" class="placeholder-icon">
-              Bientôt
+
+            <div class="winner-card glass-card" onclick="acOpenLightbox('/pics/art-challenge/ed1-1.webp','1er Prix','Nøva','Dessin traditionnel')">
+              <img src="/pics/art-challenge/ed1-1.webp" alt="1er prix édition 1" loading="lazy" />
+              <div class="winner-overlay">
+                <p class="winner-name">Nøva</p>
+                <p class="winner-title">Dessin traditionnel</p>
+              </div>
+              <span class="winner-rank">🥇 1er Prix</span>
             </div>
-            <div class="placeholder-card">
-              <img src="/icons/portfolio.svg" height="40" width="40" opacity="0.4" alt="" class="placeholder-icon">
-              Bientôt
+
+            <div class="winner-card glass-card" onclick="acOpenLightbox('/pics/art-challenge/ed1-2.webp','2e Prix','froggy_queer_artist','Dessin traditionnel')">
+              <img src="/pics/art-challenge/ed1-2.webp" alt="2e prix édition 1" loading="lazy" />
+              <div class="winner-overlay">
+                <p class="winner-name">Emma-Sophie</p>
+                <p class="winner-title">Peinture</p>
+              </div>
+              <span class="winner-rank">🥈 2e Prix</span>
             </div>
-            <div class="placeholder-card">
-              <img src="/icons/portfolio.svg" height="40" width="40" opacity="0.4" alt="" class="placeholder-icon">
-              Bientôt
+
+            <div class="winner-card glass-card" onclick="acOpenLightbox('/pics/art-challenge/ed1-3.webp','3e Prix','Cinammon','Dessin traditionnel')">
+              <img src="/pics/art-challenge/ed1-3.webp" alt="3e prix édition 1" loading="lazy" />
+              <div class="winner-overlay">
+                <p class="winner-name">Hasan</p>
+                <p class="winner-title">Dessin traditionnel</p>
+              </div>
+              <span class="winner-rank">🥉 3e Prix</span>
             </div>
+
           </div>
         </div>
 
@@ -1432,7 +1449,7 @@ permalink: /art-challenge
         <div class="join-card glass-card reveal">
           
           <div class="join-content">
-            <h2>Prêt·e à relever le défi ?</h2>
+            <h2>T'es arrivé·e jusqu'ici ?</h2>
             <p>La prochaine édition n'attend que toi ! Rejoins la communauté Perspikative pour ne pas rater l'annonce du thème et les inscriptions.</p>
             <div class="hero-cta">
               <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" rel="noopener" class="btn-primary">Voir sur WhatsApp</a>
@@ -1483,11 +1500,13 @@ permalink: /art-challenge
       </a>
     </div>
 
-    <p class="footer-copy">&copy; <span id="year"></span> Perspikative™. Tous droits réservés</p>
+    <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
     <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
     <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p><a href="/terms-of-service" class="footer-link">Conditions d'utilisation</a></p>
     <p><a href="/help-center" class="footer-link">Centre d'aide</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
+    <p><a href="/brand-guidelines" class="footer-link">Brand guidelines</a></p>
   </footer>
 
   <script>
