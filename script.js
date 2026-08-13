@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Index de navigation : trié par numéro de fichier (1.webp → 45.webp) ──
   function getNavItems() {
-    const items = Array.from(document.querySelectorAll('.layout-3colonnes .prspk-thumb'));
+    const items = Array.from(document.querySelectorAll('.creations-grid .prspk-thumb'));
     return items.sort((a, b) => {
       const numA = parseInt(a.getAttribute('src').match(/(\d+)\.webp/)?.[1] ?? '0', 10);
       const numB = parseInt(b.getAttribute('src').match(/(\d+)\.webp/)?.[1] ?? '0', 10);
@@ -220,26 +220,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(function() { toast.classList.remove('visible'); }, 2500);
   }
 
-  // ── Résolution de la source : image desktop correspondante ───────────────
+  // ── Résolution de la source ────────────────────────────────────────────
+  // 🆕 Une seule grille désormais : chaque image porte déjà toutes ses
+  // métadonnées, plus besoin d'aller chercher une version "desktop" ailleurs.
   function resolveSource(img) {
-    if (img.dataset.title) return img;
-
-    if (img.id) {
-      var desktop = document.querySelector(
-        '.layout-3colonnes .prspk-thumb#' + CSS.escape(img.id)
-      );
-      if (desktop) return desktop;
-    }
-
-    var srcPath = img.getAttribute('src');
-    if (srcPath) {
-      var match = document.querySelector(
-        '.layout-3colonnes .prspk-thumb[src="' + srcPath + '"]'
-      );
-      if (match) return match;
-    }
-
-    return null;
+    return img.dataset.title ? img : null;
   }
 
   // ── Transition au changement de lightbox ────────────────────────────────
@@ -317,9 +302,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Écoute les clics sur toutes les images des deux layouts
+  // Écoute les clics sur toutes les images de la grille
   document.querySelectorAll(
-    '.layout-3colonnes img, .layout-2colonnes img'
+    '.creations-grid .prspk-thumb'
   ).forEach(function(img) {
     img.addEventListener('click', function() {
       openLightbox(img);
@@ -330,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var hash = window.location.hash.substring(1);
   if (hash) {
     var targetImg = document.querySelector(
-      '.layout-3colonnes .prspk-thumb#' + CSS.escape(hash)
+      '.creations-grid .prspk-thumb#' + CSS.escape(hash)
     );
     if (targetImg) openLightbox(targetImg);
   }
@@ -417,19 +402,293 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 3. BARRE DE NAVIGATION MOBILE - MASQUAGE AU SCROLL =============================
+// ============================= 2 BIS. GRILLE DYNAMIQUE MASONRY (CRÉATIONS) =============================
+// 🆕 Remplace l'ancien système de colonnes fixes (.layout-3colonnes / .layout-2colonnes).
+// Une seule grille (.creations-grid), qui se recale automatiquement selon la largeur
+// d'écran (le nombre de colonnes est piloté en CSS via .grid-sizer). Masonry ne fait
+// que positionner les .grid-item ; il ne touche jamais aux <img> ni à leurs data-*,
+// donc la lightbox (section 2 ci-dessus) continue de fonctionner à l'identique.
+
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.creations-grid');
+  if (!grid || typeof Masonry === 'undefined') return;
+
+  const msnry = new Masonry(grid, {
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+  });
+
+  // Recalcule le agencement au fur et à mesure que les images se chargent,
+  // pour éviter que des vignettes ne se chevauchent le temps du chargement.
+  if (typeof imagesLoaded !== 'undefined') {
+    imagesLoaded(grid).on('progress', () => msnry.layout());
+  }
+
+  // Recalcule au redimensionnement (changement de colonnes via les media queries)
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => msnry.layout(), 150);
+  });
+
+  // ── Filtre par couleur ───────────────────────────────────────────────────
+  // Chaque <img> porte un data-colors="orange,bleu,..." (une couleur ou plus).
+  // Le panneau de filtre est généré dynamiquement à partir des couleurs
+  // réellement présentes dans la grille : ajouter/modifier un data-colors
+  // sur un dessin suffit, aucune autre modification n'est nécessaire.
+
+  const filterBtn       = document.getElementById('filter-btn');
+  const colorFilter     = document.getElementById('color-filter');
+  const filterPanel     = document.getElementById('filter-panel');
+  const filterSwatches  = document.getElementById('filter-swatches');
+  const filterResetBtn  = document.getElementById('filter-panel-reset');
+  const mainCreations   = document.querySelector('main.creations');
+  const emptyState      = document.getElementById('filter-empty-state');
+
+  if (filterBtn && colorFilter && filterPanel && filterSwatches) {
+
+    // Alias : formes fautives/plurielles qui désignent en réalité la même couleur
+    const COLOR_ALIASES = {
+      'bleus': 'bleu',
+      'jaunes': 'jaune',
+      'verts': 'vert'
+    };
+
+    // Teintes de référence (utilisées pour dessiner les pastilles)
+    const COLOR_HEX = {
+      'bleu': '#4C8DFF',
+      'vert': '#4CAF6D',
+      'jaune': '#F2C94C',
+      'rouge': '#E15554',
+      'orange': '#F2994A',
+      'rose': '#F2A6C9',
+      'brun': '#8B5E3C',
+      'marron': '#6F4423',
+      'violet': '#9B6BD9',
+      'mauve': '#C9A0DC',
+      'gris': '#A0A6AD',
+      'beige': '#D9C6A5',
+      'noir': '#2B2B2E',
+      'blanc': '#F5F5F0',
+      'argenté': '#C7CDD1',
+      'magenta': '#D6249F',
+      'doré': '#D4AF37',
+      'bordeau': '#6E1E3A',
+      'bordeaux': '#6E1E3A',
+      'turquoise': '#2DD4BF',
+      'cyan': '#22D3EE',
+      'indigo': '#4F46E5',
+      'corail': '#FF6F61',
+      'saumon': '#FA8072',
+      'kaki': '#8A8F5C',
+      'olive': '#6B6B1F',
+      'marine': '#1E2A5E',
+      'azur': '#3EA8E0',
+      'émeraude': '#0EA678',
+      'ivoire': '#F0EAD6',
+      'lavande': '#B19CD9'
+    };
+
+    // Couleur de secours déterministe (hash) pour toute future couleur
+    // ajoutée dans les data-colors mais absente du dictionnaire ci-dessus.
+    function fallbackHue(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash) % 360;
+    }
+
+    function normalizeColor(raw) {
+      const key = raw.trim().toLowerCase();
+      return COLOR_ALIASES[key] || key;
+    }
+
+    function hexForColor(key) {
+      return COLOR_HEX[key] || `hsl(${fallbackHue(key)}, 55%, 60%)`;
+    }
+
+    function labelForColor(key) {
+      return key.charAt(0).toUpperCase() + key.slice(1);
+    }
+
+    // Renvoie les couleurs normalisées d'un .grid-item
+    function getItemColors(item) {
+      const img = item.querySelector('.prspk-thumb');
+      const raw = (img && img.dataset.colors) || '';
+      return raw.split(',').map(normalizeColor).filter(Boolean);
+    }
+
+    // ── Génère la liste des pastilles à partir des dessins réellement présents ──
+    // Pas de nom affiché : chaque pastille porte juste sa teinte, avec le nom
+    // de la couleur en info-bulle (title / aria-label) pour rester accessible.
+    function buildSwatches() {
+      const freq = new Map(); // couleur normalisée -> nombre de dessins
+
+      grid.querySelectorAll('.grid-item').forEach(item => {
+        getItemColors(item).forEach(color => {
+          freq.set(color, (freq.get(color) || 0) + 1);
+        });
+      });
+
+      const sorted = Array.from(freq.keys()).sort((a, b) => freq.get(b) - freq.get(a));
+
+      filterSwatches.innerHTML = '';
+      sorted.forEach(color => {
+        const label = labelForColor(color);
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'filter-chip';
+        chip.dataset.color = color;
+        chip.title = label;
+        chip.setAttribute('aria-label', label);
+        chip.setAttribute('aria-pressed', 'false');
+        chip.style.setProperty('--chip-color', hexForColor(color));
+        chip.innerHTML = '<span class="filter-chip-dot"></span>';
+        filterSwatches.appendChild(chip);
+      });
+    }
+
+    buildSwatches();
+
+    // ── État de sélection + application du filtre ──────────────────────────
+    // Logique "ET inclusif" : un dessin reste visible s'il possède TOUTES
+    // les couleurs sélectionnées (il peut en avoir d'autres en plus).
+    const selectedColors = new Set();
+
+    function applyFilter() {
+      let visibleCount = 0;
+
+      grid.querySelectorAll('.grid-item').forEach(item => {
+        const itemColors = getItemColors(item);
+        const visible = selectedColors.size === 0 ||
+          Array.from(selectedColors).every(color => itemColors.includes(color));
+        item.classList.toggle('is-hidden', !visible);
+        if (visible) visibleCount++;
+      });
+
+      if (mainCreations) {
+        mainCreations.classList.toggle('filter-active', selectedColors.size > 0);
+      }
+
+      const noResults = selectedColors.size > 0 && visibleCount === 0;
+      if (emptyState) emptyState.hidden = !noResults;
+      grid.style.display = noResults ? 'none' : '';
+
+      msnry.layout();
+    }
+
+    filterSwatches.addEventListener('click', (e) => {
+      const chip = e.target.closest('.filter-chip');
+      if (!chip) return;
+
+      const color = chip.dataset.color;
+      if (selectedColors.has(color)) {
+        selectedColors.delete(color);
+        chip.classList.remove('is-active');
+        chip.setAttribute('aria-pressed', 'false');
+      } else {
+        selectedColors.add(color);
+        chip.classList.add('is-active');
+        chip.setAttribute('aria-pressed', 'true');
+      }
+      applyFilter();
+    });
+
+    if (filterResetBtn) {
+      filterResetBtn.addEventListener('click', () => {
+        selectedColors.clear();
+        filterSwatches.querySelectorAll('.filter-chip.is-active').forEach(chip => {
+          chip.classList.remove('is-active');
+          chip.setAttribute('aria-pressed', 'false');
+        });
+        applyFilter();
+      });
+    }
+
+    // ── Positionnement du panneau (calculé, pas en CSS) ─────────────────────
+    // #filter-panel vit désormais en fin de <main class="creations"> (voir
+    // creations.html), et non plus imbriqué dans le bouton, pour que son
+    // backdrop-filter puisse réellement flouter les dessins derrière lui.
+    // On calcule donc sa position à l'écran par rapport au bouton, en JS.
+    function positionFilterPanel() {
+      const btnRect  = filterBtn.getBoundingClientRect();
+      const mainRect = mainCreations.getBoundingClientRect();
+
+      // Distance entre le bord droit du bouton et le bord droit de main.creations
+      const rightOffset = mainRect.right - btnRect.right;
+      // Distance entre le bas du bouton et le haut de main.creations, + un petit espace
+      const topOffset = (btnRect.bottom - mainRect.top) + 14;
+
+      filterPanel.style.top = topOffset + 'px';
+      filterPanel.style.right = rightOffset + 'px';
+    }
+
+    // ── Ouverture / fermeture du panneau ────────────────────────────────────
+    function closeFilterPanel() {
+      filterBtn.classList.remove('is-open');
+      filterPanel.classList.remove('is-open');
+      filterBtn.setAttribute('aria-expanded', 'false');
+      filterPanel.setAttribute('aria-hidden', 'true');
+      window.removeEventListener('resize', positionFilterPanel);
+    }
+
+    function openFilterPanel() {
+      positionFilterPanel();
+      filterBtn.classList.add('is-open');
+      filterPanel.classList.add('is-open');
+      filterBtn.setAttribute('aria-expanded', 'true');
+      filterPanel.setAttribute('aria-hidden', 'false');
+      window.addEventListener('resize', positionFilterPanel);
+    }
+
+    filterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      filterPanel.classList.contains('is-open') ? closeFilterPanel() : openFilterPanel();
+    });
+
+    filterPanel.addEventListener('click', (e) => e.stopPropagation());
+
+    document.addEventListener('click', (e) => {
+      if (!filterBtn.contains(e.target) && !filterPanel.contains(e.target)) {
+        closeFilterPanel();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeFilterPanel();
+    });
+
+    // Utilitaire conservé pour un usage éventuel en console
+    window.filterCreationsByColor = function(color) {
+      selectedColors.clear();
+      if (color) selectedColors.add(normalizeColor(color));
+      filterSwatches.querySelectorAll('.filter-chip').forEach(chip => {
+        const active = selectedColors.has(chip.dataset.color);
+        chip.classList.toggle('is-active', active);
+        chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      applyFilter();
+    };
+  }
+});
+
+
+
+// ============================= 3. BARRE DE NAVIGATION MOBILE - RÉTRÉCISSEMENT EN BAS DE PAGE =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const mobileNav = document.querySelector('.mobile-nav');
+  const navBlurGradient = document.querySelector('.nav-blur-gradient');
   
   // Vérifier si la barre de navigation mobile existe (seulement sur mobile)
   if (!mobileNav) return;
   
-  let lastScrollTop = 0;
   let ticking = false;
   const scrollThreshold = 5; // Tolérance très petite pour détecter le bas exact
   
-  // Fonction pour gérer le masquage/affichage de la barre
+  // Fonction pour gérer le rétrécissement de la barre + la descente du flou
   const handleScroll = () => {
     if (ticking) return;
     
@@ -440,16 +699,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const documentHeight = document.documentElement.scrollHeight;
       const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
       
-      // Masquer la barre uniquement quand on arrive tout en bas du footer
+      // Tout en bas du footer : la barre rétrécit, le flou descend
       if (distanceFromBottom <= scrollThreshold) {
-        mobileNav.classList.add('hide');
+        mobileNav.classList.add('at-bottom');
+        if (navBlurGradient) navBlurGradient.classList.add('at-bottom');
       } 
-      // Afficher la barre quand on remonte et qu'on n'est plus tout en bas
+      // Ailleurs : la barre retrouve sa taille normale, le flou remonte
       else {
-        mobileNav.classList.remove('hide');
+        mobileNav.classList.remove('at-bottom');
+        if (navBlurGradient) navBlurGradient.classList.remove('at-bottom');
       }
       
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       ticking = false;
     });
   };
@@ -470,12 +730,7 @@ document.addEventListener("contextmenu", e => e.preventDefault());
 
 
 
-// ============================= 5. OUVRIR LES HASHS DE LA RECHERCHE POUR LES LIGHTBOXS =============================
-// → Intégré directement dans la section 2 (fonction openLightbox + résolution via hash au chargement)
-
-
-
-// ============================= 6. GESTION DU MODE SOMBRE =============================
+// ============================= 5. GESTION DU MODE SOMBRE =============================
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
@@ -505,7 +760,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// ============================= 7. FAQ DÉROULANTE =============================
+// ============================= 6. FAQ DÉROULANTE =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const faqQuestions = document.querySelectorAll('.faq-question');
@@ -540,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 8. LOADER PERSPIKATIVE =============================
+// ============================= 7. LOADER PERSPIKATIVE =============================
 
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("site-loader");
@@ -558,7 +813,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// ============================= 9. BOUTON FLOTTANT DE RECHERCHE - MASQUAGE AU SCROLL =============================
+// ============================= 8. BOUTON FLOTTANT DE RECHERCHE - MASQUAGE AU SCROLL =============================
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchBtn = document.querySelector('.search-float-btn');
@@ -604,7 +859,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// ============================= 10. ANIMATION D'APPARITION DU FOOTER =============================
+// ============================= 9. ANIMATION D'APPARITION DU FOOTER =============================
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -619,7 +874,7 @@ observer.observe(document.querySelector('footer'));
 
 
 
-// ============================= 11. PARALLAX SUR LES IMAGES DE L'ACCUEIL =============================
+// ============================= 10. PARALLAX SUR LES IMAGES DE L'ACCUEIL =============================
 // Intensités calées sur les vrais z-index CSS :
 //   z-index 20  (pos-8)  → bouge le plus   (devant)
 //   z-index 14  (pos-2)  → …
@@ -706,7 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================= 12. ANIMATION FONDU AU SCROLL - GRILLE MASONRY =============================
 
 document.addEventListener('DOMContentLoaded', () => {
-  const imgs = document.querySelectorAll('.layout-3colonnes img');
+  const imgs = document.querySelectorAll('.creations-grid .prspk-thumb');
   if (!imgs.length) return;
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
