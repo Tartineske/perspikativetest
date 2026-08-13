@@ -5,283 +5,329 @@ permalink: /
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <title>Perspikative - Portfolio artistique</title>
-
-  <meta name="description" content="Perspikative est un portfolio artistique dédié à l'art visuel. Explore les créations, illustrations et projets créatifs et plonge dans un univers graphique unique.">
-  <meta name="keywords" content="Perspikative, art, art visuel, portfolio, créations, illustrations, projets, univers créatif, dessins">
-  <meta name="robots" content="index, follow">
-
-  <meta property="og:title" content="Perspikative">
-  <meta property="og:description" content="✏️ i make art. welcome to my world">
-  <meta property="og:image" content="https://perspikative.com/pics/meta/index.jpg">
-  <meta property="og:url" content="https://perspikative.com/">
-  <meta property="og:type" content="website">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Perspikative">
-  <meta name="twitter:description" content="✏️ i make art. welcome to my world">
-  <meta name="twitter:image" content="https://perspikative.com/pics/meta/index.jpg">
-  <meta name="twitter:url" content="https://perspikative.com/">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/pics/meta/logo-1000.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Perspikative">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="apple-touch-startup-image" href="/pics/meta/logo-1500.png">
-  
-  <link rel="manifest" href="/manifest.json">
-  
-  <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#344f4a" media="(prefers-color-scheme: dark)">
-  
-  <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
-
-  <link rel="stylesheet" href="/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
-  
-  <script type="module" src="firebase-init.js"></script>
-  <script src="script-comments.js"></script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LM — Assistante digitale & gestion administrative</title>
+<meta name="description" content="J'accompagne indépendants, artisans et PME dans leur gestion administrative et digitale, pour qu'ils puissent se concentrer sur l'essentiel.">
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
 </head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
 
-<body class="home">
- 
-  <!-- ===== SITE LOADER ===== -->
-  <div id="site-loader">
-    <div class="loader-content">
-      <img src="/logo.svg" alt="Perspikative" class="loader-logo">
-      <div class="loader-bar"></div>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="brand" aria-label="LM — Accueil">
+      <img src="/logo.svg" alt="Logo LM">
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/a-propos">À propos</a></li>
+        <li><a href="/prestations">Prestations</a></li>
+        <li><a href="/tarifs">Tarifs</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="/contact" class="btn btn--primary">
+        Échangeons
+        <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="loader-footer">by Tartineske</div>
   </div>
-  <!-- ======================== -->
+</header>
 
-  <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" rel="noopener" class="announcement-bar" aria-label="Votes Art Challenge 2026 ouverts - Rejoins la chaîne WhatsApp">
-    <div class="announcement-track">
-      <span class="announcement-item">VOTES ART CHALLENGE 2026 OUVERTS</span>
-      <span class="announcement-arrows">&gt;&gt;&gt;</span>
-      <span class="announcement-item">VOTEZ POUR VOTRE œuvre préférée !</span>
-      <span class="announcement-arrows">&gt;&gt;&gt;</span>
-      <span class="announcement-item">VOTES ART CHALLENGE 2026 OUVERTS</span>
-      <span class="announcement-arrows">&gt;&gt;&gt;</span>
-      <span class="announcement-item">VOTEZ POUR VOTRE œuvre préférée !</span>
-      <span class="announcement-arrows">&gt;&gt;&gt;</span>
-      <span class="announcement-item" aria-hidden="true">VOTES ART CHALLENGE 2026 OUVERTS</span>
-      <span class="announcement-arrows" aria-hidden="true">&gt;&gt;&gt;</span>
-      <span class="announcement-item" aria-hidden="true">VOTEZ POUR VOTRE œuvre préférée !</span>
-      <span class="announcement-arrows" aria-hidden="true">&gt;&gt;&gt;</span>
-      <span class="announcement-item" aria-hidden="true">VOTES ART CHALLENGE 2026 OUVERTS</span>
-      <span class="announcement-arrows" aria-hidden="true">&gt;&gt;&gt;</span>
-      <span class="announcement-item" aria-hidden="true">VOTEZ POUR VOTRE œuvre préférée !</span>
-      <span class="announcement-arrows" aria-hidden="true">&gt;&gt;&gt;</span>
+<nav id="mobile-menu" class="mobile-menu" aria-label="Navigation mobile">
+  <ul>
+    <li><a href="/">Accueil</a></li>
+    <li><a href="/a-propos">À propos</a></li>
+    <li><a href="/prestations">Prestations</a></li>
+    <li><a href="/tarifs">Tarifs</a></li>
+  </ul>
+  <div class="mobile-menu__footer">
+    <a href="/contact" class="btn btn--primary">Échangeons</a>
+    <span style="font-size:var(--fs-sm); color:var(--ink-soft);">contact@lm-assistantedigitale.fr</span>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <p class="eyebrow hero__eyebrow">Gestion administrative – Gestion commerciale – Relais client – Community management</p>
+        <h1>Allégez votre quotidien, concentrez-vous sur votre <span class="italic-serif">cœur de métier.</span></h1>
+        <p class="hero__lede">Entrepreneur ou dirigeant d’entreprise, votre temps est précieux et il file trop souvent dans les tâches administratives. Je vous propose de vous accompagner dans la gestion de votre quotidien (administratif, relais client, réseaux sociaux…) afin que vous puissiez vous concentrer sur ce qui compte vraiment : votre activité.</p>
+        <div class="hero__actions">
+          <a href="contact.html" class="btn btn--primary">
+            Prendre contact
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="prestations.html" class="btn btn--ghost">Découvrir les prestations</a>
+        </div>
+        <div class="hero__meta">
+          <div><strong>100%</strong>À distance, adapté à votre rythme</div>
+          <div><strong>Sur mesure</strong>Un accompagnement pensé pour vos besoins réels</div>
+        </div>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <svg class="hero__lines" viewBox="0 0 520 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="519" height="559" rx="24" fill="#FAF7F6" stroke="#E9E1DE"/>
+          <rect x="40" y="52" width="230" height="14" rx="7" fill="#1B1918"/>
+          <rect x="40" y="86" width="140" height="10" rx="5" fill="#D8CCC8"/>
+
+          <g>
+            <circle cx="52" cy="168" r="9" fill="#E7B7BE"/>
+            <path d="M48 168l3 3 6-6" stroke="#FAF7F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="76" y="162" width="330" height="12" rx="6" fill="#1B1918"/>
+          </g>
+          <g>
+            <circle cx="52" cy="210" r="9" fill="#E7B7BE"/>
+            <path d="M48 210l3 3 6-6" stroke="#FAF7F6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="76" y="204" width="260" height="12" rx="6" fill="#1B1918"/>
+          </g>
+          <g>
+            <circle cx="52" cy="252" r="9" fill="none" stroke="#D8CCC8" stroke-width="1.6"/>
+            <rect x="76" y="246" width="300" height="12" rx="6" fill="#D8CCC8"/>
+          </g>
+          <g>
+            <circle cx="52" cy="294" r="9" fill="none" stroke="#D8CCC8" stroke-width="1.6"/>
+            <rect x="76" y="288" width="200" height="12" rx="6" fill="#D8CCC8"/>
+          </g>
+
+          <rect x="40" y="352" width="440" height="1" fill="#E9E1DE"/>
+
+          <rect x="40" y="384" width="160" height="10" rx="5" fill="#A79F9B"/>
+          <rect x="40" y="408" width="440" height="86" rx="12" fill="#F8ECEE"/>
+          <rect x="64" y="432" width="220" height="12" rx="6" fill="#B87786"/>
+          <rect x="64" y="456" width="150" height="10" rx="5" fill="#C99AA2"/>
+
+          <rect x="40" y="520" width="98" height="30" rx="15" fill="#1B1918"/>
+        </svg>
+      </div>
     </div>
-  </a>
-  
-  <nav class="mobile-nav">
-    <a href="/" class="nav-icon active" title="Accueil">
-      <img src="/icons/accueil-active.svg" alt="Accueil">
-    </a>
-    <a href="/portfolio" class="nav-icon" title="Portfolio">
-      <img src="/icons/portfolio.svg" alt="Portfolio">
-    </a>
-    <a href="/rechercher" class="nav-icon" title="Rechercher">
-      <img src="/icons/rechercher.svg" alt="Rechercher">
-    </a>
-    <a href="/actus" class="nav-icon" title="Actus">
-      <img src="/icons/actus.svg" alt="Actus">
-    </a>
-    <a href="/contact" class="nav-icon" title="Contact">
-      <img src="/icons/contact.svg" alt="Contact">
-    </a>
-  </nav>
+  </section>
 
-  <header>
-    <div class="header-content">
-      <div class="logo">
-        <a href="/"><img src="/logo.svg" alt="Perspikative logo"></a>
+  <!-- INTRODUCTION / STATEMENT -->
+  <section class="section section--soft reveal">
+    <div class="container statement">
+      <p class="statement__lead">Entre les devis, les factures, les mails et le suivi administratif, il ne reste parfois plus beaucoup de place pour l'essentiel.</p>
+      <div class="statement__body">
+        <p>Gérer une activité, c'est aussi gérer une multitude de tâches chronophages : organisation, suivi, documents, échanges administratifs. Des tâches nécessaires, mais qui prennent du temps sur votre cœur de métier.</p>
+        <p>Laetitia intervient à vos côtés pour prendre en charge tout ou partie de cette gestion administrative et digitale, avec rigueur et discrétion — afin que vous puissiez vous concentrer sur votre activité et vos clients.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESTATIONS -->
+  <section class="section" id="prestations">
+    <div class="container">
+      <div class="section__head section__head--row reveal">
+        <div>
+          <p class="eyebrow">Ce que je fais</p>
+          <h2 class="section__title">Des prestations pensées pour votre quotidien professionnel</h2>
+        </div>
+        <p class="lede">Des catégories claires, adaptables à votre activité et à vos besoins réels — rien d'imposé, tout se construit ensemble.</p>
       </div>
 
-      <div class="nav-right">
-        <ul class="nav-tabs">
-          <li>
-            <a href="/" class="tab active">
-              <img src="/icons/accueil-active.svg" alt="" class="tab-icon"> ACCUEIL
-            </a>
-          </li>
-          <li>
-            <a href="/portfolio" class="tab">
-              <img src="/icons/portfolio.svg" alt="" class="tab-icon"> PORTFOLIO
-            </a>
-          </li>
-          <li>
-            <a href="/actus" class="tab">
-              <img src="/icons/actus.svg" alt="" class="tab-icon"> ACTUS
-            </a>
-          </li>
-          <li>
-            <a href="/contact" class="tab">
-              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
-            </a>
-          </li>
-        </ul>
+      <div class="service-list reveal">
+        <div class="service-row">
+          <span class="service-row__num">01</span>
+          <h3 class="service-row__title">Gestion administrative</h3>
+          <p class="service-row__desc">Devis, factures, relances, suivi de dossiers : une administration tenue à jour et sans stress.</p>
+          <a href="prestations.html" class="text-link">Découvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="service-row">
+          <span class="service-row__num">02</span>
+          <h3 class="service-row__title">Organisation et suivi</h3>
+          <p class="service-row__desc">Agenda, priorités, tableaux de suivi : une organisation claire pour un quotidien plus fluide.</p>
+          <a href="prestations.html" class="text-link">Découvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="service-row">
+          <span class="service-row__num">03</span>
+          <h3 class="service-row__title">Accompagnement digital</h3>
+          <p class="service-row__desc">Emails, outils, présence en ligne : un soutien digital simple et accessible, à votre rythme.</p>
+          <a href="prestations.html" class="text-link">Découvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="service-row">
+          <span class="service-row__num">04</span>
+          <h3 class="service-row__title">Gestion documentaire</h3>
+          <p class="service-row__desc">Classement, archivage, mise en forme : des documents organisés et faciles à retrouver.</p>
+          <a href="prestations.html" class="text-link">Découvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <input type="checkbox" id="menuToggle" />
-        <label for="menuToggle" class="burger-icon" title="Menu">
-          <img id="menuIcon" src="icons/menu.svg" alt="Menu">
-        </label>
-      <div class="mobile-menu">
+  <!-- POURQUOI DÉLÉGUER -->
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="eyebrow">Pourquoi déléguer</p>
+        <h2 class="section__title">Ce que cela change concrètement</h2>
+      </div>
+      <div class="benefits reveal">
+        <div class="benefit">
+          <span class="benefit__index">01</span>
+          <h3>Gagner du temps</h3>
+          <p>Se libérer des tâches administratives chronophages pour se recentrer sur son activité.</p>
+        </div>
+        <div class="benefit">
+          <span class="benefit__index">02</span>
+          <h3>Rester organisé</h3>
+          <p>Un suivi clair et régulier, pour un quotidien professionnel plus fluide et plus serein.</p>
+        </div>
+        <div class="benefit">
+          <span class="benefit__index">03</span>
+          <h3>Se concentrer sur l'essentiel</h3>
+          <p>Consacrer davantage de temps et d'énergie à son métier et à ses clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS PREVIEW -->
+  <section class="section">
+    <div class="container about-preview">
+      <div class="about-preview__frame reveal">
+        <span>[ Emplacement photo<br>à intégrer ]</span>
+      </div>
+      <div class="about-preview__body reveal">
+        <p class="eyebrow">Qui suis-je ?</p>
+        <h2 class="section__title section__title--md" style="margin-top:var(--space-xs); margin-bottom:var(--space-sm);">Une approche humaine, rigoureuse et sur mesure</h2>
+        <p>Je met mon sens de l'organisation et ma rigueur au service des indépendants et petites entreprises, avec une approche simple, directe et adaptée à chaque activité.</p>
+        <p>Chaque collaboration démarre par une écoute attentive de vos besoins, pour construire un accompagnement réellement utile — ni plus, ni moins.</p>
+        <div style="margin-top:var(--space-sm);">
+          <a href="a-propos.html" class="text-link">En savoir plus sur moi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSUS -->
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="eyebrow">Comment ça se passe</p>
+        <h2 class="section__title">Un accompagnement en quatre étapes</h2>
+      </div>
+      <div class="process reveal">
+        <div class="process-step">
+          <span class="process-step__num">01</span>
+          <h3>Échange</h3>
+          <p>Un premier échange pour se rencontrer et comprendre votre activité.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">02</span>
+          <h3>Identification des besoins</h3>
+          <p>Analyse de vos priorités et des tâches à déléguer en premier.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">03</span>
+          <h3>Mise en place</h3>
+          <p>Organisation des outils et des méthodes de collaboration adaptées.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">04</span>
+          <h3>Accompagnement</h3>
+          <p>Un suivi régulier et une collaboration qui évolue avec vos besoins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS PREVIEW -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head section__head--row reveal">
+        <div>
+          <p class="eyebrow">Investissement</p>
+          <h2 class="section__title">Une offre claire, adaptée à votre activité</h2>
+        </div>
+        <a href="tarifs.html" class="text-link">Voir tous les tarifs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="pricing-grid reveal">
+        <div class="pricing-card">
+          <span class="pricing-card__label">Ponctuel</span>
+          <h3>Mission courte</h3>
+          <p class="pricing-card__price">[Tarif à compléter] <small>/ mission</small></p>
+          <p style="color:var(--ink-soft); font-size:var(--fs-sm);">Pour un besoin précis et ponctuel, sans engagement dans la durée.</p>
+        </div>
+        <div class="pricing-card pricing-card--highlight">
+          <span class="pricing-card__label">Le plus choisi</span>
+          <h3>Accompagnement régulier</h3>
+          <p class="pricing-card__price">[Tarif à compléter] <small>/ mois</small></p>
+          <p style="color:var(--ink-soft); font-size:var(--fs-sm);">Un volume d'heures mensuel pour une gestion continue et sereine.</p>
+        </div>
+        <div class="pricing-card">
+          <span class="pricing-card__label">Sur mesure</span>
+          <h3>Accompagnement dédié</h3>
+          <p class="pricing-card__price">[Tarif à compléter]</p>
+          <p style="color:var(--ink-soft); font-size:var(--fs-sm);">Une collaboration approfondie, pensée pour des besoins spécifiques.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-final reveal">
+        <div class="cta-final__inner">
+          <p class="eyebrow" style="justify-content:center;">Prêt·e à déléguer ?</p>
+          <h2>Et si vous commenciez par vous libérer du reste ?</h2>
+          <p>Parlons de votre activité et de ce qui pourrait, dès aujourd'hui, être un peu plus léger.</p>
+          <a href="contact.html" class="btn btn--primary">
+            Prendre contact
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.svg" alt="Laetitia Meillon">
+        <p>Assistante digitale, spécialisée en gestion administrative — au service des indépendants, artisans et petites entreprises.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
         <ul>
-          <li><a href="/commu">COMMUNAUTÉ</a></li>
-          <li><a href="/art-challenge">ART CHALLENGE</a></li>
-          <li><a href="/faq">FAQ</a></li>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="prestations.html">Prestations</a></li>
+          <li><a href="tarifs.html">Tarifs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Suivre</h4>
+        <ul>
+          <li><a href="???" rel="noopener">LinkedIn</a></li>
+          <li><a href="???" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:contact@laetitiameillon.fr">contact@laetitiameillon.fr</a></li>
         </ul>
       </div>
     </div>
-  </header>
-
-  <div class="blur-overlay"></div>
-
-  <section id="home">
-    <div class="home-title">
-      <img src="/icons/home-title1.svg" class="title-img img-1" alt="Title 1">
-      <img src="/icons/home-title2.svg" class="title-img img-2" alt="Title 2">
-      <img src="/icons/home-title3.svg" class="title-img img-3" alt="Title 3">
-    </div>
-
-    <div class="portfolio-background">
-      <img src="/portfolio/creations/44.webp" class="p-img pos-1" alt="Work 44">
-      <img src="/portfolio/creations/43.webp" class="p-img pos-2" alt="Work 43">
-      <img src="/portfolio/creations/42.webp" class="p-img pos-3" alt="Work 42">
-      <img src="/portfolio/creations/41.webp" class="p-img pos-4" alt="Work 41">
-      <img src="/portfolio/creations/40.webp" class="p-img pos-5" alt="Work 40">
-      <img src="/portfolio/creations/39.webp" class="p-img pos-6" alt="Work 39">
-      <img src="/portfolio/creations/38.webp" class="p-img pos-7" alt="Work 38">
-      <img src="/portfolio/creations/34.webp" class="p-img pos-8" alt="Work 34">
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="cta-container">
-      <h2>PLONGE DANS L'UNIVERS DE PERSPIKATIVE</h2>
-      <p class="cta-subtext">
-        Explore, suis et découvre un univers de création visuelle et d'idées en mouvement.
-      </p>
-
-      <div class="cta-buttons">
-        <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" 
-           target="_blank" class="cta-btn whatsapp">
-          FOLLOW MOI SUR WHATSAPP
-        </a>
-
-        <a href="/actus" class="cta-btn blog">
-          SUIS LES ACTUS
-        </a>
-
-        <a href="/art-challenge" class="cta-btn art-challenge">
-          PARTICIPE AU ART CHALLENGE
-        </a>
+    <div class="footer-bottom">
+      <span>© 2026 Laetitia Meillon. Tous droits réservés.</span>
+      <div class="footer-bottom__links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="mentions-legales.html#confidentialite">Confidentialité</a>
       </div>
     </div>
-  </section>
-  
-  <section class="featured-creation">
-    <div class="featured-container">
-      <!-- GAUCHE : SHORT YOUTUBE -->
-      <div class="featured-video">
-        <iframe 
-          width="315" 
-          height="560"
-          src="https://www.youtube-nocookie.com/embed/XqasZKmptGs"
-          class="short"
-          title="The Castle Byers"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <!-- DROITE : CONTENU -->
-      <div class="featured-content">
-        <!-- TITRE -->
-        <h2 class="featured-title">THE CASTLE BYERS</h2>
-        <!-- DESCRIPTION -->
-        <p class="featured-description">
-          Création inspirée de l'univers de Stranger Things, The Castle Byers reprend l'esthétique des souvenirs de Will Byers dans la saison 5.
-          Replongez dans ce moment fort et nostalgique de la série, où Will se rappelle d'une parole de Robin...
-        </p>
-        <!-- BOUTON -->
-        <a href="/portfolio/creations#the-castle-byers" class="featured-btn">
-          Voir la création dans le portfolio
-        </a>
-      </div>
-    </div>
-  </section>
+  </div>
+</footer>
 
-  <footer>
-    <div class="social-icons">
-      <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
-        <img src="/icons/linktree.svg" alt="Linktree">
-      </a>
-     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
-        <img src="/icons/whatsapp-channel.svg" alt="Chaîne WhatsApp">
-      </a>
-      <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
-        <img src="/icons/instagram.svg" alt="Instagram">
-      </a>
-      <a href="https://youtube.com/@perspikative" target="_blank" aria-label="YouTube">
-        <img src="/icons/youtube.svg" alt="YouTube">
-      </a>
-      <a href="https://www.pinterest.com/perspikative" target="_blank" aria-label="Pinterest">
-        <img src="/icons/pinterest.svg" alt="Pinterest">
-      </a>
-    </div>
-
-    <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
-    <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
-    <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
-    <p><a href="/help-center" class="footer-link">Centre d'aide</a></p>
-    <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
-    <p><a href="/brand-guidelines" class="footer-link">Brand guidelines</a></p>
-  </footer>
-
-  <a href="/rechercher" class="search-float-btn" title="Rechercher">
-    <img src="/icons/rechercher.svg" alt="Rechercher">
-  </a>
-
-  <!-- Loader JS -->
-  <script>
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("site-loader");
-      setTimeout(() => {
-        loader.classList.add("hide");
-      }, 700);
-    });
-  </script>
-  
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    menuToggle.addEventListener('change', (e) => {
-      document.body.classList.toggle('menu-open', e.target.checked);
-    });
-  </script>
-  
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
-    });
-  }
-</script>
-
-  <script src="/script.js"></script>
-
+<script src="script.js"></script>
 </body>
-
 </html>
-
-
-
