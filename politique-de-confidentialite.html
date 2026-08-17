@@ -21,8 +21,93 @@ permalink: /politique-de-confidentialite
   <link rel="stylesheet" href="/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
-
+  
+  <script defer src="/js/nav-liquid-glass.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
+
+  <style>
+    :root {
+      --pc-accent-1: #00c896;
+      --pc-glass-bg: rgba(255, 255, 255, 0.08);
+      --pc-glass-inset: inset 0 0 14px rgba(255, 255, 255, 0.2);
+      --pc-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      --pc-text-muted: rgba(255, 255, 255, 0.7);
+      --pc-radius-card: 25px;
+    }
+
+    /* Wrapper glass, gère aussi le scroll horizontal sur mobile */
+    .tiers-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      padding: 12px;
+      border-radius: var(--pc-radius-card);
+      background: var(--pc-glass-bg);
+      box-shadow: var(--pc-glass-inset), var(--pc-shadow);
+    }
+
+    .tiers-table-wrap::-webkit-scrollbar { height: 6px; }
+    .tiers-table-wrap::-webkit-scrollbar-thumb {
+      background: var(--pc-accent-1);
+      border-radius: 10px;
+    }
+
+    .tiers-table {
+      width: 100%;
+      min-width: 460px;
+      border-collapse: separate;
+      border-spacing: 3.6px;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    .tiers-table thead th {
+      text-align: left;
+      padding: 10px 20px 12px;
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 250, 1);
+    }
+
+    .tiers-table tbody tr {
+      background: rgba(255, 255, 255, 0.04);
+      transition: background 0.15s ease;
+    }
+
+    .tiers-table tbody tr:hover {
+      background: rgba(250, 250, 250, 0.1);
+    }
+
+    .tiers-table tbody td {
+      padding: 16px 20px;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      color: var(--pc-text-muted);
+      vertical-align: middle;
+    }
+
+    .tiers-table tbody td:first-child {
+      font-weight: 700;
+      color: #ffffff;
+      border-radius: 20px 0 0 20px;
+      white-space: nowrap;
+    }
+
+    .tiers-table tbody td:last-child {
+      border-radius: 0 20px 20px 0;
+    }
+
+    @media (max-width: 900px) {
+      .tiers-table { min-width: 70px; }
+      .tiers-table thead th { font-size: 1rem; padding: 8px 14px 12px; }
+      .tiers-table tbody td { padding: 8px 12px; font-size: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tiers-table tbody tr { transition: none; }
+    }
+  </style>
 </head>
 
 <body class="mentions-body">
@@ -40,10 +125,18 @@ permalink: /politique-de-confidentialite
     <a href="/actus" class="nav-icon" title="Actus">
       <img src="/icons/actus.svg" alt="Actus">
     </a>
-    <a href="/contact" class="nav-icon" title="Contact">
-      <img src="/icons/contact.svg" alt="Contact">
+    <a href="/profile" class="nav-icon" title="Profil">
+      <img src="/icons/profile.svg" alt="Profil">
     </a>
   </nav>
+
+  <div class="nav-blur-gradient" aria-hidden="true">
+    <span class="nav-blur-layer nav-blur-layer--1"></span>
+    <span class="nav-blur-layer nav-blur-layer--2"></span>
+    <span class="nav-blur-layer nav-blur-layer--3"></span>
+    <span class="nav-blur-layer nav-blur-layer--4"></span>
+    <span class="nav-blur-layer nav-blur-layer--5"></span>
+  </div>
 
   <header>
     <div class="header-content">
@@ -69,8 +162,8 @@ permalink: /politique-de-confidentialite
             </a>
           </li>
           <li>
-            <a href="/contact" class="tab">
-              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            <a href="/profile" class="tab">
+              <img src="/icons/profile.svg" alt="" class="tab-icon"> PROFIL
             </a>
           </li>
         </ul>
@@ -83,7 +176,7 @@ permalink: /politique-de-confidentialite
         <ul>
           <li><a href="/commu">COMMUNAUTÉ</a></li>
           <li><a href="/art-challenge">ART CHALLENGE</a></li>
-          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">CONTACT</a></li>
         </ul>
       </div>
     </div>
@@ -95,7 +188,7 @@ permalink: /politique-de-confidentialite
     <section class="mentions-content">
       <img src="/icons/politique-de-confidentialite.svg" alt="" class="mentions-icon">
       <h1>POLITIQUE DE CONFIDENTIALITÉ</h1>
-      <p class="mentions-date">Entre en vigueur le 20/05/2026</p>
+      <p class="mentions-date">Dernière mise à jour : 12/08/2026</p>
 
       <p>Cette politique explique de manière claire et transparente quelles donnéees peuvent être collectées
         lorsque vous naviguez sur le site <a href="https://perspikative.com" class="host-link"><strong>perspikative.com</strong></a>,
@@ -106,20 +199,24 @@ permalink: /politique-de-confidentialite
 
       <p><strong>Données fournies volontairement</strong></p>
       <p>
-        Lorsque vous utilisez un formulaire de contact sur le site, certaines des informations suivantes peuvent être récupérées. À noter : à l'heure actuelle, le site ne propose pas encore de formulaire.
+        Lorsque vous créez votre compte Perspikative, les informations suivantes peuvent être récoltées :
       </p>
       <ul>
-        <li>Prénom/pseudonyme</li>
+        <li>Nom</li>
+        <li>Prénom</li>
         <li>Adresse mail</li>
-        <li>Contenu du message</li>
-        <li>Fichier(s) importé(s)</li>
-        <li>Pronoms</li>
+        <li>Photo de profil</li>
+        <li>Pseudonyme</li>
       </ul>
-      <p>Ces informations sont uniquement utilisées pour répondre aux demandes ou échanges initiés par l'utilisateur, et ne seront jamais publiées, cédées ni à un tiers ni à quiconque.</p>
+      <p>
+        Ces informations sont uniquement utilisées pour votre compte Perspikative. Ils sont gérés à l'aide de Firebase, un service fourni par Google.
+        Les informations nécessaires au fonctionnement de votre compte (comme votre adresse mail, votre nom d'utilisateur ou les données liées à votre profil) sont stockées et traitées via cette plateforme.
+        Perspikative ne vend ni ne partage vos données personnelles à des tiers à des fins commerciales.
+      </p>
 
       <p><strong>Données de navigation</strong></p>
       <p>
-        Perspikative utilise <a href="https://umami.is" target="_blank" class="host-link"><strong>Umami Analytics</strong></a> afin d'obtenir des statistiques de fréquentation du site de manière respectueuse de la vie privée des utilisateurs, et sans l'utilisation de cookies.
+        Perspikative utilise <a href="https://umami.is" target="_blank" class="host-link"><strong>Umami Analytics</strong></a> afin d'obtenir des statistiques de fréquentation du site de manière respectueuse de la vie privée des utilisateurs, sans l'utilisation de cookies.
         Les informations suivantes peuvent être mesurées de façon anonyme :
       </p>
       <ul>
@@ -140,7 +237,7 @@ permalink: /politique-de-confidentialite
 
       <p>
         Perspikative n'utilise que des <strong>cookies essentiels</strong> au fonctionnement du site
-        (favoris, recherches récentes...) et des cookies issus d'API externes (telles que les intégrations de vidéo YouTube).
+        (comptes, favoris, recherches récentes...) et des cookies issus d'API externes (telles que les commentaires et l'intégration de vidéos YouTube).
       </p>
       <p>
         Le site n'utilise pas de cookies à des fins de suivi, de publicité ou d'analyse, et ne collecte aucune donnée personnelle via les cookies.
@@ -151,22 +248,53 @@ permalink: /politique-de-confidentialite
 
       <p>Les données collectées sont utilisées exclusivement pour :</p>
       <ul>
-        <li>Répondre aux messages envoyés via des formulaires de contact ;</li>
-        <li>Comprendre la fréquentation du site ;</li>
-        <li>Améliorer le contenu, les performances et l'expérience utilisateur ;</li>
-        <li>Identifier les pages les plus et les moins consultées ;</li>
+        <li>Créer votre compte Perspikative ;</li>
+        <li>Comprendre la fréquentation du site (anonymement) ;</li>
+        <li>Améliorer le contenu, les performances et l'expérience utilisateur (anonymement) ;</li>
+        <li>Identifier la popularité des pages (anonymement) ;</li>
         <li>Prévenir les abus, les fraudes et les actes malveillants envers le site.</li>
       </ul> 
       <p>Aucune donnée personnelle n'est vendue, cédée ou partagée avec des tiers à des fins commerciales sous aucun prétexte.</p>
 
       <h2>4. DURÉE DE CONSERVATION</h2>
 
-      <p>Les données fournies via des formulaires de contact sont conservées uniquement le temps nécessaire au traitement des échanges.</p>
+      <p>Les données fournies pour la création de votre compte sont conservées tout le temps où votre compte existe. Si vous décidez de supprimer votre compte, toutes vos données seront supprimées.</p>
       <p>Les statistiques anonymes de fréquentation sont conservées pour une durée limitée dans Umami Analytics.</p>
       
       <h2>5. SERVICES TIERS</h2>
 
-      <p>Le site utilise certains services externes pour l'affichage de contenus, notamment <a href="https://www.youtube.com" target="_blank" class="host-link"><strong>YouTube</strong></a> pour l'intégration de vidéos. Ce service utilise sa propre <a href="https://www.youtube.com/howyoutubeworks/privacy/" target="_blank" class="host-link">politique de confidentialité</a>, et vous l'acceptez en regardant les vidéos.</p>
+      <p>Le site fait appel à plusieurs services externes pour fonctionner :</p>
+
+      <div class="tiers-table-wrap">
+        <table class="tiers-table">
+          <thead>
+            <tr>
+              <th scope="col">Service</th>
+              <th scope="col">Utilisation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Firebase (Google)</td>
+              <td>Comptes utilisateurs, authentification, base de données et e-mails</td>
+            </tr>
+            <tr>
+              <td>GitHub Pages</td>
+              <td>Hébergement du site</td>
+            </tr>
+            <tr>
+              <td>Hostinger</td>
+              <td>Gestion du nom de domaine et DNS</td>
+            </tr>
+            <tr>
+              <td>YouTube (Google)</td>
+              <td>Intégration de vidéos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>YouTube applique sa propre <a href="https://www.youtube.com/howyoutubeworks/privacy/" target="_blank" class="host-link">politique de confidentialité</a>, que vous acceptez en lisant les vidéos.</p>
 
       <h2>6. VOS DROITS</h2>
 
@@ -219,6 +347,8 @@ permalink: /politique-de-confidentialite
 
     <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
     <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
+    <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p><a href="/terms-of-service" class="footer-link">Conditions d'utilisation</a></p>
     <p><a href="/help-center" class="footer-link">Centre d'aide</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
     <p><a href="/brand-guidelines" class="footer-link">Brand guidelines</a></p>
