@@ -22,7 +22,8 @@ permalink: /rechercher
 
   <link rel="stylesheet" href="/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
-
+  
+  <script defer src="/js/nav-liquid-glass.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
   
   <style>
@@ -73,8 +74,8 @@ permalink: /rechercher
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      background: rgba(255, 255, 255, 0.08);
       color: rgba(255, 255, 255, 0.9);
       font: inherit;
       font-size: 1rem;
@@ -90,8 +91,7 @@ permalink: /rechercher
 
     .search-history-clear:hover,
     .search-history-clear:focus-visible {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12);
       transform: translateY(-1px);
       outline: none;
       box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3),
@@ -107,7 +107,7 @@ permalink: /rechercher
 </head>
 
 <body class="search">
-  
+
   <nav class="mobile-nav">
     <a href="/" class="nav-icon" title="Accueil">
       <img src="/icons/accueil.svg" alt="Accueil">
@@ -121,8 +121,8 @@ permalink: /rechercher
     <a href="/actus" class="nav-icon" title="Actus">
       <img src="/icons/actus.svg" alt="Actus">
     </a>
-    <a href="/contact" class="nav-icon" title="Contact">
-      <img src="/icons/contact.svg" alt="Contact">
+    <a href="/profile" class="nav-icon" title="Profil">
+      <img src="/icons/profile.svg" alt="Profil">
     </a>
   </nav>
 
@@ -133,7 +133,7 @@ permalink: /rechercher
     <span class="nav-blur-layer nav-blur-layer--4"></span>
     <span class="nav-blur-layer nav-blur-layer--5"></span>
   </div>
-  
+
   <header>
     <div class="header-content">
       <div class="logo">
@@ -158,8 +158,8 @@ permalink: /rechercher
             </a>
           </li>
           <li>
-            <a href="/contact" class="tab">
-              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            <a href="/profile" class="tab">
+              <img src="/icons/profile.svg" alt="" class="tab-icon"> PROFIL
             </a>
           </li>
         </ul>
@@ -168,14 +168,12 @@ permalink: /rechercher
         <label for="menuToggle" class="burger-icon" title="Menu">
           <img id="menuIcon" src="icons/menu.svg" alt="Menu">
         </label>
-        
-        <div class="mobile-menu">
-          <ul>
-            <li><a href="/commu">COMMUNAUTÉ</a></li>
-            <li><a href="/art-challenge">ART CHALLENGE</a></li>
-            <li><a href="/faq">FAQ</a></li>
-          </ul>
-        </div>
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="/commu">COMMUNAUTÉ</a></li>
+          <li><a href="/art-challenge">ART CHALLENGE</a></li>
+          <li><a href="/contact">CONTACT</a></li>
+        </ul>
       </div>
     </div>
   </header>
@@ -232,6 +230,7 @@ permalink: /rechercher
     <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
     <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
     <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p><a href="/terms-of-service" class="footer-link">Conditions d'utilisation</a></p>
     <p><a href="/help-center" class="footer-link">Centre d'aide</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
     <p><a href="/brand-guidelines" class="footer-link">Brand guidelines</a></p>
@@ -264,6 +263,10 @@ permalink: /rechercher
       "merde": { text: "Et merde alors" },
       "perspikative": { img: "/logo.svg", text: "T'y es déjà canaille" },
       "bonjour": { text: "Heyy!" },
+      "coucou": { text: "Coucou toi" },
+      "cv": { text: "Je vais bien, merci :)" },
+      "cv?": { text: "Je vais bien, merci :)" },
+      "cv ?": { text: "Je vais bien, merci :)" },
       "secret": { text: "Perspikative regorge de secrets..." },
       "tout": { text: "Ta recherche est un peu vaste, non ?" },
       "hack": { text: "Bien essayé, farfadet." },
@@ -273,11 +276,11 @@ permalink: /rechercher
       "perdu": { text: "Tu vas t'en sortir :)" },
       "help": { text: "Besoin d'aide ? Tu n'es pas seul. Parle à une personne de confiance." },
       "aide": { text: "Besoin d'aide ? Tu n'es pas seul. Parle à une personne de confiance." },
-      "fuck": { text: "Hep hep hep pas de grossiereté ici" },
-      "tg": { text: "Hep hep hep pas de grossiereté ici" },
-      "putain": { text: "Hep hep hep pas de grossiereté ici" },
-      "ptn": { text: "Hep hep hep pas de grossiereté ici" },
-      "ta gueule": { text: "Hep hep hep pas de grossiereté ici" },
+      "fuck": { text: "Hep hep hep, pas de grossiereté ici" },
+      "tg": { text: "Hep hep hep, pas de grossiereté ici" },
+      "putain": { text: "Hep hep hep, pas de grossiereté ici" },
+      "ptn": { text: "Hep hep hep, pas de grossiereté ici" },
+      "ta gueule": { text: "Hep hep hep, pas de grossiereté ici" },
       "donald trump": { img: "/pics/easter-eggs/trump.webp" },
       "trump": { img: "/pics/easter-eggs/trump.webp" },
       "ice out": { img: "/pics/easter-eggs/ice-out.webp" },
@@ -285,12 +288,10 @@ permalink: /rechercher
       "capybara": { img: "/pics/easter-eggs/capybara.webp" },
       "for sure": { img: "/pics/easter-eggs/for-sure.webp" },
       "...": { text: "... K?" },
-      "pride": { text: "Bon Pride Month !" },
-      "lgbt": { text: "Bon Pride Month !" },
-      "lgbtqia": { text: "Bon Pride Month !" },
-      "cherche": { text: "Tu cherches la recherche dans la recherche ?" },
+      "recherche": { text: "Tu cherches la recherche dans la recherche ?" },
+      "tartineske": { text: "C'est bien moi, on m'appelle?" },
       "/rainbow": { 
-        text: "C'est la fête des couleurs !", 
+        text: "C'est la fête écoutez", 
         action: () => {
           document.body.style.animation = "rainbow-bg 5s infinite";
           const style = document.createElement('style');
@@ -299,7 +300,7 @@ permalink: /rechercher
         }
       },
       "/draw": {
-            text: "À toi de dessiner !",
+            text: "À toi de dessiner!",
             action: () => {
                   if (document.getElementById('doodle-svg')) return;
                   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -347,7 +348,7 @@ permalink: /rechercher
             }
       },
       "/reset": { 
-        text: "Retour à la normale...", 
+        text: "Retour à la normale :)", 
         action: () => {
             document.body.style.filter = "";
             document.body.style.animation = "";
@@ -363,7 +364,7 @@ permalink: /rechercher
       { title: "Créations", category: "Portfolio", url: "/portfolio/creations", tags: "créations dessin peinture art couleur traditionnel", img: "/icons/creations.svg" },
       { title: "Illustrations", category: "Portfolio", url: "/portfolio/illustrations", tags: "illustrations dessin digital", img: "/icons/illustrations.svg" },
       { title: "Projets", category: "Portfolio", url: "/portfolio/projets", tags: "projets dessin concept traditionnel", img: "/icons/projets.svg" },
-      { title: "Art Challenge", category: "Challenge", url: "/art-challenge", tags: "art challenge défi concours thème dessin", img: "/icons/art-challenge.svg" },
+      { title: "ART Challenge", category: "Challenge", url: "/art-challenge", tags: "art challenge défi concours thème dessin", img: "/icons/art-challenge.svg" },
       { title: "Communauté", category: "Commu", url: "/commu", tags: "communauté discussion forum perspikateam beta program", img: "/icons/communaute.svg" },
       { title: "Beta Program", category: "Commu", url: "/commu/beta-program", tags: "beta program", img: "/icons/beta-program.svg" },
       { title: "Perspikateam", category: "Commu", url: "/commu/perspikateam", tags: "perspikateam", img: "/icons/perspikateam.svg" },
@@ -379,6 +380,7 @@ permalink: /rechercher
       { title: "Centre d'aide", category: "Aide", url: "/help-center", tags: "centre d'aide assistance signaler", img: "/icons/help-center.svg" },
       { title: "Position sur l'IA", category: "Légal", url: "/position-ia", tags: "position ia intelligence artificielle", img: "/icons/contrat.svg" },
       { title: "Brand guidelines", category: "Légal", url: "/brand-guidelines", tags: "brand guidelines utilisation marque", img: "/icons/brand-guidelines.svg" },
+      { title: "Changelog", category: "Changelog", url: "/changelog", tags: "changelog modifications mises à jour", img: "/icons/changelog.svg" },
       { title: "404 ERROR", category: "404", url: "/404", tags: "erreur oupsi", img: "/icons/404.svg" },
 
       { title: "FAQ - Général", category: "FAQ", url: "/faq/general", tags: "FAQ général", img: "/icons/general.svg" },
@@ -400,7 +402,8 @@ permalink: /rechercher
       { title: "WhatsApp", category: "Social", url: "https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y", tags: "WhatsApp réseau social", img: "/icons/whatsapp-channel.svg" },
       { title: "Pinterest", category: "Social", url: "https://pinterest.com/perspikative", tags: "Pinterest réseau social", img: "/icons/pinterest.svg" },
       { title: "NGL", category: "Social", url: "https://ngl.link/perspikative", tags: "NGL messages anonymes réseau social", img: "/icons/ngl.png" },
-      
+
+      { title: "Everything's a Sacrifice", category: "Création", url: "/portfolio/creations#everythings-a-sacrifice", tags: "everything's a sacrifice lumière chanson nuage ryan beatty océan lampadaire", img: "/icons/creations.svg" },
       { title: "Moths", category: "Création", url: "/portfolio/creations#moths", tags: "moths papillons de nuit ville nuit conan gray lumière chanson ", img: "/icons/creations.svg" },
       { title: "となりのトトロ", category: "Création", url: "/portfolio/creations#my-neighbor-totoro", tags: "mon voisin totoro ghibli hayao miyazaki nature esprit foret forêt collab", img: "/icons/creations.svg" },
       { title: "KAYOU's DINER", category: "Création", url: "/portfolio/creations#kayous-diner", tags: "kayou's diner cailloux resto restaurant cacahuètes orange roche kayoupolis", img: "/icons/creations.svg" },
@@ -470,10 +473,10 @@ permalink: /rechercher
 
     // --- CONTENU POPULAIRE À METTRE EN AVANT ---
     const popularSearches = [
-      { title: "more than any stupid song", icon: "/icons/illustrations-active.svg", url: "/portfolio/illustrations/more-than-any-stupid-song" },
+      { title: "Everything's a Sacrifice", icon: "/icons/creations-active.svg", url: "/portfolio/creations/everythings-a-sacrifice" },
       { title: "Portfolio", icon: "/icons/portfolio-active.svg", url: "/portfolio" },
-      { title: "Communauté", icon: "/icons/communaute-active.svg", url: "/commu" },
       { title: "Se connecter", icon: "/icons/login.svg", url: "/login" },
+      { title: "ART Challenge", icon: "/icons/art-challenge-active.svg", url: "/art-challenge" },
     ];
 
     function renderPopularContent() {
@@ -535,7 +538,7 @@ permalink: /rechercher
       resultsContainer.innerHTML = '';
       const cleanQuery = normalizeText(query);
       
-      const searchTerms = cleanQuery.split(/\s+/).filter(t => t.length >= 2);
+      const searchTerms = cleanQuery.split(/\s+/).filter(t => t.length >= 1);
 
       // --- UN SEUL BLOC EASTER EGGS ---
       for (let key in easterEggs) {
@@ -558,45 +561,97 @@ permalink: /rechercher
 
       if (searchTerms.length === 0) return;
 
-      let scoredResults = siteContent.map(item => {
-        let score = 0;
-        let matchedTermsCount = 0;
-        const cleanTitle = normalizeText(item.title);
-        const titleWords = cleanTitle.split(/\s+/);
-        const tags = item.tags.split(/\s+/).map(t => normalizeText(t));
+      // Tolérance de faute autorisée en fonction de la longueur du mot recherché.
+      // Plus le mot est court, moins on tolère d'écart (évite les faux positifs sur des mots courts ou du bruit).
+      function maxFuzzyDistance(len) {
+        if (len <= 2) return 0;   // pas de flou du tout sur 1-2 caractères
+        if (len <= 4) return 1;
+        if (len <= 7) return 2;
+        return Math.floor(len / 4);
+      }
 
-        searchTerms.forEach(term => {
-          let hasMatch = false;
+      // Score de correspondance d'UN terme recherché contre UN item.
+      // Renvoie 0 si aucune correspondance (le terme est alors considéré comme non trouvé).
+      function scoreTermAgainstItem(term, titleNorm, titleWords, tagsNorm, categoryNorm) {
+        const len = term.length;
 
-          // 1. Check Titre
-          if (cleanTitle.includes(term)) {
-            score += 50;
-            hasMatch = true;
-          } else {
-            // Flou sur le titre
-            titleWords.forEach(w => {
-              if (levenshtein(w, term) <= 1) { score += 20; hasMatch = true; }
-            });
-          }
+        // 1. Le titre commence exactement par le terme (le plus pertinent)
+        if (titleNorm.startsWith(term)) return 100;
 
-          // 2. Check Tags
-          tags.forEach(tag => {
-            if (tag.includes(term)) { score += 20; hasMatch = true; }
-          });
+        // 2. Un mot du titre commence par le terme
+        if (titleWords.some(w => w.startsWith(term))) return 80;
 
-          if (hasMatch) matchedTermsCount++;
-        });
-
-        if (matchedTermsCount === searchTerms.length && searchTerms.length > 1) {
-          score += 100;
+        // Pour les recherches d'1 seul caractère, on s'arrête volontairement là (préfixes uniquement),
+        // pour éviter de remonter n'importe quel résultat contenant juste cette lettre.
+        if (len === 1) {
+          if (tagsNorm.some(t => t.startsWith(term))) return 40;
+          if (categoryNorm.startsWith(term)) return 20;
+          return 0;
         }
 
-        return { ...item, score };
+        // 3. Le titre contient le terme (au milieu d'un mot)
+        if (titleNorm.includes(term)) return 60;
+
+        // 4. Un tag commence par le terme
+        if (tagsNorm.some(t => t.startsWith(term))) return 45;
+
+        // 5. Un tag contient le terme
+        if (tagsNorm.some(t => t.includes(term))) return 30;
+
+        // 6. La catégorie commence par le terme
+        if (categoryNorm.startsWith(term)) return 20;
+
+        // 7. Tolérance aux fautes de frappe (flou), seulement pour des mots de taille comparable
+        if (len >= 3) {
+          const maxDist = maxFuzzyDistance(len);
+          const candidates = titleWords.concat(tagsNorm);
+          const hasCloseMatch = candidates.some(w =>
+            w.length > 0 &&
+            Math.abs(w.length - len) <= maxDist &&
+            levenshtein(w, term) <= maxDist
+          );
+          if (hasCloseMatch) return 15;
+        }
+
+        return 0;
+      }
+
+      let scoredResults = siteContent.map(item => {
+        const titleNorm = normalizeText(item.title);
+        const titleWords = titleNorm.split(/\s+/);
+        const tagsNorm = item.tags.split(/\s+/).map(t => normalizeText(t));
+        const categoryNorm = normalizeText(item.category);
+
+        let totalScore = 0;
+        let matchedTermsCount = 0;
+
+        searchTerms.forEach(term => {
+          const termScore = scoreTermAgainstItem(term, titleNorm, titleWords, tagsNorm, categoryNorm);
+          if (termScore > 0) matchedTermsCount++;
+          totalScore += termScore;
+        });
+
+        // Exigence stricte : TOUS les mots tapés doivent trouver une correspondance.
+        // Ça évite qu'un mot très commun ("the", "de", "la"...) fasse remonter des résultats
+        // qui ne matchent pas vraiment le reste de la recherche.
+        const isValidMatch = matchedTermsCount === searchTerms.length;
+        if (!isValidMatch) return { ...item, score: 0 };
+
+        // Bonus si tous les mots d'une recherche multi-mots ont matché (cohérence globale)
+        if (searchTerms.length > 1) totalScore += 50;
+
+        // Bonus supplémentaire si le titre commence par la phrase exacte tapée
+        if (titleNorm.startsWith(cleanQuery)) totalScore += 40;
+
+        return { ...item, score: totalScore };
       });
 
       const filteredResults = scoredResults
         .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          return a.title.localeCompare(b.title, 'fr'); // égalité de score : ordre alphabétique
+        });
 
       if (filteredResults.length === 0) {
         resultsContainer.innerHTML = `<div class="no-results-container"><div class="no-results-text">Aucun résultat pour "${rawValue}"</div></div>`;
