@@ -21,7 +21,8 @@ permalink: /help-center
   <link rel="stylesheet" href="/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
-
+  
+  <script defer src="/js/nav-liquid-glass.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
 </head>
 
@@ -40,10 +41,18 @@ permalink: /help-center
     <a href="/actus" class="nav-icon" title="Actus">
       <img src="/icons/actus.svg" alt="Actus">
     </a>
-    <a href="/contact" class="nav-icon" title="Contact">
-      <img src="/icons/contact.svg" alt="Contact">
+    <a href="/profile" class="nav-icon" title="Profil">
+      <img src="/icons/profile.svg" alt="Profil">
     </a>
   </nav>
+
+  <div class="nav-blur-gradient" aria-hidden="true">
+    <span class="nav-blur-layer nav-blur-layer--1"></span>
+    <span class="nav-blur-layer nav-blur-layer--2"></span>
+    <span class="nav-blur-layer nav-blur-layer--3"></span>
+    <span class="nav-blur-layer nav-blur-layer--4"></span>
+    <span class="nav-blur-layer nav-blur-layer--5"></span>
+  </div>
 
   <header>
     <div class="header-content">
@@ -69,8 +78,8 @@ permalink: /help-center
             </a>
           </li>
           <li>
-            <a href="/contact" class="tab">
-              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            <a href="/profile" class="tab">
+              <img src="/icons/profile.svg" alt="" class="tab-icon"> PROFIL
             </a>
           </li>
         </ul>
@@ -83,7 +92,7 @@ permalink: /help-center
         <ul>
           <li><a href="/commu">COMMUNAUTÉ</a></li>
           <li><a href="/art-challenge">ART CHALLENGE</a></li>
-          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">CONTACT</a></li>
         </ul>
       </div>
     </div>
@@ -110,9 +119,21 @@ permalink: /help-center
           <img src="/icons/external-link.svg" class="btn-external" alt="" aria-hidden="true" />
         </a>
 
+        <a href="https://forms.gle/SokwVDWwNHtnWcVL8" target="_blank" class="report-btn">
+          <img src="/icons/report.svg" class="btn-icon" alt="" aria-hidden="true" />
+          <span class="btn-label">Signaler un utilisateur</span>
+          <img src="/icons/external-link.svg" class="btn-external" alt="" aria-hidden="true" />
+        </a>
+        
+        <a href="https://forms.gle/8Hszmy3Cv2uoEEio9" target="_blank" class="report-btn">
+          <img src="/icons/mentions-legales.svg" class="btn-icon" alt="" aria-hidden="true" />
+          <span class="btn-label">Faire appel d'une décision</span>
+          <img src="/icons/external-link.svg" class="btn-external" alt="" aria-hidden="true" />
+        </a>
+
         <a href="https://forms.gle/4D1eEJh97vwaLDQX9" target="_blank" class="report-btn">
           <img src="/icons/idea.svg" class="btn-icon" alt="" aria-hidden="true" />
-          <span class="btn-label">Faire une suggestion</span>
+          <span class="btn-label">Proposer une idée</span>
           <img src="/icons/external-link.svg" class="btn-external" alt="" aria-hidden="true" />
         </a>
 
@@ -142,6 +163,7 @@ permalink: /help-center
           <img src="/icons/contact.svg" class="btn-icon" alt="" aria-hidden="true" />
           <span class="btn-label">Contacter Perspikative</span>
         </a>
+
       </div>
     </div>
 
@@ -172,6 +194,7 @@ permalink: /help-center
     <p>&copy; 2026 Perspikative™. Tous droits réservés.</p>
     <p><a href="/mentions-legales" class="footer-link">Mentions légales</a></p>
     <p><a href="/politique-de-confidentialite" class="footer-link">Politique de confidentialité</a></p>
+    <p><a href="/terms-of-service" class="footer-link">Conditions d'utilisation</a></p>
     <p><a href="/help-center" class="footer-link">Centre d'aide</a></p>
     <p><a href="/position-ia" class="footer-link">Position sur l'IA</a></p>
     <p><a href="/brand-guidelines" class="footer-link">Brand guidelines</a></p>
