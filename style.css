@@ -26,7 +26,8 @@
     --header-bg: rgba(91, 179, 163, 0.70);
     --nav-mobile-bg: rgba(255, 255, 255, 0);
     --search-float-btn-bg: rgba(255, 255, 255, 0.1);
-    --mobile-menu-background: rgba(255, 255, 255, 0)
+    --mobile-menu-background: rgba(255, 255, 255, 0);
+    --filter-panel-bg: rgba(83, 173, 154, 1);
   }
 }
 
@@ -41,6 +42,7 @@
     --nav-mobile-bg: rgba(0, 0, 0, 0.38);
     --search-float-btn-bg: rgba(0, 0, 0, 0.2);
     --mobile-menu-background: rgba(0, 0, 0, 0.24);
+    --filter-panel-bg: rgba(0, 0, 0, 1);
   }
 }
 
@@ -4033,7 +4035,7 @@ body {
 .lb-comments-title {
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
-  font-size: 1.26rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #ffffff;
@@ -4094,7 +4096,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 300px;
+  max-height: 340px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -4237,15 +4239,15 @@ body {
 .lb-comments-empty {
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
-  font-size: 0.95rem;
+  font-size: 0.96rem;
   color: rgba(255,255,255,0.35);
   text-align: center;
-  padding: 10px 0 4px;
+  padding: 16px 0 20px;
 }
 
 /* ── Zone de saisie ─────────────────────────────────────────────────────── */
 .lb-comment-form {
-  padding: 8px 10px 6px 0px;
+  padding: 0px;
 }
 
 .lb-comment-guest {
@@ -4262,7 +4264,7 @@ body {
   font-size: 0.98rem;
   color: #ffffff;
   opacity: 0.75;
-  margin: 10px;
+  margin: 8px;
 }
 
 .lb-comment-login-btn {
@@ -4273,6 +4275,8 @@ body {
   background: rgba(255,255,255,0.04);
   border-radius: 20px;
   padding: 6px 16px;
+  margin: 8px;
+  cursor: pointer;
   text-decoration: none;
   transition: all 0.16s ease;
   white-space: nowrap;
@@ -4675,15 +4679,15 @@ body {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0.25s;
+  transition: opacity 0.24s ease, visibility 0.24s;
   z-index: 9999;
 }
 
@@ -5893,7 +5897,7 @@ body {
   /* top / right fixés dynamiquement par script.js, alignés sur le bouton */
   width: 200px;
   padding: 12px;
-  background: rgba(0, 0, 0, 1);
+  background: var(--filter-panel-bg);
   border: none;
   border-radius: 25px;
   box-shadow:
@@ -5920,8 +5924,9 @@ body {
   right: 22px;
   width: 16px;
   height: 16px;
-  background: rgba(0, 0, 0, 1);
+  background: var(--filter-panel-bg);
   border-radius: 2px 0 0 0;
+  box-shadow: inset 2px 2px 7px 0px rgba(255, 255, 255, 0.16);
   transform: rotate(45deg);
 }
 
@@ -5998,15 +6003,15 @@ body {
   height: 22px;
   border-radius: 50%;
   background: var(--chip-color, #999);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  transition: all 0.1s ease;
+  border: 1.6px solid rgba(255, 255, 255, 0.26);
+  transition: all 0.18s ease;
 }
 
 .filter-chip.is-active .filter-chip-dot {
-  transform: scale(0.88);
+  transform: scale(0.85);
   box-shadow:
-    0 0 0 1.8px rgba(12, 12, 14, 0.9),
-    0 0 0 4px rgba(255, 255, 255, 1);
+    0 0 0 1.8px rgba(0, 0, 0, 0.6),
+    0 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
 /* --------- Dessin masqué par le filtre --------- */
@@ -6325,5 +6330,80 @@ body {
 @media (prefers-color-scheme: dark) {
   ::selection {
     background: rgba(255, 255, 255, 0.15); /* Voile blanc très discret */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   FADE DES COMMENTAIRES DE LA LIGHTBOX
+   ========================================================= */
+
+@property --fade-top-start {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --fade-bottom-end {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.lb-comments-list {
+  --fade-top-start: 0;
+  --fade-bottom-end: 0;
+
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, var(--fade-top-start)) 0%,
+    rgba(0, 0, 0, 1) 14%,
+    rgba(0, 0, 0, 1) 86%,
+    rgba(0, 0, 0, var(--fade-bottom-end)) 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, var(--fade-top-start)) 0%,
+    rgba(0, 0, 0, 1) 14%,
+    rgba(0, 0, 0, 1) 86%,
+    rgba(0, 0, 0, var(--fade-bottom-end)) 100%
+  );
+
+  transition:
+    --fade-top-start 0.1s ease,
+    --fade-bottom-end 0.1s ease;
+
+  -webkit-transition:
+    --fade-top-start 0.1s ease,
+    --fade-bottom-end 0.1s ease;
+}
+
+.lb-comments-list.at-top {
+  --fade-top-start: 1;
+}
+
+.lb-comments-list.at-bottom {
+  --fade-bottom-end: 1;
+}
+
+.lb-comments-list.at-top.at-bottom {
+  --fade-top-start: 1;
+  --fade-bottom-end: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lb-comments-list {
+    transition: none;
+    -webkit-transition: none;
   }
 }
