@@ -27,8 +27,18 @@ permalink: /portfolio/illustrations
   <script type="module" src="/js/firebase.js"></script>
   <script defer src="/js/moderation.js"></script>
   <script defer src="/js/script-comments.js"></script>
+  <script defer src="/js/comments-fade.js"></script>
   <script defer src="/js/nav-liquid-glass.js"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
+
+  <style>
+  @media (max-width: 480px) {
+    main.creations h2 {
+      text-align: left;
+      padding-left: 8px;
+    }
+  }
+  </style>
 </head>
 
 <body class="creations">
@@ -46,8 +56,8 @@ permalink: /portfolio/illustrations
     <a href="/actus" class="nav-icon" title="Actus">
       <img src="/icons/actus.svg" alt="Actus">
     </a>
-    <a href="/contact" class="nav-icon" title="Contact">
-      <img src="/icons/contact.svg" alt="Contact">
+    <a href="/profile" class="nav-icon" title="Profil">
+      <img src="/icons/profile.svg" alt="Profil">
     </a>
   </nav>
 
@@ -83,8 +93,8 @@ permalink: /portfolio/illustrations
             </a>
           </li>
           <li>
-            <a href="/contact" class="tab">
-              <img src="/icons/contact.svg" alt="" class="tab-icon"> CONTACT
+            <a href="/profile" class="tab">
+              <img src="/icons/profile.svg" alt="" class="tab-icon"> PROFIL
             </a>
           </li>
         </ul>
@@ -108,6 +118,20 @@ permalink: /portfolio/illustrations
   <main class="creations">
     <div class="creations-toolbar">
       <h2>ILLUSTRATIONS</h2>
+
+      <div class="color-filter" id="color-filter">
+        <button
+          type="button"
+          class="filter-btn"
+          id="filter-btn"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="filter-panel"
+        >
+          <img src="/icons/filter-list.svg" alt="" class="filter-btn-icon">
+          <span class="filter-btn-label">Filtrer</span>
+        </button>
+      </div>
     </div>
 
     <section class="creations-grid" id="creations-grid">
