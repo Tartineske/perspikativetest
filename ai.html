@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perspikative AI</title>
+
+    <meta
+        name="description"
+        content="Perspikative AI — l'assistant local de Perspikative."
+    >
+
+    <style>
+        :root {
+            --background: #f7f7f4;
+            --surface: rgba(255, 255, 255, 0.72);
+            --surface-solid: #ffffff;
+            --text: #151515;
+            --muted: #777;
+            --border: rgba(0, 0, 0, 0.08);
+
+            --pink: #e95d76;
+            --purple: #8a6cff;
+
+            --shadow:
+                0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(233, 93, 118, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(138, 108, 255, 0.10),
+                    transparent 30%
+                ),
+                var(--background);
+        }
+
+        button,
+        textarea {
+            font: inherit;
+        }
+
+        /* HEADER */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+            height: 68px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 22px;
+
+            background:
+                rgba(247, 247, 244, 0.75);
+
+            border-bottom:
+                1px solid var(--border);
+
+            backdrop-filter:
+                blur(24px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink),
+                    var(--purple)
+                );
+        }
+
+        .brand-name {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-subtitle {
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+        .status {
+            padding: 7px 11px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,.55);
+
+            color: #777;
+
+            font-size: 10px;
+        }
+
+        /* MAIN */
+
+        main {
+            width: min(900px, 100%);
+
+            min-height:
+                calc(100vh - 68px);
+
+            margin:
+                0 auto;
+
+            padding:
+                50px 16px 150px;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            text-align: center;
+
+            padding:
+                7vh 0 40px;
+        }
+
+        .eyebrow {
+            color: var(--pink);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin:
+                14px 0;
+
+            font-size:
+                clamp(44px, 7vw, 68px);
+
+            line-height:
+                .92;
+
+            letter-spacing:
+                -.075em;
+        }
+
+        .welcome-description {
+            max-width: 560px;
+
+            margin:
+                0 auto;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        /* SUGGESTIONS */
+
+        .suggestions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 24px;
+        }
+
+        .suggestion {
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                999px;
+
+            padding:
+                8px 12px;
+
+            background:
+                var(--surface);
+
+            color:
+                #555;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                color .2s ease;
+        }
+
+        .suggestion:hover {
+            transform:
+                translateY(-2px);
+
+            border-color:
+                rgba(233,93,118,.35);
+
+            color:
+                var(--pink);
+        }
+
+        /* MESSAGES */
+
+        #messages {
+            display: flex;
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .message {
+            display: flex;
+
+            gap: 10px;
+
+            animation:
+                messageAppear .22s ease;
+        }
+
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform:
+                    translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content:
+                flex-end;
+        }
+
+        .avatar {
+            width: 31px;
+            height: 31px;
+
+            flex:
+                0 0 31px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius:
+                10px;
+
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .message.ai .avatar {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink),
+                    var(--purple)
+                );
+        }
+
+        .message.user .avatar {
+            order: 2;
+
+            color: #777;
+
+            background:
+                #e8e8e5;
+        }
+
+        .bubble {
+            max-width: 78%;
+
+            padding:
+                13px 15px;
+
+            border-radius:
+                18px;
+
+            font-size: 13px;
+
+            line-height:
+                1.65;
+        }
+
+        .message.ai .bubble {
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
+            backdrop-filter:
+                blur(20px);
+        }
+
+        .message.user .bubble {
+            color: white;
+
+            background:
+                #111;
+
+            border-bottom-right-radius:
+                6px;
+        }
+
+        .sources {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 5px;
+
+            margin-top: 9px;
+        }
+
+        .source {
+            padding:
+                4px 7px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                999px;
+
+            color:
+                #888;
+
+            background:
+                rgba(255,255,255,.5);
+
+            font-size:
+                9px;
+        }
+
+        /* TYPING */
+
+        .typing {
+            display: flex;
+
+            gap: 4px;
+        }
+
+        .typing span {
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background:
+                #999;
+
+            animation:
+                typing 1s infinite;
+        }
+
+        .typing span:nth-child(2) {
+            animation-delay:
+                .14s;
+        }
+
+        .typing span:nth-child(3) {
+            animation-delay:
+                .28s;
+        }
+
+        @keyframes typing {
+            0%,
+            100% {
+                opacity: .25;
+                transform: translateY(0);
+            }
+
+            35% {
+                opacity: 1;
+                transform:
+                    translateY(-3px);
+            }
+        }
+
+        /* COMPOSER */
+
+        .composer-container {
+            position: fixed;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding:
+                12px 14px 16px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(247,247,244,.96) 35%
+                );
+        }
+
+        .composer {
+            width:
+                min(760px, 100%);
+
+            margin:
+                0 auto;
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            gap: 8px;
+
+            padding:
+                7px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            border:
+                1px solid rgba(0,0,0,.11);
+
+            border-radius:
+                19px;
+
+            box-shadow:
+                var(--shadow);
+
+            backdrop-filter:
+                blur(24px);
+        }
+
+        textarea {
+            flex: 1;
+
+            min-height:
+                40px;
+
+            max-height:
+                130px;
+
+            padding:
+                10px;
+
+            resize:
+                none;
+
+            border:
+                0;
+
+            outline:
+                0;
+
+            background:
+                transparent;
+
+            color:
+                var(--text);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.45;
+        }
+
+        .send {
+            width:
+                40px;
+
+            height:
+                40px;
+
+            border:
+                0;
+
+            border-radius:
+                13px;
+
+            color:
+                white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink),
+                    var(--purple)
+                );
+
+            cursor:
+                pointer;
+
+            font-size:
+                17px;
+
+            font-weight:
+                800;
+
+            transition:
+                transform .2s ease,
+                opacity .2s ease;
+        }
+
+        .send:hover {
+            transform:
+                translateY(-2px);
+        }
+
+        .send:disabled {
+            opacity:
+                .4;
+
+            cursor:
+                default;
+        }
+
+        .small-note {
+            width:
+                min(760px,100%);
+
+            margin:
+                12px auto 0;
+
+            text-align:
+                center;
+
+            color:
+                #999;
+
+            font-size:
+                9px;
+
+            line-height:
+                1.5;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            header {
+                height:
+                    60px;
+
+                padding:
+                    0 14px;
+            }
+
+            .status {
+                display:
+                    none;
+            }
+
+            main {
+                padding:
+                    25px 13px 135px;
+            }
+
+            .welcome {
+                padding-top:
+                    5vh;
+            }
+
+            h1 {
+                font-size:
+                    45px;
+            }
+
+            .bubble {
+                max-width:
+                    88%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            P
+        </div>
+
+        <div>
+            <div class="brand-name">
+                Perspikative AI
+            </div>
+
+            <div class="brand-subtitle">
+                Assistant local de Perspikative
+            </div>
+        </div>
+
+    </div>
+
+    <div class="status">
+        ✦ Base locale · sans API
+    </div>
+
+</header>
+
+
+<main>
+
+    <section
+        class="welcome"
+        id="welcome"
+    >
+
+        <div class="eyebrow">
+            Perspikative · Intelligence locale
+        </div>
+
+        <h1>
+            Parle avec<br>
+            Perspikative.
+        </h1>
+
+        <p class="welcome-description">
+            Pose-moi une question sur Perspikative :
+            le portfolio, les actualités, la communauté,
+            les programmes ou le ART Challenge.
+        </p>
+
+
+        <div class="suggestions">
+
+            <button class="suggestion">
+                Combien de créations y a-t-il ?
+            </button>
+
+            <button class="suggestion">
+                C'est quoi Perspikative ?
+            </button>
+
+            <button class="suggestion">
+                C'est quoi le ART Challenge ?
+            </button>
+
+            <button class="suggestion">
+                Comment fonctionne la communauté ?
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section
+        id="messages"
+        aria-live="polite"
+    ></section>
+
+</main>
+
+
+<div class="composer-container">
+
+    <form
+        class="composer"
+        id="composer"
+    >
+
+        <textarea
+            id="input"
+            rows="1"
+            placeholder="Pose une question sur Perspikative…"
+            autocomplete="off"
+        ></textarea>
+
+        <button
+            class="send"
+            id="send"
+            type="submit"
+            aria-label="Envoyer"
+        >
+            ↑
+        </button>
+
+    </form>
+
+    <div class="small-note">
+        Les connaissances sont chargées depuis le dépôt GitHub
+        Perspikative AI. Le moteur actuel fonctionne localement.
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+===========================================================
+ PERSPIKATIVE AI
+===========================================================
+
+Les fichiers sont récupérés directement depuis :
+
+https://github.com/perspikative/perspikative-ai
+
+Il faut charger :
+
+1. base.js
+2. system.js
+
+dans cet ordre.
+*/
+
+
+const AI_REPOSITORY =
+    "https://raw.githubusercontent.com/perspikative/perspikative-ai/main/";
+
+
+/*
+===========================================================
+ CHARGEMENT DES SCRIPTS
+===========================================================
+*/
+
+function loadScript(url) {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            const script =
+                document.createElement("script");
+
+            script.src = url;
+
+            script.async = true;
+
+            script.onload =
+                resolve;
+
+            script.onerror =
+                () => reject(
+                    new Error(
+                        "Impossible de charger " + url
+                    )
+                );
+
+            document.head.appendChild(script);
+
+        }
+    );
+
+}
+
+
+/*
+===========================================================
+ ELEMENTS
+===========================================================
+*/
+
+const messages =
+    document.getElementById("messages");
+
+const welcome =
+    document.getElementById("welcome");
+
+const composer =
+    document.getElementById("composer");
+
+const input =
+    document.getElementById("input");
+
+const send =
+    document.getElementById("send");
+
+
+/*
+===========================================================
+ SCROLL
+===========================================================
+*/
+
+function scrollToBottom() {
+
+    requestAnimationFrame(
+        () => {
+
+            window.scrollTo({
+
+                top:
+                    document.body.scrollHeight,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+    );
+
+}
+
+
+/*
+===========================================================
+ AFFICHER UN MESSAGE
+===========================================================
+*/
+
+function addMessage(
+    type,
+    text,
+    sources = []
+) {
+
+    /*
+     * On enlève l'écran d'accueil
+     * dès que la conversation commence.
+     */
+
+    if (welcome) {
+        welcome.remove();
+    }
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        `message ${type}`;
+
+
+    /*
+     * Avatar
+     */
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className =
+        "avatar";
+
+    avatar.textContent =
+        type === "ai"
+            ? "P"
+            : "U";
+
+
+    /*
+     * Bulle
+     */
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "bubble";
+
+
+    /*
+     * system.js utilise un markdown
+     * très simple pour le gras.
+     */
+
+    bubble.innerHTML =
+        text
+
+            .replace(
+                /\*\*(.*?)\*\*/g,
+                "<strong>$1</strong>"
+            )
+
+            .replace(
+                /\n/g,
+                "<br>"
+            );
+
+
+    /*
+     * Sources internes
+     */
+
+    if (
+        sources &&
+        sources.length
+    ) {
+
+        const sourceContainer =
+            document.createElement("div");
+
+        sourceContainer.className =
+            "sources";
+
+
+        sources
+            .slice(0, 4)
+            .forEach(
+                source => {
+
+                    const tag =
+                        document.createElement(
+                            "span"
+                        );
+
+                    tag.className =
+                        "source";
+
+                    tag.textContent =
+                        source;
+
+                    sourceContainer.appendChild(
+                        tag
+                    );
+
+                }
+            );
+
+
+        bubble.appendChild(
+            sourceContainer
+        );
+
+    }
+
+
+    row.append(
+        avatar,
+        bubble
+    );
+
+
+    messages.appendChild(
+        row
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/*
+===========================================================
+ INDICATEUR DE CHARGEMENT
+===========================================================
+*/
+
+function showTyping() {
+
+    const row =
+        document.createElement("div");
+
+    row.id =
+        "typing";
+
+    row.className =
+        "message ai";
+
+
+    row.innerHTML = `
+
+        <div class="avatar">
+            P
+        </div>
+
+        <div class="bubble">
+
+            <div class="typing">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(
+        row
+    );
+
+
+    scrollToBottom();
+
+}
+
+
+/*
+===========================================================
+ POSER UNE QUESTION
+===========================================================
+*/
+
+async function ask(question) {
+
+    question =
+        question.trim();
+
+
+    if (
+        !question ||
+        !window.PerspikativeAI
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+     * Message utilisateur
+     */
+
+    addMessage(
+        "user",
+        question
+    );
+
+
+    /*
+     * Nettoyage
+     */
+
+    input.value = "";
+
+    input.style.height =
+        "40px";
+
+    send.disabled =
+        true;
+
+
+    /*
+     * Petit indicateur
+     */
+
+    showTyping();
+
+
+    /*
+     * Petit délai visuel.
+     *
+     * L'IA elle-même ne fait
+     * aucun appel réseau ici.
+     */
+
+    await new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                220
+            )
+    );
+
+
+    try {
+
+        /*
+         * C'est ICI que ai.html
+         * appelle system.js.
+         */
+
+        const result =
+            window.PerspikativeAI.ask(
+                question
+            );
+
+
+        /*
+         * Retirer le chargement
+         */
+
+        const typing =
+            document.getElementById(
+                "typing"
+            );
+
+        if (typing) {
+            typing.remove();
+        }
+
+
+        /*
+         * Afficher la réponse
+         */
+
+        addMessage(
+
+            "ai",
+
+            result.answer,
+
+            result.sources || []
+
+        );
+
+
+        console.log(
+            "Perspikative AI:",
+            result
+        );
+
+    }
+
+    catch (error) {
+
+        const typing =
+            document.getElementById(
+                "typing"
+            );
+
+        if (typing) {
+            typing.remove();
+        }
+
+
+        addMessage(
+
+            "ai",
+
+            "Je n'arrive pas à accéder à mon moteur Perspikative pour le moment. Vérifie que **base.js** et **system.js** sont bien présents dans le dépôt GitHub."
+
+        );
+
+
+        console.error(
+            "Perspikative AI error:",
+            error
+        );
+
+    }
+
+
+    send.disabled =
+        false;
+
+    input.focus();
+
+}
+
+
+/*
+===========================================================
+ FORMULAIRE
+===========================================================
+*/
+
+composer.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+        ask(
+            input.value
+        );
+
+    }
+);
+
+
+/*
+===========================================================
+ ENTER = ENVOYER
+ SHIFT + ENTER = NOUVELLE LIGNE
+===========================================================
+*/
+
+input.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+
+            event.preventDefault();
+
+            ask(
+                input.value
+            );
+
+        }
+
+    }
+);
+
+
+/*
+===========================================================
+ TEXTAREA AUTO-RESIZE
+===========================================================
+*/
+
+input.addEventListener(
+    "input",
+    () => {
+
+        input.style.height =
+            "auto";
+
+        input.style.height =
+            Math.min(
+                input.scrollHeight,
+                130
+            ) + "px";
+
+    }
+);
+
+
+/*
+===========================================================
+ BOUTONS SUGGESTIONS
+===========================================================
+*/
+
+document
+    .querySelectorAll(
+        ".suggestion"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    ask(
+                        button.textContent
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/*
+===========================================================
+ INITIALISATION
+===========================================================
+*/
+
+(async function boot() {
+
+    send.disabled =
+        true;
+
+
+    try {
+
+        /*
+         * IMPORTANT :
+         *
+         * base.js AVANT system.js
+         */
+
+        await loadScript(
+            AI_REPOSITORY +
+            "base.js"
+        );
+
+
+        await loadScript(
+            AI_REPOSITORY +
+            "system.js"
+        );
+
+
+        /*
+         * Vérification
+         */
+
+        if (
+            !window.PerspikativeAI
+        ) {
+
+            throw new Error(
+                "PerspikativeAI n'est pas disponible."
+            );
+
+        }
+
+
+        /*
+         * Tout est prêt.
+         */
+
+        addMessage(
+
+            "ai",
+
+            "Salut ! 👋 Je suis **Perspikative AI**. Ma base de connaissances vient du dépôt Perspikative AI et mon moteur fonctionne actuellement sans API d'IA distante. Pose-moi une question !"
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        addMessage(
+
+            "ai",
+
+            "Je n'arrive pas à charger ma base Perspikative depuis GitHub. Vérifie que **base.js** et **system.js** existent bien dans le dépôt `perspikative-ai`, sur la branche `main`."
+
+        );
+
+    }
+
+
+    finally {
+
+        send.disabled =
+            false;
+
+        input.focus();
+
+    }
+
+})();
+
+</script>
+
+</body>
+</html>
