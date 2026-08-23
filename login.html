@@ -1,0 +1,226 @@
+---
+permalink: /login
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vous êtes pas prêts</title>
+
+<meta name="robots" content="noindex, follow">
+
+<link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: light)">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="18d7b0fd-c5fb-4b2e-a43b-10cc734daa8f"></script>
+
+<style>
+  @media (pointer: coarse) {
+    a,
+    button,
+    img,
+    label,
+    input,
+    select,
+    .toggle,
+    .switch,
+    .slider,
+    textarea {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+  @media (pointer: coarse) {
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: none;
+    }
+  }
+
+  :root {
+    --bg-color: linear-gradient(135deg, #4AA9A1, #2CA877, #62A78A);
+    --text-color: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+    }
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Rubik', sans-serif;
+  }
+
+  body {
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+  }
+
+  h1 {
+    font-size: 5.6rem;
+    font-weight: 900;
+    font-style: italic;
+    margin: 0;
+    margin-bottom: -1.5rem;
+    letter-spacing: -3px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0rem;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  .btn-glass {
+    padding: 0.6rem 1.2rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      inset 0 0 10px rgba(255, 255, 255, 0.18);
+    margin-bottom: 1rem;
+  }
+
+
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    box-shadow:
+      0 5px 18px rgba(0, 0, 0, 0.14),
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  
+  .error-mascotte {
+    width: 460px;
+    max-width: 70%;
+    margin: 0px auto 0px;
+    display: block;
+    opacity: 1;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0rem 0;
+  }
+
+  .social-icons a img {
+    width: 31px;
+    height: 31px;
+    opacity: 0.8;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  }
+
+  .social-icons a:hover img {
+    opacity: 1;
+  }
+
+  @media (max-width: 900px) {
+    .social-icons {
+      gap: 0.4rem;
+      padding: 0rem 0;
+    }
+
+    .social-icons a img {
+      width: 30px;
+      height: 30px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      margin-top: 8px;
+    }
+
+    .error-mascotte {
+      width: 700px;
+      max-width: 76%;
+      margin: 0px auto 0px;
+    }
+
+    .btn-glass {
+      padding: 0.6rem 1.2rem;
+      font-size: 1.16rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>SURPRISE !</h1>
+<p>Rendez-vous le 31 août à 18h sur WhatsApp</p>
+
+<img 
+  src="/pics/cat/cat-book-404.svg" 
+  alt="Mascotte Perspikative"
+  class="error-mascotte"
+/>
+
+<a class="btn-glass" href="/">RETOURNER À L'ACCUEIL</a>
+
+<div class="social-icons">
+  <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
+    <img src="/icons/linktree.svg" alt="Linktree">
+  </a>
+  <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
+    <img src="/icons/whatsapp-channel.svg" alt="Chaîne WhatsApp">
+  </a>
+  <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
+    <img src="/icons/instagram.svg" alt="Instagram">
+  </a>
+  <a href="https://discord.com/invite/c5w9ucgDZH" target="_blank" aria-label="Discord">
+    <img src="/icons/discord.svg" alt="Discord">
+  </a>
+  <a href="https://youtube.com/@perspikative" target="_blank" aria-label="YouTube">
+    <img src="/icons/youtube.svg" alt="YouTube">
+  </a>
+</div>
+
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+
+</body>
+</html>
