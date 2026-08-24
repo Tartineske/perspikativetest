@@ -251,7 +251,7 @@ function handleVerifyEmail(actionCode, continueUrl) {
       // nous-mêmes (avec verified=1 + l'e-mail), même si un continueUrl a
       // été fourni : c'est ce lien vers /login2026 qui permet d'enchaîner
       // sur l'étape "compléter le profil" côté client.
-      const target = new URL("https://perspikative.com/login2026");
+      const target = new URL("https://perspikative.com/login");
       target.searchParams.set("verified", "1");
       if (verifiedEmail) {
         target.searchParams.set("email", verifiedEmail);
