@@ -1,5 +1,5 @@
 ---
-permalink: /logintest
+permalink: /login
 ---
 
 <!DOCTYPE html>
@@ -1512,6 +1512,10 @@ permalink: /logintest
     // et displayName existant (ex: venant de Google) si présent
     if (!cpUsernameInput.value && user.email) {
       cpUsernameInput.value = normalizeUsername(user.email.split('@')[0]).replace(/[^a-z0-9_]/g, '').slice(0, 20);
+      // Le .value programmatique ne déclenche pas 'input' : on force la
+      // vérification de dispo pour que le statut (Disponible ✓ / pris)
+      // soit à jour même si l'utilisateur ne touche pas au champ.
+      cpUsernameInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
     if (!cpDisplayNameInput.value) {
       cpDisplayNameInput.value = user.displayName || '';
@@ -1536,6 +1540,18 @@ permalink: /logintest
     try {
       await saveUsername(completeProfileUser.uid, normalized, rawUsername.trim());
       await updateProfile(completeProfileUser, { displayName: newDisplayName });
+
+      // Vérification post-écriture : évite un / trompeur si la transaction
+      // a échoué silencieusement (ex: règle Firestore qui bloque sans lever
+      // d'erreur explicite côté client à cause d'un cache local optimiste).
+      const verifySnap = await getDoc(doc(db, 'users', completeProfileUser.uid));
+      if (!verifySnap.exists() || !verifySnap.data().username) {
+        console.error('Le pseudo ne semble pas avoir été sauvegardé :', verifySnap.data());
+        showError(completeProfileError, "Le pseudo n'a pas pu être enregistré, réessaie.");
+        setLoading(btn, false);
+        return;
+      }
+
       window.location.href = '/profile';
     } catch (err) {
       if (err.message === 'USERNAME_TAKEN') {
