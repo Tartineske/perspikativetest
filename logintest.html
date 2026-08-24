@@ -1,5 +1,5 @@
 ---
-permalink: /logintest
+permalink: /login
 ---
 
 <!DOCTYPE html>
@@ -1540,6 +1540,14 @@ permalink: /logintest
     try {
       await saveUsername(completeProfileUser.uid, normalized, rawUsername.trim());
       await updateProfile(completeProfileUser, { displayName: newDisplayName });
+
+      // Profil public minimal (displayName + photoURL), lisible par tous
+      // même si le profil complet reste privé — c'est ce que consultent
+      // les commentaires pour rester à jour.
+      await setDoc(doc(db, 'publicProfiles', completeProfileUser.uid), {
+        displayName: newDisplayName,
+        ...(completeProfileUser.photoURL ? { photoURL: completeProfileUser.photoURL } : {})
+      }, { merge: true });
 
       // Vérification post-écriture : évite un / trompeur si la transaction
       // a échoué silencieusement (ex: règle Firestore qui bloque sans lever
