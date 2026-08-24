@@ -1,5 +1,5 @@
 ---
-permalink: /logintest
+permalink: /login
 ---
 
 <!DOCTYPE html>
@@ -1012,6 +1012,13 @@ permalink: /logintest
   const auth     = getAuth(app);
   const db       = getFirestore(app);
   const provider = new GoogleAuthProvider();
+  // Scopes minimaux explicites : email + infos de profil de base
+  // (nom, photo). Ne demande PAS la date de naissance, le genre, etc.
+  // — ces champs ne sont de toute façon jamais fournis par ce scope,
+  // ils viennent de l'écran de consentement Google lui-même (voir
+  // explication après le code).
+  provider.addScope('email');
+  provider.addScope('profile');
 
   // ─── HELPERS GÉNÉRAUX ───
   function showError(el, msg) {
@@ -1028,14 +1035,16 @@ permalink: /logintest
 
   function firebaseErrMsg(code) {
     const map = {
-      'auth/user-not-found':       'Aucun compte trouvé avec cet e-mail.',
-      'auth/wrong-password':       'Mot de passe incorrect.',
-      'auth/invalid-credential':   'E-mail ou mot de passe incorrect.',
-      'auth/email-already-in-use': 'Cet e-mail est déjà utilisé.',
-      'auth/weak-password':        'Mot de passe trop faible (6 caractères min.).',
-      'auth/invalid-email':        'Adresse e-mail invalide.',
-      'auth/popup-closed-by-user': 'Connexion Google annulée.',
-      'auth/too-many-requests':    'Trop de tentatives. Réessaie dans quelques minutes.',
+      'auth/user-not-found':         'Aucun compte trouvé avec cet e-mail.',
+      'auth/wrong-password':         'Mot de passe incorrect.',
+      'auth/invalid-credential':     'E-mail ou mot de passe incorrect.',
+      'auth/email-already-in-use':   'Cet e-mail est déjà utilisé.',
+      'auth/weak-password':          'Mot de passe trop faible (6 caractères min.).',
+      'auth/invalid-email':          'Adresse e-mail invalide.',
+      'auth/popup-closed-by-user':   'Connexion Google annulée.',
+      'auth/too-many-requests':      'Trop de tentatives. Réessaie dans quelques minutes.',
+      'auth/network-request-failed': 'Vérifie ta connexion Internet.',
+      'auth/user-disabled':          'Ce compte a été désactivé.',
     };
     return map[code] || 'Une erreur est survenue. Réessaie.';
   }
