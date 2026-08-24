@@ -137,6 +137,23 @@ async function saveUserDoc(uid, data) {
 }
 
 // -----------------------------------------------------------------------
+// Profil public minimal (displayName + photoURL uniquement), lisible par
+// tout le monde même si le profil complet (users/{uid}) est privé. C'est
+// ce document que script-comments.js consulte pour garder pseudo/photo à
+// jour dans les commentaires, quel que soit isPublic.
+// -----------------------------------------------------------------------
+async function syncPublicProfile(uid, { displayName, photoURL } = {}) {
+    const { db, fns } = getFire();
+    if (!db || !fns) return;
+    const data = {};
+    if (displayName !== undefined) data.displayName = displayName;
+    if (photoURL !== undefined) data.photoURL = photoURL;
+    if (Object.keys(data).length === 0) return;
+    const ref = fns.doc(db, "publicProfiles", uid);
+    await fns.setDoc(ref, data, { merge: true });
+}
+
+// -----------------------------------------------------------------------
 // Username : normalisation, validation, vérification d'unicité
 // -----------------------------------------------------------------------
 function normalizeUsername(raw) {
@@ -498,6 +515,10 @@ editSaveBtn.addEventListener("click", async () => {
         // été écrit sur users/{uid} par saveUsername() ci-dessus, dans la
         // même transaction que la réservation).
         await saveUserDoc(currentUser.uid, { bio: newBio });
+
+        // Profil public minimal (pour que les commentaires existants de cet
+        // utilisateur affichent le nouveau nom, même si son profil est privé).
+        await syncPublicProfile(currentUser.uid, { displayName: newName });
 
         // Rafraîchissement de l'affichage
         displayName.textContent = newName;
@@ -930,6 +951,10 @@ avatarLightboxSave.addEventListener("click", async () => {
 
     try {
         await updateProfile(currentUser, { photoURL: newPhoto });
+
+        // Profil public minimal (pour que les commentaires existants de cet
+        // utilisateur affichent la nouvelle photo, même si son profil est privé).
+        await syncPublicProfile(currentUser.uid, { photoURL: newPhoto });
 
         // Rafraîchissement de l'affichage : la photo de la carte profil (et
         // toute autre référence locale) reflète immédiatement le nouvel avatar.
