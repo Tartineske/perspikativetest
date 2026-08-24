@@ -549,7 +549,6 @@ permalink: /profile
 
   .account-field-value span {
     font-family: 'Rubik', sans-serif;
-    font-size: 1rem;
     font-weight: 500;
     color: #ffffff;
     word-break: break-all;
@@ -564,13 +563,13 @@ permalink: /profile
   .account-field-badge {
     flex-shrink: 0;
     font-family: 'Rubik', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.6px;
     color: rgba(0, 240, 208, 0.85);
-    background: rgba(0, 200, 150, 0.1);
+    background: rgba(0, 200, 150, 0.2);
     border-radius: 50px;
-    padding: 4px 12px;
+    padding: 2px 10px;
     white-space: nowrap;
   }
 
@@ -581,7 +580,7 @@ permalink: /profile
   }
 
   .account-danger-zone .btn-logout {
-    max-width: 280px;
+    max-width: 298px;
   }
 
   @media (max-width: 900px) {
@@ -669,6 +668,7 @@ permalink: /profile
     display: flex;
     align-items: flex-start;
     gap: 8px;
+    color: #ffffff;
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid transparent;
     border-radius: 25px;
@@ -726,6 +726,28 @@ permalink: /profile
   .visibility-status.is-error {
     color: #ff8a8a;
   }
+  
+  /* Style pour aligner l'icône et le texte côte à côte */
+  .visibility-option-content {
+    display: flex;
+    align-items: flex-start; /* Aligne l'icône avec le haut du texte */
+    gap: 8px; /* Espace entre l'icône et le texte */
+  }
+
+  /* Style pour rendre l'icône "toute petite" */
+  .visibility-icon {
+    width: 24px; 
+    height: 24px;
+    flex-shrink: 0; /* Empêche l'icône d'être écrasée si le texte est long */
+    margin-top: 2px; /* Ajustement subtil pour l'aligner avec le texte en gras */
+  }
+
+  /* Style pour empiler le titre (fort) et le paragraphe */
+  .visibility-text-group {
+    display: flex;
+    flex-direction: column;
+  }
+
 
   @media (max-width: 520px) {
     .public-url-card {
@@ -1427,7 +1449,7 @@ permalink: /profile
                 <span class="account-field-label">Adresse e-mail</span>
                 <div class="account-field-value">
                   <span id="accountEmail">Chargement…</span>
-                  <span class="account-field-badge">Vérifié</span>
+                  <span class="account-field-badge">Vérifiée</span>
                 </div>
               </div>
 
@@ -1469,20 +1491,29 @@ permalink: /profile
 
             <span class="account-field-label">Visibilité</span>
             <form class="visibility-form" id="visibilityForm">
+  
               <label class="visibility-option">
                 <input type="radio" name="visibility" value="public">
-                <span class="visibility-option-text">
-                  <strong>🌍 Public</strong>
-                  <span>Votre profil peut être consulté par tout le monde via son URL publique.</span>
+                <span class="visibility-option-content">
+                  <img src="/icons/earth.svg" alt="Public" class="visibility-icon">
+                  <span class="visibility-text-group">
+                    <strong>Public</strong>
+                      <span>Votre profil peut être consulté par tout le monde via son URL publique.</span>
+                    </span>
                 </span>
               </label>
+
               <label class="visibility-option">
                 <input type="radio" name="visibility" value="private" checked>
-                <span class="visibility-option-text">
-                  <strong>🔒 Privé</strong>
-                  <span>Votre profil n'est pas accessible publiquement.</span>
+                <span class="visibility-option-content">
+                  <img src="/icons/confidentialite.svg" alt="Privé" class="visibility-icon">
+                  <span class="visibility-text-group">
+                    <strong>Privé</strong>
+                    <span>Votre profil n'est pas accessible publiquement.</span>
+                  </span>
                 </span>
               </label>
+
             </form>
             <p class="visibility-status" id="visibilityStatus"></p>
 
@@ -1574,17 +1605,17 @@ permalink: /profile
       <a href="https://linktr.ee/perspikative" target="_blank" aria-label="Linktree">
         <img src="/icons/linktree.svg" alt="Linktree">
       </a>
-      <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
+     <a href="https://www.whatsapp.com/channel/0029VaKP3Kd5Ui2gky1r5m3y" target="_blank" aria-label="Chaîne WhatsApp">
         <img src="/icons/whatsapp-channel.svg" alt="Chaîne WhatsApp">
       </a>
       <a href="https://www.instagram.com/perspikative" target="_blank" aria-label="Instagram">
         <img src="/icons/instagram.svg" alt="Instagram">
       </a>
+      <a href="https://discord.com/invite/c5w9ucgDZH" target="_blank" aria-label="Discord">
+        <img src="/icons/discord.svg" alt="Discord">
+      </a>
       <a href="https://youtube.com/@perspikative" target="_blank" aria-label="YouTube">
         <img src="/icons/youtube.svg" alt="YouTube">
-      </a>
-      <a href="https://www.pinterest.com/perspikative" target="_blank" aria-label="Pinterest">
-        <img src="/icons/pinterest.svg" alt="Pinterest">
       </a>
     </div>
 
