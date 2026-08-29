@@ -152,7 +152,21 @@ async function findUserByUsername(usernameNormalized) {
     try {
         const userSnap = await fns.getDoc(userRef);
         if (!userSnap.exists()) return null;
-        return { uid, ...userSnap.data() };
+
+        // users/{uid} ne stocke jamais la photo de profil : c'est
+        // publicProfiles/{uid}.photoURL, dans Firestore, qui fait foi
+        // partout dans le projet (voir aussi profile.js). On la récupère
+        // ici pour que le profil public affiche toujours la photo à jour,
+        // y compris quand elle vient d'être changée.
+        let photoURL = null;
+        try {
+            const publicSnap = await fns.getDoc(fns.doc(db, "publicProfiles", uid));
+            if (publicSnap.exists()) photoURL = publicSnap.data().photoURL || null;
+        } catch (photoErr) {
+            console.error("Erreur de lecture de la photo publique :", photoErr);
+        }
+
+        return { uid, ...userSnap.data(), photoURL };
     } catch (err) {
         // Lecture refusée : très probablement un profil privé (règle
         // Firestore). On vérifie via publicProfiles/{uid} (toujours

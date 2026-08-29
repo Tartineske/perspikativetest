@@ -303,15 +303,31 @@ onAuthStateChanged(auth, async (user) => {
 
     currentUser = user;
 
-    const currentPhoto = user.photoURL || DEFAULT_AVATAR;
-    profilePic.src = currentPhoto;
     displayName.textContent = user.displayName || "Utilisateur";
     email.textContent = user.email || "";
-    selectedAvatar = currentPhoto;
 
     // Section Compte : e-mail (2e affichage) + ID Perspikative (UID Firebase)
     accountEmail.textContent = user.email || "—";
     accountId.textContent = user.uid;
+
+    // Photo de profil : lue depuis publicProfiles/{uid}.photoURL (Firestore),
+    // seule source de vérité pour la photo dans tout le projet (voir aussi
+    // public-profile.js). On n'écrit jamais l'avatar par défaut ici si le
+    // champ est déjà absent/vide : ça laisse la porte ouverte à une photo
+    // personnalisée posée à la main dans Firestore (cas du compte admin),
+    // sans qu'un simple chargement de page vienne l'écraser.
+    try {
+        const { db, fns } = getFire();
+        if (db && fns) {
+            const publicSnap = await fns.getDoc(fns.doc(db, "publicProfiles", user.uid));
+            const storedPhoto = publicSnap.exists() ? publicSnap.data().photoURL : null;
+            const currentPhoto = storedPhoto || DEFAULT_AVATAR;
+            profilePic.src = currentPhoto;
+            selectedAvatar = currentPhoto;
+        }
+    } catch (err) {
+        console.error("Erreur de chargement de la photo de profil :", err);
+    }
 
     // Date d'inscription : on se base sur Firestore si un doc existe déjà,
     // sinon sur la date de création du compte Firebase Auth (metadata),
@@ -825,7 +841,10 @@ function openAvatarLightbox() {
 
     buildCoverflow();
 
-    const currentPhoto = currentUser.photoURL || DEFAULT_AVATAR;
+    // selectedAvatar reflète la photo Firestore (publicProfiles/{uid}), la
+    // même source que celle affichée sur la carte profil — on ne relit
+    // plus currentUser.photoURL (Auth) ici, pour rester cohérent.
+    const currentPhoto = selectedAvatar || DEFAULT_AVATAR;
     savedAvatarIndex = avatarIndexFromPath(currentPhoto);
     coverflowIndex = savedAvatarIndex;
 
