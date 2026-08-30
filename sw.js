@@ -1,4 +1,4 @@
-const CACHE_NAME = 'perspikative-v1.3.1';
+const CACHE_NAME = 'perspikative-v1.3.2';
 
 // Fichiers essentiels
 const PRECACHE_ASSETS = [
@@ -6,8 +6,10 @@ const PRECACHE_ASSETS = [
   '/404',
   '/actus',
   '/art-challenge',
+  '/auth',
   '/commu/beta-program',
   '/brand-guidelines',
+  '/changelog',
   '/commu',
   '/contact',
   '/faq',
@@ -27,11 +29,13 @@ const PRECACHE_ASSETS = [
   '/rechercher',
   '/script.js',
   '/style.css',
+  '/js/auth-handler.js',
   '/js/comments-fade.js',
   '/js/firebase-init.js',
   '/js/firebase.js',
   '/js/moderation.js',
   '/js/profile.js',
+  '/js/public-profile.js',
   '/js/script-comments.js',
   '/fonts/Manoela-Regular.woff2',
   '/fonts/Manoela-Regular.woff',
@@ -49,6 +53,8 @@ const PRECACHE_ASSETS = [
   '/icons/menu.svg',
   '/icons/portfolio.svg',
   '/icons/portfolio-active.svg',
+  '/icons/profile.svg',
+  '/icons/profile-active.svg',
   '/icons/rechercher.svg',
   '/icons/rechercher-active.svg'
 ];

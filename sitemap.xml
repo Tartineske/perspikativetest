@@ -48,13 +48,21 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
+  <!-- Profil -->
+  <url>
+    <loc>https://perspikative.com/profile</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
   <!-- Communauté -->
   <url>
     <loc>https://perspikative.com/commu</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <!-- Contact -->
