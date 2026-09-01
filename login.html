@@ -10,7 +10,8 @@ permalink: /login
 
   <title>Connexion</title>
   
-  <meta name="description" content="Connecte-toi à ton compte Perspikative" />
+  <meta name="description" content="Connecte-toi à ton compte Perspikative.">
+  <meta name="keywords" content="connexion, login, compte, Perspikative, mot de passe, email, adresse mail, s'inscrire, créer un compte, register, sign up, password, email address, login page, sign in, sign up, register page, create account, profil Perspikative">
   <meta name="robots" content="index, follow">
 
   <meta name="theme-color" content="#58b3a2" media="(prefers-color-scheme: light)">
@@ -919,7 +920,6 @@ permalink: /login
           </p>
         </form>
 
-        <!-- ── CONFIRMATION : VÉRIFIE TA BOÎTE MAIL ── -->
         <div class="verify-view" id="verifyView">
           <div class="icon-wrap" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -937,7 +937,6 @@ permalink: /login
     </div>
   </div>
 
-  <!-- ── ÉTAT À PART : COMPLÉTER LE PROFIL (après retour du lien de vérif + reconnexion) ── -->
   <div class="complete-profile-card" id="completeProfileCard" role="main">
     <div class="card-header">
       <div class="icon-wrap" aria-hidden="true">
@@ -976,7 +975,6 @@ permalink: /login
     Retourner à l'accueil
   </a>
 
-<!-- Firebase SDK (via CDN, compatible GitHub Pages) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
@@ -998,7 +996,6 @@ permalink: /login
     runTransaction
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ─── CONFIG ───
   const firebaseConfig = {
     apiKey:            "AIzaSyBudMYu4rtSL7GrsX3OMtT8klbBX7h4iTE",
     authDomain:        "perspikative-app.firebaseapp.com",
@@ -1012,11 +1009,7 @@ permalink: /login
   const auth     = getAuth(app);
   const db       = getFirestore(app);
   const provider = new GoogleAuthProvider();
-  // Scopes minimaux explicites : email + infos de profil de base
-  // (nom, photo). Ne demande PAS la date de naissance, le genre, etc.
-  // — ces champs ne sont de toute façon jamais fournis par ce scope,
-  // ils viennent de l'écran de consentement Google lui-même (voir
-  // explication après le code).
+
   provider.addScope('email');
   provider.addScope('profile');
 
