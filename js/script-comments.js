@@ -140,12 +140,14 @@
       ? '<em>Commentaire masqué</em>'
       : escapeHtml(comment.text);
 
-    // Nom de l'auteur cliquable vers son profil public (/@usernameDisplay)
-    // s'il a réservé un username ; sinon simple texte non cliquable, pour
-    // rester compatible avec les vieux commentaires / profils sans username.
+    // Nom de l'auteur cliquable vers son profil public (/@username) s'il a
+    // réservé un username ; sinon simple texte non cliquable, pour rester
+    // compatible avec les vieux commentaires / profils sans username. Le
+    // texte affiché est le "Nom affiché" (pseudo/usernameDisplay), le lien
+    // pointe vers le @ (comment.username).
     var pseudoText = escapeHtml(comment.pseudo || 'Anonyme');
-    var pseudoHtml = comment.usernameDisplay
-      ? '<a class="lb-comment-pseudo" href="/@' + encodeURIComponent(comment.usernameDisplay) + '">' + pseudoText + '</a>'
+    var pseudoHtml = comment.username
+      ? '<a class="lb-comment-pseudo" href="/@' + encodeURIComponent(comment.username) + '">' + pseudoText + '</a>'
       : '<span class="lb-comment-pseudo">' + pseudoText + '</span>';
 
     item.innerHTML =
@@ -251,9 +253,9 @@
       }
       var data = snap.data();
       var profile = {
-        pseudo:          data.usernameDisplay || data.username || null,
-        pfp:             data.photoURL || null,
-        usernameDisplay: data.usernameDisplay || data.username || null
+        pseudo:   data.usernameDisplay || data.username || null, // nom affiché public
+        pfp:      data.photoURL || null,
+        username: data.username || null // le @, utilisé pour le lien vers le profil
       };
       profileCache[uid] = profile;
       return profile;
@@ -279,9 +281,9 @@
       comments.forEach(function (c) {
         var fresh = c.uid ? byUid[c.uid] : null;
         if (fresh) {
-          if (fresh.pseudo)          c.pseudo          = fresh.pseudo;
-          if (fresh.pfp)             c.pfp             = fresh.pfp;
-          if (fresh.usernameDisplay) c.usernameDisplay = fresh.usernameDisplay;
+          if (fresh.pseudo)   c.pseudo   = fresh.pseudo;
+          if (fresh.pfp)      c.pfp      = fresh.pfp;
+          if (fresh.username) c.username = fresh.username;
         }
       });
 
@@ -410,16 +412,16 @@
       ? window.PrspkModeration.check(text)
       : { flagged: false, status: 'visible' };
 
-    // Le pseudo stocké sur le commentaire (snapshot au moment du post,
-    // utilisé seulement en fallback si publicProfiles ne charge pas plus
-    // tard) doit être le même usernameDisplay que partout ailleurs — pas
-    // le displayName Google de Firebase Auth. On le lit via
-    // fetchAuthorProfile (déjà mis en cache pour cet uid dans la plupart
-    // des cas, puisque l'utilisateur voit déjà ses propres commentaires).
+    // Le pseudo/username stockés sur le commentaire (snapshot au moment du
+    // post, utilisés en fallback si publicProfiles ne charge pas plus tard)
+    // doivent être les mêmes qu'ailleurs — pas le displayName Firebase Auth.
+    // On les lit via fetchAuthorProfile (déjà en cache pour cet uid dans la
+    // plupart des cas, puisque l'utilisateur voit déjà ses propres commentaires).
     fetchAuthorProfile(user.uid).then(function (authorProfile) {
-      var pseudo = (authorProfile && authorProfile.usernameDisplay)
+      var pseudo = (authorProfile && authorProfile.pseudo)
         || user.displayName
         || 'Anonyme';
+      var username = (authorProfile && authorProfile.username) || null;
 
       var colRef = fire.collection(db, 'drawings', currentDrawingId, 'comments');
       fire.addDoc(colRef, {
@@ -439,6 +441,7 @@
           id:        docRef.id,
           uid:       user.uid,
           pseudo:    pseudo,
+          username:  username,
           pfp:       user.photoURL || getPfpFromUid(user.uid),
           text:      text,
           status:    moderation.status,
