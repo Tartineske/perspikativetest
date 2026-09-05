@@ -139,10 +139,10 @@ async function saveUserDoc(uid, data) {
 
 // -----------------------------------------------------------------------
 // Profil public minimal (username + usernameDisplay + photoURL uniquement,
-// JAMAIS displayName), lisible par
-// tout le monde même si le profil complet (users/{uid}) est privé. C'est
-// ce document que script-comments.js consulte pour garder pseudo/photo à
-// jour dans les commentaires, quel que soit isPublic.
+// JAMAIS displayName), lisible par tout le monde même si le profil complet
+// (users/{uid}) est privé. C'est ce document que script-comments.js et
+// public-profile.js consultent pour garder pseudo/@/photo à jour, quel que
+// soit isPublic.
 // -----------------------------------------------------------------------
 async function syncPublicProfile(uid, { photoURL, username, usernameDisplay } = {}) {
     const { db, fns } = getFire();
@@ -404,7 +404,12 @@ function openEditModal() {
     if (!currentUser) return;
 
     editNameInput.value = currentUser.displayName || "";
-    editUsernameInput.value = currentUsername || "";
+    // On pré-remplit avec la casse d'affichage (usernameDisplay), pas le
+    // username normalisé : sinon toute casse personnalisée ("Timothée")
+    // est écrasée par sa version normalisée ("timothee") à chaque
+    // réouverture de la modale, et un changement de casse seul semble
+    // "ne rien faire" puisqu'on repart toujours de la version normalisée.
+    editUsernameInput.value = currentUsernameDisplay || currentUsername || "";
     editUsernameStatus.textContent = "";
     editUsernameStatus.classList.remove("is-error", "is-ok");
     editBioInput.value = profileBio.classList.contains("is-empty") ? "" : profileBio.textContent;
@@ -563,7 +568,8 @@ editSaveBtn.addEventListener("click", async () => {
         // fait foi partout où l'uid apparaît publiquement (commentaires,
         // page /@username). On le repropage à CHAQUE sauvegarde du profil
         // (pas seulement si le username a changé), pour rattraper au
-        // passage tout désync éventuel avec users/{uid} et usernames/{...}.
+        // passage tout désync éventuel avec users/{uid} et usernames/{...},
+        // et notamment le cas d'un simple changement de casse.
         await syncPublicProfile(currentUser.uid, {
             username: normalizedUsername,
             usernameDisplay: rawUsername.trim()
