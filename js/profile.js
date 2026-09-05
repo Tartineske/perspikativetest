@@ -87,6 +87,7 @@ const avatarLightboxSave = document.getElementById("avatarLightboxSave");
 let currentUser = null;
 let selectedAvatar = DEFAULT_AVATAR;
 let currentUsername = null; // valeur normalisée actuellement enregistrée
+let currentUsernameDisplay = null; // casse d'affichage actuellement enregistrée
 let usernameCheckToken = 0; // pour ignorer les réponses de vérif obsolètes
 
 // -----------------------------------------------------------------------
@@ -137,17 +138,19 @@ async function saveUserDoc(uid, data) {
 }
 
 // -----------------------------------------------------------------------
-// Profil public minimal (displayName + photoURL uniquement), lisible par
+// Profil public minimal (username + usernameDisplay + photoURL uniquement,
+// JAMAIS displayName), lisible par
 // tout le monde même si le profil complet (users/{uid}) est privé. C'est
 // ce document que script-comments.js consulte pour garder pseudo/photo à
 // jour dans les commentaires, quel que soit isPublic.
 // -----------------------------------------------------------------------
-async function syncPublicProfile(uid, { displayName, photoURL } = {}) {
+async function syncPublicProfile(uid, { photoURL, username, usernameDisplay } = {}) {
     const { db, fns } = getFire();
     if (!db || !fns) return;
     const data = {};
-    if (displayName !== undefined) data.displayName = displayName;
     if (photoURL !== undefined) data.photoURL = photoURL;
+    if (username !== undefined) data.username = username;
+    if (usernameDisplay !== undefined) data.usernameDisplay = usernameDisplay;
     if (Object.keys(data).length === 0) return;
     const ref = fns.doc(db, "publicProfiles", uid);
     await fns.setDoc(ref, data, { merge: true });
@@ -347,6 +350,18 @@ onAuthStateChanged(auth, async (user) => {
         if (userDoc && userDoc.username) {
             currentUsername = userDoc.username;
             usernameDisplay = userDoc.usernameDisplay || userDoc.username;
+            currentUsernameDisplay = usernameDisplay;
+
+            // Rattrapage : les comptes créés avant l'ajout du username à
+            // publicProfiles n'ont jamais synchronisé ce champ côté public.
+            // On le fait une fois ici, silencieusement, pour que les
+            // commentaires existants pointent vers /@{usernameDisplay}.
+            syncPublicProfile(user.uid, {
+                username: currentUsername,
+                usernameDisplay
+            }).catch(function (err) {
+                console.error("Erreur de synchro username publicProfiles :", err);
+            });
         }
 
         if (userDoc && typeof userDoc.isPublic === "boolean") {
@@ -502,7 +517,10 @@ editSaveBtn.addEventListener("click", async () => {
         // Réservation atomique du username (si changé). C'est cette étape,
         // et non une simple vérification préalable, qui garantit qu'on ne
         // peut jamais voler un pseudo pris entre-temps par quelqu'un d'autre.
-        if (normalizedUsername !== currentUsername) {
+        var usernameChanged = normalizedUsername !== currentUsername;
+        var displayChanged  = rawUsername.trim() !== (currentUsernameDisplay || "");
+
+        if (usernameChanged) {
             try {
                 await saveUsername(
                     currentUser.uid,
@@ -519,6 +537,13 @@ editSaveBtn.addEventListener("click", async () => {
                 }
                 throw err;
             }
+        } else if (displayChanged) {
+            // Le username normalisé (ex. "timothee") n'a pas changé, mais sa
+            // casse d'affichage oui (ex. "Timothe" -> "Timothée"). saveUsername()
+            // n'est pas appelé dans ce cas (rien à réserver/libérer côté
+            // usernames/{username}), donc on met juste à jour usernameDisplay
+            // sur users/{uid} nous-mêmes pour ne pas perdre ce changement.
+            await saveUserDoc(currentUser.uid, { usernameDisplay: rawUsername.trim() });
         }
 
         // Mise à jour du profil Firebase Auth (nom uniquement : la photo de
@@ -532,14 +557,23 @@ editSaveBtn.addEventListener("click", async () => {
         // même transaction que la réservation).
         await saveUserDoc(currentUser.uid, { bio: newBio });
 
-        // Profil public minimal (pour que les commentaires existants de cet
-        // utilisateur affichent le nouveau nom, même si son profil est privé).
-        await syncPublicProfile(currentUser.uid, { displayName: newName });
+        // Profil public minimal (username + usernameDisplay + photoURL
+        // uniquement, JAMAIS displayName). C'est ce document, toujours
+        // lisible même si le profil complet (users/{uid}) est privé, qui
+        // fait foi partout où l'uid apparaît publiquement (commentaires,
+        // page /@username). On le repropage à CHAQUE sauvegarde du profil
+        // (pas seulement si le username a changé), pour rattraper au
+        // passage tout désync éventuel avec users/{uid} et usernames/{...}.
+        await syncPublicProfile(currentUser.uid, {
+            username: normalizedUsername,
+            usernameDisplay: rawUsername.trim()
+        });
 
         // Rafraîchissement de l'affichage
         displayName.textContent = newName;
         renderBio(newBio);
         currentUsername = normalizedUsername;
+        currentUsernameDisplay = rawUsername.trim();
         renderUsername(rawUsername.trim());
         renderPublicUrl(rawUsername.trim());
 
