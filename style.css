@@ -4143,7 +4143,13 @@ body {
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
   font-size: 0.98rem;
-  color: #fff;
+  color: #ffffff;
+  opacity: 0.8;
+  transition: opacity 0.18s ease;
+}
+
+.lb-comment-pseudo:hover {
+  opacity: 1;
 }
 
 .lb-comment-time {
@@ -6471,5 +6477,6 @@ body {
     transition: opacity 0.15s linear, visibility 0.15s linear, border-radius 0.15s linear;
   }
 }
+
 
 
