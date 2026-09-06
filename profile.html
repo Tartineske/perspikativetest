@@ -302,13 +302,12 @@ permalink: /profile
   }
 
   .profile-since::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #00c896;
-    box-shadow: 0 0 8px #00c896;
-    flex-shrink: 0;
+    content: '✦';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 1rem;
+    color: #ffffff;
   }
 
   .profile-since span {
@@ -365,6 +364,10 @@ permalink: /profile
     .profile-since span {
       font-size: 0.94rem;
       letter-spacing: 0.02em;
+    }
+    
+    .profile-since::before {
+      font-size: 0.94rem;
     }
 
     .profile-identity {
