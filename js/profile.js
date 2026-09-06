@@ -43,7 +43,6 @@ const USERNAME_REGEX = /^[a-z0-9_]{3,20}$/;
 // -----------------------------------------------------------------------
 const profilePic = document.getElementById("profilePic");
 const displayName = document.getElementById("displayName");
-const email = document.getElementById("email");
 const profileBio = document.getElementById("profileBio");
 const profileSince = document.getElementById("profileSince");
 const profileUsername = document.getElementById("profileUsername");
@@ -307,9 +306,8 @@ onAuthStateChanged(auth, async (user) => {
     currentUser = user;
 
     displayName.textContent = user.displayName || "Utilisateur";
-    email.textContent = user.email || "";
 
-    // Section Compte : e-mail (2e affichage) + ID Perspikative (UID Firebase)
+    // Section Compte : e-mail + ID Perspikative (UID Firebase)
     accountEmail.textContent = user.email || "—";
     accountId.textContent = user.uid;
 
