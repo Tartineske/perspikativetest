@@ -354,15 +354,19 @@ permalink: /profile
     transform: scaleX(-1);
   }
 
-  /* Mobile : la carte n'a plus besoin d'un ratio fixe */
   @media (max-width: 520px) {
     .profile-card {
       aspect-ratio: auto;
       min-height: 0;
       padding: 20px 22px 20px 22px;
-      border-radius: 72px 40px 40px 40px;
+      border-radius: 73px 40px 40px 40px;
     }
     
+    .profile-since span {
+      font-size: 0.94rem;
+      letter-spacing: 0.02em;
+    }
+
     .profile-identity {
       margin-top: 6px;
     }
